@@ -2,15 +2,14 @@ package seniorsathome.seniorsathomespring.model;
 
 import java.util.Date;
 
-public class Contract {
+public class Invoice {
 
     private String numberID;
-    private int quantity;
+    private Date releaseDate;
     private Date startDate;
     private Date finalDate;
     private double price;
-    private String companyID;
-    private enum serviceType{CATERING, PHISIOTERAPY, NURSING, LAUNDRY, CLEANING}
+    private String beneficiaryID;
 
     public String getNumberID() {
         return numberID;
@@ -20,12 +19,12 @@ public class Contract {
         this.numberID = numberID;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public Date getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public Date getStartDate() {
@@ -52,23 +51,23 @@ public class Contract {
         this.price = price;
     }
 
-    public String getCompanyID() {
-        return companyID;
+    public String getBeneficiaryID() {
+        return beneficiaryID;
     }
 
-    public void setCompanyID(String companyID) {
-        this.companyID = companyID;
+    public void setBeneficiaryID(String beneficiaryID) {
+        this.beneficiaryID = beneficiaryID;
     }
 
     @Override
     public String toString() {
-        return "Contract{" +
+        return "Invoice{" +
                 "numberID='" + numberID + '\'' +
-                ", quantity=" + quantity +
+                ", releaseDate=" + releaseDate +
                 ", startDate=" + startDate +
                 ", finalDate=" + finalDate +
                 ", price=" + price +
-                ", companyID='" + companyID + '\'' +
+                ", beneficiaryID='" + beneficiaryID + '\'' +
                 '}';
     }
 }
