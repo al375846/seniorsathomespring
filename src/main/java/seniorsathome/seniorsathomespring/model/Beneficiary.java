@@ -6,6 +6,7 @@ public class Beneficiary {
     private String name;
     private String surnames;
     private String phoneNumber;
+    private String email;
     private String address;
     private String userName;
     private String password;
@@ -41,6 +42,14 @@ public class Beneficiary {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAddress() {
