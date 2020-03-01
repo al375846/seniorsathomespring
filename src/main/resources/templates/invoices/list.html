@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Invoices Management</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+    <h1>Invoices list</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Number ID</th>
+            <th>Release date</th>
+            <th>Start date</th>
+            <th>Final date</th>
+            <th>Price</th>
+            <th>Beneficiary ID</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="invoice: ${invoices}">
+            <td th:text="${invoice.numberID}"></td>
+            <td th:text="${invoice.releaseDate}"></td>
+            <td th:text="${invoice.startDate}"></td>
+            <td th:text="${invoice.finalDate}"></td>
+            <td th:text="${invoice.price}"></td>
+            <td th:text="${invoice.beneficiaryID}"></td>
+            <td><a th:href="@{/nadador/update/{nom}(nom=${invoice.numberID})}"><button type="button" class="btn btn-warning">Update</button></a>
+            </td>
+            <td><a th:href="@{/nadador/delete/{nom}(nom=${invoice.numberID})}"><button type="button" class="btn btn-danger">Delete</button></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="add"><button type="button" class="btn btn-success">Add an invoice</button></a>
+</div>
+</body>
+</html>
