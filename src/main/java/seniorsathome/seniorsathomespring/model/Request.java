@@ -12,7 +12,7 @@ public class Request {
     private String comments;
     private String beneficiaryID;
     private String contractID;
-    private enum status{APPROVED, REJECTED, UNSOLVED}
-    private enum serviceType{CATERING, PHISIOTERAPY, NURSING, LAUNDRY, CLEANING}
+    private RequestStatus status;
+    private ServiceType serviceType;
 
 }

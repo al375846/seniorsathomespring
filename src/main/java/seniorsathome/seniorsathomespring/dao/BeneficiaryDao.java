@@ -40,7 +40,7 @@ public class BeneficiaryDao {
         jdbcTemplate.update("UPDATE Beneficiary SET name=?, surnames=?, phoneNumber=?, email=?, address=?, userName=?, password=?, socialWorkerID=?  WHERE identificationNumber=?", beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), beneficiary.getPassword(), beneficiary.getSocialWorkerID(), beneficiary.getIdentificationNumber());
     }
 
-    /*Obetiene los un beneficiario a partir de su ID. Devuelve nulo si no existe. */
+    /*Obetiene un beneficiario a partir de su ID. Devuelve nulo si no existe. */
     public  Beneficiary getBeneficiary (String idBeneficiary){
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Beneficiary WHERE identificationNumber=?",

@@ -10,7 +10,7 @@ public class Contract {
     private Date finalDate;
     private double price;
     private String companyID;
-    private enum serviceType{CATERING, PHISIOTERAPY, NURSING, LAUNDRY, CLEANING}
+    private ServiceType serviceType;
 
     public String getNumberID() {
         return numberID;
@@ -60,6 +60,14 @@ public class Contract {
         this.companyID = companyID;
     }
 
+    public ServiceType getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(ServiceType serviceType) {
+        this.serviceType = serviceType;
+    }
+
     @Override
     public String toString() {
         return "Contract{" +
@@ -69,6 +77,7 @@ public class Contract {
                 ", finalDate=" + finalDate +
                 ", price=" + price +
                 ", companyID='" + companyID + '\'' +
+                ", serviceType=" + serviceType +
                 '}';
     }
 }
