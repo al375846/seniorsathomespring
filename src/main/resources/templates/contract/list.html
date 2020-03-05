@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Contracts</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Contracts' List</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Number ID</th>
+        <th>Service Type</th>
+        <th>Quantity</th>
+        <th>Start Date</th>
+        <th>Final Date</th>
+        <th>Price</th>
+        <th>Company ID</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contract: ${contracts}">
+        <td th:text="${contract.numberID}"></td>
+        <td th:text="${contract.serviceType}"></td>
+        <td th:text="${contract.quantity}"></td>
+        <td th:text="${contract.startDate}"></td>
+        <td th:text="${contract.finalDate}"></td>
+        <td th:text="${contract.price}"></td>
+        <td th:text="${contract.companyID}"></td>
+        <td><a th:href="@{/contract/update/{numberID}(numberID=${contract.numberID})}"><button type="button" class="btn btn-warning">Update</button></a>
+        </td>
+        <td><a th:href="@{/contract/delete/{numberID}(numberID=${contract.numberID})}"><button type="button" class="btn btn-danger">Delete</button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="add"><button type="button" class="btn btn-success">Add Contract</button></a>
+</body>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Companies</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Companies' List</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Fiscal Number</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Responsible Name</th>
+        <th>Responsible Phone Number</th>
+        <th>Responsible Address</th>
+        <th>Phone Number</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="company: ${companies}">
+        <td th:text="${company.fiscalNumber}"></td>
+        <td th:text="${company.name}"></td>
+        <td th:text="${company.email}"></td>
+        <td th:text="${company.responsibleName}"></td>
+        <td th:text="${company.responsiblePhoneNumber}"></td>
+        <td th:text="${company.responsibleAddress}"></td>
+        <td th:text="${company.phoneNumber}"></td>
+        <td th:text="${company.userName}"></td>
+        <td th:text="${company.password}"></td>
+        <td><a th:href="@{/company/update/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}"><button type="button" class="btn btn-warning">Update</button></a>
+        </td>
+        <td><a th:href="@{/company/delete/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}"><button type="button" class="btn btn-danger">Delete</button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="add"><button type="button" class="btn btn-success">Add Company</button></a>
+</body>
+</html>

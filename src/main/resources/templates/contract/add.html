@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create a new Contract</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>New Contract</h2>
+<form action="#" th:action="@{/contract/add}"
+      th:object="${contract}" method="post">
+    <table>
+        <tr>
+            <td><label>Number ID</label></td>
+            <td><input type="text" th:field="*{numberID}" /></td>
+        </tr>
+        <tr>
+            <td><label>Service Type</label></td>
+            <!--<td><input type="text" th:field="*{serviceType}" /></td>-->
+            <td>
+                <select name="serviceType" th:field="*{serviceType}">
+                    <option value=1>CATERING</option>
+                    <option value=2>PHISIOTERAPY</option>
+                    <option value=3>NURSING</option>
+                    <option value=4>LAUNDRY</option>
+                    <option value=5>CLEANING</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Quantity</label></td>
+            <td><input type="number" th:field="*{quantity}" /></td>
+        </tr>
+        <tr>
+            <td><label>Start Date</label></td>
+            <td><input type="date" th:field="*{startDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Final Date</label></td>
+            <td><input type="date" th:field="*{finalDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Price</label></td>
+            <td><input type="number" step="any" th:field="*{price}" /></td>
+        </tr>
+        <tr>
+            <td><label>Company ID</label></td>
+            <td><input type="text" th:field="*{companyID}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Add Contract" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

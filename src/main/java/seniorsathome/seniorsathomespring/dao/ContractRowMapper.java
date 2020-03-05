@@ -18,7 +18,7 @@ public class ContractRowMapper implements RowMapper<Contract> {
         contract.setQuantity(rs.getInt("quantity"));
         contract.setStartDate(rs.getDate("startDate"));
         contract.setFinalDate(rs.getDate("finalDate"));
-        contract.setPrice(rs.getInt("price"));
+        contract.setPrice(rs.getDouble("price"));
         contract.setCompanyID(rs.getString("companyID"));
 
         return contract;
