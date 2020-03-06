@@ -13,6 +13,7 @@ public class VolunteersScheduleRowMapper implements RowMapper<VolunteersSchedule
         VolunteersSchedule s = new VolunteersSchedule();
 
         s.setNumberID(rs.getString("numberID"));
+        s.setDay(rs.getDate("day"));
         s.setStartHour(rs.getTime("startHour"));
         s.setFinalHour(rs.getTime("finalHour"));
         s.setStatus(rs.getByte("status"));

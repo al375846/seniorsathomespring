@@ -20,7 +20,7 @@ public class VolunteersScheduleDao {
     }
 
     public void addVolunteersSchedule (VolunteersSchedule s) {
-        jdbcTemplate.update("INSERT INTO VolunteersSchedule VALUES(?,?,?, ?,?,?)",s.getNumberID(),s.getStartHour(),
+        jdbcTemplate.update("INSERT INTO VolunteersSchedule VALUES(?,?,?,?, ?,?,?)",s.getNumberID(),s.getDay(),s.getStartHour(),
         s.getFinalHour(),s.getStatus(),s.getBeneficiaryID(),s.getVolunteerID());
     }
     public void deleteVolunteersSchedule(VolunteersSchedule s){
