@@ -1,5 +1,6 @@
 package seniorsathome.seniorsathomespring.model;
 
+import java.sql.Date;
 import java.sql.Time;
 
 public class VolunteersSchedule {
@@ -10,6 +11,16 @@ public class VolunteersSchedule {
     private byte status;
     private String beneficiaryID;
     private String volunteerID;
+
+    public Date getDay() {
+        return day;
+    }
+
+    public void setDay(Date day) {
+        this.day = day;
+    }
+
+    private Date day;
 
     public String getNumberID() {
         return numberID;
