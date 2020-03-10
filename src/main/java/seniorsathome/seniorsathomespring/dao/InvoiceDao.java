@@ -30,7 +30,7 @@ public class InvoiceDao {
     }
 
     public void updateInvoice (Invoice invoice) {
-        jdbcTemplate.update("UPDATE Invoice SET number_id=?, release_date=?, start_date=?, final_date=?, price=?, beneficiary_id=? WHERE number_id=?", invoice.getNumberID(),
+        jdbcTemplate.update("UPDATE Invoice SET release_date=?, start_date=?, final_date=?, price=?, beneficiary_id=? WHERE number_id=?",
                 invoice.getReleaseDate(), invoice.getStartDate(), invoice.getFinalDate(), invoice.getPrice(),
                 invoice.getBeneficiaryID(), invoice.getNumberID());
     }

@@ -5,6 +5,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import seniorsathome.seniorsathomespring.model.Contract;
+import seniorsathome.seniorsathomespring.model.ServiceType;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class ContractDao {
 
     /*Modifica los datos de un contrato en la base de datos*/
     public void updateContract(Contract contract) {
-        jdbcTemplate.update("UPDATE FROM Company SET serviceType=?, quantity=?, startDate=?, finalDate=?, price=?, companyID=? WHERE numberID=?",
+        jdbcTemplate.update("UPDATE Company SET serviceType=?, quantity=?, startDate=?, finalDate=?, price=?, companyID=? WHERE numberID=?",
                 contract.getServiceType(), contract.getQuantity(), contract.getStartDate(), contract.getFinalDate(), contract.getPrice(), contract.getCompanyID(), contract.getNumberID());
     }
 

@@ -1,19 +1,19 @@
 package seniorsathome.seniorsathomespring.model;
 
 public enum ServiceType {
-    CATERING("catering"),
-    PHISIOTERAPY("phisioterapy"),
-    NURSING("nursing"),
-    LAUNDRY("laundry"),
-    CLEANING("cleaning");
+    CATERING("CATERING"),
+    PHISIOTERAPY("PHISIOTERAPY"),
+    NURSING("NURSING"),
+    LAUNDRY("LAUNDRY"),
+    CLEANING("CLEANING");
 
-    private String serviceName;
+    private ServiceType serviceName;
 
     ServiceType(String service) {
-        this.serviceName = service;
+        this.serviceName = ServiceType.valueOf(service);
     }
 
-    public String serviceName() {
+    public ServiceType serviceName() {
         return serviceName;
     }
 }

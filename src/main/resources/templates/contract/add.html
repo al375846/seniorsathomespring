@@ -18,14 +18,15 @@
         <tr>
             <td><label>Service Type</label></td>
             <!--<td><input type="text" th:field="*{serviceType}" /></td>-->
-            <td>
-                <select name="serviceType" th:field="*{serviceType}">
-                    <option value=0>CATERING</option>
-                    <option value=1>PHISIOTERAPY</option>
-                    <option value=2>NURSING</option>
-                    <option value=3>LAUNDRY</option>
-                    <option value=4>CLEANING</option>
-                </select>
+           <td>
+               <input list="servicesType" name="serviceType" th:field="*{serviceType}" />
+               <datalist id="servicesType">
+                   <option value="CATERING">
+                   <option value="PHISIOTERAPY">
+                   <option value="NURSING">
+                   <option value="LAUNDRY">
+                   <option value="CLEANING">
+               </datalist>
             </td>
         </tr>
         <tr>

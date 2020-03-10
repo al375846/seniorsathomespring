@@ -1,17 +1,17 @@
 package seniorsathome.seniorsathomespring.model;
 
 public enum RequestStatus {
-    APPROVED("approved"),
-    REJECTED("rejected"),
-    UNSOLVED("unsolved");
+    APPROVED("APPROVED"),
+    REJECTED("REJECTED"),
+    UNSOLVED("UNSOLVED");
 
-    private String statusName;
+    private RequestStatus statusName;
 
     RequestStatus(String status) {
-        this.statusName = status;
+        this.statusName = RequestStatus.valueOf(status);
     }
 
-    public String statusName() {
+    public RequestStatus statusName() {
         return statusName;
     }
 }

@@ -63,7 +63,7 @@ public class CompanyController {
     @RequestMapping(value = "/delete/{fiscalNumber}")
     public String processDeleteCompany(@PathVariable String fiscalNumber) {
         companyDao.deleteCompany(fiscalNumber);
-        return "redirect:../../list";
+        return "redirect:../list";
     }
 }
 

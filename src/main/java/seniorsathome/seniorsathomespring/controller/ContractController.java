@@ -35,15 +35,15 @@ public class ContractController {
     @RequestMapping(value="/add")
     public String addContract(Model model) {
         model.addAttribute("contract", new Contract());
-        model.addAttribute("servicesType", Arrays.asList(ServiceType.values()));
+        //model.addAttribute("servicesType", Arrays.asList(ServiceType.values()));
         return "contract/add";
     }
 
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("contract") Contract contract,
                                    BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-            return "contract/add";
+        //if (bindingResult.hasErrors())
+            //return "contract/add";
         contractDao.addContract(contract);
         return "redirect:list";
     }
@@ -67,6 +67,6 @@ public class ContractController {
     @RequestMapping(value = "/delete/{numberID}")
     public String processDeleteContract(@PathVariable String numberID) {
         contractDao.deleteContract(numberID);
-        return "redirect:../../list";
+        return "redirect:../list";
     }
 }

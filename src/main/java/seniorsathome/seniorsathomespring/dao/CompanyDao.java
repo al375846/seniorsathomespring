@@ -39,7 +39,7 @@ public class CompanyDao {
 
     /*Modifica los datos de una compañia en la base de datos*/
     public void updateCompany(Company company) {
-        jdbcTemplate.update("UPDATE FROM Company SET name=?, email=?, responsibleName=?, responsiblePhoneNumber=?, responsibleAddress=?, phoneNumber=?, userName=?, password=? WHERE fiscalNumber=?",
+        jdbcTemplate.update("UPDATE Company SET name=?, email=?, responsibleName=?, responsiblePhoneNumber=?, responsibleAddress=?, phoneNumber=?, userName=?, password=? WHERE fiscalNumber=?",
                 company.getName(), company.getEmail(), company.getResponsibleName(), company.getResponsiblePhoneNumber(), company.getResponsibleAddress(), company.getPhoneNumber(), company.getUserName(), company.getPassword(), company.getFiscalNumber());
     }
 
