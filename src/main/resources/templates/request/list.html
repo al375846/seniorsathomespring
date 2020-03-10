@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Requests</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Requests' List</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Number ID</th>
+        <th>Service Type</th>
+        <th>Status</th>
+        <th>Start Date</th>
+        <th>Final Date</th>
+        <th>Approval Date</th>
+        <th>Reject Date</th>
+        <th>Comments</th>
+        <th>Beneficiary ID</th>
+        <th>Contract ID</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="request: ${requests}">
+        <td th:text="${request.numberID}"></td>
+        <td th:text="${request.serviceType}"></td>
+        <td th:text="${request.status}"></td>
+        <td th:text="${request.startDate}"></td>
+        <td th:text="${request.finalDate}"></td>
+        <td th:text="${request.approvalDate}"></td>
+        <td th:text="${request.rejectDate}"></td>
+        <td th:text="${request.comments}"></td>
+        <td th:text="${request.beneficiaryID}"></td>
+        <td th:text="${request.contractID}"></td>
+        <td><a th:href="@{/request/update/{numberID}(numberID=${request.numberID})}"><button type="button" class="btn btn-warning">Update</button></a>
+        </td>
+        <td><a th:href="@{/request/delete/{numberID}(numberID=${request.numberID})}"><button type="button" class="btn btn-danger">Delete</button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="add"><button type="button" class="btn btn-success">Add Request</button></a>
+</body>

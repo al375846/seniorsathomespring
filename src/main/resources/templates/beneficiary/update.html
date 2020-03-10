@@ -1,43 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create a new Company</title>
+    <title>Modify a Beneficiary</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2>New Company</h2>
-<form action="#" th:action="@{/company/update}"
-      th:object="${company}" method="post">
+<h2>Edit Beneficiary</h2>
+<form action="#" th:action="@{/beneficiary/update}"
+      th:object="${beneficiary}" method="post">
     <table>
         <tr>
-            <td><label>Fiscal Number</label></td>
-            <td><input type="text" th:field="*{fiscalNumber}" /></td>
+            <td><label>Identification Number</label></td>
+            <td><input type="text" th:field="*{identificationNumber}" /></td>
         </tr>
         <tr>
             <td><label>Name</label></td>
             <td><input type="text" th:field="*{name}" /></td>
         </tr>
         <tr>
-            <td><label>Email</label></td>
-            <td><input type="text" th:field="*{email}" /></td>
-        </tr>
-        <tr>
-            <td><label>Responsible Name</label></td>
-            <td><input type="text" th:field="*{responsibleName}" /></td>
-        </tr>
-        <tr>
-            <td><label>Responsible Phone Number</label></td>
-            <td><input type="text" th:field="*{responsiblePhoneNumber}" /></td>
-        </tr>
-        <tr>
-            <td><label>Responsible Address</label></td>
-            <td><input type="text" th:field="*{responsibleAddress}" /></td>
+            <td><label>Surnames</label></td>
+            <td><input type="text" th:field="*{surnames}" /></td>
         </tr>
         <tr>
             <td><label>Phone Number</label></td>
             <td><input type="text" th:field="*{phoneNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td>
+            <td><input type="text" th:field="*{email}" /></td>
+        </tr>
+        <tr>
+            <td><label>Address</label></td>
+            <td><input type="text" th:field="*{address}" /></td>
         </tr>
         <tr>
             <td><label>Username</label></td>
@@ -46,6 +42,10 @@
         <tr>
             <td><label>Password</label></td>
             <td><input type="text" th:field="*{password}" /></td>
+        </tr>
+        <tr>
+            <td><label>Social Worker ID</label></td>
+            <td><input type="text" th:field="*{socialWorkerID}" /></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Update Company" /></td>

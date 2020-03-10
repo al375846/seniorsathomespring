@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create a new Request</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>New Request</h2>
+<form action="#" th:action="@{/request/add}"
+      th:object="${request}" method="post">
+    <table>
+        <tr>
+            <td><label>Number ID</label></td>
+            <td><input type="text" th:field="*{numberID}" /></td>
+        </tr>
+        <tr>
+            <td><label>Service Type</label></td>
+            <td>
+                <input list="servicesType" name="serviceType" th:field="*{serviceType}" />
+                <datalist id="servicesType">
+                    <option value="CATERING">
+                    <option value="PHISIOTERAPY">
+                    <option value="NURSING">
+                    <option value="LAUNDRY">
+                    <option value="CLEANING">
+                </datalist>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Status</label></td>
+            <td>
+                <input list="status" name="status" th:field="*{status}" />
+                <datalist id="status">
+                    <option value="APPROVED">
+                    <option value="REJECTED">
+                    <option value="UNSOLVED">
+                </datalist>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Start Date</label></td>
+            <td><input type="date" th:field="*{startDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Final Date</label></td>
+            <td><input type="date" th:field="*{finalDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Approval Date</label></td>
+            <td><input type="date" th:field="*{approvalDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Reject Date</label></td>
+            <td><input type="date" th:field="*{rejectDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Comments</label></td>
+            <td><input type="text" th:field="*{comments}" /></td>
+        </tr>
+        <tr>
+            <td><label>Beneficiary ID</label></td>
+            <td><input type="text" th:field="*{beneficiaryID}" /></td>
+        </tr>
+        <tr>
+            <td><label>Contract ID</label></td>
+            <td><input type="text" th:field="*{contractID}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Add Request" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
