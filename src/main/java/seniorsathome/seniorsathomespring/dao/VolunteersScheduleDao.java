@@ -23,8 +23,14 @@ public class VolunteersScheduleDao {
         jdbcTemplate.update("INSERT INTO VolunteersSchedule VALUES(?,?,?,?, ?,?,?)",s.getNumberID(),s.getDay(),s.getStartHour(),
         s.getFinalHour(),s.getStatus(),s.getBeneficiaryID(),s.getVolunteerID());
     }
-    public void deleteVolunteersSchedule(VolunteersSchedule s){
-        jdbcTemplate.update("DELETE FROM VolunteersSchedule WHERE idNumber=?", s.getNumberID());
+
+    public void updateVolunteersSchedule(VolunteersSchedule v) {
+        jdbcTemplate.update("UPDATE Volunteer SET  startHour=?, finalHour=? , status=? , beneficiaryID=? , volunteerID=? WHERE numberID=?",
+                v.getStartHour(),v.getFinalHour(),v.getStatus(),v.getBeneficiaryID(),v.getVolunteerID(),v.getNumberID()
+                );
+    }
+    public void deleteVolunteersSchedule(String s){
+        jdbcTemplate.update("DELETE FROM VolunteersSchedule WHERE idNumber=?", s);
     }
 
 
@@ -39,7 +45,7 @@ public class VolunteersScheduleDao {
         }
     }
 
-    public List<VolunteersSchedule> getVolunteers(){
+    public List<VolunteersSchedule> getVolunteersSchedules(){
         try{
             return jdbcTemplate.query("SELECT * FROM VolunteersSchedule",
                     new VolunteersScheduleRowMapper());
@@ -48,4 +54,5 @@ public class VolunteersScheduleDao {
             return new ArrayList<VolunteersSchedule>();
         }
     }
+
 }

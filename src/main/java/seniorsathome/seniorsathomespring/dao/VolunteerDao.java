@@ -27,8 +27,14 @@ public class VolunteerDao {
                 v.getIdNumber(),v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
                 v.getUserName(),v.getPassword(),v.getRequestDate(),v.getApprovalDate());
     }
-    public void deleteVolunteer(Volunteer v){
-        jdbcTemplate.update("DELETE FROM Volunteer WHERE number_id=?", v.getIdNumber());
+    public void deleteVolunteer(String idNumber){
+        jdbcTemplate.update("DELETE FROM Volunteer WHERE number_id=?", idNumber);
+    }
+
+    public void updateVolunteer(Volunteer v) {
+        jdbcTemplate.update("UPDATE Volunteer SET name=?,phoneNumber=?,email=?,address=?,userName=?,password=?,requestDate=?,approvalDate=? WHERE idNumber=?",
+                v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
+                v.getUserName(),v.getPassword(),v.getRequestDate(),v.getApprovalDate(),v.getIdNumber());
     }
 
 
