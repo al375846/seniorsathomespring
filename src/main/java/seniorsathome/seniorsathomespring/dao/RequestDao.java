@@ -33,6 +33,10 @@ public class RequestDao {
         jdbcTemplate.update("DELETE FROM Request WHERE number_id=?", request.getNumberID());
     }
 
+    public void deleteRequest (String numberID) {
+        jdbcTemplate.update("DELETE FROM Request WHERE number_id=?", numberID);
+    }
+
     public void updateRequest (Request request) {
         jdbcTemplate.update("UPDATE Request SET status=?, type=?, start_date=?, final_date=?, approval_date=?, reject_date=?, comments=?, beneficiary_id=?, contract_id=? WHERE number_id=?",
                 request.getStatus(), request.getServiceType(), request.getStartDate(),

@@ -25,8 +25,8 @@ public class InvoiceDao {
                 invoice.getFinalDate(), invoice.getPrice(), invoice.getBeneficiaryID());
     }
 
-    public void deleteInvoice (Invoice invoice) {
-        jdbcTemplate.update("DELETE FROM Invoice WHERE number_id=?", invoice.getNumberID());
+    public void deleteInvoice (String numberID) {
+        jdbcTemplate.update("DELETE FROM Invoice WHERE number_id=?", numberID);
     }
 
     public void updateInvoice (Invoice invoice) {

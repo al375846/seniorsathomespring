@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Beneficiaries</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Beneficiaries' List</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Identification Number</th>
+        <th>Name</th>
+        <th>Surnames</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Username/th>
+        <th>Password</th>
+        <th>Social Worker ID</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="beneficiary: ${beneficiaries}">
+        <td th:text="${beneficiary.identificationNumber}"></td>
+        <td th:text="${beneficiary.name}"></td>
+        <td th:text="${beneficiary.surnames}"></td>
+        <td th:text="${beneficiary.phoneNumber}"></td>
+        <td th:text="${beneficiary.email}"></td>
+        <td th:text="${beneficiary.address}"></td>
+        <td th:text="${beneficiary.userName}"></td>
+        <td th:text="${beneficiary.password}"></td>
+        <td th:text="${beneficiary.socialWorkerID}"></td>
+        <td><a th:href="@{/beneficiary/update/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-warning">Update</button></a>
+        </td>
+        <td><a th:href="@{/company/delete/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-danger">Delete</button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="add"><button type="button" class="btn btn-success">Add Company</button></a>
+</body>
+</html>

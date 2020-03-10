@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
-<div class="container">
     <h1>Invoices list</h1>
     <table class="table table-striped">
         <thead>
@@ -29,14 +28,13 @@
             <td th:text="${invoice.finalDate}"></td>
             <td th:text="${invoice.price}"></td>
             <td th:text="${invoice.beneficiaryID}"></td>
-            <td><a th:href="@{/nadador/update/{nom}(nom=${invoice.numberID})}"><button type="button" class="btn btn-warning">Update</button></a>
+            <td><a th:href="@{/invoice/update/{nom}(nom=${invoice.numberID})}"><button type="button" class="btn btn-warning">Update</button></a>
             </td>
-            <td><a th:href="@{/nadador/delete/{nom}(nom=${invoice.numberID})}"><button type="button" class="btn btn-danger">Delete</button></a>
+            <td><a th:href="@{/invoice/delete/{nom}(nom=${invoice.numberID})}"><button type="button" class="btn btn-danger">Delete</button></a>
             </td>
         </tr>
         </tbody>
     </table>
-    <a href="add"><button type="button" class="btn btn-success">Add an invoice</button></a>
-</div>
+    <a th:href="add"><button type="button" class="btn btn-success">Add Invoice</button></a>
 </body>
 </html>

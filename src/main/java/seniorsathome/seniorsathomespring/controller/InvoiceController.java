@@ -3,7 +3,11 @@ package seniorsathome.seniorsathomespring.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.InvoiceDao;
 import seniorsathome.seniorsathomespring.model.Invoice;
 
@@ -26,4 +30,40 @@ public class InvoiceController {
             return "invoices/list";
         }
 
+    @RequestMapping(value="/add")
+    public String addInvoice(Model model) {
+        model.addAttribute("invoice", new Invoice());
+        return "invoice/add";
+    }
+
+    @RequestMapping(value="/add", method= RequestMethod.POST)
+    public String processAddSubmit(@ModelAttribute("invoice") Invoice invoice,
+                                   BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "invoice/add";
+        invoiceDao.addInvoice(invoice);
+        return "redirect:list";
+    }
+
+    @RequestMapping(value="/update/{numberID}", method = RequestMethod.GET)
+    public String editCompany(Model model, @PathVariable String numberID) {
+        model.addAttribute("invoice", invoiceDao.getInvoice(numberID));
+        return "invoice/update";
+    }
+
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public String processUpdateSubmit(
+            @ModelAttribute("invoice") Invoice invoice,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "invoice/update";
+        invoiceDao.updateInvoice(invoice);
+        return "redirect:list";
+    }
+
+    @RequestMapping(value = "/delete/{numberID}")
+    public String processDeleteCompany(@PathVariable String numberID) {
+        invoiceDao.deleteInvoice(numberID);
+        return "redirect:../../list";
+    }
 }
