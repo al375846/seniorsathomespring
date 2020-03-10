@@ -11,6 +11,7 @@ import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
 import seniorsathome.seniorsathomespring.model.Beneficiary;
 
 @Controller
+@RequestMapping("/beneficiary")
 public class BeneficiaryController {
 
     BeneficiaryDao beneficiaryDao;
