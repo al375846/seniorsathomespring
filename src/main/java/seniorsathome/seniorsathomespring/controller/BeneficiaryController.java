@@ -28,7 +28,7 @@ public class BeneficiaryController {
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("benefiaciary") Beneficiary beneficiary,
+    public String processAddSubmit(@ModelAttribute("beneficiary") Beneficiary beneficiary,
                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "beneficiary/add";

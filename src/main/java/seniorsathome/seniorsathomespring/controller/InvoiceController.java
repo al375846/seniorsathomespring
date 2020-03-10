@@ -45,9 +45,9 @@ public class InvoiceController {
         return "redirect:list";
     }
 
-    @RequestMapping(value="/update/{numberID}", method = RequestMethod.GET)
-    public String editCompany(Model model, @PathVariable String numberID) {
-        model.addAttribute("invoice", invoiceDao.getInvoice(numberID));
+    @RequestMapping(value="/update/{numberId}", method = RequestMethod.GET)
+    public String editInvoice(Model model, @PathVariable String numberId) {
+        model.addAttribute("invoice", invoiceDao.getInvoice(numberId));
         return "invoice/update";
     }
 
