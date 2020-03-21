@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create a new Contract</title>
+    <title>Modify an invoice</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2>New Contract</h2>
-<form action="#" th:action="@{/invoice/update}"
-      th:object="${invoice}" method="post">
+<h2>Edit Invoice</h2>
+<form action="#" th:action="@{/invoice/update}" th:object="${invoice}" method="post">
     <table>
         <tr>
             <td><label>Number ID</label></td>
@@ -36,7 +35,7 @@
             <td><input type="text" th:field="*{beneficiaryID}" /></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Update Invoice" /></td>
+            <td colspan="2"><input type="submit" value="Update Invoice"/></td>
         </tr>
     </table>
 </form>

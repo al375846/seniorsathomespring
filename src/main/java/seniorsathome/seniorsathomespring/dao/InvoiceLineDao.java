@@ -25,8 +25,8 @@ public class InvoiceLineDao {
                 invoiceLine.getRequestID(), invoiceLine.getInvoiceID());
     }
 
-    public void deleteInvoiceLine (InvoiceLine invoiceLine) {
-        jdbcTemplate.update("DELETE FROM InvoiceLine WHERE number_id=?", invoiceLine.getNumberID());
+    public void deleteInvoiceLine (String number_id) {
+        jdbcTemplate.update("DELETE FROM InvoiceLine WHERE number_id=?", number_id);
     }
 
     public void updateInvoiceLine (InvoiceLine invoiceLine) {
