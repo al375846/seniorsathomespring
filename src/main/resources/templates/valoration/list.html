@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Valorations</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Valorations' list</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Valoration ID</th>
+        <th>Rate</th>
+        <th>Comment</th>
+        <th>Volunteer ID</th>
+        <th>Company ID</th>
+        <th>Beneficiary ID</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="valoration: ${valorations}">
+        <td th:text="${valoration.idValoration}"></td>
+        <td th:text="${valoration.rate}"></td>
+        <td th:text="${valoration.comment}"></td>
+        <td th:text="${valoration.idVolunteer}"></td>
+        <td th:text="${valoration.idCompany}"></td>
+        <td th:text="${valoration.idBeneficiary}"></td>
+        <td><a th:href="@{/invoice/update/{nom}(nom=${valoration.idValoration})}"><button type="button" class="btn btn-warning">Update</button></a>
+        </td>
+        <td><a th:href="@{/invoice/delete/{nom}(nom=${valoration.idValoration})}"><button type="button" class="btn btn-danger">Delete</button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="add"><button type="button" class="btn btn-success">Add Invoice</button></a>
+</body>
+</html>

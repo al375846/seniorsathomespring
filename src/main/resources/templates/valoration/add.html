@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Create a new Valoration</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>New Valoration</h2>
+<form action="#" th:action="@{/valoration/add}" th:object="${valoration}" method="post">
+    <table>
+        <tr>
+            <td><label>Valoration ID</label></td>
+            <td><input type="text" th:field="*{idValoration}" /></td>
+        </tr>
+        <tr>
+            <td><label>Rate</label></td>
+            <td><input type="number" step="any" th:field="*{rate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Comment</label></td>
+            <td><input type="text" th:field="*{comment}" /></td>
+        </tr>
+        <tr>
+            <td><label>Volunteer ID</label></td>
+            <td><input type="text" th:field="*{idVolunteer}" /></td>
+        </tr>
+        <tr>
+            <td><label>CompanyID</label></td>
+            <td><input type="text" th:field="*{idCompany}" /></td>
+        </tr>
+        <tr>
+            <td><label>Beneficiary ID</label></td>
+            <td><input type="text" th:field="*{idBeneficiary}" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
