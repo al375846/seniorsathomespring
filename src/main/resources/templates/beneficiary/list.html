@@ -36,7 +36,7 @@
         <td th:text="${beneficiary.socialWorkerID}"></td>
         <td><a th:href="@{/beneficiary/update/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-warning">Update</button></a>
         </td>
-        <td><a th:href="@{/company/delete/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-danger">Delete</button></a>
+        <td><a th:href="@{/beneficiary/delete/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-danger">Delete</button></a>
         </td>
     </tr>
     </tbody>
