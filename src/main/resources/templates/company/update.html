@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create a new Company</title>
+    <title>Modify a Company</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2>New Company</h2>
+<h2>Edit Company</h2>
 <form action="#" th:action="@{/company/update}"
       th:object="${company}" method="post">
     <table>

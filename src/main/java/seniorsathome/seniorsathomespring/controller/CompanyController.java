@@ -19,7 +19,7 @@ public class CompanyController {
     private CompanyDao companyDao;
 
     @Autowired
-    public void setCopanyDao(CompanyDao companyDao) {
+    public void setCompanyDao(CompanyDao companyDao) {
         this.companyDao = companyDao;
     }
 

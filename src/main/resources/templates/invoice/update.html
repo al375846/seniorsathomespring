@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create a new Contract</title>
+    <title>Modify an invoice</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2>New Contract</h2>
-<form action="#" th:action="@{/invoice/update}"
-      th:object="${invoice}" method="post">
+<h2>Edit Invoice</h2>
+<form action="#" th:action="@{/invoice/update}" th:object="${invoice}" method="post">
     <table>
         <tr>
             <td><label>Number ID</label></td>
-            <td><input type="text" th:field="*{numberID}" /></td>
+            <td><input type="text" readonly="readonly" th:field="*{numberID}" /></td>
         </tr>
         <tr>
             <td><label>Release Date</label></td>
-            <td><input type="date" th:field="*{releaseDate}" /></td>
+            <td><input type="date" th:field="*{releaseDate}" placeholder="dd/MM/yyyy"/></td>
         </tr>
         <tr>
             <td><label>Start Date</label></td>
-            <td><input type="date" th:field="*{startDate}" /></td>
+            <td><input type="date" th:field="*{startDate}" placeholder="dd/MM/yyyy"/></td>
         </tr>
         <tr>
             <td><label>Final Date</label></td>
-            <td><input type="date" th:field="*{finalDate}" /></td>
+            <td><input type="date" th:field="*{finalDate}" placeholder="dd/MM/yyyy"/></td>
         </tr>
         <tr>
             <td><label>Price</label></td>
@@ -36,7 +35,7 @@
             <td><input type="text" th:field="*{beneficiaryID}" /></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Update Invoice" /></td>
+            <td colspan="2"><input type="submit" value="Update Invoice"/></td>
         </tr>
     </table>
 </form>

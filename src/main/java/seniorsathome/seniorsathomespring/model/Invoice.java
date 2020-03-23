@@ -1,13 +1,22 @@
 package seniorsathome.seniorsathomespring.model;
 
-import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 public class Invoice {
 
     private String numberID;
-    private Date releaseDate;
-    private Date startDate;
-    private Date finalDate;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDate releaseDate;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDate startDate;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDate finalDate;
+
     private double price;
     private String beneficiaryID;
 
@@ -19,27 +28,27 @@ public class Invoice {
         this.numberID = numberID;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getFinalDate() {
+    public LocalDate getFinalDate() {
         return finalDate;
     }
 
-    public void setFinalDate(Date finalDate) {
+    public void setFinalDate(LocalDate finalDate) {
         this.finalDate = finalDate;
     }
 

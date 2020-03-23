@@ -12,54 +12,54 @@ import seniorsathome.seniorsathomespring.dao.VolunteersScheduleDao;
 import seniorsathome.seniorsathomespring.model.VolunteersSchedule;
 
 @Controller
-@RequestMapping("/volunteersSchedelure")
+@RequestMapping("/volunteersSchedule")
 public class VolunteersScheduleController {
 
-    private VolunteersScheduleDao volunteerDao;
+    private VolunteersScheduleDao volunteerScheduleDao;
 
     @Autowired
-    public void setVolunteersScheduleDao(VolunteersScheduleDao a) {
-        this.volunteerDao = a;
+    public void setVolunteersScheduleDao(VolunteersScheduleDao volunteerScheduleDao) {
+        this.volunteerScheduleDao = volunteerScheduleDao;
     }
 
     @RequestMapping("/list")
-    public String listVolunteersSchedelures(Model model) {
-        model.addAttribute("volunteersSchedelures", volunteerDao.getVolunteersSchedules());
-        return "volunteersSchedelure/list";
+    public String listVolunteersSchedule(Model model) {
+        model.addAttribute("volunteersSchedules", volunteerScheduleDao.getVolunteersSchedules());
+        return "volunteerSchedule/list";
     }
 
     @RequestMapping(value="/add")
-    public String addVolunteersSchedelure(Model model) {
-        model.addAttribute("volunteersSchedelure", new VolunteersSchedule());
-        return "volunteersSchedelure/add";
+    public String addVolunteersSchedule(Model model) {
+        model.addAttribute("volunteersSchedule", new VolunteersSchedule());
+        return "volunteerSchedule/add";
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("volunteersSchedelure") VolunteersSchedule volunteer,
+    public String processAddSubmit(@ModelAttribute("volunteersSchedule") VolunteersSchedule volunteer,
                                    BindingResult bindingResult) {
-        volunteerDao.addVolunteersSchedule(volunteer);
+        volunteerScheduleDao.addVolunteersSchedule(volunteer);
         return "redirect:list";
     }
 
     @RequestMapping(value="/update/{numberID}/", method = RequestMethod.GET)
-    public String editVolunteersSchedelure(Model model, @PathVariable String numberID) {
-        model.addAttribute("volunteer", volunteerDao.getVolunteersSchedule(numberID));
-        return "volunteersSchedelure/update";
+    public String editVolunteersSchedule(Model model, @PathVariable String numberID) {
+        model.addAttribute("volunteersSchedule", volunteerScheduleDao.getVolunteersSchedule(numberID));
+        return "volunteerSchedule/update";
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
-            @ModelAttribute("volunteersSchedelure") VolunteersSchedule v,
+            @ModelAttribute("volunteersSchedule") VolunteersSchedule v,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "volunteer/update";
-        volunteerDao.updateVolunteersSchedule(v);
+            return "volunteerSchedule/update";
+        volunteerScheduleDao.updateVolunteersSchedule(v);
         return "redirect:list";
     }
 
     @RequestMapping(value = "/delete/{numberID}")
-    public String processDeleteVolunteersSchedelure(@PathVariable String numberID) {
-        volunteerDao.deleteVolunteersSchedule(numberID);
+    public String processDeleteVolunteersSchedule(@PathVariable String numberID) {
+        volunteerScheduleDao.deleteVolunteersSchedule(numberID);
         return "redirect:../list";
     }
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Invoice Lines</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Invoice Lines' list</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Number ID</th>
+        <th>Price</th>
+        <th>Request ID</th>
+        <th>Invoice ID</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="invoiceLine: ${invoiceLines}">
+        <td th:text="${invoiceLine.numberID}"></td>
+        <td th:text="${invoiceLine.price}"></td>
+        <td th:text="${invoiceLine.requestID}"></td>
+        <td th:text="${invoiceLine.invoiceID}"></td>
+        <td><a th:href="@{/invoiceLine/update/{nom}(nom=${invoiceLine.numberID})}"><button type="button" class="btn btn-warning">Update</button></a>
+        </td>
+        <td><a th:href="@{/invoiceLine/delete/{nom}(nom=${invoiceLine.numberID})}"><button type="button" class="btn btn-danger">Delete</button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="add"><button type="button" class="btn btn-success">Add Invoice Line</button></a>
+</body>
+</html>

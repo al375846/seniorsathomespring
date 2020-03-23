@@ -6,6 +6,7 @@ import seniorsathome.seniorsathomespring.model.Invoice;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public final class InvoiceRowMapper implements RowMapper<Invoice> {
 
@@ -13,12 +14,12 @@ public final class InvoiceRowMapper implements RowMapper<Invoice> {
 
         Invoice invoice = new Invoice();
 
-        invoice.setNumberID(rs.getString("numberId"));
-        invoice.setReleaseDate(rs.getDate("releaseDate"));
-        invoice.setStartDate(rs.getDate("startDate"));
-        invoice.setFinalDate(rs.getDate("finalDate"));
+        invoice.setNumberID(rs.getString("number_id"));
+        invoice.setReleaseDate(rs.getObject("release_date", LocalDate.class));
+        invoice.setStartDate(rs.getObject("start_date", LocalDate.class));
+        invoice.setFinalDate(rs.getObject("final_date", LocalDate.class));
         invoice.setPrice(rs.getDouble("price"));
-        invoice.setBeneficiaryID(rs.getString("beneficiaryId"));
+        invoice.setBeneficiaryID(rs.getString("beneficiary_id"));
 
         return invoice;
     }

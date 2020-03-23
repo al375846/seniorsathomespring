@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Volunteers</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Volunteers' list</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Number ID</th>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>User Name</th>
+        <th>Password</th>
+        <th>Request Date</th>
+        <th>Approval Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="volunteer: ${volunteers}">
+        <td th:text="${volunteer.idNumber}"></td>
+        <td th:text="${volunteer.name}"></td>
+        <td th:text="${volunteer.phoneNumber}"></td>
+        <td th:text="${volunteer.email}"></td>
+        <td th:text="${volunteer.address}"></td>
+        <td th:text="${volunteer.userName}"></td>
+        <td th:text="${volunteer.password}"></td>
+        <td th:text="${volunteer.requestDate}"></td>
+        <td th:text="${volunteer.approvalDate}"></td>
+        <td><a th:href="@{/volunteer/update/{nom}(nom=${volunteer.idNumber})}"><button type="button" class="btn btn-warning">Update</button></a>
+        </td>
+        <td><a th:href="@{/volunteer/delete/{nom}(nom=${volunteer.idNumber})}"><button type="button" class="btn btn-danger">Delete</button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="add"><button type="button" class="btn btn-success">Add Volunteer</button></a>
+</body>
+</html>

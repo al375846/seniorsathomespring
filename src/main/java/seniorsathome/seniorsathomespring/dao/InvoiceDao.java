@@ -26,18 +26,18 @@ public class InvoiceDao {
     }
 
     public void deleteInvoice (String numberID) {
-        jdbcTemplate.update("DELETE FROM Invoice WHERE number_id=?", numberID);
+        jdbcTemplate.update("DELETE FROM Invoice WHERE number_id=(?)", numberID);
     }
 
     public void updateInvoice (Invoice invoice) {
-        jdbcTemplate.update("UPDATE Invoice SET release_date=?, start_date=?, final_date=?, price=?, beneficiary_id=? WHERE number_id=?",
+        jdbcTemplate.update("UPDATE Invoice SET release_date=(?), start_date=(?), final_date=(?), price=(?), beneficiary_id=(?) WHERE number_id=(?)",
                 invoice.getReleaseDate(), invoice.getStartDate(), invoice.getFinalDate(), invoice.getPrice(),
                 invoice.getBeneficiaryID(), invoice.getNumberID());
     }
 
     public  Invoice getInvoice (String numberID){
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Invoice WHERE number_id=?",
+            return jdbcTemplate.queryForObject("SELECT * FROM Invoice WHERE number_id=(?)",
                     new InvoiceRowMapper(),
                     numberID);
         }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modify an Invoice Line</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Edit Invoice Line</h2>
+<form action="#" th:action="@{/invoiceLine/update}" th:object="${invoiceLine}" method="post">
+    <table>
+        <tr>
+            <td><label>Number ID</label></td>
+            <td><input type="text" th:field="*{numberID}" /></td>
+        </tr>
+        <tr>
+            <td><label>Price</label></td>
+            <td><input type="number" th:field="*{price}" /></td>
+        </tr>
+        <tr>
+            <td><label>Request ID</label></td>
+            <td><input type="text" th:field="*{requestID}" /></td>
+        </tr>
+        <tr>
+            <td><label>Invoice ID</label></td>
+            <td><input type="text" th:field="*{invoiceID}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Update Invoice Line" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

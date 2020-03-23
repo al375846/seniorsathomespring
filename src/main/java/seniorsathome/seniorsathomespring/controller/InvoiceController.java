@@ -15,20 +15,20 @@ import seniorsathome.seniorsathomespring.model.Invoice;
 @RequestMapping("/invoice")
 public class InvoiceController {
 
-        private InvoiceDao invoiceDao;
+    private InvoiceDao invoiceDao;
 
-        @Autowired
-        public void setInvoiceDao(InvoiceDao invoiceDao) {
-            this.invoiceDao=invoiceDao;
-        }
+    @Autowired
+    public void setInvoiceDao(InvoiceDao invoiceDao) {
+        this.invoiceDao=invoiceDao;
+    }
 
-        // Operacions: Crear, llistar, actualitzar, esborrar
+    // Operacions: Crear, llistar, actualitzar, esborrar
 
-        @RequestMapping("/list")
-        public String listInvoices(Model model) {
-            model.addAttribute("invoices", invoiceDao.getInvoices());
-            return "invoices/list";
-        }
+    @RequestMapping("/list")
+    public String listInvoices(Model model) {
+        model.addAttribute("invoices", invoiceDao.getInvoices());
+        return "invoice/list";
+    }
 
     @RequestMapping(value="/add")
     public String addInvoice(Model model) {
@@ -39,15 +39,15 @@ public class InvoiceController {
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("invoice") Invoice invoice,
                                    BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-            return "invoice/add";
+        /*if (bindingResult.hasErrors())
+            return "invoice/add";*/
         invoiceDao.addInvoice(invoice);
         return "redirect:list";
     }
 
-    @RequestMapping(value="/update/{numberId}", method = RequestMethod.GET)
-    public String editInvoice(Model model, @PathVariable String numberId) {
-        model.addAttribute("invoice", invoiceDao.getInvoice(numberId));
+    @RequestMapping(value="/update/{number_id}", method = RequestMethod.GET)
+    public String editInvoice(Model model, @PathVariable String number_id) {
+        model.addAttribute("invoice", invoiceDao.getInvoice(number_id));
         return "invoice/update";
     }
 
@@ -61,9 +61,9 @@ public class InvoiceController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/delete/{numberID}")
-    public String processDeleteCompany(@PathVariable String numberID) {
-        invoiceDao.deleteInvoice(numberID);
-        return "redirect:../../list";
+    @RequestMapping(value = "/delete/{number_id}")
+    public String processDeleteCompany(@PathVariable String number_id) {
+        invoiceDao.deleteInvoice(number_id);
+        return "redirect:../list";
     }
 }

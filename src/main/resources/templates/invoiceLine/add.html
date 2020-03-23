@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Create a new Invoice</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>New Invoice Line</h2>
+<form action="#" th:action="@{/invoiceLine/add}" th:object="${invoiceLine}" method="post">
+    <table>
+        <tr>
+            <td><label>Number ID</label></td>
+            <td><input type="text" th:field="*{numberID}" /></td>
+        </tr>
+        <tr>
+            <td><label>Price</label></td>
+            <td><input type="number" step="any" th:field="*{price}" /></td>
+        </tr>
+        <tr>
+            <td><label>Request ID</label></td>
+            <td><input type="text" th:field="*{requestID}" /></td>
+        </tr>
+        <tr>
+            <td><label>Invoice ID</label></td>
+            <td><input type="text" th:field="*{invoiceID}" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
