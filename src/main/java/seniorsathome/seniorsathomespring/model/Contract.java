@@ -1,16 +1,21 @@
 package seniorsathome.seniorsathomespring.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Contract {
 
     private String numberID;
     private int quantity;
-    private Date startDate;
-    private Date finalDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate startDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate finalDate;
     private double price;
     private String companyID;
-    private ServiceType serviceType;
+    private String serviceType;
 
     public String getNumberID() {
         return numberID;
@@ -28,19 +33,19 @@ public class Contract {
         this.quantity = quantity;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getFinalDate() {
+    public LocalDate getFinalDate() {
         return finalDate;
     }
 
-    public void setFinalDate(Date finalDate) {
+    public void setFinalDate(LocalDate finalDate) {
         this.finalDate = finalDate;
     }
 
@@ -60,11 +65,11 @@ public class Contract {
         this.companyID = companyID;
     }
 
-    public ServiceType getServiceType() {
+    public String getServiceType() {
         return serviceType;
     }
 
-    public void setServiceType(ServiceType serviceType) {
+    public void setServiceType(String serviceType) {
         this.serviceType = serviceType;
     }
 

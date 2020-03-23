@@ -23,7 +23,7 @@ public class ContractDao {
 
     /*Añade un contrato a la base de datos*/
     public void addContract(Contract contract) {
-        jdbcTemplate.update("INSERT INTO Contract VALUES (?,?,?,?,?,?,?)",
+        jdbcTemplate.update("INSERT INTO Contract VALUES(?,?::SERVICETYPE,?,?,?,?,?)",
                 contract.getNumberID(), contract.getServiceType(), contract.getQuantity(), contract.getStartDate(), contract.getFinalDate(), contract.getPrice(), contract.getCompanyID());
     }
 
@@ -40,7 +40,7 @@ public class ContractDao {
 
     /*Modifica los datos de un contrato en la base de datos*/
     public void updateContract(Contract contract) {
-        jdbcTemplate.update("UPDATE Company SET serviceType=?, quantity=?, startDate=?, finalDate=?, price=?, companyID=? WHERE numberID=?",
+        jdbcTemplate.update("UPDATE Contract SET serviceType=?::SERVICETYPE, quantity=?, startDate=?, finalDate=?, price=?, companyID=? WHERE numberID=?",
                 contract.getServiceType(), contract.getQuantity(), contract.getStartDate(), contract.getFinalDate(), contract.getPrice(), contract.getCompanyID(), contract.getNumberID());
     }
 

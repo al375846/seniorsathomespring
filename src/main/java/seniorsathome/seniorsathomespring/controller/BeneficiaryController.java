@@ -1,5 +1,6 @@
 package seniorsathome.seniorsathomespring.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,11 @@ import seniorsathome.seniorsathomespring.model.Beneficiary;
 public class BeneficiaryController {
 
     BeneficiaryDao beneficiaryDao;
+
+    @Autowired
+    public void setContractDao(BeneficiaryDao beneficiaryDao) {
+        this.beneficiaryDao = beneficiaryDao;
+    }
 
     @RequestMapping("/list")
     public String listBeneficiaries(Model model) {

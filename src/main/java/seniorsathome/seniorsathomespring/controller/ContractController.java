@@ -35,20 +35,19 @@ public class ContractController {
     @RequestMapping(value="/add")
     public String addContract(Model model) {
         model.addAttribute("contract", new Contract());
-        //model.addAttribute("servicesType", Arrays.asList(ServiceType.values()));
         return "contract/add";
     }
 
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("contract") Contract contract,
                                    BindingResult bindingResult) {
-        //if (bindingResult.hasErrors())
-            //return "contract/add";
+        if (bindingResult.hasErrors())
+            return "contract/add";
         contractDao.addContract(contract);
         return "redirect:list";
     }
 
-    @RequestMapping(value="/update/{numberID}/", method = RequestMethod.GET)
+    @RequestMapping(value="/update/{numberID}", method = RequestMethod.GET)
     public String editContract(Model model, @PathVariable String numberID) {
         model.addAttribute("contract", contractDao.getContract(numberID));
         return "contract/update";
