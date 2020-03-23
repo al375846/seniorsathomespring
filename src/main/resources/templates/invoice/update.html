@@ -12,19 +12,19 @@
     <table>
         <tr>
             <td><label>Number ID</label></td>
-            <td><input type="text" th:field="*{numberID}" /></td>
+            <td><input type="text" readonly="readonly" th:field="*{numberID}" /></td>
         </tr>
         <tr>
             <td><label>Release Date</label></td>
-            <td><input type="date" th:field="*{releaseDate}" /></td>
+            <td><input type="date" th:field="*{releaseDate}" placeholder="dd/MM/yyyy"/></td>
         </tr>
         <tr>
             <td><label>Start Date</label></td>
-            <td><input type="date" th:field="*{startDate}" /></td>
+            <td><input type="date" th:field="*{startDate}" placeholder="dd/MM/yyyy"/></td>
         </tr>
         <tr>
             <td><label>Final Date</label></td>
-            <td><input type="date" th:field="*{finalDate}" /></td>
+            <td><input type="date" th:field="*{finalDate}" placeholder="dd/MM/yyyy"/></td>
         </tr>
         <tr>
             <td><label>Price</label></td>

@@ -39,8 +39,8 @@ public class InvoiceController {
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("invoice") Invoice invoice,
                                    BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-            return "invoice/add";
+        /*if (bindingResult.hasErrors())
+            return "invoice/add";*/
         invoiceDao.addInvoice(invoice);
         return "redirect:list";
     }
@@ -61,7 +61,7 @@ public class InvoiceController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/delete/{number_id")
+    @RequestMapping(value = "/delete/{number_id}")
     public String processDeleteCompany(@PathVariable String number_id) {
         invoiceDao.deleteInvoice(number_id);
         return "redirect:../../list";
