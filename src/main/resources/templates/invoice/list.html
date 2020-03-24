@@ -23,9 +23,9 @@
         <tbody>
         <tr th:each="invoice: ${invoices}">
             <td th:text="${invoice.numberID}"></td>
-            <td th:text="${#temporals.format(invoice.releaseDate, 'dd/MM/yyyy')}"></td>
-            <td th:text="${#temporals.format(invoice.startDate, 'dd/MM/yyyy')}"></td>
-            <td th:text="${#temporals.format(invoice.finalDate, 'dd/MM/yyyy')}"></td>
+            <td th:text="${invoice.releaseDate}"></td>
+            <td th:text="${invoice.startDate}"></td>
+            <td th:text="${invoice.finalDate}"></td>
             <td th:text="${invoice.price}"></td>
             <td th:text="${invoice.beneficiaryID}"></td>
             <td><a th:href="@{/invoice/update/{nom}(nom=${invoice.numberID})}"><button type="button" class="btn btn-warning">Update</button></a>
