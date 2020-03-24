@@ -13,8 +13,8 @@ public class RequestRowMapper implements RowMapper<Request> {
     public Request mapRow(ResultSet rs, int rowNum) throws SQLException {
         Request request = new Request();
         request.setNumberID(rs.getString("numberID"));
-        request.setStatus(RequestStatus.values()[rs.getInt("requestStatus")]);
-        request.setServiceType(ServiceType.values()[rs.getInt("serviceType")]);
+        request.setStatus(rs.getString("requestStatus"));
+        request.setServiceType(rs.getString("serviceType"));
         request.setStartDate(rs.getDate("startDate"));
         request.setFinalDate(rs.getDate("finalDate"));
         request.setApprovalDate(rs.getDate("approvalDate"));

@@ -12,8 +12,8 @@ public class Request {
     private String comments;
     private String beneficiaryID;
     private String contractID;
-    private RequestStatus status;
-    private ServiceType serviceType;
+    private String status;
+    private String serviceType;
 
     public String getNumberID() {
         return numberID;
@@ -79,19 +79,19 @@ public class Request {
         this.contractID = contractID;
     }
 
-    public RequestStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(RequestStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public ServiceType getServiceType() {
+    public String getServiceType() {
         return serviceType;
     }
 
-    public void setServiceType(ServiceType serviceType) {
+    public void setServiceType(String serviceType) {
         this.serviceType = serviceType;
     }
 
