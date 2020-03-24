@@ -66,6 +66,6 @@ public class InvoiceLineController {
     @RequestMapping(value = "/delete/{number_id")
     public String processDeleteCompany(@PathVariable String number_id) {
         invoiceLineDao.deleteInvoiceLine(number_id);
-        return "redirect:../../list";
+        return "redirect:../list";
     }
 }
