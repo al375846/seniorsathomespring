@@ -30,9 +30,8 @@ public class InvoiceLineDao {
     }
 
     public void updateInvoiceLine (InvoiceLine invoiceLine) {
-        jdbcTemplate.update("UPDATE InvoiceLine SET number_id=?, price=?, request_id=?, invoice_id=?",
-                invoiceLine.getNumberID(), invoiceLine.getPrice(), invoiceLine.getRequestID(),
-                invoiceLine.getInvoiceID());
+        jdbcTemplate.update("UPDATE InvoiceLine SET price=?, request_id=?, invoice_id=? WHERE number_id=?",
+                invoiceLine.getPrice(), invoiceLine.getRequestID(), invoiceLine.getInvoiceID(), invoiceLine.getNumberID());
     }
 
     public  InvoiceLine getInvoiceLine (String numberID){
