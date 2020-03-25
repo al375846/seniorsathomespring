@@ -13,7 +13,7 @@ public class Schedule {
     private LocalTime starthour;
     @DateTimeFormat(iso=DateTimeFormat.ISO.TIME)
     private LocalTime finalhour;
-    private String status;
+    private Boolean status;
     private String beneficiaryid;
     private String volunteerid;
 
@@ -49,11 +49,11 @@ public class Schedule {
         this.finalhour = finalhour;
     }
 
-    public String getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

@@ -16,7 +16,7 @@ public class ScheduleRowMapper implements RowMapper<Schedule> {
         schedule.setDay(rs.getDate("day").toLocalDate());
         schedule.setStarthour(rs.getTime("starthour").toLocalTime());
         schedule.setFinalhour(rs.getTime("finalhour").toLocalTime());
-        schedule.setStatus(rs.getString("status"));
+        schedule.setStatus(rs.getBoolean("status"));
         schedule.setBeneficiaryid(rs.getString("beneficiaryid"));
         schedule.setVolunteerid(rs.getString("volunteerid"));
 

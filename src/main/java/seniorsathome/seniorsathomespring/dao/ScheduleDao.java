@@ -20,9 +20,15 @@ public class ScheduleDao {
     }
 
     public void addSchedule (Schedule schedule) {
-        jdbcTemplate.update("INSERT INTO Volunteersschedule VALUES(?, ?, ?, ?, CAST(? AS BIT ), ?, ?)",
-                schedule.getNumberid(), schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
-                schedule.getStatus(), schedule.getBeneficiaryid(), schedule.getVolunteerid());
+        if(schedule.getStatus()==false) {
+            jdbcTemplate.update("INSERT INTO Volunteersschedule VALUES(?, ?, ?, ?, CAST(0 AS BIT ), ?, ?)",
+                    schedule.getNumberid(), schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
+                    schedule.getBeneficiaryid(), schedule.getVolunteerid());
+        }else{
+            jdbcTemplate.update("INSERT INTO Volunteersschedule VALUES(?, ?, ?, ?, CAST(1 AS BIT ), ?, ?)",
+                    schedule.getNumberid(), schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
+                    schedule.getBeneficiaryid(), schedule.getVolunteerid());
+        }
     }
 
     public void deleteSchedule (Schedule schedule) {
@@ -34,9 +40,15 @@ public class ScheduleDao {
     }
 
     public void updateSchedule (Schedule schedule) {
-        jdbcTemplate.update("UPDATE Volunteersschedule SET day=?, starthour=?, finalhour=?, status= CAST(? AS BIT ), beneficiaryid=?, volunteerid=? WHERE numberid=?",
-                schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
-                schedule.getStatus(), schedule.getBeneficiaryid(), schedule.getVolunteerid(), schedule.getNumberid());
+        if(schedule.getStatus()){
+            jdbcTemplate.update("UPDATE Volunteersschedule SET day=?, starthour=?, finalhour=?, status=CAST(1 AS BIT ), beneficiaryid=?, volunteerid=? WHERE numberid=?",
+                    schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
+                     schedule.getBeneficiaryid(), schedule.getVolunteerid(), schedule.getNumberid());
+        }else {
+            jdbcTemplate.update("UPDATE Volunteersschedule SET day=?, starthour=?, finalhour=?, status=CAST(0 AS BIT ), beneficiaryid=?, volunteerid=? WHERE numberid=?",
+                    schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
+                     schedule.getBeneficiaryid(), schedule.getVolunteerid(), schedule.getNumberid());
+        }
     }
 
     public  Schedule getSchedule (String number_id){

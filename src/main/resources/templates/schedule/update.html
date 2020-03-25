@@ -29,7 +29,11 @@
         </tr>
         <tr>
             <td><label>Status</label></td>
-            <td><input type="text" th:field="*{status}" /></td>
+            <td><input type="radio" id="Activo" name="status" value="true">
+                <label for="Activo">Activo</label>
+                <input type="radio" id="Inactivo" name="status" value="false">
+                <label for="Inactivo">Inactivo</label><br>
+            </td>
         </tr>
         <tr>
             <td><label>Beneficiary ID</label></td>
