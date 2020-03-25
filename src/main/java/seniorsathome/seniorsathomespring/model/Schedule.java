@@ -1,12 +1,17 @@
 package seniorsathome.seniorsathomespring.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Schedule {
     private String numberid;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate day;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.TIME)
     private LocalTime starthour;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.TIME)
     private LocalTime finalhour;
     private String status;
     private String beneficiaryid;
