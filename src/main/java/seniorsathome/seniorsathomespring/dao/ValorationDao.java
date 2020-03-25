@@ -28,25 +28,25 @@ public class ValorationDao {
 
     /*Elimina una valoración de la base de datos*/
     public void deleteValoration(Valoration valoration) {
-        jdbcTemplate.update("DELETE FROM Valoration WHERE idValoration=?",
+        jdbcTemplate.update("DELETE FROM Valoration WHERE idvaloration=?",
                 valoration.getIdValoration());
     }
 
     public void deleteValoration(String idValoration) {
-        jdbcTemplate.update("DELETE FROM Valoration WHERE idValoration=?",
+        jdbcTemplate.update("DELETE FROM Valoration WHERE idvaloration=?",
                 idValoration);
     }
 
     /*Modifica los datos de una valoración en la base de datos*/
     public void updateValoration(Valoration valoration) {
-        jdbcTemplate.update("UPDATE Valoration SET rate=?, comment=?, idVolunteer=?, idCompany=?, idBeneficiary=? WHERE idValoration=?",
+        jdbcTemplate.update("UPDATE Valoration SET rate=?, comment=?, idvolunteer=?, idcompany=?, idbeneficiary=? WHERE idvaloration=?",
                 valoration.getRate(), valoration.getComment(), valoration.getIdVolunteer(), valoration.getIdCompany(), valoration.getIdBeneficiary(), valoration.getIdValoration());
     }
 
     /*Obtiene una valoracion a partir de su numero de identificación. Si no existe devuelve null*/
     public Valoration getValoration(String idValoration) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Valoration WHERE idValoration=?",
+            return jdbcTemplate.queryForObject("SELECT * FROM Valoration WHERE idvaloration=?",
                     new ValorationRowMapper(),
                     idValoration);
         }

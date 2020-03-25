@@ -12,12 +12,12 @@ public class ValorationRowMapper  implements RowMapper<Valoration> {
 
         Valoration valoration = new Valoration();
 
-        valoration.setIdValoration(rs.getString("idValoration"));
+        valoration.setIdValoration(rs.getString("idvaloration"));
         valoration.setRate(rs.getDouble("rate"));
         valoration.setComment(rs.getString("comment"));
-        valoration.setIdVolunteer(rs.getString("idVolunteer"));
-        valoration.setIdCompany(rs.getString("idCompany"));
-        valoration.setIdBeneficiary(rs.getString("idBeneficiary"));
+        valoration.setIdVolunteer(rs.getString("idvolunteer"));
+        valoration.setIdCompany(rs.getString("idcompany"));
+        valoration.setIdBeneficiary(rs.getString("idbeneficiary"));
 
         return valoration;
     }
