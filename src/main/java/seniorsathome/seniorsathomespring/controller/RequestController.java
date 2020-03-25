@@ -62,6 +62,6 @@ public class RequestController {
     @RequestMapping(value = "/delete/{number_id}")
     public String processDeleteRequest(@PathVariable String number_id) {
         requestDao.deleteRequest(number_id);
-        return "redirect:/../list";
+        return "redirect:../list";
     }
 }

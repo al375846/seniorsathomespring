@@ -28,11 +28,11 @@ public class VolunteerDao {
                 v.getUserName(),v.getPassword(),v.getRequestDate(),v.getApprovalDate());
     }
     public void deleteVolunteer(String idNumber){
-        jdbcTemplate.update("DELETE FROM Volunteer WHERE number_id=?", idNumber);
+        jdbcTemplate.update("DELETE FROM Volunteer WHERE idnumber=?", idNumber);
     }
 
     public void updateVolunteer(Volunteer v) {
-        jdbcTemplate.update("UPDATE Volunteer SET name=?,phoneNumber=?,email=?,address=?,userName=?,password=?,requestDate=?,approvalDate=? WHERE idNumber=?",
+        jdbcTemplate.update("UPDATE Volunteer SET name=?,phonenumber=?,email=?,address=?,username=?,password=?,requestdate=?,approvaldate=? WHERE idnumber=?",
                 v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
                 v.getUserName(),v.getPassword(),v.getRequestDate(),v.getApprovalDate(),v.getIdNumber());
     }
@@ -40,7 +40,7 @@ public class VolunteerDao {
 
     public  Volunteer getVolunteer (String idNumber){
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE idNumber=?",
+            return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE idnumber=?",
                     new VolunteerRowMapper(),
                     idNumber);
         }

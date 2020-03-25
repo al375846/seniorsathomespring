@@ -26,19 +26,19 @@
     </thead>
     <tbody>
     <tr th:each="request: ${requests}">
-        <td th:text="${request.numberID}"></td>
-        <td th:text="${request.serviceType}"></td>
+        <td th:text="${request.number_id}"></td>
         <td th:text="${request.status}"></td>
-        <td th:text="${request.startDate}"></td>
-        <td th:text="${request.finalDate}"></td>
-        <td th:text="${request.approvalDate}"></td>
-        <td th:text="${request.rejectDate}"></td>
+        <td th:text="${request.type}"></td>
+        <td th:text="${request.start_date}"></td>
+        <td th:text="${request.final_date}"></td>
+        <td th:text="${request.approval_date}"></td>
+        <td th:text="${request.reject_date}"></td>
         <td th:text="${request.comments}"></td>
-        <td th:text="${request.beneficiaryID}"></td>
-        <td th:text="${request.contractID}"></td>
-        <td><a th:href="@{/request/update/{numberID}(numberID=${request.numberID})}"><button type="button" class="btn btn-warning">Update</button></a>
+        <td th:text="${request.beneficiary_id}"></td>
+        <td th:text="${request.contract_id}"></td>
+        <td><a th:href="@{/request/update/{number_id}(number_id=${request.number_id})}"><button type="button" class="btn btn-warning">Update</button></a>
         </td>
-        <td><a th:href="@{/request/delete/{numberID}(numberID=${request.numberID})}"><button type="button" class="btn btn-danger">Delete</button></a>
+        <td><a th:href="@{/request/delete/{number_id}(number_id=${request.number_id})}"><button type="button" class="btn btn-danger">Delete</button></a>
         </td>
     </tr>
     </tbody>

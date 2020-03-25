@@ -12,15 +12,15 @@ public class VolunteerRowMapper implements RowMapper<Volunteer> {
     public Volunteer mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         Volunteer v = new Volunteer();
-        v.setIdNumber(rs.getString("idNumber"));
+        v.setIdNumber(rs.getString("idnumber"));
         v.setName(rs.getString("name"));
-        v.setPhoneNumber(rs.getString("phoneNumber"));
+        v.setPhoneNumber(rs.getString("phonenumber"));
         v.setEmail(rs.getString("email"));
         v.setAddress(rs.getString("address"));
-        v.setUserName(rs.getString("userName"));
+        v.setUserName(rs.getString("username"));
         v.setPassword(rs.getString("password"));
-        v.setRequestDate(rs.getDate("requestDate"));
-        v.setApprovalDate(rs.getDate("approvalDate"));
+        v.setRequestDate(rs.getDate("requestdate"));
+        v.setApprovalDate(rs.getDate("approvaldate"));
 
         return v;
     }
