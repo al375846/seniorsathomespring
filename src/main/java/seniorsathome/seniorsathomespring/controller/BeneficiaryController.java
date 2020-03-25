@@ -62,7 +62,7 @@ public class BeneficiaryController {
     @RequestMapping(value = "/delete/{identificationNumber}")
     public String processDeleteBeneficiary(@PathVariable String identificationNumber) {
         beneficiaryDao.deleteBeneficiary(identificationNumber);
-        return "redirect:../../list";
+        return "redirect:../list";
     }
 
 }

@@ -28,22 +28,22 @@ public class BeneficiaryDao {
 
     /*Elimina un beneficiario a la base de datos */
     public void deleteBeneficiary (Beneficiary beneficiary) {
-        jdbcTemplate.update("DELETE FROM Beneficiary WHERE identificationNumber=?", beneficiary.getIdentificationNumber());
+        jdbcTemplate.update("DELETE FROM Beneficiary WHERE identification_number=?", beneficiary.getIdentificationNumber());
     }
 
     public void deleteBeneficiary (String idBeneficiary) {
-        jdbcTemplate.update("DELETE FROM Beneficiary WHERE identificationNumber=?", idBeneficiary);
+        jdbcTemplate.update("DELETE FROM Beneficiary WHERE identification_number=?", idBeneficiary);
     }
 
     /*Modifica los datos de un beneficiario de la base de datos */
     public void updateBeneficiary (Beneficiary beneficiary) {
-        jdbcTemplate.update("UPDATE Beneficiary SET name=?, surnames=?, phoneNumber=?, email=?, address=?, userName=?, password=?, socialWorkerID=?  WHERE identificationNumber=?", beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), beneficiary.getPassword(), beneficiary.getSocialWorkerID(), beneficiary.getIdentificationNumber());
+        jdbcTemplate.update("UPDATE Beneficiary SET name=?, surnames=?, phone_number=?, email=?, address=?, user_name=?, password=?, social_worker_id=?  WHERE identification_number=?", beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), beneficiary.getPassword(), beneficiary.getSocialWorkerID(), beneficiary.getIdentificationNumber());
     }
 
     /*Obetiene un beneficiario a partir de su ID. Devuelve nulo si no existe. */
     public  Beneficiary getBeneficiary (String idBeneficiary){
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Beneficiary WHERE identificationNumber=?",
+            return jdbcTemplate.queryForObject("SELECT * FROM Beneficiary WHERE identification_number=?",
                     new BeneficiaryRowMapper(),
                     idBeneficiary);
         }
