@@ -28,9 +28,9 @@
         <td th:text="${valoration.idVolunteer}"></td>
         <td th:text="${valoration.idCompany}"></td>
         <td th:text="${valoration.idBeneficiary}"></td>
-        <td><a th:href="@{/invoice/update/{nom}(nom=${valoration.idValoration})}"><button type="button" class="btn btn-warning">Update</button></a>
+        <td><a th:href="@{/valoration/update/{nom}(nom=${valoration.idValoration})}"><button type="button" class="btn btn-warning">Update</button></a>
         </td>
-        <td><a th:href="@{/invoice/delete/{nom}(nom=${valoration.idValoration})}"><button type="button" class="btn btn-danger">Delete</button></a>
+        <td><a th:href="@{/valoration/delete/{nom}(nom=${valoration.idValoration})}"><button type="button" class="btn btn-danger">Delete</button></a>
         </td>
     </tr>
     </tbody>
