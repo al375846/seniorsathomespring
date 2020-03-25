@@ -19,8 +19,8 @@ public class VolunteerRowMapper implements RowMapper<Volunteer> {
         v.setAddress(rs.getString("address"));
         v.setUserName(rs.getString("username"));
         v.setPassword(rs.getString("password"));
-        v.setRequestDate(rs.getDate("requestdate"));
-        v.setApprovalDate(rs.getDate("approvaldate"));
+        v.setRequestDate(rs.getDate("requestdate").toLocalDate());
+        v.setApprovalDate(rs.getDate("approvaldate").toLocalDate());
 
         return v;
     }

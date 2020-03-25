@@ -1,5 +1,8 @@
 package seniorsathome.seniorsathomespring.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Volunteer {
@@ -11,8 +14,10 @@ public class Volunteer {
     private String address;
     private String userName;
     private String password;
-    private Date requestDate;
-    private Date approvalDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate requestDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate approvalDate;
 
     public String getIdNumber() {
         return idNumber;
@@ -70,19 +75,19 @@ public class Volunteer {
         this.password = password;
     }
 
-    public Date getRequestDate() {
+    public LocalDate getRequestDate() {
         return requestDate;
     }
 
-    public void setRequestDate(Date requestDate) {
+    public void setRequestDate(LocalDate requestDate) {
         this.requestDate = requestDate;
     }
 
-    public Date getApprovalDate() {
+    public LocalDate getApprovalDate() {
         return approvalDate;
     }
 
-    public void setApprovalDate(Date approvalDate) {
+    public void setApprovalDate(LocalDate approvalDate) {
         this.approvalDate = approvalDate;
     }
 

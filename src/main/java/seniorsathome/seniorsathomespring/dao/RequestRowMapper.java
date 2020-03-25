@@ -15,10 +15,10 @@ public class RequestRowMapper implements RowMapper<Request> {
         request.setNumber_id(rs.getString("number_id"));
         request.setStatus(rs.getString("status"));
         request.setType(rs.getString("type"));
-        request.setStart_date(rs.getDate("start_date"));
-        request.setFinal_date(rs.getDate("final_date"));
-        request.setApproval_date(rs.getDate("approval_date"));
-        request.setReject_date(rs.getDate("reject_date"));
+        request.setStart_date(rs.getDate("start_date").toLocalDate());
+        request.setFinal_date(rs.getDate("final_date").toLocalDate());
+        request.setApproval_date(rs.getDate("approval_date").toLocalDate());
+        request.setReject_date(rs.getDate("reject_date").toLocalDate());
         request.setComments(rs.getString("comments"));
         request.setBeneficiary_id(rs.getString("beneficiary_id"));
         request.setContract_id(rs.getString("contract_id"));

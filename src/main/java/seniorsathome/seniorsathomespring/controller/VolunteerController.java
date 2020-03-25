@@ -30,7 +30,7 @@ public class VolunteerController {
 
     @RequestMapping(value="/add")
     public String addVolunteer(Model model) {
-        model.addAttribute("contract", new Volunteer());
+        model.addAttribute("volunteer", new Volunteer());
         return "volunteer/add";
     }
 
@@ -41,7 +41,7 @@ public class VolunteerController {
         return "redirect:list";
     }
 
-    @RequestMapping(value="/update/{idNumber}/", method = RequestMethod.GET)
+    @RequestMapping(value="/update/{idNumber}", method = RequestMethod.GET)
     public String editVolunteer(Model model, @PathVariable String idNumber) {
         model.addAttribute("volunteer", volunteerDao.getVolunteer(idNumber));
         return "volunteer/update";

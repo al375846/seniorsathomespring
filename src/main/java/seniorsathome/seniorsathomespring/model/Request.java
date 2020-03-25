@@ -2,6 +2,7 @@ package seniorsathome.seniorsathomespring.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Request {
@@ -11,16 +12,16 @@ public class Request {
     private String type;
 
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
-    private Date start_date;
+    private LocalDate start_date;
 
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
-    private Date final_date;
+    private LocalDate final_date;
 
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
-    private Date approval_date;
+    private LocalDate approval_date;
 
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
-    private Date reject_date;
+    private LocalDate reject_date;
     private String comments;
     private String beneficiary_id;
     private String contract_id;
@@ -49,35 +50,35 @@ public class Request {
         this.type = type;
     }
 
-    public Date getStart_date() {
+    public LocalDate getStart_date() {
         return start_date;
     }
 
-    public void setStart_date(Date start_date) {
+    public void setStart_date(LocalDate start_date) {
         this.start_date = start_date;
     }
 
-    public Date getFinal_date() {
+    public LocalDate getFinal_date() {
         return final_date;
     }
 
-    public void setFinal_date(Date final_date) {
+    public void setFinal_date(LocalDate final_date) {
         this.final_date = final_date;
     }
 
-    public Date getApproval_date() {
+    public LocalDate getApproval_date() {
         return approval_date;
     }
 
-    public void setApproval_date(Date approval_date) {
+    public void setApproval_date(LocalDate approval_date) {
         this.approval_date = approval_date;
     }
 
-    public Date getReject_date() {
+    public LocalDate getReject_date() {
         return reject_date;
     }
 
-    public void setReject_date(Date reject_date) {
+    public void setReject_date(LocalDate reject_date) {
         this.reject_date = reject_date;
     }
 
