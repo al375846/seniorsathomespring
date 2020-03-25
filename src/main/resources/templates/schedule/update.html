@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modify a Volunteer's Schedule</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Edit Volunteer's Schedule</h2>
+<form action="#" th:action="@{/schedule/update}"
+      th:object="${schedule}" method="post">
+    <table>
+        <tr>
+            <td><label>Number ID</label></td>
+            <td><input type="text" th:field="*{numberid}" /></td>
+        </tr>
+        <tr>
+            <td><label>Day</label></td>
+            <td><input type="date" th:field="*{day}" /></td>
+        </tr>
+        <tr>
+            <td><label>Start Hour</label></td>
+            <td><input type="time" th:field="*{starthour}" /></td>
+        </tr>
+        <tr>
+            <td><label>Final Hour</label></td>
+            <td><input type="time" th:field="*{finalhour}" /></td>
+        </tr>
+        <tr>
+            <td><label>Status</label></td>
+            <td><input type="text" th:field="*{status}" /></td>
+        </tr>
+        <tr>
+            <td><label>Beneficiary ID</label></td>
+            <td><input type="text" th:field="*{beneficiaryid}" /></td>
+        </tr>
+        <tr>
+            <td><label>Volunteer ID</label></td>
+            <td><input type="text" th:field="*{volunteerid}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Update Request" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

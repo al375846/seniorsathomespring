@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Volunteer's Schedules</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Volunteer's Schedules' List</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Number ID</th>
+        <th>Day</th>
+        <th>Start Hour</th>
+        <th>Final Hour</th>
+        <th>Status</th>
+        <th>Beneficiary ID</th>
+        <th>Volunteer ID</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="schedule: ${schedules}">
+        <td th:text="${schedule.numberid}"></td>
+        <td th:text="${schedule.day}"></td>
+        <td th:text="${schedule.starthour}"></td>
+        <td th:text="${schedule.finalhour}"></td>
+        <td th:text="${schedule.status}"></td>
+        <td th:text="${schedule.beneficiaryid}"></td>
+        <td th:text="${schedule.volunteerid}"></td>
+        <td><a th:href="@{/schedule/update/{numberid}(numberid=${schedule.numberid})}"><button type="button" class="btn btn-warning">Update</button></a>
+        </td>
+        <td><a th:href="@{/schedule/delete/{numberid}(numberid=${schedule.numberid})}"><button type="button" class="btn btn-danger">Delete</button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="add"><button type="button" class="btn btn-success">Add Volunteer's Schedule</button></a>
+</body>
