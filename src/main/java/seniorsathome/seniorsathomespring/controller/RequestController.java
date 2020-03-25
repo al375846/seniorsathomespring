@@ -1,5 +1,6 @@
 package seniorsathome.seniorsathomespring.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,13 +9,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.RequestDao;
-import seniorsathome.seniorsathomespring.model.Beneficiary;
 import seniorsathome.seniorsathomespring.model.Request;
 
 @Controller
+@RequestMapping("/request")
 public class RequestController {
 
-    RequestDao requestDao;
+    private RequestDao requestDao;
+
+    @Autowired
+    public void setRequestDao(RequestDao requestDao) {
+        this.requestDao = requestDao;
+    }
 
     @RequestMapping("/list")
     public String listRequests(Model model) {
@@ -37,9 +43,9 @@ public class RequestController {
         return "redirect:list";
     }
 
-    @RequestMapping(value="/update/{numberID}", method = RequestMethod.GET)
-    public String editRequest(Model model, @PathVariable String numberID) {
-        model.addAttribute("request", requestDao.getRequest(numberID));
+    @RequestMapping(value="/update/{number_id}", method = RequestMethod.GET)
+    public String editRequest(Model model, @PathVariable String number_id) {
+        model.addAttribute("request", requestDao.getRequest(number_id));
         return "request/update";
     }
 
@@ -53,9 +59,9 @@ public class RequestController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/delete/{numberID}")
-    public String processDeleteRequest(@PathVariable String numberID) {
-        requestDao.deleteRequest(numberID);
-        return "redirect:../../list";
+    @RequestMapping(value = "/delete/{number_id}")
+    public String processDeleteRequest(@PathVariable String number_id) {
+        requestDao.deleteRequest(number_id);
+        return "redirect:/../list";
     }
 }

@@ -1,82 +1,36 @@
 package seniorsathome.seniorsathomespring.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Request {
 
-    private String numberID;
-    private Date startDate;
-    private Date finalDate;
-    private Date approvalDate;
-    private Date rejectDate;
-    private String comments;
-    private String beneficiaryID;
-    private String contractID;
+    private String number_id;
     private String status;
-    private String serviceType;
+    private String type;
 
-    public String getNumberID() {
-        return numberID;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private Date start_date;
+
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private Date final_date;
+
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private Date approval_date;
+
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private Date reject_date;
+    private String comments;
+    private String beneficiary_id;
+    private String contract_id;
+
+    public String getNumber_id() {
+        return number_id;
     }
 
-    public void setNumberID(String numberID) {
-        this.numberID = numberID;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getFinalDate() {
-        return finalDate;
-    }
-
-    public void setFinalDate(Date finalDate) {
-        this.finalDate = finalDate;
-    }
-
-    public Date getApprovalDate() {
-        return approvalDate;
-    }
-
-    public void setApprovalDate(Date approvalDate) {
-        this.approvalDate = approvalDate;
-    }
-
-    public Date getRejectDate() {
-        return rejectDate;
-    }
-
-    public void setRejectDate(Date rejectDate) {
-        this.rejectDate = rejectDate;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
-    public String getBeneficiaryID() {
-        return beneficiaryID;
-    }
-
-    public void setBeneficiaryID(String beneficiaryID) {
-        this.beneficiaryID = beneficiaryID;
-    }
-
-    public String getContractID() {
-        return contractID;
-    }
-
-    public void setContractID(String contractID) {
-        this.contractID = contractID;
+    public void setNumber_id(String number_id) {
+        this.number_id = number_id;
     }
 
     public String getStatus() {
@@ -87,27 +41,83 @@ public class Request {
         this.status = status;
     }
 
-    public String getServiceType() {
-        return serviceType;
+    public String getType() {
+        return type;
     }
 
-    public void setServiceType(String serviceType) {
-        this.serviceType = serviceType;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Date getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
+    }
+
+    public Date getFinal_date() {
+        return final_date;
+    }
+
+    public void setFinal_date(Date final_date) {
+        this.final_date = final_date;
+    }
+
+    public Date getApproval_date() {
+        return approval_date;
+    }
+
+    public void setApproval_date(Date approval_date) {
+        this.approval_date = approval_date;
+    }
+
+    public Date getReject_date() {
+        return reject_date;
+    }
+
+    public void setReject_date(Date reject_date) {
+        this.reject_date = reject_date;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getBeneficiary_id() {
+        return beneficiary_id;
+    }
+
+    public void setBeneficiary_id(String beneficiary_id) {
+        this.beneficiary_id = beneficiary_id;
+    }
+
+    public String getContract_id() {
+        return contract_id;
+    }
+
+    public void setContract_id(String contract_id) {
+        this.contract_id = contract_id;
     }
 
     @Override
     public String toString() {
         return "Request{" +
-                "numberID='" + numberID + '\'' +
-                ", startDate=" + startDate +
-                ", finalDate=" + finalDate +
-                ", approvalDate=" + approvalDate +
-                ", rejectDate=" + rejectDate +
+                "number_id='" + number_id + '\'' +
+                ", status='" + status + '\'' +
+                ", type='" + type + '\'' +
+                ", start_date=" + start_date +
+                ", final_date=" + final_date +
+                ", approval_date=" + approval_date +
+                ", reject_date=" + reject_date +
                 ", comments='" + comments + '\'' +
-                ", beneficiaryID='" + beneficiaryID + '\'' +
-                ", contractID='" + contractID + '\'' +
-                ", status=" + status +
-                ", serviceType=" + serviceType +
+                ", beneficiary_id='" + beneficiary_id + '\'' +
+                ", contract_id='" + contract_id + '\'' +
                 '}';
     }
 }

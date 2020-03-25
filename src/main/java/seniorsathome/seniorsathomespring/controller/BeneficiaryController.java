@@ -18,7 +18,7 @@ public class BeneficiaryController {
     BeneficiaryDao beneficiaryDao;
 
     @Autowired
-    public void setContractDao(BeneficiaryDao beneficiaryDao) {
+    public void setBeneficiaryDao(BeneficiaryDao beneficiaryDao) {
         this.beneficiaryDao = beneficiaryDao;
     }
 
