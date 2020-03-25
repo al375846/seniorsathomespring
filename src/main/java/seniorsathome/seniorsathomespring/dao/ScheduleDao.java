@@ -20,7 +20,7 @@ public class ScheduleDao {
     }
 
     public void addSchedule (Schedule schedule) {
-        jdbcTemplate.update("INSERT INTO Volunteersschedule VALUES(?, ?, ?, ?, ?, ?, ?)",
+        jdbcTemplate.update("INSERT INTO Volunteersschedule VALUES(?, ?, ?, ?, CAST(? AS BIT ), ?, ?)",
                 schedule.getNumberid(), schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
                 schedule.getStatus(), schedule.getBeneficiaryid(), schedule.getVolunteerid());
     }
@@ -34,7 +34,7 @@ public class ScheduleDao {
     }
 
     public void updateSchedule (Schedule schedule) {
-        jdbcTemplate.update("UPDATE Volunteersschedule SET day=?, starthour=?, finalhour=?, status=?, beneficiaryid=?, volunteerid=? WHERE numberid=?",
+        jdbcTemplate.update("UPDATE Volunteersschedule SET day=?, starthour=?, finalhour=?, status= CAST(? AS BIT ), beneficiaryid=?, volunteerid=? WHERE numberid=?",
                 schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
                 schedule.getStatus(), schedule.getBeneficiaryid(), schedule.getVolunteerid(), schedule.getNumberid());
     }
