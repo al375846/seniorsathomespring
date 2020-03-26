@@ -37,6 +37,10 @@ public class VolunteerController {
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                    BindingResult bindingResult) {
+        VolunteerValidator volValidator = new VolunteerValidator();
+        volValidator.validate(volunteer, bindingResult);
+        if (bindingResult.hasErrors())
+            return "volunteer/add";
         volunteerDao.addVolunteer(volunteer);
         return "redirect:list";
     }
