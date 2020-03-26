@@ -5,6 +5,7 @@ import seniorsathome.seniorsathomespring.model.Contract;
 import seniorsathome.seniorsathomespring.model.InvoiceLine;
 import seniorsathome.seniorsathomespring.model.Volunteer;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -20,7 +21,9 @@ public class VolunteerRowMapper implements RowMapper<Volunteer> {
         v.setUserName(rs.getString("username"));
         v.setPassword(rs.getString("password"));
         v.setRequestDate(rs.getDate("requestdate").toLocalDate());
-        v.setApprovalDate(rs.getDate("approvaldate").toLocalDate());
+        Date fecha =rs.getDate("approvaldate");
+        if (fecha != null) v.setApprovalDate(fecha.toLocalDate());
+        else v.setApprovalDate(null);
 
         return v;
     }
