@@ -38,6 +38,8 @@ public class CompanyController {
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company,
                                    BindingResult bindingResult) {
+        CompanyValidator companyValidator = new CompanyValidator();
+        companyValidator.validate(company, bindingResult);
         if (bindingResult.hasErrors())
             return "company/add";
         companyDao.addCompany(company);
@@ -54,6 +56,8 @@ public class CompanyController {
     public String processUpdateSubmit(
             @ModelAttribute("company") Company company,
             BindingResult bindingResult) {
+        CompanyValidator companyValidator = new CompanyValidator();
+        companyValidator.validate(company, bindingResult);
         if (bindingResult.hasErrors())
             return "company/update";
         companyDao.updateCompany(company);

@@ -14,6 +14,7 @@
         <tr>
             <td><label>Fiscal Number</label></td>
             <td><input type="text" th:field="*{fiscalNumber}" /></td>
+            <td th:if="${#fields.hasErrors('fiscalNumber')}" th:errors="*{fiscalNumber}" class="error"></td>
         </tr>
         <tr>
             <td><label>Name</label></td>
@@ -26,6 +27,7 @@
         <tr>
             <td><label>Responsible Name</label></td>
             <td><input type="text" th:field="*{responsibleName}" /></td>
+            <td th:if="${#fields.hasErrors('responsibleName')}" th:errors="*{responsibleName}" class="error"></td>
         </tr>
         <tr>
             <td><label>Responsible Phone Number</label></td>
@@ -46,6 +48,7 @@
         <tr>
             <td><label>Password</label></td>
             <td><input type="text" th:field="*{password}" /></td>
+            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Add Company" /></td>
