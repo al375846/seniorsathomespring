@@ -45,7 +45,7 @@ public class VolunteerValidator implements Validator{
         if (vol.getPassword().length() <= 4)
             errors.rejectValue("password", "Incorrect Value", "The password must have more than 4 characters");
         CharSequence charSequence = "@";
-        if (vol.getEmail().trim().contains(charSequence))
+        if (!vol.getEmail().trim().contains(charSequence))
             errors.rejectValue("password", "Incorrect Value", "Should be a Email (contains @)");
 
         // Afegeix ací la validació per a Edat > 15 anys
