@@ -55,6 +55,8 @@ public class VolunteerController {
     public String processUpdateSubmit(
             @ModelAttribute("volunteer") Volunteer v,
             BindingResult bindingResult) {
+        VolunteerValidator volValidator = new VolunteerValidator();
+        volValidator.validate(v, bindingResult);
         if (bindingResult.hasErrors())
             return "volunteer/update";
         volunteerDao.updateVolunteer(v);

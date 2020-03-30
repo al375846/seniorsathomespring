@@ -38,6 +38,8 @@ public class ScheduleController {
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("schedule") Schedule schedule,
                                    BindingResult bindingResult) {
+        ScheduleValidator val = new ScheduleValidator();
+        val.validate(schedule,bindingResult);
         if (bindingResult.hasErrors())
             return "schedule/add";
         scheduleDao.addSchedule(schedule);
@@ -54,6 +56,8 @@ public class ScheduleController {
     public String processUpdateSubmit(
             @ModelAttribute("schedule") Schedule schedule,
             BindingResult bindingResult) {
+        ScheduleValidator val = new ScheduleValidator();
+        val.validate(schedule,bindingResult);
         if (bindingResult.hasErrors())
             return "schedule/update";
         scheduleDao.updateSchedule(schedule);
