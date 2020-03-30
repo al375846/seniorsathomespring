@@ -21,9 +21,9 @@ public class BeneficiaryValidator implements Validator {
         if (beneficiary.getSurnames().trim().equals(""))
             errors.rejectValue("surnames", "Required", "You mus enter surnames");
         if (beneficiary.getPhoneNumber().trim().equals(""))
-            errors.rejectValue("phoneNumber", "Required",  "You must enter a phone number");
+            errors.rejectValue("phoneNumber", "Required", "You must enter a phone number");
         if (beneficiary.getEmail().trim().equals(""))
-            errors.rejectValue("email", "Required",  "You must enter an email");
+            errors.rejectValue("email", "Required", "You must enter an email");
         CharSequence charSequence = "@";
         if (!beneficiary.getEmail().trim().contains(charSequence))
             errors.rejectValue("password", "Incorrect Value", "Should be a Email (contains @)");
