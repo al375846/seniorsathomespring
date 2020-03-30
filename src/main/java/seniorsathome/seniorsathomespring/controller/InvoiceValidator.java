@@ -15,6 +15,9 @@ public class InvoiceValidator implements Validator {
     public void validate(Object obj, Errors errors) {
         Invoice invoice = (Invoice)obj;
 
+        if (invoice.getNumberID().trim().equals(""))
+            errors.rejectValue("numberID", "Required", "You must enter an identification number");
+
         if (invoice.getReleaseDate() == null)
             errors.rejectValue("releaseDate", "Required", "You must enter a release date");
 

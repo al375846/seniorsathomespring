@@ -17,22 +17,27 @@
         <tr>
             <td><label>Release Date</label></td>
             <td><input type="date" th:field="*{releaseDate}"/></td>
+            <td th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}" class="error"></td>
         </tr>
         <tr>
             <td><label>Start Date</label></td>
             <td><input type="date" th:field="*{startDate}"/></td>
+            <td th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="error"></td>
         </tr>
         <tr>
             <td><label>Final Date</label></td>
             <td><input type="date" th:field="*{finalDate}"/></td>
+            <td th:if="${#fields.hasErrors('finalDate')}" th:errors="*{finalDate}" class="error"></td>
         </tr>
         <tr>
             <td><label>Price</label></td>
             <td><input type="number" th:field="*{price}" /></td>
+            <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></td>
         </tr>
         <tr>
             <td><label>Beneficiary ID</label></td>
             <td><input type="text" th:field="*{beneficiaryID}" /></td>
+            <td th:if="${#fields.hasErrors('beneficiaryID')}" th:errors="*{beneficiaryID}" class="error"></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Update Invoice"/></td>
