@@ -11,49 +11,33 @@
 <form action="#" th:action="@{/volunteer/update}" th:object="${volunteer}" method="post">
     <table>
         <tr>
-            <td><label>Number ID</label></td>
-            <td><input type="text" th:field="*{idNumber}" /></td>
-            <td th:if="${#fields.hasErrors('idNumber')}" th:errors="*{idNumber}" class="error"></td>
+            <td><label>Valoration ID</label></td>
+            <td><input type="text" th:field="*{idValoration}" /></td>
+            <td th:if="${#fields.hasErrors('idValoration')}" th:errors="*{idValoration}" class="error"></td>
         </tr>
         <tr>
-            <td><label>Name</label></td>
-            <td><input type="text" th:field="*{name}" /></td>
-            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></td>
+            <td><label>Rate</label></td>
+            <td><input type="number" step="any" th:field="*{rate}" /></td>
+            <td th:if="${#fields.hasErrors('rate')}" th:errors="*{rate}" class="error"></td>
         </tr>
         <tr>
-            <td><label>Phone Number</label></td>
-            <td><input type="text" th:field="*{phoneNumber}" /></td>
-            <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></td>
+            <td><label>Comment</label></td>
+            <td><input type="text" th:field="*{comment}" /></td>
+            <td th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}" class="error"></td>
         </tr>
         <tr>
-            <td><label>Email</label></td>
-            <td><input type="text" th:field="*{email}" /></td>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
+            <td><label>Volunteer ID</label></td>
+            <td><input type="text" th:field="*{idVolunteer}" /></td>
+            <td th:if="${#fields.hasErrors('idVolunteer')}" th:errors="*{idVolunteer}" class="error"></td>
         </tr>
         <tr>
-            <td><label>Address</label></td>
-            <td><input type="text" th:field="*{address}" /></td>
-            <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></td>
+            <td><label>CompanyID</label></td>
+            <td><input type="text" th:field="*{idCompany}" /></td>
         </tr>
         <tr>
-            <td><label>User Name</label></td>
-            <td><input type="text" th:field="*{userName}" /></td>
-            <td th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Password</label></td>
-            <td><input type="text" th:field="*{password}" /></td>
-            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Request Date</label></td>
-            <td><input type="date" th:field="*{requestDate}" /></td>
-            <td th:if="${#fields.hasErrors('requestDate')}" th:errors="*{requestDate}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Approval Date</label></td>
-            <td><input type="date" th:field="*{approvalDate}" /></td>
-            <td th:if="${#fields.hasErrors('approvalDate')}" th:errors="*{approvalDate}" class="error"></td>
+            <td><label>Beneficiary ID</label></td>
+            <td><input type="text" th:field="*{idBeneficiary}" /></td>
+            <td th:if="${#fields.hasErrors('idBeneficiary')}" th:errors="*{idBeneficiary}" class="error"></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Update Volunteer"/></td>

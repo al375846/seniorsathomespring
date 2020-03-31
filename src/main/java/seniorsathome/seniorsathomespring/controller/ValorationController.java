@@ -38,6 +38,8 @@ public class ValorationController {
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("valoration") Valoration valoration,
                                    BindingResult bindingResult) {
+        ValorationValidator val = new ValorationValidator();
+        val.validate(valoration,bindingResult);
         if (bindingResult.hasErrors())
             return "valoration/add";
         valorationDao.addValoration(valoration);
@@ -54,6 +56,8 @@ public class ValorationController {
     public String processUpdateSubmit(
             @ModelAttribute("valoration") Valoration valoration,
             BindingResult bindingResult) {
+        ValorationValidator val = new ValorationValidator();
+        val.validate(valoration,bindingResult);
         if (bindingResult.hasErrors())
             return "valoration/update";
         valorationDao.updateValoration(valoration);

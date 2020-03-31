@@ -13,18 +13,22 @@
         <tr>
             <td><label>Valoration ID</label></td>
             <td><input type="text" th:field="*{idValoration}" /></td>
+            <td th:if="${#fields.hasErrors('idValoration')}" th:errors="*{idValoration}" class="error"></td>
         </tr>
         <tr>
             <td><label>Rate</label></td>
             <td><input type="number" step="any" th:field="*{rate}" /></td>
+            <td th:if="${#fields.hasErrors('rate')}" th:errors="*{rate}" class="error"></td>
         </tr>
         <tr>
             <td><label>Comment</label></td>
             <td><input type="text" th:field="*{comment}" /></td>
+            <td th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}" class="error"></td>
         </tr>
         <tr>
             <td><label>Volunteer ID</label></td>
             <td><input type="text" th:field="*{idVolunteer}" /></td>
+            <td th:if="${#fields.hasErrors('idVolunteer')}" th:errors="*{idVolunteer}" class="error"></td>
         </tr>
         <tr>
             <td><label>CompanyID</label></td>
@@ -33,6 +37,7 @@
         <tr>
             <td><label>Beneficiary ID</label></td>
             <td><input type="text" th:field="*{idBeneficiary}" /></td>
+            <td th:if="${#fields.hasErrors('idBeneficiary')}" th:errors="*{idBeneficiary}" class="error"></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Add Valoration"/></td>
