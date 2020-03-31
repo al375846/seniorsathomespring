@@ -41,6 +41,8 @@ public class InvoiceLineController {
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("invoiceLine") InvoiceLine invoiceLine,
                                    BindingResult bindingResult) {
+        InvoiceLineValidator invoiceLineValidator = new InvoiceLineValidator();
+        invoiceLineValidator.validate(invoiceLine, bindingResult);
         if (bindingResult.hasErrors())
             return "invoiceLine/add";
         invoiceLineDao.addInvoiceLine(invoiceLine);
@@ -57,6 +59,8 @@ public class InvoiceLineController {
     public String processUpdateSubmit(
             @ModelAttribute("invoiceLine") InvoiceLine invoiceLine,
             BindingResult bindingResult) {
+        InvoiceLineValidator invoiceLineValidator = new InvoiceLineValidator();
+        invoiceLineValidator.validate(invoiceLine, bindingResult);
         if (bindingResult.hasErrors())
             return "invoiceLine/update";
         invoiceLineDao.updateInvoiceLine(invoiceLine);

@@ -15,8 +15,16 @@ public class InvoiceLineValidator implements Validator {
     public void validate(Object obj, Errors errors) {
         InvoiceLine invoiceLine = (InvoiceLine)obj;
 
+        if (invoiceLine.getNumberID().trim().equals(""))
+            errors.rejectValue("numberID", "Required", "You must enter an identification number");
+
         if (invoiceLine.getPrice() == 0 || String.valueOf(invoiceLine.getPrice()).trim().equals(""))
             errors.rejectValue("price", "Required", "You must enter a price");
 
+        if (invoiceLine.getRequestID().trim().equals(""))
+            errors.rejectValue("requestID", "Required", "You must enter a request identification");
+
+        if (invoiceLine.getInvoiceID().trim().equals(""))
+            errors.rejectValue("invoiceID", "Required", "You must enter an invoice identification");
     }
 }
