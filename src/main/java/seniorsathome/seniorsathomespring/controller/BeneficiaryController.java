@@ -37,6 +37,8 @@ public class BeneficiaryController {
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("beneficiary") Beneficiary beneficiary,
                                    BindingResult bindingResult) {
+        BeneficiaryValidator beneficiaryValidator = new BeneficiaryValidator();
+        beneficiaryValidator.validate(beneficiary, bindingResult);
         if (bindingResult.hasErrors())
             return "beneficiary/add";
         beneficiaryDao.addBeneficiary(beneficiary);
@@ -53,6 +55,8 @@ public class BeneficiaryController {
     public String processUpdateSubmit(
             @ModelAttribute("beneficiary") Beneficiary beneficiary,
             BindingResult bindingResult) {
+        BeneficiaryValidator beneficiaryValidator = new BeneficiaryValidator();
+        beneficiaryValidator.validate(beneficiary, bindingResult);
         if (bindingResult.hasErrors())
             return "beneficiary/update";
         beneficiaryDao.updateBeneficiary(beneficiary);

@@ -37,6 +37,8 @@ public class RequestController {
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("request") Request request,
                                    BindingResult bindingResult) {
+        RequestValidator requestValidator = new RequestValidator();
+        requestValidator.validate(request, bindingResult);
         if (bindingResult.hasErrors())
             return "request/add";
         requestDao.addRequest(request);
@@ -53,6 +55,8 @@ public class RequestController {
     public String processUpdateSubmit(
             @ModelAttribute("request") Request request,
             BindingResult bindingResult) {
+        RequestValidator requestValidator = new RequestValidator();
+        requestValidator.validate(request, bindingResult);
         if (bindingResult.hasErrors())
             return "request/update";
         requestDao.updateRequest(request);
