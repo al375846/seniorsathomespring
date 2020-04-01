@@ -46,7 +46,7 @@ public class CompanyDao {
     /*Obtiene una compañia a partir de su fiscalNumber. Si no existe devuelve null*/
     public Company getCompany(String fiscalNumber) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE fiscalNumber=? WHERE fiscalNumber<>''",
+            return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE fiscalNumber=? ",
                     new CompanyRowMapper(),
                     fiscalNumber);
         }
@@ -58,7 +58,7 @@ public class CompanyDao {
     /*Obtiene una lista de todas las compañias de la base de datos. Devuelve una lista vacia si no hay*/
     public List<Company> getCompanies(){
         try{
-            return jdbcTemplate.query("SELECT * FROM Company",
+            return jdbcTemplate.query("SELECT * FROM Company WHERE fiscalNumber<>''",
                     new CompanyRowMapper());
         }
         catch (EmptyResultDataAccessException e) {

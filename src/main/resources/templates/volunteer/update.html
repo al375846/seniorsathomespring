@@ -12,7 +12,7 @@
     <table>
         <tr>
             <td><label>Valoration ID</label></td>
-            <td><input type="text" th:field="*{idValoration}" /></td>
+            <td><input type="text" th:field="*{idValoration}" readonly="readonly"/></td>
             <td th:if="${#fields.hasErrors('idValoration')}" th:errors="*{idValoration}" class="error"></td>
         </tr>
         <tr>
