@@ -46,7 +46,7 @@ public class CompanyDao {
     /*Obtiene una compañia a partir de su fiscalNumber. Si no existe devuelve null*/
     public Company getCompany(String fiscalNumber) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE fiscalNumber=?",
+            return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE fiscalNumber=? WHERE fiscalNumber<>''",
                     new CompanyRowMapper(),
                     fiscalNumber);
         }

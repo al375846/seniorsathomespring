@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.VolunteerDao;
 import seniorsathome.seniorsathomespring.model.Volunteer;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/volunteer")
 public class VolunteerController {

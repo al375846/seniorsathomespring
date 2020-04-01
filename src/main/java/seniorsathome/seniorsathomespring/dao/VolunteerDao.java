@@ -51,7 +51,7 @@ public class VolunteerDao {
 
     public List<Volunteer> getVolunteers(){
         try{
-            return jdbcTemplate.query("SELECT * FROM Volunteer",
+            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE idNumber<>''",
                     new VolunteerRowMapper());
         }
         catch (EmptyResultDataAccessException e) {
