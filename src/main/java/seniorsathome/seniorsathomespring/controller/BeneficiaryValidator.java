@@ -13,6 +13,7 @@ public class BeneficiaryValidator implements Validator {
 
     @Override
     public void validate(Object obj, Errors errors) {
+
         Beneficiary beneficiary = (Beneficiary) obj;
         if (beneficiary.getIdentificationNumber().trim().equals(""))
             errors.rejectValue("identificationNumber", "Required", "You must enter an identification number");
@@ -24,9 +25,10 @@ public class BeneficiaryValidator implements Validator {
             errors.rejectValue("phoneNumber", "Required", "You must enter a phone number");
         if (beneficiary.getEmail().trim().equals(""))
             errors.rejectValue("email", "Required", "You must enter an email");
+
         CharSequence charSequence = "@";
         if (!beneficiary.getEmail().trim().contains(charSequence))
-            errors.rejectValue("password", "Incorrect Value", "Should be a Email (contains @)");
+            errors.rejectValue("email", "Incorrect Value", "Should be a Email (contains @)");
         if (beneficiary.getAddress().trim().equals(""))
             errors.rejectValue("address", "Required", "You must enter an address");
         if (beneficiary.getUserName().trim().equals(""))
