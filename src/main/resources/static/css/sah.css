@@ -1,0 +1,65 @@
+/* Estil0 aplicat al cuerpo de la página */
+body {
+
+    font-family: Arial;
+   background-color: #f5f5f5;
+}
+
+/* Título de nivel 1 */
+h1 {
+   font-family: Arial;
+   font-size:36px;
+    text-align: center;
+   color: #03a9f4;
+}
+
+/* Título de nivel 2 */
+h2 {
+   font-family: Arial;
+   font-size: 24px;
+   color: #1b1c20;
+}
+
+/* Título de nivel 3 */
+h3 {
+   font-family: Arial;
+   font-size: 18px;
+   color: #1b1c20;
+}
+
+/* Texto de la aplicación */
+p {
+       font-family: Arial;
+    font-size:14px;
+    color: #616161;
+}
+
+/* Botones propios */
+.selfbutton {
+    color: #edc436;
+    border: 0px;
+}
+
+/* Pop up */
+.selfpopup {
+    color: #b3bb4c;
+    font-size:14px;
+
+}
+
+
+/* Clase CSS error */
+.error {
+     color: red;
+     font-size:80%
+}
+/* Classe CSS para los atributos erroneos */
+.needcorrection {
+    color: red;
+
+}
+.loggeduser {
+    color: gray;
+    text-align: right;
+    margin-right: 10pt;
+}
