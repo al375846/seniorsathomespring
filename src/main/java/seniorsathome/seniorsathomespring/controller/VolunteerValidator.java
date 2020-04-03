@@ -48,6 +48,21 @@ public class VolunteerValidator implements Validator{
         if (!vol.getEmail().trim().contains(charSequence))
             errors.rejectValue("password", "Incorrect Value", "Should be a Email (contains @)");
 
+        if (vol.getIdNumber().length()>10)
+            errors.rejectValue("idNumber", "Incorrect Value", "I can not be more than 10 character");
+        if (vol.getName().length()>50)
+            errors.rejectValue("name", "Incorrect Value", "I can not be more than 50 character");
+        if (vol.getPhoneNumber().length()>50)
+            errors.rejectValue("phoneNumber", "Incorrect Value", "I can not be more than 50 character");
+        if (vol.getEmail().length()>20)
+            errors.rejectValue("email", "Incorrect Value", "I can not be more than 20 character");
+        if (vol.getAddress().length()>50)
+            errors.rejectValue("address", "Incorrect Value", "I can not be more than 50 character");
+        if (vol.getUserName().length()>25)
+            errors.rejectValue("userName", "Incorrect Value", "I can not be more than 25 character");
+        if (vol.getPassword().length()>25)
+            errors.rejectValue("password", "Incorrect Value", "I can not be more than 25 character");
+
         // Afegeix ací la validació per a Edat > 15 anys
     }
 }

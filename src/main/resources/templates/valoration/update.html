@@ -33,6 +33,7 @@
         <tr>
             <td><label>CompanyID</label></td>
             <td><input type="text" th:field="*{idCompany}" /></td>
+            <td th:if="${#fields.hasErrors('idCompany')}" th:errors="*{idCompany}" class="error"></td>
         </tr>
         <tr>
             <td><label>Beneficiary ID</label></td>
