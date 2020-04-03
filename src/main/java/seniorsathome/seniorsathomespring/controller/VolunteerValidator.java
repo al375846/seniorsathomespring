@@ -49,19 +49,19 @@ public class VolunteerValidator implements Validator{
             errors.rejectValue("password", "Incorrect Value", "Should be a Email (contains @)");
 
         if (vol.getIdNumber().length()>10)
-            errors.rejectValue("idNumber", "Incorrect Value", "I can not be more than 10 character");
+            errors.rejectValue("idNumber", "Incorrect Value", "The number id cannot be longer than 10 characters");
         if (vol.getName().length()>50)
-            errors.rejectValue("name", "Incorrect Value", "I can not be more than 50 character");
+            errors.rejectValue("name", "Incorrect Value", "The name cannot be longer than 50 characters");
         if (vol.getPhoneNumber().length()>50)
-            errors.rejectValue("phoneNumber", "Incorrect Value", "I can not be more than 50 character");
+            errors.rejectValue("phoneNumber", "Incorrect Value", "The phone number connot be longer than 10 characters");
         if (vol.getEmail().length()>20)
-            errors.rejectValue("email", "Incorrect Value", "I can not be more than 20 character");
+            errors.rejectValue("email", "Incorrect Value", "The mail cannot be longer than 50 characters");
         if (vol.getAddress().length()>50)
-            errors.rejectValue("address", "Incorrect Value", "I can not be more than 50 character");
+            errors.rejectValue("address", "Incorrect Value", "The address cannot be longer than 50 characters");
         if (vol.getUserName().length()>25)
-            errors.rejectValue("userName", "Incorrect Value", "I can not be more than 25 character");
+            errors.rejectValue("userName", "Incorrect Value", "The username cannot be longer than 25 characters");
         if (vol.getPassword().length()>25)
-            errors.rejectValue("password", "Incorrect Value", "I can not be more than 25 character");
+            errors.rejectValue("password", "Incorrect Value", "The password cannot be longer than 25 characters");
 
         // Afegeix ací la validació per a Edat > 15 anys
     }
