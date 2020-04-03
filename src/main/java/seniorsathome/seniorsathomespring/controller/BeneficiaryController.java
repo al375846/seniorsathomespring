@@ -63,6 +63,12 @@ public class BeneficiaryController {
         return "redirect:list";
     }
 
+    @RequestMapping(value = "/requests/{identificationNumber}")
+    public String listRequestBeneficiaries(Model model, @PathVariable String identificationNumber) {
+        model.addAttribute("requests", beneficiaryDao.listRequests(identificationNumber));
+        return "beneficiary/requests";
+    }
+
     @RequestMapping(value = "/delete/{identificationNumber}")
     public String processDeleteBeneficiary(@PathVariable String identificationNumber) {
         beneficiaryDao.deleteBeneficiary(identificationNumber);
