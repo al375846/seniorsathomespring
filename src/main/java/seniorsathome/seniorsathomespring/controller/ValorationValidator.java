@@ -41,6 +41,17 @@ public class ValorationValidator implements Validator{
         if (val.getComment().length()>255)
             errors.rejectValue("rate", "Incorrect Value",
                     "You must enter less than 256 characters");
+
+        if (val.getIdValoration().length()>10)
+            errors.rejectValue("idValoration", "Incorrect Value", "I can not be more than 10 character");
+        if(!(val.getIdVolunteer().trim().equals(""))||!(val.getIdCompany().trim().equals(""))){
+            if (val.getIdVolunteer().length()>10)
+                errors.rejectValue("idVolunteer", "Incorrect Value", "I can not be more than 10 character");
+            if (val.getIdCompany().length()>10)
+                errors.rejectValue("idCompany", "Incorrect Value", "I can not be more than 10 character");
+        }
+        if (val.getIdBeneficiary().length()>10)
+            errors.rejectValue("idBeneficiary", "Incorrect Value", "I can not be more than 10 character");
         // Afegeix ací la validació per a Edat > 15 anys
     }
 }
