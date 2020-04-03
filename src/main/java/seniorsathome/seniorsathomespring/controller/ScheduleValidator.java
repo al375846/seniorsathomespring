@@ -30,9 +30,6 @@ public class ScheduleValidator implements Validator {
         if (sch.getStatus() == null)
             errors.rejectValue("status", "Required",
                     "You must enter a value");
-        if (sch.getBeneficiaryid().trim().equals(""))
-            errors.rejectValue("beneficiaryid", "Required",
-                    "You must enter a value");
         if (sch.getVolunteerid().trim().equals(""))
             errors.rejectValue("volunteerid", "Required",
                     "You must enter a value");
