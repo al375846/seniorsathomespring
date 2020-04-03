@@ -4,7 +4,7 @@ import org.springframework.jdbc.core.RowMapper;
 import seniorsathome.seniorsathomespring.model.Request;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class RequestRowMapper implements RowMapper<Request> {
 
@@ -16,13 +16,13 @@ public class RequestRowMapper implements RowMapper<Request> {
         request.setStart_date(rs.getDate("start_date").toLocalDate());
         request.setFinal_date(rs.getDate("final_date").toLocalDate());
 
-        LocalDate approvalDate = rs.getDate("approval_date").toLocalDate();
-        if(approvalDate != null) request.setApproval_date(approvalDate);
+        Date approvalDate = rs.getDate("approval_date");
+        if(approvalDate != null) request.setApproval_date(approvalDate.toLocalDate());
         else request.setApproval_date(null);
 
-        LocalDate rejectDate = rs.getDate("reject_date").toLocalDate();
-        if(rejectDate != null) request.setReject_date(rejectDate);
-        else request.setReject_date(null);
+        Date rejectDate = rs.getDate("reject_date");
+        if(rejectDate != null) request.setReject_date(rejectDate.toLocalDate());
+        else request.setApproval_date(null);
 
         request.setComments(rs.getString("comments"));
         request.setBeneficiary_id(rs.getString("beneficiary_id"));
