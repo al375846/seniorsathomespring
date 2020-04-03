@@ -20,7 +20,7 @@ public class CompanyValidator implements Validator {
         if (company.getResponsibleName().trim().equals(""))
             errors.rejectValue("responsibleName", "Required", "You must enter a responsible name");
         if (company.getPassword().trim().equals(""))
-            errors.rejectValue("password", "Required", "You must enter a value");
+            errors.rejectValue("password", "Required", "You must enter a password");
         if (company.getPassword().length() <= 4)
             errors.rejectValue("password", "Incorrect Value", "The password must have more than 4 characters");
     }
