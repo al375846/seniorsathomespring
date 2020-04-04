@@ -1,41 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <style>
+        h1{
+            text-align: center;
+        }
+        table{
+            align: center;
+            border: 1px solid black;
+            width: 100%;
+        }
+        td{
+            padding: 30px;
+        }
+    </style>
     <title>My Services</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
-<body>
 <h1>My Services</h1>
-<table class="table table-striped">
-    <thead>
+<table>
     <tr>
-        <th>Number ID</th>
-        <th>Service Type</th>
-        <th>Status</th>
-        <th>Start Date</th>
-        <th>Final Date</th>
-        <th>Approval Date</th>
-        <th>Reject Date</th>
-        <th>Comments</th>
-        <th>Beneficiary ID</th>
-        <th>Contract ID</th>
+        <td>APPROVED</td>
+        <td>ON HOLD</td>
+        <td>REJECTED</td>
     </tr>
-    <tr th:each="request: ${requests}">
-        <td th:text="${request.number_id}"></td>
-        <td th:text="${request.status}"></td>
-        <td th:text="${request.type}"></td>
-        <td th:text="${request.start_date}"></td>
-        <td th:text="${request.final_date}"></td>
-        <td th:text="${request.approval_date}"></td>
-        <td th:text="${request.reject_date}"></td>
-        <td th:text="${request.comments}"></td>
-        <td th:text="${request.beneficiary_id}"></td>
-        <td th:text="${request.contract_id}"></td>
-    </thead>
+    <tr>
+        <td>
+            <ul th:each="request: ${requests}">
+                <li th:text="${request.type}"></li>
+                <ul>
+                    <li>Start date : <text th:text="${request.start_date}"></text></li>
+                    <li>Final date: <text th:text="${request.final_date}"></text></li>
+                </ul>
+            </ul>
+        </td>
+        <td>dsadsa</td>
+        <td>dadasdas</td>
+    </tr>
 </table>
-</form>
+
+    <table>
+        <tr  th:each="request: ${requests}">
+            <ul>
+                <li th:text="${request.type}"></li>
+                <ul>
+                    <li>Start date : <text th:text="${request.start_date}"></text></li>
+                    <li>Final date: <text th:text="${request.final_date}"></text></li>
+                </ul>
+            </ul>
+        </tr>
+    </table>
+
 <a th:href="list"><button type="button" class=".selfbutton">Return</button></a>
 </body>
 </html>
