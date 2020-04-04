@@ -8,7 +8,7 @@
         table{
             align: center;
             border: 1px solid black;
-            width: 100%;
+            width: 90%;
         }
         td{
             padding: 30px;
@@ -28,30 +28,37 @@
     </tr>
     <tr>
         <td>
-            <ul th:each="request: ${requests}">
-                <li th:text="${request.type}"></li>
+            <ul th:each="approved: ${requests}"
+            th:if="${approved.status} == 'APPROVED'">
+                <li th:text="${approved.type}"></li>
                 <ul>
-                    <li>Start date : <text th:text="${request.start_date}"></text></li>
-                    <li>Final date: <text th:text="${request.final_date}"></text></li>
+                    <li>Start date : <text th:text="${approved.start_date}"></text></li>
+                    <li>Final date: <text th:text="${approved.final_date}"></text></li>
                 </ul>
             </ul>
         </td>
-        <td>dsadsa</td>
-        <td>dadasdas</td>
+        <td>
+            <ul th:each="unsolved: ${requests}"
+                th:if="${unsolved.status} == 'APPROVED'">
+                <li th:text="${unsolved.type}"></li>
+                <ul>
+                    <li>Start date : <text th:text="${unsolved.start_date}"></text></li>
+                    <li>Final date: <text th:text="${unsolved.final_date}"></text></li>
+                </ul>
+            </ul>
+        </td>
+        <td>
+            <ul th:each="rejected: ${requests}">
+                <li th:text="${rejected.type}"></li>
+                <ul>
+                    <li>Start date : <text th:text="${rejected.start_date}"></text></li>
+                    <li>Final date: <text th:text="${rejected.final_date}"></text></li>
+                </ul>
+            </ul>
+        </td>
     </tr>
 </table>
 
-    <table>
-        <tr  th:each="request: ${requests}">
-            <ul>
-                <li th:text="${request.type}"></li>
-                <ul>
-                    <li>Start date : <text th:text="${request.start_date}"></text></li>
-                    <li>Final date: <text th:text="${request.final_date}"></text></li>
-                </ul>
-            </ul>
-        </tr>
-    </table>
 
 <a th:href="list"><button type="button" class=".selfbutton">Return</button></a>
 </body>
