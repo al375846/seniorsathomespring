@@ -6,12 +6,19 @@
             text-align: center;
         }
         table{
-            margin-auto: 0;
             border: 1px solid black;
-            width: 90%;
+            margin: 0 auto;
+            text-align: left;
         }
         td{
-            padding: 30px;
+            padding: 15px;
+            border: 1px solid black;
+        }
+        .button{
+            margin: 0 auto;
+        }
+        ul{
+            padding: 10px;
         }
     </style>
     <title>My Services</title>
@@ -19,18 +26,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
+<p><br></p>
 <h1>My Services</h1>
-
+<p><br></p>
 <table>
-    <tr>
+    <tr style="text-align: center">
         <td>APPROVED</td>
         <td>ON HOLD</td>
         <td>REJECTED</td>
     </tr>
     <tr>
         <td>
-            <span th:each="approved: ${requests}">
-                <ul th:if="${approved.status} == 'APPROVED'">
+            <span th:each="approved: ${requests}" th:if="${approved.status} == 'APPROVED'">
+                <ul>
                     <li th:text="${approved.type}"></li>
                     <ul>
                         <li>Start date : <text th:text="${approved.start_date}"></text></li>
@@ -40,8 +48,8 @@
             </span>
         </td>
         <td>
-            <span th:each="unsolved: ${requests}">
-                <ul th:if="${unsolved.status} == 'UNSOLVED'">
+            <span th:each="unsolved: ${requests}" th:if="${unsolved.status} == 'UNSOLVED'">
+                <ul>
                     <li th:text="${unsolved.type}"></li>
                     <ul>
                         <li>Start date : <text th:text="${unsolved.start_date}"></text></li>
@@ -51,8 +59,8 @@
             </span>
         </td>
         <td>
-            <span th:each="rejected: ${requests}">
-                <ul th:if="${rejected.status} == 'REJECTED'">
+            <span th:each="rejected: ${requests}"  th:if="${rejected.status} == 'REJECTED'">
+                <ul>
                     <li th:text="${rejected.type}"></li>
                     <ul>
                         <li>Start date : <text th:text="${rejected.start_date}"></text></li>
@@ -63,8 +71,9 @@
         </td>
     </tr>
 </table>
-
-
-<a th:href=""><button type="button" >Return</button></a>
+<p><br></p>
+<center>
+    <input type="button" onclick="history.back()" name="Return" value="Return" class="button"></input>
+</center>
 </body>
 </html>
