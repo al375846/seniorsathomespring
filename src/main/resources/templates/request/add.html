@@ -9,7 +9,7 @@
 
 </head>
 <body>
-<h2>New Request</h2>
+<h2 style="text-align: center">REQUEST FOR A SERVICE</h2>
 <form action="#" th:action="@{/request/add}"
       th:object="${request}" method="post">
     <table>
@@ -77,7 +77,7 @@
             <td th:if="${#fields.hasErrors('contract_id')}" th:errors="*{contract_id}" class="error"></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Add Request" /></td>
+            <td colspan="2"><input type="submit" value="Add Request"/></td>
         </tr>
     </table>
 </form>
