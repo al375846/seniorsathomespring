@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class VolunteerRowMapper implements RowMapper<Volunteer> {
     public Volunteer mapRow(ResultSet rs, int rowNum) throws SQLException {
-        
+
         Volunteer v = new Volunteer();
         v.setIdNumber(rs.getString("idnumber"));
         v.setName(rs.getString("name"));
