@@ -28,7 +28,15 @@
         console.log(x);
         console.log(i);
         console.log(z);
-        document.getElementById("companyID").value = z;
+        if(z == null){
+            document.getElementById("company").style.background = "red";
+            document.getElementById("companyID").value = "";
+        }
+        else {
+            document.getElementById("company").style.background = "#b3bb4c";
+            document.getElementById("companyID").value = z;
+        }
+
     }
 
     function alertFunction() {
