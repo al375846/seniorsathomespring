@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create a new Request</title>
+    <title>Modify a Request</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 
+
 </head>
 <body>
-<h2>New Request</h2>
+<h2>Edit Request</h2>
 <form action="#" th:action="@{/request/add}"
       th:object="${request}" method="post">
     <table>
         <tr>
             <td><label>Number ID</label></td>
-            <td><input type="text" th:field="*{number_id}" /></td>
-            <td th:if="${#fields.hasErrors('number_id')}" th:errors="*{number_id}" class="error"></td>
+            <td><input type="text" th:field="*{number_id}"/></td>
         </tr>
         <tr>
             <td><label>Status</label></td>
             <td>
                 <input list="requestStatus" name="requestStatus" th:field="*{status}" />
                 <datalist id="requestStatus">
-                    <option value="0 : APPROVED">
-                    <option value="1 : REJECTED">
-                    <option value="2 : UNSOLVED">
+                    <option value="APPROVED">
+                    <option value="REJECTED">
+                    <option value="UNSOLVED">
                 </datalist>
             </td>
             <td th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error"></td>
@@ -48,11 +48,13 @@
             <td><label>Start Date</label></td>
             <td><input type="date" th:field="*{start_date}" /></td>
             <td th:if="${#fields.hasErrors('start_date')}" th:errors="*{start_date}" class="error"></td>
+
         </tr>
         <tr>
             <td><label>Final Date</label></td>
             <td><input type="date" th:field="*{final_date}" /></td>
             <td th:if="${#fields.hasErrors('final_date')}" th:errors="*{final_date}" class="error"></td>
+
         </tr>
         <tr>
             <td><label>Approval Date</label></td>
@@ -69,15 +71,14 @@
         <tr>
             <td><label>Beneficiary ID</label></td>
             <td><input type="text" th:field="*{beneficiary_id}" /></td>
-            <td th:if="${#fields.hasErrors('beneficary_id')}" th:errors="*{beneficiary_id}" class="error"></td>
+            <td th:if="${#fields.hasErrors('beneficiary_id')}" th:errors="*{beneficiary_id}" class="error"></td>
         </tr>
         <tr>
             <td><label>Contract ID</label></td>
             <td><input type="text" th:field="*{contract_id}" /></td>
-            <td th:if="${#fields.hasErrors('contract_id')}" th:errors="*{contract_id}" class="error"></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Add Request" /></td>
+            <td colspan="2"><input type="submit" value="Update Request" /></td>
         </tr>
     </table>
 </form>
