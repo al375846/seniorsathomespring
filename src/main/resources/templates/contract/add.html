@@ -31,6 +31,13 @@
                </datalist>
             </td>
             <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}" class="error"></td>
+            <td>
+                <input id="companies" list="company" name="company"/>
+                <datalist id="company">
+                    <option th:each="company: ${companies}" th:value="${company.name}" value="XXXX"></option>
+                </datalist>
+            </td>
+            <td><input type="button" id="acceptCompany" onclick="myFunction()"/></td>
         </tr>
         <tr>
             <td><label>Quantity</label></td>
@@ -54,12 +61,24 @@
         </tr>
         <tr>
             <td><label>Company ID</label></td>
-            <td><input type="text" th:field="*{companyID}" /></td>
+            <td><input type="text" th:field="*{companyID}" id="companyId"/></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Add Contract" /></td>
+            <td colspan="2"><input type="submit" value="Add Contract" onclick="alerta()"/></td>
         </tr>
     </table>
 </form>
+<p id="demo"></p>
+<script>
+    function myFunction() {
+        var x = document.getElementById("company").value;
+        var y = document.getElementById("company").value;
+        document.getElementById("demo").innerHTML = x;
+    }
+
+    function alerta() {
+        alert("Contract added");
+    }
+</script>
 </body>
 </html>
