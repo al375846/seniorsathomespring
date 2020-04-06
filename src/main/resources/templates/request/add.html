@@ -23,9 +23,9 @@
             <td>
                 <input list="requestStatus" name="requestStatus" th:field="*{status}" />
                 <datalist id="requestStatus">
-                    <option value="0 : APPROVED">
-                    <option value="1 : REJECTED">
-                    <option value="2 : UNSOLVED">
+                    <option value="APPROVED">
+                    <option value="REJECTED">
+                    <option value="UNSOLVED">
                 </datalist>
             </td>
             <td th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error"></td>
