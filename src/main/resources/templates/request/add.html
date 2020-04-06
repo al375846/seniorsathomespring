@@ -74,6 +74,7 @@
         <tr>
             <td><label>Contract ID</label></td>
             <td><input type="text" th:field="*{contract_id}" /></td>
+            <td th:if="${#fields.hasErrors('contract_id')}" th:errors="*{contract_id}" class="error"></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Add Request" /></td>
