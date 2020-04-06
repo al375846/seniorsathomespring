@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import seniorsathome.seniorsathomespring.dao.CompanyDao;
 import seniorsathome.seniorsathomespring.dao.ContractDao;
 import seniorsathome.seniorsathomespring.model.Contract;
 import seniorsathome.seniorsathomespring.model.ServiceType;
@@ -20,10 +21,16 @@ import java.util.Arrays;
 public class ContractController {
 
     private ContractDao contractDao;
+    private CompanyDao companyDao;
 
     @Autowired
     public void setContractDao(ContractDao contractDao) {
         this.contractDao = contractDao;
+    }
+
+    @Autowired
+    public void setCompanyDao(CompanyDao companyDao) {
+        this.companyDao = companyDao;
     }
 
     @RequestMapping("/list")
@@ -35,6 +42,7 @@ public class ContractController {
     @RequestMapping(value="/add")
     public String addContract(Model model) {
         model.addAttribute("contract", new Contract());
+        model.addAttribute("companies", companyDao.getCompanies());
         return "contract/add";
     }
 
