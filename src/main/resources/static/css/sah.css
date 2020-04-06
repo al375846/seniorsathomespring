@@ -1,12 +1,12 @@
 /* Estil0 aplicat al cuerpo de la página */
-.body {
+body {
 
     font-family: Arial;
    background-color: #f5f5f5;
 }
 
 /* Título de nivel 1 */
-.h1 {
+h1 {
    font-family: Arial;
    font-size:36px;
     text-align: center;
@@ -14,21 +14,21 @@
 }
 
 /* Título de nivel 2 */
-.h2 {
+h2 {
    font-family: Arial;
    font-size: 24px;
    color: #1b1c20;
 }
 
 /* Título de nivel 3 */
-.h3 {
+h3 {
    font-family: Arial;
    font-size: 18px;
    color: #1b1c20;
 }
 
 /* Texto de la aplicación */
-.p {
+p {
        font-family: Arial;
     font-size:14px;
     color: #616161;

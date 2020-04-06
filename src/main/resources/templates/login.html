@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <link rel="stylesheet" type="text/css"
+          href="/css/sah.css"
+          th:href="@{/css/sah.css}"/>
+    <title>Login</title>
+    <meta charset="UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <h2>Accés</h2>
+    <form action="#" th:action="@{/login}"
+          th:object="${user}" method="post">
+        <p>
+            <label>Username:</label>
+            <input class="form_control" type="text" th:field="*{username}"/>
+        <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        </p>
+        <p>
+            <label>Password:</label>
+            <input class="form_control" type="password" th:field="*{password}"/>
+        <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </p>
+        <input type="submit" value="Log in" />
+    </form>
+</div>
+</body>
+</html>

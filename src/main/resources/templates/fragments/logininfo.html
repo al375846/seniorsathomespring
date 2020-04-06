@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login info</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sah.css"
+          th:href="@{/css/sah.css}"/>
+</head>
+<body>
+<div class="loggeduser" th:object="${session}">
+    <p th:if="*{user == null}">
+        Not logged <a href="/login" th:href="@{/login}">Log in</a>
+    </p>
+    <p th:unless="*{user == null}">
+        Logged as <span th:text="*{user.username}"></span> <a
+            href="/logout" th:href="@{/logout}">Log out</a>
+    </p>
+</div>
+
+</body>
+</html>

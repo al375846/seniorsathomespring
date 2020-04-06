@@ -1,5 +1,6 @@
 package seniorsathome.seniorsathomespring.dao;
 
+import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,18 +24,20 @@ public class VolunteerDao {
     }
 
     public void addVolunteer (Volunteer v) {
-        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?, ?,?,?, ?,?,?)",
+        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?, ?,?,?,?,?,?)",
                 v.getIdNumber(),v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
-                v.getUserName(),v.getPassword(),v.getRequestDate(),v.getApprovalDate());
+                v.getUserName(),passwordEncryptor.encryptPassword(v.getPassword()),v.getRequestDate(),v.getApprovalDate());
     }
     public void deleteVolunteer(String idNumber){
         jdbcTemplate.update("DELETE FROM Volunteer WHERE idnumber=?", idNumber);
     }
 
     public void updateVolunteer(Volunteer v) {
+        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         jdbcTemplate.update("UPDATE Volunteer SET name=?,phonenumber=?,email=?,address=?,username=?,password=?,requestdate=?,approvaldate=? WHERE idnumber=?",
                 v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
-                v.getUserName(),v.getPassword(),v.getRequestDate(),v.getApprovalDate(),v.getIdNumber());
+                v.getUserName(),passwordEncryptor.encryptPassword(v.getPassword()),v.getRequestDate(),v.getApprovalDate(),v.getIdNumber());
     }
 
 

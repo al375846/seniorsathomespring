@@ -1,5 +1,6 @@
 package seniorsathome.seniorsathomespring.dao;
 
+import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.jdbc.core.RowMapper;
 import seniorsathome.seniorsathomespring.model.Contract;
 import seniorsathome.seniorsathomespring.model.InvoiceLine;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 
 public class VolunteerRowMapper implements RowMapper<Volunteer> {
     public Volunteer mapRow(ResultSet rs, int rowNum) throws SQLException {
-
+        
         Volunteer v = new Volunteer();
         v.setIdNumber(rs.getString("idnumber"));
         v.setName(rs.getString("name"));

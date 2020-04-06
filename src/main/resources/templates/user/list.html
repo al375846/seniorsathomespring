@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>List of users</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sah.css"
+          th:href="@{/css/sah.css}"/>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <h1>Users' List</h1>
+
+    <div th:if="${#lists.isEmpty(users)}">
+        There are no users
+    </div>
+    <table th:unless="${#lists.isEmpty(users)}"  class="table table-condensed">
+        <thead>
+        <tr>
+            <th>Username</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="user: ${users}">
+            <td th:text="${user.username}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/" class="btn btn-primary" role="button">Back</a>
+</div>
+</body>
+</html>

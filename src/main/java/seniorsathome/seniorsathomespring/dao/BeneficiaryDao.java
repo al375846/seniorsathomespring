@@ -1,5 +1,6 @@
 package seniorsathome.seniorsathomespring.dao;
 
+import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,8 +24,9 @@ public class BeneficiaryDao {
 
     /*Añade un beneficiario a la base de datos */
     public void addBeneficiary(Beneficiary beneficiary) {
+        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         jdbcTemplate.update("INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                beneficiary.getIdentificationNumber(), beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), beneficiary.getPassword(), beneficiary.getSocialWorkerID());
+                beneficiary.getIdentificationNumber(), beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), passwordEncryptor.encryptPassword(beneficiary.getPassword()), beneficiary.getSocialWorkerID());
     }
 
     /*Elimina un beneficiario a la base de datos */
@@ -38,7 +40,8 @@ public class BeneficiaryDao {
 
     /*Modifica los datos de un beneficiario de la base de datos */
     public void updateBeneficiary(Beneficiary beneficiary) {
-        jdbcTemplate.update("UPDATE Beneficiary SET name=?, surnames=?, phone_number=?, email=?, address=?, user_name=?, password=?, social_worker_id=?  WHERE identification_number=?", beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), beneficiary.getPassword(), beneficiary.getSocialWorkerID(), beneficiary.getIdentificationNumber());
+        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+        jdbcTemplate.update("UPDATE Beneficiary SET name=?, surnames=?, phone_number=?, email=?, address=?, user_name=?, password=?, social_worker_id=?  WHERE identification_number=?", beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), passwordEncryptor.encryptPassword(beneficiary.getPassword()), beneficiary.getSocialWorkerID(), beneficiary.getIdentificationNumber());
     }
 
     /*Obetiene un beneficiario a partir de su ID. Devuelve nulo si no existe. */
