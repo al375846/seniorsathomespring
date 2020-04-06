@@ -1,43 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create a new Contract</title>
+    <title>Create a Contract</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
 <body>
-<h2>New Contract</h2>
+<script type="text/javascript" th:inline="javascript">
+    var companiesName = [];
+    var companiesNumber = [];
+    /*[# th:each="company : ${companies}"]*/
+    companiesName.push("[(${company.name})]");
+    /*[/]*/
+    /*[# th:each="company : ${companies}"]*/
+    companiesNumber.push("[(${company.fiscalNumber})]");
+    /*[/]*/
+    console.log(companiesName);
+    console.log(companiesNumber);
+
+    function companiesFunction() {
+        console.log(companiesName);
+        var x = document.getElementById("company").value;
+        var i = companiesName.indexOf(x,0);
+        var z = companiesNumber[i];
+        console.log(x);
+        console.log(i);
+        console.log(z);
+        document.getElementById("companyID").value = z;
+    }
+
+    function alertFunction() {
+        alert("Contract added");
+    }
+</script>
+<h2>Add Contract</h2>
 <form action="#" th:action="@{/contract/add}"
       th:object="${contract}" method="post">
     <table>
         <tr>
             <td><label>Number ID</label></td>
-            <td><input type="text" th:field="*{numberID}" /></td>
-            <td th:if="${#fields.hasErrors('numberID')}" th:errors="*{numberID}" class="error"></td>
+            <td><input type="text" th:field="*{numberID}" readonly="readonly"/></td>
         </tr>
         <tr>
             <td><label>Service Type</label></td>
             <!--<td><input type="text" th:field="*{serviceType}" /></td>-->
-           <td>
-               <input list="servicesType" name="serviceType" th:field="*{serviceType}" />
-               <datalist id="servicesType">
-                   <option value="CATERING">
-                   <option value="PHYSIOTHERAPY">
-                   <option value="NURSING">
-                   <option value="LAUNDRY">
-                   <option value="CLEANING">
-               </datalist>
+            <td>
+                <input list="servicesType" name="serviceType" th:field="*{serviceType}" />
+                <datalist id="servicesType">
+                    <option value="CATERING">
+                    <option value="PHYSIOTHERAPY">
+                    <option value="NURSING">
+                    <option value="LAUNDRY">
+                    <option value="CLEANING">
+                </datalist>
             </td>
             <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}" class="error"></td>
             <td>
-                <input id="companies" list="company" name="company"/>
-                <datalist id="company">
-                    <option th:each="company: ${companies}" th:value="${company.name}" value="XXXX"></option>
+                <input id="company" list="companyName" name="company"/>
+                <datalist id="companyName">
+                    <option th:each="company: ${companies}" th:value="${company.name}"></option>
                 </datalist>
             </td>
-            <td><input type="button" id="acceptCompany" onclick="myFunction()"/></td>
+            <td><input type="button" onclick="companiesFunction()">Accept</td>
         </tr>
         <tr>
             <td><label>Quantity</label></td>
@@ -61,24 +87,12 @@
         </tr>
         <tr>
             <td><label>Company ID</label></td>
-            <td><input type="text" th:field="*{companyID}" id="companyId"/></td>
+            <td><input type="text" id="companyID" th:field="*{companyID}" /></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Add Contract" onclick="alerta()"/></td>
+            <td colspan="2"><input type="submit" onsubmit="alertFunction()" value="Add Contract" /></td>
         </tr>
     </table>
 </form>
-<p id="demo"></p>
-<script>
-    function myFunction() {
-        var x = document.getElementById("company").value;
-        var y = document.getElementById("company").value;
-        document.getElementById("demo").innerHTML = x;
-    }
-
-    function alerta() {
-        alert("Contract added");
-    }
-</script>
 </body>
 </html>
