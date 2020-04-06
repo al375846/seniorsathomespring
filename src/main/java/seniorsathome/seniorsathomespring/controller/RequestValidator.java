@@ -28,7 +28,7 @@ public class RequestValidator implements Validator {
         if (request.getFinal_date() != null && request.getStart_date() != null && request.getFinal_date().isBefore(request.getStart_date()))
             errors.rejectValue("finalDate", "Incorrect Value", "The final date must be after the start date");
         if (request.getBeneficiary_id() == null)
-            errors.rejectValue("beficiary_id", "Required", "You must enter a beneficiary id");
+            errors.rejectValue("beneficiary_id", "Required", "You must enter a beneficiary id");
         if (request.getContract_id() == null)
             errors.rejectValue("contract_id", "Required", "You must enter a contract id");
         if (request.getComments().length()>255)
