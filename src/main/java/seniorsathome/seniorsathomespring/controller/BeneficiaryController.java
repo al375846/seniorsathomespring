@@ -84,7 +84,7 @@ public class BeneficiaryController {
         if (bindingResult.hasErrors())
             return "beneficiary/servicesForm";
         beneficiaryDao.addRequest(request);
-        return "beneficiary/list";
+        return "redirect:list";
     }
 
     @RequestMapping(value = "/delete/{identificationNumber}")
