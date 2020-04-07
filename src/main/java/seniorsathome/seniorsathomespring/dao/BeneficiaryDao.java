@@ -87,11 +87,11 @@ public class BeneficiaryDao {
 
     }
 
-    public void addRequest(Request request, String identificationNumber){
+    public void addRequest(Request request){
         jdbcTemplate.update("INSERT INTO Request VALUES(?, ?::STATUSTYPE, ?::SERVICETYPE, ?, ?, ?, ?, ?, ?, ?)",
                 countRequests(), "UNSOLVED", request.getType(), request.getStart_date(),
                 request.getFinal_date(), null, null, request.getComments(),
-                identificationNumber, "");
+                request.getBeneficiary_id(), "");
     }
 
 }

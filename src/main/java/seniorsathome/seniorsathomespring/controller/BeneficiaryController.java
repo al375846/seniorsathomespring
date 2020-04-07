@@ -72,20 +72,19 @@ public class BeneficiaryController {
         return "beneficiary/requests";
     }
 
-    @RequestMapping(value="/servicesForm/{identificationNumber}")
-    public String newService(Model model, @PathVariable String identificationNumber) {
+    @RequestMapping(value="/servicesForm/{identificationNumber}", method= RequestMethod.GET)
+    public String newService(Model model,  @PathVariable String identificationNumber) {
         model.addAttribute("service", new Request());
+        model.addAttribute("id", identificationNumber);
         return "beneficiary/servicesForm";
     }
 
     @RequestMapping(value="/servicesForm", method= RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("service") Request request, String identificationNumber,
-                                   BindingResult bindingResult) {
-
+    public String processAddSubmit(@ModelAttribute("service") Request request, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "beneficiary/list";
-        beneficiaryDao.addRequest(request, identificationNumber);
-        return "beneficiary/requests";
+            return "beneficiary/servicesForm";
+        beneficiaryDao.addRequest(request);
+        return "beneficiary/list";
     }
 
     @RequestMapping(value = "/delete/{identificationNumber}")

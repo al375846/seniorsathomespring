@@ -17,6 +17,10 @@
       th:object="${service}" method="post">
     <table>
         <tr>
+            <td><label>Beneficiary ID</label></td>
+            <td><input type="text" th:value="${id}" th:name="beneficiary_id" th:id="beneficiary_id" readonly="readonly"></td>
+        </tr>
+        <tr>
             <td><label>Service Type</label></td>
             <td>
                 <input list="servicesType" name="serviceType" th:field="*{type}" />
