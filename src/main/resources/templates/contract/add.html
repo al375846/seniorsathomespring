@@ -110,7 +110,7 @@
         console.log(i);
         console.log(z);
         if(z == null){
-            document.getElementById("company").style.background = "red";
+            document.getElementById("company").style.background = "#ff4000";
             document.getElementById("companyID").value = "";
         }
         else {
@@ -120,15 +120,6 @@
 
     }
 
-    function alertFunction() {
-        var modal = document.getElementById("myModal");
-// Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-// Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-        modal.style.display = "block";
-        alert("Contract added");
-    }
 </script>
 <h2>Add Contract</h2>
 <form action="#" th:action="@{/contract/add}"
@@ -153,12 +144,11 @@
             </td>
             <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}" class="error"></td>
             <td>
-                <input id="company" list="companyName" name="company"/>
+                <input id="company" list="companyName" name="company" oninput="companiesFunction()"/>
                 <datalist id="companyName">
                     <option th:each="company: ${companies}" th:value="${company.name}"></option>
                 </datalist>
             </td>
-            <td><input type="button" onclick="companiesFunction()">Accept</td>
         </tr>
         <tr>
             <td><label>Quantity</label></td>
@@ -185,11 +175,12 @@
             <td><input type="text" id="companyID" th:field="*{companyID} " readonly="readonly"/></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" onsubmit="alertFunction()" value="Add Contract" /></td>
+
+            <!-- <td colspan="2"><input type="button" id="myBtn" value="Add Contract" /></td>-->
         </tr>
     </table>
 </form>
-
+<button id="myBtn"  class="btn btn-second" title="Continuar">Boton</button>
 <!-- El pop up -->
 <div id="myModal" class="modal">
 
@@ -209,5 +200,33 @@
     </div>
 
 </div>
+<script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+    console.log(modal);
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+        console.log("aqui");
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        var valido = false; //DEBERIAS REALIZAR LAS VALIDACIONES
+        alert("ENTRO SEND");
+        alert("valido: " + valido);
+        if (valido) {
+            document.getElementById("myBtn").submit();
+        } else {
+            alert("VALIDA LOS CAMPOS");
+            return false;
+
+        }
+        function sendForm() {
+            modal.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>
