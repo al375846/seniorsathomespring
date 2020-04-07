@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add a Request</title>
+    <title>Request for a service</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -10,26 +10,12 @@
 
 </head>
 <body>
-<h2>Add Request</h2>
-<form action="#" th:action="@{/request/add}"
-      th:object="${request}" method="post">
+<p><br></p>
+<h1>REQUEST FOR A SERVICE</h1>
+<p><br></p>
+<form action="#" th:action="@{/beneficiary/servicesForm}"
+      th:object="${service}" method="post">
     <table>
-        <tr>
-            <td><label>Number ID</label></td>
-            <td><input type="text" th:field="*{number_id}"/></td>
-        </tr>
-        <tr>
-            <td><label>Status</label></td>
-            <td>
-                <input list="requestStatus" name="requestStatus" th:field="*{status}" />
-                <datalist id="requestStatus">
-                    <option value="APPROVED">
-                    <option value="REJECTED">
-                    <option value="UNSOLVED">
-                </datalist>
-            </td>
-            <td th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error"></td>
-        </tr>
         <tr>
             <td><label>Service Type</label></td>
             <td>
@@ -57,25 +43,8 @@
 
         </tr>
         <tr>
-            <td><label>Approval Date</label></td>
-            <td><input type="date" th:field="*{approval_date}" /></td>
-        </tr>
-        <tr>
-            <td><label>Reject Date</label></td>
-            <td><input type="date" th:field="*{reject_date}" /></td>
-        </tr>
-        <tr>
             <td><label>Comments</label></td>
             <td><input type="text" th:field="*{comments}" /></td>
-        </tr>
-        <tr>
-            <td><label>Beneficiary ID</label></td>
-            <td><input type="text" th:field="*{beneficiary_id}" /></td>
-            <td th:if="${#fields.hasErrors('beneficiary_id')}" th:errors="*{beneficiary_id}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Contract ID</label></td>
-            <td><input type="text" th:field="*{contract_id}" /></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Add Request"/></td>

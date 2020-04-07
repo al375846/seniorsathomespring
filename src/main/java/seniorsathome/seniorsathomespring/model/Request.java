@@ -26,6 +26,10 @@ public class Request {
     private String beneficiary_id;
     private String contract_id;
 
+    public Request(){
+
+    }
+
     public String getNumber_id() {
         return number_id;
     }

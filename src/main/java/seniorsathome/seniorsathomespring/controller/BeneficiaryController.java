@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
 import seniorsathome.seniorsathomespring.model.Beneficiary;
+import seniorsathome.seniorsathomespring.model.Request;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/beneficiary")
@@ -66,6 +69,22 @@ public class BeneficiaryController {
     @RequestMapping(value = "/requests/{identificationNumber}")
     public String listRequestBeneficiaries(Model model, @PathVariable String identificationNumber) {
         model.addAttribute("requests", beneficiaryDao.listRequests(identificationNumber));
+        return "beneficiary/requests";
+    }
+
+    @RequestMapping(value="/servicesForm/{identificationNumber}")
+    public String newService(Model model, @PathVariable String identificationNumber) {
+        model.addAttribute("service", new Request());
+        return "beneficiary/servicesForm";
+    }
+
+    @RequestMapping(value="/servicesForm", method= RequestMethod.POST)
+    public String processAddSubmit(@ModelAttribute("service") Request request, String identificationNumber,
+                                   BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors())
+            return "beneficiary/list";
+        beneficiaryDao.addRequest(request, identificationNumber);
         return "beneficiary/requests";
     }
 

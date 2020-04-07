@@ -1,5 +1,6 @@
 package seniorsathome.seniorsathomespring.dao;
 
+
 import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -74,4 +75,23 @@ public class BeneficiaryDao {
             return new ArrayList<Request>();
         }
     }
+
+    public String countRequests(){
+        try{
+            Integer numero = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM Request", Integer.class);
+            Integer añadir = numero+1;
+            return "R"+añadir.toString();
+        }catch(EmptyResultDataAccessException e){
+            return null;
+        }
+
+    }
+
+    public void addRequest(Request request, String identificationNumber){
+        jdbcTemplate.update("INSERT INTO Request VALUES(?, ?::STATUSTYPE, ?::SERVICETYPE, ?, ?, ?, ?, ?, ?, ?)",
+                countRequests(), "UNSOLVED", request.getType(), request.getStart_date(),
+                request.getFinal_date(), null, null, request.getComments(),
+                identificationNumber, "");
+    }
+
 }

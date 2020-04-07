@@ -7,15 +7,14 @@
         }
         table{
             border: 1px solid black;
-            margin: 0 auto;
             text-align: left;
         }
         td{
             padding: 15px;
             border: 1px solid black;
         }
-        .button{
-            margin: 0 auto;
+        tr{
+            border: 1px solid black;
         }
         ul{
             padding: 10px;
@@ -29,7 +28,7 @@
 <p><br></p>
 <h1>My Services</h1>
 <p><br></p>
-<table>
+<table class="table table-striped">
     <tr style="text-align: center">
         <td>APPROVED</td>
         <td>ON HOLD</td>
@@ -41,7 +40,7 @@
                 <ul>
                     <li th:text="${approved.type}"></li>
                     <ul>
-                        <li>Start date : <text th:text="${approved.start_date}"></text></li>
+                        <li>Start date: <text th:text="${approved.start_date}"></text></li>
                         <li>Final date: <text th:text="${approved.final_date}"></text></li>
                     </ul>
                 </ul>
@@ -73,7 +72,9 @@
 </table>
 <p><br></p>
 <center>
-    <input type="button" onclick="history.back()" name="Return" value="Return" class="button"></input>
+    <a th:href="@{/beneficiary/servicesForm/{identificationNumber}(identificationNumber=${requests[0].beneficiary_id})}"><button type="button">Request for a service</button></a>
+    <input type="button" onclick="history.back()" name="Return" value="Return"></input>
 </center>
+</form>
 </body>
 </html>
