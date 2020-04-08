@@ -48,13 +48,20 @@ public class ContractController {
 
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("contract") Contract contract,
+                                   Model model,
                                    BindingResult bindingResult) {
         ContractValidator contractValidator = new ContractValidator();
         contractValidator.validate(contract, bindingResult);
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("companies", companyDao.getCompanies());
             return "contract/add";
+        }
         contractDao.addContract(contract);
-        return "redirect:list";
+        return "redirect:popup";
+    }
+    @RequestMapping("/popup")
+    public String contractPopup(Model model) {
+        return "contract/popup";
     }
 
     @RequestMapping(value="/update/{numberID}", method = RequestMethod.GET)
