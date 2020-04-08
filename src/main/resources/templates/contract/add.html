@@ -29,7 +29,7 @@
         console.log(i);
         console.log(z);
         if(z == null){
-            document.getElementById("company").style.background = "#ff4000";
+            document.getElementById("company").style.background = "#FF6A59";
             document.getElementById("companyID").value = "";
         }
         else {
@@ -43,10 +43,11 @@
 <h2>Add Contract</h2>
 <form action="#" th:action="@{/contract/add}"
       th:object="${contract}" method="post" id="form">
-    <table>
+    <table class="table table-striped">
         <tr>
             <td><label>Number ID</label></td>
             <td><input type="text" th:field="*{numberID}" /></td>
+            <td><h3>Companies' List</h3></td>
         </tr>
         <tr>
             <td><label>Service Type</label></td>
@@ -73,29 +74,35 @@
             <td><label>Quantity</label></td>
             <td><input type="number" th:field="*{quantity}" /></td>
             <td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="error"></td>
+
         </tr>
         <tr>
             <td><label>Start Date</label></td>
             <td><input type="date" th:field="*{startDate}" /></td>
             <td th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="error"></td>
+
         </tr>
         <tr>
             <td><label>Final Date</label></td>
             <td><input type="date" th:field="*{finalDate}" /></td>
             <td th:if="${#fields.hasErrors('finalDate')}" th:errors="*{finalDate}" class="error"></td>
+
         </tr>
         <tr>
             <td><label>Price</label></td>
             <td><input type="number" step="any" th:field="*{price}" /></td>
             <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></td>
+
         </tr>
         <tr>
             <td><label>Company ID</label></td>
             <td><input type="text" id="companyID" th:field="*{companyID} " readonly="readonly"/></td>
+
         </tr>
         <tr>
-
-            <td colspan="2"><input type="submit"  value="Add Contract" /></td>
+            <td><a href="/contract//list"><input type="button" class="selfbutton" value="Return" /> </a></td>
+            <td><input type="submit" class="selfbutton" value="Add Contract" /></td>
+            <td><a href="/company/add"><input type="button" class="selfbutton" value="Add company" /> </a></td>
         </tr>
     </table>
 </form>
