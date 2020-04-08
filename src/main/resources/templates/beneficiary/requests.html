@@ -72,8 +72,8 @@
 </table>
 <p><br></p>
 <center>
-    <a th:href="@{/beneficiary/servicesForm/{identificationNumber}(identificationNumber=${requests[0].beneficiary_id})}"><button type="button">Request for a service</button></a>
-    <input type="button" onclick="history.back()" name="Return" value="Return"></input>
+    <a th:href="@{/beneficiary/servicesForm/{identificationNumber}(identificationNumber=${requests[0].beneficiary_id})}"><button type="button" class="selfbutton">Request for a service</button></a>
+    <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input>
 </center>
 </form>
 </body>

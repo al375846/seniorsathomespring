@@ -36,8 +36,8 @@ p {
 
 /* Botones propios */
 .selfbutton {
-    color: #edc436;
-    border: 0px;
+    background-color: #edc436;
+    border: 1px solid;
 }
 
 /* Pop up */
