@@ -28,6 +28,7 @@
 <p><br></p>
 <h1>My Services</h1>
 <p><br></p>
+
 <table class="table table-striped">
     <tr style="text-align: center">
         <td>APPROVED</td>
@@ -39,6 +40,8 @@
             <span th:each="approved: ${requests}" th:if="${approved.status} == 'APPROVED'">
                 <ul>
                     <li th:text="${approved.type}"></li>
+                    <!--<label th:if="${approved.final_date.before(#temporals.createNow())}">Inactive</label>-->
+
                     <ul>
                         <li>Start date: <text th:text="${approved.start_date}"></text></li>
                         <li>Final date: <text th:text="${approved.final_date}"></text></li>
