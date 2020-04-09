@@ -25,14 +25,15 @@ public class RequestValidator implements Validator {
             errors.rejectValue("startDate", "Required", "You must enter a start date");
         if (request.getFinal_date() == null)
             errors.rejectValue("finalDate", "Required", "You must enter a final date");
-        if (request.getFinal_date() != null && request.getStart_date() != null && request.getFinal_date().isBefore(request.getStart_date()))
-            errors.rejectValue("finalDate", "Incorrect Value", "The final date must be after the start date");
         if (request.getBeneficiary_id() == null)
             errors.rejectValue("beneficiary_id", "Required", "You must enter a beneficiary id");
         if (request.getContract_id() == null)
             errors.rejectValue("contract_id", "Required", "You must enter a contract id");
         if (request.getComments().length()>255)
             errors.rejectValue("userName", "Incorrect Value", "The comment cannot be longer than 255 characters");
+        if(request.getFinal_date().isBefore(request.getStart_date())){
+            errors.rejectValue("final_date", "Incorrect Value", "The final date can't be before than the start date");
+        }
     }
 
 }
