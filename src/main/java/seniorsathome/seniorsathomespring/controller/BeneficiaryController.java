@@ -87,10 +87,7 @@ public class BeneficiaryController {
         serviceValidator.validate(request, bindingResult);
 
         if(bindingResult.hasErrors()){
-
-            System.out.println("Error");
             return "beneficiary/servicesForm";
-
         }
 
         beneficiaryDao.addRequest(request);
