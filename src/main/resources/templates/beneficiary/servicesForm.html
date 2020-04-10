@@ -6,7 +6,18 @@
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
-
+    <style>
+        table{
+            width: 25%;
+            margin: 0 auto;
+        }
+        td{
+            padding: 5px;
+        }
+        .rightForm{
+            text-align: right;
+        }
+    </style>
 
 </head>
 <body>
@@ -15,42 +26,48 @@
 <p><br></p>
 <form action="#" th:action="@{/beneficiary/servicesForm}"
       th:object="${service}" method="post">
-
-    <div class="form-group">
-        <label th:for="beneficiary_id">Beneficiary Id</label>
-        <input type="text" class="form-control" th:value="${id}" th:name="beneficiary_id" th:id="beneficiary_id" readonly="readonly">
-    </div>
-
-    <div class="form-group">
-        <label th:for="servicesType">Services Type</label>
-        <select class="form-control" th:id="servicesType" th:field="*{type}">
-            <option value="CATERING" >CATERING</option>
-            <option value="PHYSIOTHERAPY" disabled>PHYSIOTHERAPY</option>
-            <option value="NURSING">NURSING</option>
-            <option value="LAUNDRY" disabled>LAUNDRY</option>
-            <option value="CLEANING">CLEANING</option>
-        </select>
-        <p th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error"></p>
-    </div>
-
-    <div class="form-group">
-        <label th:for="start_date">Start Date</label>
-        <input type="date" class="form-control" th:id="start_date" th:field="*{start_date}">
-        <p th:if="${#fields.hasErrors('start_date')}" th:errors="*{start_date}" class="error"></p>
-    </div>
-
-    <div class="form-group">
-        <label th:for="final_date">Final Date</label>
-        <input type="date" class="form-control" th:id="final_date" th:field="*{final_date}">
-        <p th:if="${#fields.hasErrors('final_date')}" th:errors="*{final_date}" class="error"></p>
-        <p th:if="${#fields.hasErrors('final_date')}" th:errors="*{final_date}" class="error"></p>
-    </div>
-
-    <div class="form-group">
-        <label th:for="comments">Comments</label>
-        <textarea type="text" class="form-control" th:id="comments" th:field="*{comments}" rows="3"></textarea>
-    </div>
-
+<table>
+    <tr>
+        <div class="form-group">
+            <td class="rightForm"><label th:for="beneficiary_id">Beneficiary Id :</label></td>
+            <td><input type="text" class="form-control" th:value="${id}" th:name="beneficiary_id" th:id="beneficiary_id" readonly="readonly"></td>
+        </div>
+    </tr>
+    <tr>
+        <div class="form-group">
+            <td class="rightForm"><label th:for="servicesType">Services Type :</label></td>
+            <td><select class="form-control" th:id="servicesType" th:field="*{type}">
+                <option value="CATERING" >CATERING</option>
+                <option value="PHYSIOTHERAPY" disabled>PHYSIOTHERAPY</option>
+                <option value="NURSING">NURSING</option>
+                <option value="LAUNDRY" disabled>LAUNDRY</option>
+                <option value="CLEANING">CLEANING</option>
+            </select>
+            <p th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error"></p></td>
+        </div>
+    </tr>
+    <tr>
+        <div class="form-group">
+            <td class="rightForm"><label th:for="start_date">Start Date :</label></td>
+            <td><input type="date" class="form-control" th:id="start_date" th:field="*{start_date}">
+            <p th:if="${#fields.hasErrors('start_date')}" th:errors="*{start_date}" class="error"></p></td>
+        </div>
+    </tr>
+    <tr>
+        <div class="form-group">
+            <td class="rightForm"><label th:for="final_date">Final Date :</label></td>
+            <td><input type="date" class="form-control" th:id="final_date" th:field="*{final_date}">
+            <p th:if="${#fields.hasErrors('final_date')}" th:errors="*{final_date}" class="error"></p></td>
+        </div>
+    </tr>
+    <tr>
+        <div class="form-group">
+            <td class="rightForm"><label th:for="comments">Comments :</label></td>
+            <td><textarea type="text" class="form-control" th:id="comments" th:field="*{comments}" rows="3"></textarea></td>
+        </div>
+    </tr>
+</table>
+    <p><br></p>
     <center>
      <input type="submit" value="Add Request" class="selfbutton"/>
     </center>

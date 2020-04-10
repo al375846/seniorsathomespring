@@ -31,9 +31,6 @@ public class RequestValidator implements Validator {
             errors.rejectValue("contract_id", "Required", "You must enter a contract id");
         if (request.getComments().length()>255)
             errors.rejectValue("userName", "Incorrect Value", "The comment cannot be longer than 255 characters");
-        if(request.getFinal_date().isBefore(request.getStart_date())){
-            errors.rejectValue("final_date", "Incorrect Value", "The final date can't be before than the start date");
-        }
     }
 
 }
