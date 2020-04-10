@@ -83,21 +83,21 @@ public class BeneficiaryController {
     @RequestMapping(value="/servicesForm", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("service") Request request, BindingResult bindingResult) {
 
-        RequestValidator requestValidator = new RequestValidator();
-        requestValidator.validate(request, bindingResult);
+        ServiceValidator serviceValidator = new ServiceValidator();
+        serviceValidator.validate(request, bindingResult);
 
         if(bindingResult.hasErrors()){
 
             System.out.println("Error");
-            return "beneficiary/servicesForm" + "/" + request.getBeneficiary_id();
-
-        } else {
-
-            beneficiaryDao.addRequest(request);
-            return "redirect:list";
+            return "beneficiary/servicesForm";
 
         }
+
+        beneficiaryDao.addRequest(request);
+        return "redirect:list";
+
     }
+
 
     @RequestMapping(value = "/delete/{identificationNumber}")
     public String processDeleteBeneficiary(@PathVariable String identificationNumber) {
