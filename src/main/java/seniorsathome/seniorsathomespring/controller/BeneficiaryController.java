@@ -81,12 +81,13 @@ public class BeneficiaryController {
     }
 
     @RequestMapping(value="/servicesForm", method= RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("service") Request request, BindingResult bindingResult) {
+    public String processAddSubmit(@ModelAttribute("service") Request request, Model model, BindingResult bindingResult) {
 
         ServiceValidator serviceValidator = new ServiceValidator();
         serviceValidator.validate(request, bindingResult);
 
         if(bindingResult.hasErrors()){
+            model.addAttribute("id", request.getBeneficiary_id());
             return "beneficiary/servicesForm";
         }
 
