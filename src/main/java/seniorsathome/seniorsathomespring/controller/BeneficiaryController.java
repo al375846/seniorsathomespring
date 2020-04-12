@@ -92,7 +92,7 @@ public class BeneficiaryController {
         }
 
         beneficiaryDao.addRequest(request);
-        return "redirect:list";
+        return "beneficiary/popUp";
 
     }
 
