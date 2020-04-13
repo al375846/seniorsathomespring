@@ -50,7 +50,7 @@
                     <li th:text="${approved.type}"></li>
                     <text th:if="(${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} > ${#temporals.format(approved.final_date,'yyyy-MM-dd')})
                                     or (${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} < ${#temporals.format(approved.start_date,'yyyy-MM-dd')})" class="tagInactive">Inactive</text>
-                    <text th:if="(${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} < ${#temporals.format(approved.final_date,'yyyy-MM-dd')})
+                    <text th:if="(${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} <= ${#temporals.format(approved.final_date,'yyyy-MM-dd')})
                                     and (${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} > ${#temporals.format(approved.start_date,'yyyy-MM-dd')})" class="tagActive">Active</text>
 
                     <ul>
