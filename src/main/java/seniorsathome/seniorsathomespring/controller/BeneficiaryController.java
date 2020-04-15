@@ -73,10 +73,11 @@ public class BeneficiaryController {
         return "beneficiary/requests";
     }
 
-    @RequestMapping(value="/servicesForm/{identificationNumber}", method= RequestMethod.GET)
-    public String newService(Model model,  @PathVariable String identificationNumber) {
+    @RequestMapping(value="/servicesForm/{identificationNumber}/{tag}", method= RequestMethod.GET)
+    public String newService(Model model,  @PathVariable String identificationNumber, @PathVariable String tag) {
         model.addAttribute("service", new Request());
         model.addAttribute("id", identificationNumber);
+        model.addAttribute("tag", tag);
         return "beneficiary/servicesForm";
     }
 

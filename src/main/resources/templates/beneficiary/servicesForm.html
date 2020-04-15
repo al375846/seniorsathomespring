@@ -37,7 +37,7 @@
         <div class="form-group">
             <td class="rightForm"><label th:for="servicesType">Services Type :</label></td>
             <td><select class="form-control" th:id="servicesType" th:field="*{type}">
-                <option value="CATERING" >CATERING</option>
+                <option value="CATERING">CATERING</option>
                 <option value="PHYSIOTHERAPY" disabled>PHYSIOTHERAPY</option>
                 <option value="NURSING">NURSING</option>
                 <option value="LAUNDRY" disabled>LAUNDRY</option>
@@ -71,6 +71,7 @@
     <p><br></p>
     <center>
      <input type="submit" value="Add Request" class="selfbutton"/>
+     <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input>
     </center>
 </form>
 </body>
