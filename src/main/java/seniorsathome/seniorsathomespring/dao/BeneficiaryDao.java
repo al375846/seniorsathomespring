@@ -94,4 +94,7 @@ public class BeneficiaryDao {
                 request.getBeneficiary_id(), "");
     }
 
+    public List<Request> activeServices(String identificationNumber){
+        return jdbcTemplate.query("SELECT * FROM Request WHERE beneficiary_id=? AND start_date<=current_date AND final_date>=current_date AND status='APPROVED'", new RequestRowMapper(), identificationNumber);
+    }
 }

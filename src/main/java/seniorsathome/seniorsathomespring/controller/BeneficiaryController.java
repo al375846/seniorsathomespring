@@ -73,11 +73,11 @@ public class BeneficiaryController {
         return "beneficiary/requests";
     }
 
-    @RequestMapping(value="/servicesForm/{identificationNumber}/{tag}", method= RequestMethod.GET)
-    public String newService(Model model,  @PathVariable String identificationNumber, @PathVariable String tag) {
+    @RequestMapping(value="/servicesForm/{identificationNumber}", method= RequestMethod.GET)
+    public String newService(Model model,  @PathVariable String identificationNumber) {
         model.addAttribute("service", new Request());
         model.addAttribute("id", identificationNumber);
-        model.addAttribute("tag", tag);
+        model.addAttribute("actives", beneficiaryDao.activeServices(identificationNumber));
         return "beneficiary/servicesForm";
     }
 
@@ -94,7 +94,6 @@ public class BeneficiaryController {
 
         beneficiaryDao.addRequest(request);
         return "beneficiary/popUp";
-
     }
 
 

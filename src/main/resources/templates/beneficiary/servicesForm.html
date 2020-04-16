@@ -37,11 +37,16 @@
         <div class="form-group">
             <td class="rightForm"><label th:for="servicesType">Services Type :</label></td>
             <td><select class="form-control" th:id="servicesType" th:field="*{type}">
-                <option value="CATERING">CATERING</option>
-                <option value="PHYSIOTHERAPY" disabled>PHYSIOTHERAPY</option>
-                <option value="NURSING">NURSING</option>
-                <option value="LAUNDRY" disabled>LAUNDRY</option>
-                <option value="CLEANING">CLEANING</option>
+                <option value="CATERING" th:if="${#strings.contains(actives, 'CATERING')}" disabled>CATERING</option>
+                <option value="CATERING" th:unless="${#strings.contains(actives, 'CATERING')}">CATERING</option>
+                <option value="PHYSIOTHERAPY" th:if="${#strings.contains(actives, 'PHYSIOTHERAPY')}" disabled>PHYSIOTHERAPY</option>
+                <option value="PHYSIOTHERAPY" th:unless="${#strings.contains(actives, 'PHYSIOTHERAPY')}">PHYSIOTHERAPY</option>
+                <option value="NURSING" th:if="${#strings.contains(actives, 'NURSING')}" disabled>NURSING</option>
+                <option value="NURSING" th:unless="${#strings.contains(actives, 'NURSING')}">NURSING</option>
+                <option value="LAUNDRY" th:if="${#strings.contains(actives, 'LAUNDRY')}" disabled>LAUNDRY</option>
+                <option value="LAUNDRY" th:unless="${#strings.contains(actives, 'LAUNDRY')}">LAUNDRY</option>
+                <option value="CLEANING" th:if="${#strings.contains(actives, 'CLEANING')}" disabled>CLEANING</option>
+                <option value="CLEANING" th:unless="${#strings.contains(actives, 'CLEANING')}">CLEANING</option>
             </select></td>
             <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error"></td>
         </div>
