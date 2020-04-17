@@ -17,6 +17,10 @@
         .rightForm{
             text-align: right;
         }
+        img{
+            width: 60px;
+            height: 60px;
+        }
     </style>
 
 </head>
@@ -49,7 +53,7 @@
                 <option value="CLEANING" th:unless="${#strings.contains(actives, 'CLEANING')}">CLEANING</option>
             </select></td>
             <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error"></td>
-            <td><img src="https://comps.canstockphoto.es/plano-s%C3%ADmbolo-de-informaci%C3%B3n-sitio-clip-art-vectorial_csp55063769.jpg" alt="Info"></td>
+            <td><img src="https://image.shutterstock.com/image-vector/information-sign-icon-vector-logo-260nw-774867838.jpg" alt="Info"></td>
         </div>
     </tr>
     <tr>
