@@ -48,6 +48,7 @@
                 <option value="CLEANING" th:if="${#strings.contains(actives, 'CLEANING')}" disabled>CLEANING</option>
                 <option value="CLEANING" th:unless="${#strings.contains(actives, 'CLEANING')}">CLEANING</option>
             </select></td>
+            <td><img src="src/main/resources/templates/beneficiary/info.jpg" alt="Info"/></td>
             <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error"></td>
         </div>
     </tr>
