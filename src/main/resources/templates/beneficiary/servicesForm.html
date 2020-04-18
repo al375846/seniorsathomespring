@@ -17,10 +17,24 @@
         .rightForm{
             text-align: right;
         }
-        img{
-            width: 50px;
-            height: 50px;
-            border-radius: 80%;
+
+        .crop {
+            position: relative;
+            max-width: 100%;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 30%;
+        }
+        .crop img {
+            position: absolute;
+            top: -40%;
+            bottom: -65%;
+            left: -40%;
+            right: -40%;
+            margin: auto;
+            height: auto;
+            width: auto;
         }
     </style>
 
@@ -54,7 +68,11 @@
                 <option value="CLEANING" th:unless="${#strings.contains(actives, 'CLEANING')}">CLEANING</option>
             </select></td>
             <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error"></td>
-            <td><img src="https://image.shutterstock.com/image-vector/information-sign-icon-vector-logo-260nw-774867838.jpg" alt="Info"></td>
+            <td>
+                <div class="crop">
+                    <img class="hidden" src="https://image.shutterstock.com/image-vector/information-sign-icon-vector-logo-260nw-774867838.jpg" alt="Info">
+                </div>
+            </td>
         </div>
     </tr>
     <tr>
