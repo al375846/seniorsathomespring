@@ -17,6 +17,7 @@
         <tr>
             <td><label>Number ID</label></td>
             <td><input type="text" th:field="*{number_id}"/></td>
+            <td th:if="${#fields.hasErrors('number_id')}" th:errors="*{number_id}" class="error"></td>
         </tr>
         <tr>
             <td><label>Status</label></td>
@@ -67,6 +68,7 @@
         <tr>
             <td><label>Comments</label></td>
             <td><input type="text" th:field="*{comments}" /></td>
+            <td th:if="${#fields.hasErrors('comments')}" th:errors="*{comments}" class="error"></td>
         </tr>
         <tr>
             <td><label>Beneficiary ID</label></td>

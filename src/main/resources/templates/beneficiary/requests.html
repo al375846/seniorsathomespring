@@ -19,6 +19,14 @@
         ul{
             padding: 10px;
         }
+        .tagActive{
+            color: mediumseagreen;
+            font-style: italic;
+        }
+        .tagInactive{
+            color: red;
+            font-style: italic;
+        }
     </style>
     <title>My Services</title>
     <meta charset="UTF-8" />
@@ -28,6 +36,7 @@
 <p><br></p>
 <h1>My Services</h1>
 <p><br></p>
+
 <table class="table table-striped">
     <tr style="text-align: center">
         <td>APPROVED</td>
@@ -39,6 +48,11 @@
             <span th:each="approved: ${requests}" th:if="${approved.status} == 'APPROVED'">
                 <ul>
                     <li th:text="${approved.type}"></li>
+                    <text th:if="(${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} > ${#temporals.format(approved.final_date,'yyyy-MM-dd')})
+                                    or (${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} < ${#temporals.format(approved.start_date,'yyyy-MM-dd')})" class="tagInactive">Inactive</text>
+                    <text th:if="(${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} <= ${#temporals.format(approved.final_date,'yyyy-MM-dd')})
+                                    and (${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} >= ${#temporals.format(approved.start_date,'yyyy-MM-dd')})" class="tagActive">Active</text>
+
                     <ul>
                         <li>Start date: <text th:text="${approved.start_date}"></text></li>
                         <li>Final date: <text th:text="${approved.final_date}"></text></li>
@@ -75,6 +89,8 @@
     <a th:href="@{/beneficiary/servicesForm/{identificationNumber}(identificationNumber=${requests[0].beneficiary_id})}"><button type="button" class="selfbutton">Request for a service</button></a>
     <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input>
 </center>
+<p><br></p>
+<p><br></p>
 </form>
 </body>
 </html>

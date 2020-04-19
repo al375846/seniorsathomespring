@@ -6,7 +6,37 @@
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
+    <style>
+        table{
+            width: 35%;
+            margin: 0 auto;
+        }
+        td{
+            padding: 5px;
+        }
+        .rightForm{
+            text-align: right;
+        }
 
+        .crop {
+            position: relative;
+            max-width: 100%;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 30%;
+        }
+        .crop img {
+            position: absolute;
+            top: -40%;
+            bottom: -65%;
+            left: -40%;
+            right: -40%;
+            margin: auto;
+            height: auto;
+            width: auto;
+        }
+    </style>
 
 </head>
 <body>
@@ -15,45 +45,63 @@
 <p><br></p>
 <form action="#" th:action="@{/beneficiary/servicesForm}"
       th:object="${service}" method="post">
-    <table>
-        <tr>
-            <td><label>Beneficiary ID</label></td>
-            <td><input type="text" th:value="${id}" th:name="beneficiary_id" th:id="beneficiary_id" readonly="readonly"></td>
-        </tr>
-        <tr>
-            <td><label>Service Type</label></td>
-            <td>
-                <input list="servicesType" name="serviceType" th:field="*{type}" />
-                <datalist id="servicesType">
-                    <option value="CATERING">
-                    <option value="PHYSIOTHERAPY">
-                    <option value="NURSING">
-                    <option value="LAUNDRY">
-                    <option value="CLEANING">
-                </datalist>
-            </td>
+<table>
+    <tr>
+        <div class="form-group">
+            <td class="rightForm"><label th:for="beneficiary_id">Beneficiary Id :</label></td>
+            <td><input type="text" class="form-control" th:value="${id}" th:name="beneficiary_id" th:id="beneficiary_id" readonly="readonly"></td>
+        </div>
+    </tr>
+    <tr>
+        <div class="form-group">
+            <td class="rightForm"><label th:for="servicesType">Services Type :</label></td>
+            <td><select class="form-control" th:id="servicesType" th:field="*{type}">
+                <option value="CATERING" th:if="${#strings.contains(actives, 'CATERING')}" disabled>CATERING</option>
+                <option value="CATERING" th:unless="${#strings.contains(actives, 'CATERING')}">CATERING</option>
+                <option value="PHYSIOTHERAPY" th:if="${#strings.contains(actives, 'PHYSIOTHERAPY')}" disabled>PHYSIOTHERAPY</option>
+                <option value="PHYSIOTHERAPY" th:unless="${#strings.contains(actives, 'PHYSIOTHERAPY')}">PHYSIOTHERAPY</option>
+                <option value="NURSING" th:if="${#strings.contains(actives, 'NURSING')}" disabled>NURSING</option>
+                <option value="NURSING" th:unless="${#strings.contains(actives, 'NURSING')}">NURSING</option>
+                <option value="LAUNDRY" th:if="${#strings.contains(actives, 'LAUNDRY')}" disabled>LAUNDRY</option>
+                <option value="LAUNDRY" th:unless="${#strings.contains(actives, 'LAUNDRY')}">LAUNDRY</option>
+                <option value="CLEANING" th:if="${#strings.contains(actives, 'CLEANING')}" disabled>CLEANING</option>
+                <option value="CLEANING" th:unless="${#strings.contains(actives, 'CLEANING')}">CLEANING</option>
+            </select></td>
             <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Start Date</label></td>
-            <td><input type="date" th:field="*{start_date}" /></td>
+            <td>
+                <div class="crop">
+                    <img class="hidden" src="https://image.shutterstock.com/image-vector/information-sign-icon-vector-logo-260nw-774867838.jpg" alt="Info">
+                </div>
+            </td>
+        </div>
+    </tr>
+    <tr>
+        <div class="form-group">
+            <td class="rightForm"><label th:for="start_date">Start Date :</label></td>
+            <td><input type="date" class="form-control" th:id="start_date" th:field="*{start_date}"></td>
             <td th:if="${#fields.hasErrors('start_date')}" th:errors="*{start_date}" class="error"></td>
-
-        </tr>
-        <tr>
-            <td><label>Final Date</label></td>
-            <td><input type="date" th:field="*{final_date}" /></td>
+        </div>
+    </tr>
+    <tr>
+        <div class="form-group">
+            <td class="rightForm"><label th:for="final_date">Final Date :</label></td>
+            <td><input type="date" class="form-control" th:id="final_date" th:field="*{final_date}"></td>
             <td th:if="${#fields.hasErrors('final_date')}" th:errors="*{final_date}" class="error"></td>
-
-        </tr>
-        <tr>
-            <td><label>Comments</label></td>
-            <td><input type="text" th:field="*{comments}" /></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Add Request"/></td>
-        </tr>
-    </table>
+        </div>
+    </tr>
+    <tr>
+        <div class="form-group">
+            <td class="rightForm"><label th:for="comments">Comments :</label></td>
+            <td><textarea type="text" class="form-control" th:id="comments" th:field="*{comments}" rows="3"></textarea></td>
+            <td th:if="${#fields.hasErrors('comments')}" th:errors="*{comments}" class="error"></td>
+        </div>
+    </tr>
+</table>
+    <p><br></p>
+    <center>
+     <input type="submit" value="Add Request" class="selfbutton"/>
+     <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input>
+    </center>
 </form>
 </body>
 </html>
