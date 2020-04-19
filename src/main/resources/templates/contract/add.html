@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<style>
+    h1{
+        text-align: center;
+    }
+    table{
+        text-align: left;
+    }
+</style>
 <head>
-    <title>Create a Contract</title>
+    <p><br></p>
+    <h1>Create a Contract</h1>
+    <p><br></p>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -40,10 +50,9 @@
     }
 
 </script>
-<h2>Add Contract</h2>
 <form action="#" th:action="@{/contract/add}"
       th:object="${contract}" method="post" id="form">
-    <table>
+    <table style="margin: 0 auto;">
         <tr>
             <td><label>Number ID</label></td>
             <td><input type="text" th:field="*{numberID}" /></td>
@@ -93,10 +102,10 @@
             <td><label>Company ID</label></td>
             <td><input type="text" id="companyID" th:field="*{companyID} " readonly="readonly"/></td>
         </tr>
-        <tr>
-
-            <td colspan="2"><input type="submit"  value="Add Contract" /></td>
-        </tr>
+    </table>
+    <p><br></p>
+    <table style="margin: 0 auto;">
+        <td colspan="2"><input type="submit"  value="Add Contract" /></td>
     </table>
 </form>
 </body>
