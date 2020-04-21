@@ -14,6 +14,7 @@ import seniorsathome.seniorsathomespring.dao.ContractDao;
 import seniorsathome.seniorsathomespring.model.Contract;
 import seniorsathome.seniorsathomespring.model.ServiceType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 @Controller
@@ -54,6 +55,9 @@ public class ContractController {
         contractValidator.validate(contract, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("companies", companyDao.getCompanies());
+            ArrayList<String> errores = new ArrayList<>();
+            errores.add("error");
+            model.addAttribute("errores", errores);
             return "contract/add";
         }
         contractDao.addContract(contract);

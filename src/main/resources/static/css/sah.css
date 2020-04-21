@@ -43,6 +43,7 @@ p {
     border: 0px solid #000000;
     width: 200px;
     height: 35px;
+    cursor: pointer;
 }
 
 /* Pop up */

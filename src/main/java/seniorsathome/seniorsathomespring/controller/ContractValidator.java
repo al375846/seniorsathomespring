@@ -20,7 +20,7 @@ public class ContractValidator implements Validator {
             errors.rejectValue("serviceType", "Required", "You must enter a service type");
         if (contract.getQuantity() <= 0)
             errors.rejectValue("quantity", "Incorrect Value", "The company must offer 1 service");
-        if (contract.getPrice() < 0)
+        if (contract.getPrice() <= 0)
             errors.rejectValue("price", "Incorrect Value", "The price of service must be greater than 0");
         if (contract.getStartDate() == null)
             errors.rejectValue("startDate", "Required", "You must enter a start date");
