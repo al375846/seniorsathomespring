@@ -4,6 +4,9 @@
     h1{
         text-align: center;
     }
+    td{
+        text-align: center;
+    }
 
     canvas{
         background-color:white;
@@ -96,7 +99,9 @@
             <td><label>Quantity</label></td>
             <td><input type="number" th:field="*{quantity}" /></td>
             <td rowspan="5" >
-                <table id="tabla_errores" style="width: 190px;height: 280px;">
+                <table bgcolor=#FFFFFFFF style="border:1px solid black ;width: 190px;height: 280px;">
+                    <td>
+                <table id="tabla_errores" bgcolor=#FFFFFFFF style="width: 190px;height: 280px;">
                     <tr><td></td></tr>
                     <tr>
                         <td th:if="${#fields.hasErrors('numberID')}" th:errors="*{numberID}" class="error">
@@ -117,7 +122,8 @@
                         <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></td>
                     </tr>
                     <tr><td></td></tr>
-                </table>
+                </table></td></table>
+
             </td>
             <!--<td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="error"></td>-->
 
@@ -160,7 +166,6 @@
     erroresList.push("[(${error})]");
     /*[/]*/
     if(erroresList[0] == "error"){
-        document.getElementById("tabla_errores").style.border = "1px solid black";
         document.getElementById("tabla_errores").style.backgroundColor = "#FFFFFF";
     }
 </script>
