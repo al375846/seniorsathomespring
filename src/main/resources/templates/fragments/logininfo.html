@@ -123,15 +123,15 @@
 </div>
 
 <div class="form-popup" id="myForm">
-    <form action="#" th:action="@{/login}" th:object="${session.user}"
-     method="post" class="form-container">
+    <form action="#" th:action="@{/loginpopup}"
+     class="form-container" method="post">
         <h1>Login</h1>
 
         <label><b>User</b></label>
-        <input type="text" placeholder="Enter Username" name="user" th:errors="*{username}" required />
+        <input type="text" placeholder="Enter Username" name="username" required />
 
         <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" th:errors="*{password}" required />
+        <input type="password" placeholder="Enter Password" name="password" required />
 
         <button type="submit" class="btn">Login</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
