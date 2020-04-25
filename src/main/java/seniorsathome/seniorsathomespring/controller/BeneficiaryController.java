@@ -96,6 +96,11 @@ public class BeneficiaryController {
         return "beneficiary/popUp";
     }
 
+    @RequestMapping("/popUp")
+    public String beneficiaryPopup(Model model) {
+        return "beneficiary/popUp";
+    }
+
 
     @RequestMapping(value = "/delete/{identificationNumber}")
     public String processDeleteBeneficiary(@PathVariable String identificationNumber) {
