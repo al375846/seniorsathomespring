@@ -9,16 +9,16 @@
     <title>Login</title>
     <meta charset="UTF-8"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <style>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+<!--    <style>
         /* Make the image fully responsive */
         .carousel-inner img {
             width: 100%;
             height: 100%;
         }
-    </style>
+    </style>-->
 </head>
 <body>
 <div layout:fragment="content">
@@ -34,10 +34,14 @@
                     </div>
                 </div>
             </td>
+            <td></td>
             <td>
-                <p>The best place to find the help you need</p>
-            </td>
-            <td>
+                <div class="card" style="width: 500px;height: 500px">
+                    <div class="card-body">
+                        <h5 class="card-title">Seniors at Home</h5>
+                        <p class="card-text">Help the Elderly, they helped you all your life.</p>
+                        <a href="/login" th:ref="@{/login}" class="btn btn-primary">What is SAH?</a>
+                    </div>
                 <div id="demo" class="carousel slide" data-ride="carousel">
 
                     <!-- Indicators -->
@@ -50,13 +54,13 @@
                     <!-- The slideshow -->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="https://st3.depositphotos.com/12982378/17476/i/450/depositphotos_174762646-stock-photo-portrait-happy-senior-couple-looking.jpg" alt="Los Angeles" width="1100" height="500">
+                            <img src="https://st3.depositphotos.com/12982378/17476/i/450/depositphotos_174762646-stock-photo-portrait-happy-senior-couple-looking.jpg" alt="Los Angeles" width="500" height="300">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://www.39ymas.com/wp-content/uploads/2013/11/estado-nov-2013-jornada.gente-mayor-crisis.jpg" alt="Chicago" width="1100" height="500">
+                            <img src="https://www.39ymas.com/wp-content/uploads/2013/11/estado-nov-2013-jornada.gente-mayor-crisis.jpg" alt="Chicago" width="500" height="300">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://i2.wp.com/vitaltarragona.com/wp-content/uploads/2015/02/asistencia1.jpg" alt="New York" width="1100" height="500">
+                            <img src="https://i2.wp.com/vitaltarragona.com/wp-content/uploads/2015/02/asistencia1.jpg" alt="New York" width="500" height="300">
                         </div>
                     </div>
 
@@ -67,6 +71,7 @@
                     <a class="carousel-control-next" href="#demo" data-slide="next">
                         <span class="carousel-control-next-icon"></span>
                     </a>
+                </div>
                 </div>
             </td>
         </tr>
