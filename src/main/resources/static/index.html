@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
-    <title>EI1027</title>
+    <link rel="stylesheet" type="text/css"
+          href="/css/sah.css"
+          th:href="@{/css/sah.css}"/>
+    <title>Login</title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+
 </head>
 <body>
-<h1>Seniors at home</h1>
-<h3>Manage the app</h3>
-<ul>
-    <li><a href="beneficiary/list">Manage Beneficiaries</a></li>
-    <li><a href="company/list">Manage Companies</a></li>
-    <li><a href="contract/list">Manage Contracts</a></li>
-    <li><a href="invoice/list">Manage Invoices</a></li>
-    <li><a href="invoiceLine/list">Manage Invoice's Lines</a></li>
-    <li><a href="request/list">Manage Requests</a></li>
-    <li><a href="valoration/list">Manage Valorations</a></li>
-    <li><a href="volunteer/list">Manage Volunteers</a></li>
-    <li><a href="schedule/list">Manage Volunteer's Schedules</a></li>
-    <li><a href="user/list">Manage Users</a></li>
-</ul>
+<div layout:fragment="content">
+    <h1>Seniors at home</h1>
+    <h3>Manage the app</h3>
+    <ul>
+        <li><a href="beneficiary/list">Manage Beneficiaries</a></li>
+        <li><a href="company/list">Manage Companies</a></li>
+        <li><a href="contract/list">Manage Contracts</a></li>
+        <li><a href="invoice/list">Manage Invoices</a></li>
+        <li><a href="invoiceLine/list">Manage Invoice's Lines</a></li>
+        <li><a href="request/list">Manage Requests</a></li>
+        <li><a href="valoration/list">Manage Valorations</a></li>
+        <li><a href="volunteer/list">Manage Volunteers</a></li>
+        <li><a href="schedule/list">Manage Volunteer's Schedules</a></li>
+        <li><a href="user/list">Manage Users</a></li>
+    </ul>
+</div>
 </body>
 </html>

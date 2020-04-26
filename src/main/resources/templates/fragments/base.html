@@ -12,25 +12,31 @@
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     />
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- app css  -->
     <link type="text/css" th:href="@{/css/sah.css}" href="/css/sah.css"
           rel="stylesheet"/>
 
     <title layout:title-pattern="$CONTENT_TITLE">Seniors at Home</title>
+    <style>
+        div.contenido {
+            position: fixed;
+            top: 18%;
+            left: 12%;
+        }
+    </style>
 </head>
 
 <body class="container">
-<header class="page-header">
-    <h1>Seniors at Home</h1>
-</header>
+<div class="fixed-top">
+    <div style="margin-top:1%; margin-bottom: 1%;">
+        <header class="page-header">
+            <h1>Seniors at Home</h1>
+        </header>
+    </div>
 <div th:replace="fragments/nav"></div>
 <div th:replace="fragments/logininfo"></div>
-<div layout:fragment="content"></div>
-<footer>
-    <hr>
-    <p class="text-muted">EI1027 - Disseny i Implementació de
-        Sistemes d'Informació</p>
-</footer>
+</div>
+<div class="contenido" layout:fragment="content"></div>
 </body>
 </html>

@@ -5,19 +5,63 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/sah.css"
           th:href="@{/css/sah.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="navbar-collapse collapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item" ><a class="nav-link" href="/" th:href="@{/}">Paid Service List</a></li>
-            <li class="nav-item" ><a class="nav-link" href="/user/list" th:href="@{/user/list}">Unpaid Service List</a></li>
-            <li class="nav-item" ><a class="nav-link" href="/login" th:href="@{/}">What is SAH?</a></li>
-            <li class="nav-item" ><a class="nav-link" href="/volunteer/add" th:href="@{/}">Offer as a volunteer</a></li>
-            <li class="nav-item" ><a class="nav-link" href="/beneficiary/add" th:href="@{/}">Register as a beneficiary</a></li>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-light navbar-fill">
+    <div class="d-flex justify-content-around navbar-collapse collapse">
+        <a class="navbar-brand" href="#">
+            <img src="https://images.squarespace-cdn.com/content/v1/57967595414fb5d421dfc59e/1470334571248-FPDW0IQNURGJGN2OVW6N/ke17ZwdGBToddI8pDm48kIeV9u3nkHLpoUO5_OOzMuR7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UZSRBd67w7DbB35wa6zlZjHagAE8lK3uFsotwjjMgWSuhMNhSClprbddOHo9kllY8A/SAH.jpg" width="30" height="30" style="border-radius:16px;" class="d-inline-block align-top" alt="">
+            SAH
+        </a>
+        <div>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" ><a class="nav-link" href="/" th:href="@{/}">Home</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" ><a class="nav-link" href="/login" th:href="@{/login}">What is SAH?</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" ><a class="nav-link" href="/login" th:href="@{/login}">Contact Us</a></li>
+            </ul>
+        </div>
+  <!--      <div>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+                        Sign up
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/volunteer/add" th:href="@{/volunteer/add}">Offer as a volunteer</a>
+                        <a class="dropdown-item" href="/beneficiary/add" th:href="@{/beneficiary/add}">Register as a beneficiary</a>
+                    </div>
+                </li>
+            </ul>
+        </div>-->
+        <div>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" ><a class="nav-link" href="/volunteer/add" th:href="@{/volunteer/add}">Offer as a volunteer</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" ><a class="nav-link" href="/beneficiary/add" th:href="@{/beneficiary/add}">Register as a beneficiary</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" ><a class="nav-link" href="/user/list" th:href="@{/login}">Log in</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 </body>

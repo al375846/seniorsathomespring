@@ -14,8 +14,8 @@ public class ContractValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         Contract contract = (Contract)obj;
-        if (contract.getNumberID().trim().equals(""))
-            errors.rejectValue("numberID", "Required", "You must enter an id");
+        /*if (contract.getNumberID().trim().equals(""))
+            errors.rejectValue("numberID", "Required", "You must enter an id");*/
         if (contract.getServiceType().trim().equals(""))
             errors.rejectValue("serviceType", "Required", "You must enter a service type");
         if (contract.getQuantity() <= 0)
@@ -28,6 +28,8 @@ public class ContractValidator implements Validator {
             errors.rejectValue("finalDate", "Required", "You must enter a final date");
         if (contract.getFinalDate() != null && contract.getStartDate() != null && contract.getFinalDate().isBefore(contract.getStartDate()))
             errors.rejectValue("finalDate", "Incorrect Value", "The final date must be after the start date");
+        if (contract.getCompanyID().trim().equals(""))
+            errors.rejectValue("companyID", "Required", "You must enter a company name");
     }
 }
 

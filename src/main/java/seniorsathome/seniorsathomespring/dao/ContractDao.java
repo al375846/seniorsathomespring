@@ -24,7 +24,7 @@ public class ContractDao {
     /*Añade un contrato a la base de datos*/
     public void addContract(Contract contract) {
         jdbcTemplate.update("INSERT INTO Contract VALUES(?,?::SERVICETYPE,?,?,?,?,?)",
-                contract.getNumberID(), contract.getServiceType(), contract.getQuantity(), contract.getStartDate(), contract.getFinalDate(), contract.getPrice(), contract.getCompanyID());
+                "CT"+Integer.toString(getContracts().size() + 1), contract.getServiceType(), contract.getQuantity(), contract.getStartDate(), contract.getFinalDate(), contract.getPrice(), contract.getCompanyID());
     }
 
     /*Elimina un contrato de la base de datos*/
@@ -59,7 +59,7 @@ public class ContractDao {
     /*Obtiene una lista de todos los contratos de la base de datos. Devuelve una lista vacia si no hay*/
     public List<Contract> getContracts(){
         try{
-            return jdbcTemplate.query("SELECT * FROM Contract",
+            return jdbcTemplate.query("SELECT * FROM Contract WHERE numberID<>''",
                     new ContractRowMapper());
         }
         catch (EmptyResultDataAccessException e) {

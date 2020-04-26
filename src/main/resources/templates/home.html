@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <link rel="stylesheet" type="text/css"
+          href="/css/sah.css"
+          th:href="@{/css/sah.css}"/>
+    <title>Login</title>
+    <meta charset="UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+    <table cellpadding="8" style="margin-top: 1%;">
+        <tr>
+            <td>
+                <div class="card" style="width: 18rem;">
+                    <img src="https://images.squarespace-cdn.com/content/v1/57967595414fb5d421dfc59e/1470334571248-FPDW0IQNURGJGN2OVW6N/ke17ZwdGBToddI8pDm48kIeV9u3nkHLpoUO5_OOzMuR7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UZSRBd67w7DbB35wa6zlZjHagAE8lK3uFsotwjjMgWSuhMNhSClprbddOHo9kllY8A/SAH.jpg" width="500" height="300" style="border-radius:16px;"  class="card-img-top" alt="SAH">
+                    <div class="card-body">
+                        <h5 class="card-title">Seniors at Home</h5>
+                        <p class="card-text">Help the Elderly, they helped you all your life.</p>
+                        <a href="/login" th:ref="@{/login}" class="btn btn-primary">What is SAH?</a>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <p>The best place to find the help you need</p>
+            </td>
+            <td>
+                <div id="demo" class="carousel slide" data-ride="carousel">
+
+                    <!-- Indicators -->
+                    <ul class="carousel-indicators">
+                        <li data-target="#demo" data-slide-to="0" class="active"></li>
+                        <li data-target="#demo" data-slide-to="1"></li>
+                        <li data-target="#demo" data-slide-to="2"></li>
+                    </ul>
+
+                    <!-- The slideshow -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="https://st3.depositphotos.com/12982378/17476/i/450/depositphotos_174762646-stock-photo-portrait-happy-senior-couple-looking.jpg" alt="Los Angeles" width="1100" height="500">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://www.39ymas.com/wp-content/uploads/2013/11/estado-nov-2013-jornada.gente-mayor-crisis.jpg" alt="Chicago" width="1100" height="500">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://i2.wp.com/vitaltarragona.com/wp-content/uploads/2015/02/asistencia1.jpg" alt="New York" width="1100" height="500">
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#demo" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Manage the app</h3>
+    <ul>
+        <li><a href="beneficiary/list">Manage Beneficiaries</a></li>
+        <li><a href="company/list">Manage Companies</a></li>
+        <li><a href="contract/list">Manage Contracts</a></li>
+        <li><a href="invoice/list">Manage Invoices</a></li>
+        <li><a href="invoiceLine/list">Manage Invoice's Lines</a></li>
+        <li><a href="request/list">Manage Requests</a></li>
+        <li><a href="valoration/list">Manage Valorations</a></li>
+        <li><a href="volunteer/list">Manage Volunteers</a></li>
+        <li><a href="schedule/list">Manage Volunteer's Schedules</a></li>
+        <li><a href="user/list">Manage Users</a></li>
+    </ul>
+</div>
+</body>
+</html>
