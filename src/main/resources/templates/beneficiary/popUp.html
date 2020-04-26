@@ -1,21 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Request has been added correctly</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <title>Create a Contract</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
-<body>
+<style>
+    /* The Modal (background) */
+    .modal {
+        margin: 0 auto;
+        display: block; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 0.5; /* Sit on top */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        text-align: center;
+    }
 
-<div class="container-all" id="modal">
-    <div class="popup">
-        <div class="container-text">
+    /* Modal Content */
+    .modal-content {
+        position: fixed;
+        left: 500px;
+        bottom: 500px;
+        background-color: #fefefe;
+        width: 30%;
+        border: 2px solid green;
+    }
+
+    .modal-body {
+        padding: 2px 16px;
+    }
+
+</style>
+<body>
+<!-- El pop up -->
+<div id="newRequest" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-body">
+            <p><br></p>
             <h1>Request added correctly</h1>
-            <p>Your request has been added to your list correctly.</p>
-            <a href="/beneficiary/list"><button type="button" class="selfbutton">Okey</button></a>
+            <p>Your request has been added to your list correctly</p>
+            <a href="list"><button class="selfbutton">Okey</button></a>
+            <p><br></p>
         </div>
     </div>
+
 </div>
 </body>
+<script>
+    var modal = document.getElementById("newRequest");
+    modal.style.display = "block";
+</script>
 </html>
