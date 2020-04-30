@@ -51,6 +51,34 @@ public class UserDao {
         }
     }
 
+    public String userType(User user) {
+        String type = "";
+
+        List<User> users = new ArrayList<User>();
+        users.addAll(jdbcTemplate.query("SELECT user_name, password FROM Beneficiary WHERE user_name=?",
+                new UserRowMapper(), user.getUsername()));
+        if (users.size() > 0)
+            type += "b";
+        users.addAll(jdbcTemplate.query("SELECT user_name, password FROM SocialWorker WHERE user_name=?",
+                new UserRowMapper(), user.getUsername()));
+        if (users.size() > 0 && type == "")
+            type += "s";
+        users.addAll(jdbcTemplate.query("SELECT userName, password FROM Volunteer WHERE userName=?",
+                new UserRowMapper(), user.getUsername()));
+        if (users.size() > 0 && type == "")
+            type += "v";
+        users.addAll(jdbcTemplate.query("SELECT userName, password FROM Company WHERE userName=?",
+                new UserRowMapper(), user.getUsername()));
+        if (users.size() > 0 && type == "")
+            type += "c";
+        users.addAll(jdbcTemplate.query("SELECT userName, password FROM Committee WHERE userName=?",
+                new UserRowMapper(), user.getUsername()));
+        if (users.size() > 0 && type == "")
+            type += "x";
+
+        return type;
+    }
+
     public List<User> listAllUsers() {
         try{
             List<User> total = new ArrayList<User>();

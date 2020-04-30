@@ -7,13 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import seniorsathome.seniorsathomespring.dao.UserDao;
 import seniorsathome.seniorsathomespring.model.User;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class LoginController {
@@ -45,6 +42,19 @@ public class LoginController {
         // Guardem les dades de l'usuari autenticat a la sessió
         session.setAttribute("user", user);
 
+        String type = userDao.userType(user);
+
+        if (type.equals("x"))
+            return "redirect:/profile/committee";
+        if (type.equals("b"))
+            return "redirect:/profile/beneficiary";
+        if (type.equals("v"))
+            return "redirect:/profile/volunteer";
+        if (type.equals("c"))
+            return "redirect:/profile/company";
+        if (type.equals("s"))
+            return "redirect:/profile/socialworker";
+
         if (session.getAttribute("nextUrl") != null) {
             String url = session.getAttribute("nextUrl").toString();
             session.removeAttribute("nextUrl");
@@ -66,6 +76,18 @@ public class LoginController {
         }
 
         session.setAttribute("user", user);
+
+        String type = userDao.userType(user);
+        if (type.equals("x"))
+            return "redirect:/profile/committee";
+        if (type.equals("b"))
+            return "redirect:/profile/beneficiary";
+        if (type.equals("v"))
+            return "redirect:/profile/volunteer";
+        if (type.equals("c"))
+            return "redirect:/profile/company";
+        if (type.equals("s"))
+            return "redirect:/profile/socialworker";
 
         if (session.getAttribute("nextUrl") != null) {
             String url = session.getAttribute("nextUrl").toString();
