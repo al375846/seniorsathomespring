@@ -4,8 +4,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import seniorsathome.seniorsathomespring.model.Request;
 
-import javax.swing.*;
-
 public class ServiceValidator implements Validator {
 
     @Override
@@ -20,8 +18,6 @@ public class ServiceValidator implements Validator {
             errors.rejectValue("type", "Required", "You must enter the type of service");
 
         if (request.getStart_date() == null) {
-            JFrame panel = new JFrame();
-            System.err.println("FECHA VACÍA");
             errors.rejectValue("start_date", "Required", "You must enter a start date");
         }
 
@@ -33,5 +29,4 @@ public class ServiceValidator implements Validator {
         if (request.getComments().length()>255)
             errors.rejectValue("comments", "Incorrect Value", "The comment cannot be longer than 255 characters");
     }
-
 }
