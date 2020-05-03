@@ -36,6 +36,33 @@
             height: auto;
             width: auto;
         }
+
+        /* The Modal (background) */
+        .modal {
+            margin: 0 auto;
+            display: block; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 0.5; /* Sit on top */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            text-align: center;
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: fixed;
+            left: 600px;
+            bottom: 500px;
+            background-color: #fefefe;
+            width: 30%;
+            border: 2px solid red;
+        }
+
+        .modal-body {
+            padding: 2px 16px;
+        }
+
     </style>
 
 </head>
@@ -103,5 +130,25 @@
      <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input>
     </center>
 </form>
+
+<div th:if="${popUp} == yes" id="error" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-body">
+            <p><br></p>
+            <h1>ERROR</h1>
+            <p>There has been an error during your request</p>
+            <button type="button" class="selfbutton" onclick="closeForm()">Okey</button>
+            <p><br></p>
+        </div>
+    </div>
+</div>
+
 </body>
+<script>
+
+    function closeForm() {
+        document.getElementById("error").style.display = "none";
+    }
+</script>
 </html>

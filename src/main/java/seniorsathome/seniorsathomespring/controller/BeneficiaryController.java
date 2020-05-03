@@ -78,6 +78,7 @@ public class BeneficiaryController {
         model.addAttribute("service", new Request());
         model.addAttribute("id", identificationNumber);
         model.addAttribute("actives", beneficiaryDao.activeServices(identificationNumber));
+        model.addAttribute("popUp", "no");
         return "beneficiary/servicesForm";
     }
 
@@ -90,6 +91,7 @@ public class BeneficiaryController {
         if(bindingResult.hasErrors()){
             model.addAttribute("id", request.getBeneficiary_id());
             model.addAttribute("actives", beneficiaryDao.activeServices(request.getBeneficiary_id()));
+            model.addAttribute("popUp", "yes");
             return "beneficiary/servicesForm";
         }
 
