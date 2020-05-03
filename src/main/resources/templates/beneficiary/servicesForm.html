@@ -18,23 +18,10 @@
             text-align: right;
         }
 
-        .crop {
-            position: relative;
-            max-width: 100%;
-            width: 150px;
-            height: 150px;
-            overflow: hidden;
-            border-radius: 30%;
-        }
-        .crop img {
-            position: absolute;
-            top: -40%;
-            bottom: -65%;
-            left: -40%;
-            right: -40%;
-            margin: auto;
-            height: auto;
-            width: auto;
+        img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
         }
 
         /* The Modal (background) */
@@ -96,9 +83,7 @@
             </select></td>
             <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error"></td>
             <td>
-                <div class="crop">
-                    <img class="hidden" src="https://image.shutterstock.com/image-vector/information-sign-icon-vector-logo-260nw-774867838.jpg" alt="Info">
-                </div>
+                <img src="https://st4.depositphotos.com/20838724/30541/v/450/depositphotos_305416928-stock-illustration-information-sign-vector-icon.jpg" alt="Info">
             </td>
         </div>
     </tr>
