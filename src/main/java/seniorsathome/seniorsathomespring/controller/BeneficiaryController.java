@@ -89,6 +89,7 @@ public class BeneficiaryController {
 
         if(bindingResult.hasErrors()){
             model.addAttribute("id", request.getBeneficiary_id());
+            model.addAttribute("actives", beneficiaryDao.activeServices(request.getBeneficiary_id()));
             return "beneficiary/servicesForm";
         }
 
