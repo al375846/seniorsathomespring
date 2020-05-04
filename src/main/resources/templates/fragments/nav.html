@@ -26,18 +26,28 @@
         </div>
         <div>
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item" ><a class="nav-link" href="/login" th:href="@{/login}">What is SAH?</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="sahdrop" data-toggle="dropdown">
+                        What is SAH?
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/others/services" th:href="@{/others/services}">Service List</a>
+                        <a class="dropdown-item" href="/others/mission" th:href="@{/others/mission}">The mission</a>
+                        <a class="dropdown-item" href="/others/objectives" th:href="@{/others/objectives}">Objectives</a>
+                        <a class="dropdown-item" href="/others/history" th:href="@{/others/history}">Our History</a>
+                    </div>
+                </li>
             </ul>
         </div>
         <div>
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item" ><a class="nav-link" href="/login" th:href="@{/login}">Contact Us</a></li>
+                <li class="nav-item" ><a class="nav-link" href="/others/contact" th:href="@{/others/contact}">Contact Us</a></li>
             </ul>
         </div>
         <div>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle" id="signupdrop" data-toggle="dropdown">
                         Sign up
                     </a>
                     <div class="dropdown-menu">
