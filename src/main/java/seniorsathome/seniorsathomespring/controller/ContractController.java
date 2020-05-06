@@ -55,9 +55,6 @@ public class ContractController {
         contractValidator.validate(contract, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("companies", companyDao.getCompanies());
-            ArrayList<String> errores = new ArrayList<>();
-            errores.add("error");
-            model.addAttribute("errores", errores);
             return "contract/add";
         }
         contractDao.addContract(contract);
@@ -71,17 +68,20 @@ public class ContractController {
     @RequestMapping(value="/update/{numberID}", method = RequestMethod.GET)
     public String editContract(Model model, @PathVariable String numberID) {
         model.addAttribute("contract", contractDao.getContract(numberID));
+        model.addAttribute("companies", companyDao.getCompanies());
         return "contract/update";
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("contract") Contract contract,
-            BindingResult bindingResult) {
+            Model model, BindingResult bindingResult) {
         ContractValidator contractValidator = new ContractValidator();
         contractValidator.validate(contract, bindingResult);
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("companies", companyDao.getCompanies());
             return "contract/update";
+        }
         contractDao.updateContract(contract);
         return "redirect:list";
     }
