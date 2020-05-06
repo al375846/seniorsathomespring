@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import seniorsathome.seniorsathomespring.dao.CompanyDao;
 import seniorsathome.seniorsathomespring.dao.ContractDao;
+import seniorsathome.seniorsathomespring.model.Company;
 import seniorsathome.seniorsathomespring.model.Contract;
 import seniorsathome.seniorsathomespring.model.ServiceType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/contract")
@@ -57,12 +59,10 @@ public class ContractController {
             model.addAttribute("companies", companyDao.getCompanies());
             return "contract/add";
         }
+        Company company = companyDao.getCompanyByName(contract.getCompanyID());
+        contract.setCompanyID(company.getFiscalNumber());
         contractDao.addContract(contract);
-        return "redirect:popup";
-    }
-    @RequestMapping("/popup")
-    public String contractPopup(Model model) {
-        return "contract/popup";
+        return "redirect:list";
     }
 
     @RequestMapping(value="/update/{numberID}", method = RequestMethod.GET)
@@ -82,6 +82,8 @@ public class ContractController {
             model.addAttribute("companies", companyDao.getCompanies());
             return "contract/update";
         }
+        Company company = companyDao.getCompanyByName(contract.getCompanyID());
+        contract.setCompanyID(company.getFiscalNumber());
         contractDao.updateContract(contract);
         return "redirect:list";
     }

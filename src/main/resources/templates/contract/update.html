@@ -7,15 +7,8 @@
     td{
         text-align: center;
     }
-
-    canvas{
-        background-color:white;
-    }
     table{
         margin: 0 auto;
-    }
-    body{
-        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSy5iQYsgbl319C94RR7OhVw6mCON9TZVWVTC7EwFqN5h0PUVAg&usqp=CAU");
     }
     .selfbutton{
         cursor: pointer;
@@ -24,7 +17,7 @@
 </style>
 <head>
     <p><br></p>
-    <h1>Update a Contract</h1>
+    <h1>Create a Contract</h1>
     <p><br></p>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
@@ -32,86 +25,58 @@
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
 <body>
-<script type="text/javascript" th:inline="javascript">
-    var companiesName = [];
-    var companiesNumber = [];
-    /*[# th:each="company : ${companies}"]*/
-    companiesName.push("[(${company.name})]");
-    /*[/]*/
-    /*[# th:each="company : ${companies}"]*/
-    companiesNumber.push("[(${company.fiscalNumber})]");
-    /*[/]*/
-    console.log(companiesName);
-    console.log(companiesNumber);
-
-    function companiesFunction() {
-        console.log(companiesName);
-        var x = document.getElementById("company").value;
-        var i = companiesName.indexOf(x,0);
-        var z = companiesNumber[i];
-        console.log(x);
-        console.log(i);
-        console.log(z);
-        if(z == null){
-            document.getElementById("company").style.background = "#FF6A59";
-            document.getElementById("companyID").value = "";
-        }
-        else {
-            document.getElementById("company").style.background = "#b3bb4c";
-            document.getElementById("companyID").value = z;
-        }
-
-    }
-
-</script>
 <form action="#" th:action="@{/contract/update}"
       th:object="${contract}" method="post" id="form">
     <table cellpadding="8" >
         <tr>
-            <td><label>Companies' List</label></td>
-            <td align="center">
-                <input id="company" list="companyName" name="company" oninput="companiesFunction()"/>
-                <datalist id="companyName">
-                    <option th:each="company: ${companies}" th:value="${company.name}"></option>
-                </datalist>
-            </td>
-            <input type="text" id="companyID" th:field="*{companyID} " readonly="readonly" hidden/></td>
-            <td th:if="${#fields.hasErrors('companyID')}" th:errors="*{companyID}" class="error">
+            <div class="form-group">
+                <td class="rightForm"><label th:for="companyID">Company Name :</label></td>
+                <td><select class="form-control" th:id="companyID" th:field="*{companyID}">
+                    <option th:each="company: ${companies}" th:value="${company.name}" th:text="${company.name}"></option>
+                </select></td>
+                <td th:if="${#fields.hasErrors('companyID')}" th:errors="*{companyID}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Service Type</label></td>
-            <!--<td><input type="text" th:field="*{serviceType}" /></td>-->
-            <td>
-                <input list="servicesType" name="serviceType" th:field="*{serviceType}" />
-                <datalist id="servicesType">
-                    <option value="CATERING">
-                    <option value="PHYSIOTHERAPY">
-                    <option value="NURSING">
-                    <option value="LAUNDRY">
-                    <option value="CLEANING">
-                </datalist>
-            </td>
-            <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}" class="error">
+            <div class="form-group">
+                <td class="rightForm"><label th:for="servicesType">Services Type :</label></td>
+                <td><select class="form-control" th:id="servicesType" th:field="*{serviceType}">
+                    <option value="CATERING">CATERING</option>
+                    <option value="PHYSIOTHERAPY">PHYSIOTHERAPY</option>
+                    <option value="NURSING">NURSING</option>
+                    <option value="LAUNDRY">LAUNDRY</option>
+                    <option value="CLEANING">CLEANING</option>
+                </select></td>
+                <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Quantity</label></td>
-            <td><input type="number" th:field="*{quantity}" /></td>
-            <td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="error"></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="quantity">Quantity :</label></td>
+                <td><input type="number" class="form-control" th:id="quantity" th:field="*{quantity}"></td>
+                <td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Start Date</label></td>
-            <td align="center" ><input type="date" th:field="*{startDate}" /></td>
-            <td th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="error"></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="startDate">Start Date :</label></td>
+                <td><input type="date" class="form-control" th:id="startDate" th:field="*{startDate}"></td>
+                <td th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Final Date</label></td>
-            <td align="center" ><input type="date" th:field="*{finalDate}" /></td>
-            <td th:if="${#fields.hasErrors('finalDate')}" th:errors="*{finalDate}" class="error"></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="finalDate">Final Date :</label></td>
+                <td><input type="date" class="form-control" th:id="finalDate" th:field="*{finalDate}"></td>
+                <td th:if="${#fields.hasErrors('finalDate')}" th:errors="*{finalDate}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Price</label></td>
-            <td><input type="number" step="any" th:field="*{price}" /></td>
-            <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="price">Price :</label></td>
+                <td><input type="number" class="form-control" th:id="price" th:field="*{price}"></td>
+                <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></td>
+            </div>
         </tr>
     </table>
     <p><br></p>
@@ -120,11 +85,5 @@
         <td><input type="submit" class="selfbutton" value="Update Contract" /></td>
     </table>
 </form>
-<script type="text/javascript" th:inline="javascript">
-    var n = document.getElementById("companyID").value;
-    var c = companiesNumber.indexOf(n, 0);
-    document.getElementById("company").value = companiesName[c];
-    document.getElementById("company").style.background = "#b3bb4c";
-</script>
 </body>
 </html>

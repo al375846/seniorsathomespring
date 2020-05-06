@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Requests</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
+
+</head>
+<body>
+<p><br></p>
+<h1>Requests' List</h1>
+<p><br></p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Type</th>
+        <th>Start Date</th>
+        <th>Final Date</th>
+        <th>Comments</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="request: ${requests}">
+        <td th:text="${request.type}"></td>
+        <td th:text="${request.start_date}"></td>
+        <td th:text="${request.final_date}"></td>
+        <td th:text="${request.comments}"></td>
+        <td><a th:href="@{/request/update/{number_id}(number_id=${request.number_id})}"><button type="button" class="btn btn-warning">Accept</button></a>
+        </td>
+        <td><a th:href="@{/request/reject/{number_id}(number_id=${request.number_id})}"><button type="button" class="btn btn-danger">Reject</button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p><br></p>
+</body>

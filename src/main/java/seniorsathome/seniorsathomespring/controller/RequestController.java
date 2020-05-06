@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.RequestDao;
 import seniorsathome.seniorsathomespring.model.Request;
 
+import java.time.LocalDate;
+
 @Controller
 @RequestMapping("/request")
 public class RequestController {
@@ -26,6 +28,12 @@ public class RequestController {
     public String listRequests(Model model) {
         model.addAttribute("requests", requestDao.getRequests());
         return "request/list";
+    }
+
+    @RequestMapping("/listunsolved")
+    public String listUnsolvedRequests(Model model) {
+        model.addAttribute("requests", requestDao.listUnsolvedRequests());
+        return "request/listunsolved";
     }
 
     @RequestMapping(value="/add")
@@ -67,5 +75,14 @@ public class RequestController {
     public String processDeleteRequest(@PathVariable String number_id) {
         requestDao.deleteRequest(number_id);
         return "redirect:../list";
+    }
+
+    @RequestMapping("/reject/{number_id}")
+    public String reject(@PathVariable String number_id) {
+        Request request = requestDao.getRequest(number_id);
+        request.setStatus("REJECTED");
+        request.setReject_date(LocalDate.now());
+        requestDao.updateRequest(request);
+        return "redirect:../listunsolved";
     }
 }
