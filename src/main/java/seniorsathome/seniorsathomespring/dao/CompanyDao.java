@@ -72,11 +72,22 @@ public class CompanyDao {
     /*Obtiene una lista de todas las compañias de la base de datos. Devuelve una lista vacia si no hay*/
     public List<Company> getCompanies(){
         try{
-            return jdbcTemplate.query("SELECT * FROM Company WHERE fiscalNumber<>''",
+            return jdbcTemplate.query("SELECT * FROM Company WHERE fiscalNumber<>''" ,
                     new CompanyRowMapper());
         }
         catch (EmptyResultDataAccessException e) {
             return new ArrayList<Company>();
         }
     }
+    public Company getCompanyByUserName(String nameCompany) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE userName=? ",
+                    new CompanyRowMapper(),
+                    nameCompany);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
 }

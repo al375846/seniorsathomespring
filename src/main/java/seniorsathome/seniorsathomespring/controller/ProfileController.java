@@ -7,10 +7,29 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import seniorsathome.seniorsathomespring.dao.CompanyDao;
+import seniorsathome.seniorsathomespring.dao.ContractDao;
+import seniorsathome.seniorsathomespring.model.Company;
+import seniorsathome.seniorsathomespring.model.User;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/profile")
 public class ProfileController {
+
+    private ContractDao contractDao;
+    private CompanyDao companyDao;
+
+    @Autowired
+    public void setContractDao(ContractDao contractDao) {
+        this.contractDao = contractDao;
+    }
+
+    @Autowired
+    public void setCompanyDao(CompanyDao companyDao) {
+        this.companyDao = companyDao;
+    }
 
     @RequestMapping("/committee")
     public String loginCommittee(Model model) {
@@ -23,7 +42,16 @@ public class ProfileController {
     }
 
     @RequestMapping("/company")
-    public String loginCompany(Model model) {
+    public String loginCompany(HttpSession session, Model model) {
+        User user = (User)session.getAttribute("user");
+        if(session.getAttribute("user")==null){
+            model.addAttribute("contracts", contractDao.getContracts());
+        }else{
+            String nombre = user.getUsername();
+            Company com = (Company) companyDao.getCompanyByUserName(nombre);
+            model.addAttribute("usuario",com.getName());
+            model.addAttribute("contracts",contractDao.inicioSesion(com.getFiscalNumber()));
+        }
         return "profile/company";
     }
 
