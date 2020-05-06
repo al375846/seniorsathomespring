@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
     <style>
         h1{
             text-align: center;
         }
         table{
+            margin: 0 auto;
             border: 1px solid black;
-            text-align: left;
         }
         td{
             padding: 15px;
@@ -19,37 +21,32 @@
         ul{
             padding: 10px;
         }
+
         .tagActive{
             color: mediumseagreen;
-            font-style: italic;
-        }
-        .tagInactive{
-            color: red;
             font-style: italic;
         }
     </style>
     <title>My Services</title>
     <meta charset="UTF-8" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
 <p><br></p>
 <h1>My Services</h1>
 <p><br></p>
-
+<div layout:fragment="content" style="left: 9%">
 <table class="table table-striped">
     <tr style="text-align: center">
         <td>APPROVED</td>
-        <td>ON HOLD</td>
-        <td>REJECTED</td>
     </tr>
     <tr>
         <td>
-            <span th:each="approved: ${requests}" th:if="${approved.status} == 'APPROVED'">
+            <span th:each="approved: ${requests}" th:if="(${approved.status} == 'APPROVED') and ((${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} <= ${#temporals.format(approved.final_date,'yyyy-MM-dd')})
+                                    and (${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} >= ${#temporals.format(approved.start_date,'yyyy-MM-dd')}))">
                 <ul>
                     <li th:text="${approved.type}"></li>
-                    <text th:if="(${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} > ${#temporals.format(approved.final_date,'yyyy-MM-dd')})
-                                    or (${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} < ${#temporals.format(approved.start_date,'yyyy-MM-dd')})" class="tagInactive">Inactive</text>
                     <text th:if="(${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} <= ${#temporals.format(approved.final_date,'yyyy-MM-dd')})
                                     and (${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')} >= ${#temporals.format(approved.start_date,'yyyy-MM-dd')})" class="tagActive">Active</text>
 
@@ -60,6 +57,11 @@
                 </ul>
             </span>
         </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">ON HOLD</td>
+    </tr>
+    <tr>
         <td>
             <span th:each="unsolved: ${requests}" th:if="${unsolved.status} == 'UNSOLVED'">
                 <ul>
@@ -71,19 +73,9 @@
                 </ul>
             </span>
         </td>
-        <td>
-            <span th:each="rejected: ${requests}"  th:if="${rejected.status} == 'REJECTED'">
-                <ul>
-                    <li th:text="${rejected.type}"></li>
-                    <ul>
-                        <li>Start date : <text th:text="${rejected.start_date}"></text></li>
-                        <li>Final date: <text th:text="${rejected.final_date}"></text></li>
-                    </ul>
-                </ul>
-            </span>
-        </td>
     </tr>
 </table>
+</div>
 <p><br></p>
 <center>
     <a th:href="@{/beneficiary/servicesForm/{identificationNumber}(identificationNumber=${requests[0].beneficiary_id})}"><button type="button" class="selfbutton">Request for a service</button></a>

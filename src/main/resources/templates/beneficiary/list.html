@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
     <title>Manage Beneficiaries</title>
     <meta charset="UTF-8" />
@@ -7,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
 <body>
+<div layout:fragment="content" style="left: 1%">
 <p><br></p>
 <h1>Beneficiaries' List</h1>
 <p><br></p>
