@@ -17,15 +17,8 @@
     td{
         text-align: center;
     }
-
-    canvas{
-        background-color:white;
-    }
     table{
         margin: 0 auto;
-    }
-    body{
-        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSy5iQYsgbl319C94RR7OhVw6mCON9TZVWVTC7EwFqN5h0PUVAg&usqp=CAU");
     }
     .selfbutton{
         cursor: pointer;
@@ -36,43 +29,67 @@
       th:object="${company}" method="post">
     <table cellpadding="8" >
         <tr>
-            <td><label>Fiscal Number</label></td>
-            <td><input type="text" th:field="*{fiscalNumber}" /></td>
-            <td th:if="${#fields.hasErrors('fiscalNumber')}" th:errors="*{fiscalNumber}" class="error"></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="fiscalNumber">Fiscal Number :</label></td>
+                <td><input type="text" class="form-control" th:id="fiscalNumber" th:field="*{fiscalNumber}"></td>
+                <td th:if="${#fields.hasErrors('fiscalNumber')}" th:errors="*{fiscalNumber}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Name</label></td>
-            <td><input type="text" th:field="*{name}" /></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="name">Name :</label></td>
+                <td><input type="text" class="form-control" th:id="name" th:field="*{name}"></td>
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Email</label></td>
-            <td><input type="text" th:field="*{email}" /></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="email">Email :</label></td>
+                <td><input type="text" class="form-control" th:id="email" th:field="*{email}"></td>
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Responsible Name</label></td>
-            <td><input type="text" th:field="*{responsibleName}" /></td>
-            <td th:if="${#fields.hasErrors('responsibleName')}" th:errors="*{responsibleName}" class="error"></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="responsibleName">Responsible Name :</label></td>
+                <td><input type="text" class="form-control" th:id="responsibleName" th:field="*{responsibleName}"></td>
+                <td th:if="${#fields.hasErrors('responsibleName')}" th:errors="*{responsibleName}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Responsible Phone Number</label></td>
-            <td><input type="text" th:field="*{responsiblePhoneNumber}" /></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="responsiblePhoneNumber">Responsible Phone Number :</label></td>
+                <td><input type="text" class="form-control" th:id="responsiblePhoneNumber" th:field="*{responsiblePhoneNumber}"></td>
+                <td th:if="${#fields.hasErrors('responsiblePhoneNumber')}" th:errors="*{responsiblePhoneNumber}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Responsible Address</label></td>
-            <td><input type="text" th:field="*{responsibleAddress}" /></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="responsibleAddress">Responsible Address :</label></td>
+                <td><input type="text" class="form-control" th:id="responsibleAddress" th:field="*{responsibleAddress}"></td>
+                <td th:if="${#fields.hasErrors('responsibleAddress')}" th:errors="*{responsibleAddress}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Phone Number</label></td>
-            <td><input type="text" th:field="*{phoneNumber}" /></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="phoneNumber">Phone Number :</label></td>
+                <td><input type="text" class="form-control" th:id="phoneNumber" th:field="*{phoneNumber}"></td>
+                <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Username</label></td>
-            <td><input type="text" th:field="*{userName}" /></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="userName">Username :</label></td>
+                <td><input type="text" class="form-control" th:id="userName" th:field="*{userName}"></td>
+                <td th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Password</label></td>
-            <td><input type="text" th:field="*{password}" /></td>
-            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="password">Password :</label></td>
+                <td><input type="text" class="form-control" th:id="password" th:field="*{password}"></td>
+                <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td>
+            </div>
         </tr>
     </table>
     <p><br></p>
