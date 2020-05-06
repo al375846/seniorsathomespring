@@ -1,52 +1,83 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
-    <title>Manage Companies</title>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
+    <style>
+        .selfbutton {
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css"
+          href="/css/sah.css"
+          th:href="@{/css/sah.css}"/>
+    <title>Contracts' List</title>
+    <meta charset="UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+    <!--    <style>
+            /* Make the image fully responsive */
+            .carousel-inner img {
+                width: 100%;
+                height: 100%;
+            }
+        </style>-->
 </head>
 <body>
-<h1>Companies' List</h1>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Fiscal Number</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Responsible Name</th>
-        <th>Responsible Phone Number</th>
-        <th>Responsible Address</th>
-        <th>Phone Number</th>
-        <th>Username</th>
-        <th>Password</th>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="company: ${companies}">
-        <td th:text="${company.fiscalNumber}"></td>
-        <td th:text="${company.name}"></td>
-        <td th:text="${company.email}"></td>
-        <td th:text="${company.responsibleName}"></td>
-        <td th:text="${company.responsiblePhoneNumber}"></td>
-        <td th:text="${company.responsibleAddress}"></td>
-        <td th:text="${company.phoneNumber}"></td>
-        <td th:text="${company.userName}"></td>
-        <td th:text="${company.password}"></td>
-        <td><a th:href="@{/company/update/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}"><button type="button" class="btn btn-warning">Update</button></a>
+<div layout:fragment="content" style="left: 9%">
+    <h1>Companies' List</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Responsible Name</th>
+            <th>Responsible Phone Number</th>
+            <th>Responsible Address</th>
+            <th>Phone Number</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="company: ${companies}">
+            <td th:text="${company.name}"></td>
+            <td th:text="${company.email}"></td>
+            <td th:text="${company.responsibleName}"></td>
+            <td th:text="${company.responsiblePhoneNumber}"></td>
+            <td th:text="${company.responsibleAddress}"></td>
+            <td th:text="${company.phoneNumber}"></td>
+            <td><a th:href="@{/company/update/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
+                <button type="button" class="selfbutton" style="width: 100px">Update</button>
+            </a>
+            </td>
+            <td><a th:href="@{/company/delete/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
+                <button type="button" class="selfbutton" style="width: 100px">Delete</button>
+            </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <table style="margin: 0 auto" cellpadding="8">
+        <td>
+            <a href="/profile/committee">
+                <button type="button" class="selfbutton">Return</button>
+            </a>
         </td>
-        <td><a th:href="@{/company/delete/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}"><button type="button" class="btn btn-danger">Delete</button></a>
+        <td>
+            <a th:href="add">
+                <button type="button" class="selfbutton">Add Company</button>
+            </a>
         </td>
-    </tr>
-    </tbody>
-</table>
-<table>
-    <tr>
-        <td><a th:href="add"><button type="button" class="btn btn-success">Add Company</button></a></td>
-        <td><a href="/contract/add"><button type="button" class="btn btn-success">Add Contract</button></a></td>
-    </tr>
-</table>
+        <td>
+            <a href="/contract/add">
+            <button type="button" class="selfbutton">Add Contract</button>
+        </a>
+        </td>
+    </table>
+</div>
 </body>
 </html>

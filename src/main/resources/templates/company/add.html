@@ -6,12 +6,35 @@
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
+    <p><br></p>
+    <h1>Add a Company</h1>
+    <p><br></p>
 </head>
+<style>
+    h1{
+        text-align: center;
+    }
+    td{
+        text-align: center;
+    }
+
+    canvas{
+        background-color:white;
+    }
+    table{
+        margin: 0 auto;
+    }
+    body{
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSy5iQYsgbl319C94RR7OhVw6mCON9TZVWVTC7EwFqN5h0PUVAg&usqp=CAU");
+    }
+    .selfbutton{
+        cursor: pointer;
+    }
+</style>
 <body>
-<h2>New Company</h2>
 <form action="#" th:action="@{/company/add}"
       th:object="${company}" method="post">
-    <table>
+    <table cellpadding="8" >
         <tr>
             <td><label>Fiscal Number</label></td>
             <td><input type="text" th:field="*{fiscalNumber}" /></td>
@@ -51,9 +74,11 @@
             <td><input type="text" th:field="*{password}" /></td>
             <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td>
         </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Add Company" /></td>
-        </tr>
+    </table>
+    <p><br></p>
+    <table style="margin: 0 auto;" cellpadding="8">
+        <td><a href="/company/list"><input type="button" class="selfbutton" value="Return" /> </a></td>
+        <td><input type="submit" class="selfbutton" value="Add Company" /></td>
     </table>
 </form>
 </body>
