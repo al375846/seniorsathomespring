@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import seniorsathome.seniorsathomespring.dao.ContractDao;
 import seniorsathome.seniorsathomespring.dao.RequestDao;
 import seniorsathome.seniorsathomespring.model.Request;
 
@@ -19,9 +20,16 @@ public class RequestController {
 
     private RequestDao requestDao;
 
+    private ContractDao contractDao;
+
     @Autowired
     public void setRequestDao(RequestDao requestDao) {
         this.requestDao = requestDao;
+    }
+
+    @Autowired
+    public void setContractDao(ContractDao contractDao) {
+        this.contractDao = contractDao;
     }
 
     @RequestMapping("/list")
@@ -84,5 +92,24 @@ public class RequestController {
         request.setReject_date(LocalDate.now());
         requestDao.updateRequest(request);
         return "redirect:../listunsolved";
+    }
+
+    @RequestMapping(value="/overview/{number_id}", method = RequestMethod.GET)
+    public String overviewRequest(Model model, @PathVariable String number_id) {
+        Request request = requestDao.getRequest(number_id);
+        model.addAttribute("request", request);
+        model.addAttribute("contracts", contractDao.getContractsByService(request.getType()));
+        return "request/overview";
+    }
+
+    @RequestMapping(value="/accept", method = RequestMethod.POST)
+    public String accept(
+            @ModelAttribute("request") Request request, String contID) {
+        Request requestAccept = requestDao.getRequest(request.getNumber_id());
+        requestAccept.setApproval_date(LocalDate.now());
+        requestAccept.setStatus("APPROVED");
+        requestAccept.setContract_id(contID);
+        requestDao.updateRequest(requestAccept);
+        return "redirect:listunsolved";
     }
 }

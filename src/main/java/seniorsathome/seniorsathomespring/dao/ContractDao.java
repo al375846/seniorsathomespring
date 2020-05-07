@@ -76,4 +76,14 @@ public class ContractDao {
             return new ArrayList<Contract>();
         }
     }
+
+    public List<Contract> getContractsByService(String servicename){
+        try{
+            return jdbcTemplate.query("SELECT * FROM Contract WHERE numberID<>'' and serviceType=?::SERVICETYPE",
+                    new ContractRowMapper(), servicename);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Contract>();
+        }
+    }
 }

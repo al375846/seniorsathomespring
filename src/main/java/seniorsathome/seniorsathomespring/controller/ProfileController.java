@@ -48,7 +48,7 @@ public class ProfileController {
             model.addAttribute("contracts", contractDao.getContracts());
         }else{
             String nombre = user.getUsername();
-            Company com = (Company) companyDao.getCompanyByUserName(nombre);
+            Company com = companyDao.getCompanyByUserName(nombre);
             model.addAttribute("usuario",com.getName());
             model.addAttribute("contracts",contractDao.inicioSesion(com.getFiscalNumber()));
         }
