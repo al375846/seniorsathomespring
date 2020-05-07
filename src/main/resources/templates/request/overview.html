@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <style>
-    h1{
+    h1 {
         text-align: center;
     }
-    td{
+
+    td {
         text-align: center;
     }
-    table{
+
+    table {
         margin: 0 auto;
     }
-    .selfbutton{
+
+    .selfbutton {
         cursor: pointer;
     }
 
@@ -19,7 +22,7 @@
     <p><br></p>
     <h1>Overview a Request</h1>
     <p><br></p>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
@@ -28,65 +31,74 @@
 <form action="#" th:action="@{/request/accept}"
       th:object="${request}" method="post">
     <input type="text" class="form-control" th:id="type" th:field="*{number_id}" hidden>
-<table cellpadding="8">
-    <td>
-    <table>
-        <tr>
-            <div class="form-group">
-                <td class="rightForm"><label th:for="type">Service Typee :</label></td>
-                <td><input type="text" class="form-control" th:id="type" th:field="*{type}" readonly></td>
-            </div>
-        </tr>
-        <tr>
-            <div class="form-group">
-                <td class="rightForm"><label th:for="start_date">Start Date :</label></td>
-                <td><input type="date" class="form-control" th:id="start_date" th:field="*{start_date}" readonly></td>
-            </div>
-        </tr>
-        <tr>
-            <div class="form-group">
-                <td class="rightForm"><label th:for="final_date">Final Date :</label></td>
-                <td><input type="date" class="form-control" th:id="final_date" th:field="*{final_date}" readonly></td>
-            </div>
-        </tr>
-        <tr>
-            <div class="form-group">
-                <td class="rightForm"><label th:for="comments">Comments :</label></td>
-                <td><textarea type="text" class="form-control" th:id="comments" th:field="*{comments}" rows="3" readonly></textarea></td>
-            </div>
-        </tr>
-        <tr>
-            <td><a th:href="@{/request/reject/{number_id}(number_id=*{number_id})}"><button type="button" class="selfbutton">Reject</button></a></td>
-        </tr>
+    <table cellpadding="8">
+        <td>
+            <table>
+                <tr>
+                    <div class="form-group">
+                        <td class="rightForm"><label th:for="type">Service Type :</label></td>
+                        <td><input type="text" class="form-control" th:id="type" th:field="*{type}" readonly></td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <td class="rightForm"><label th:for="start_date">Start Date :</label></td>
+                        <td><input type="date" class="form-control" th:id="start_date" th:field="*{start_date}"
+                                   readonly></td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <td class="rightForm"><label th:for="final_date">Final Date :</label></td>
+                        <td><input type="date" class="form-control" th:id="final_date" th:field="*{final_date}"
+                                   readonly></td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <td class="rightForm"><label th:for="comments">Comments :</label></td>
+                        <td><textarea type="text" class="form-control" th:id="comments" th:field="*{comments}" rows="3"
+                                      readonly></textarea></td>
+                    </div>
+                </tr>
+            </table>
+            <p><br></p>
+            <table>
+                <tr>
+                    <td><a th:href="@{/request/reject/{number_id}(number_id=*{number_id})}">
+                        <button type="button" class="selfbutton">Reject</button>
+                    </a></td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table class="table table-striped" cellpadding="8" style="margin: 0 auto">
+                <thead>
+                <tr>
+                    <th>Service Type</th>
+                    <th>Quantity</th>
+                    <th>Start Date</th>
+                    <th>Final Date</th>
+                    <th>Price</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="contract: ${contracts}">
+                    <td th:text="${contract.serviceType}"></td>
+                    <td th:text="${contract.quantity}"></td>
+                    <td th:text="${contract.startDate}"></td>
+                    <td th:text="${contract.finalDate}"></td>
+                    <td th:text="${contract.price}"></td>
+                    <td hidden><input type="text" id="contID" name="contID" th:text="${contract.numberID}"
+                                      th:value="${contract.numberID}" hidden></td>
+                    <td><input type="submit" class="selfbutton" value="Apply contract to request"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
     </table>
-    </td>
-    <td>
-        <table class="table table-striped" cellpadding="8" style="margin: 0 auto">
-            <thead>
-            <tr>
-                <th>Service Type</th>
-                <th>Quantity</th>
-                <th>Start Date</th>
-                <th>Final Date</th>
-                <th>Price</th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="contract: ${contracts}">
-                <td th:text="${contract.serviceType}"></td>
-                <td th:text="${contract.quantity}"></td>
-                <td th:text="${contract.startDate}"></td>
-                <td th:text="${contract.finalDate}"></td>
-                <td th:text="${contract.price}"></td>
-                <td hidden><input type="text" id="contID" name="contID" th:text="${contract.numberID}" th:value="${contract.numberID}" hidden></td>
-                <td><input type="submit" class="selfbutton" value="Apply contract to request"/></td>
-            </tr>
-            </tbody>
-        </table>
-    </td>
-</table>
 </form>
 </body>
 </html>
