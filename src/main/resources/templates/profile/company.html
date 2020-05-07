@@ -22,6 +22,16 @@
 </head>
 <body>
 <div layout:fragment="content">
+    <br>
+    <div class="loggeduser" th:object="${session}">
+    <p th:unless="*{user != null}">
+        Welcome <span th:text="*{user.username}"></span>
+    </p>
+    <p th:unless="*{user == null}">
+        Please <a
+            href="/logout" th:href="@{/login}">Log in</a>
+    </p>
+    </div>
     <table>
         <table class="table table-striped" cellpadding="8" style="margin: 0 auto">
             <thead>
