@@ -8,6 +8,7 @@ import seniorsathome.seniorsathomespring.model.Contract;
 import seniorsathome.seniorsathomespring.model.ServiceType;
 
 import javax.sql.DataSource;
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,6 +62,25 @@ public class ContractDao {
         try{
             return jdbcTemplate.query("SELECT * FROM Contract WHERE numberID<>''",
                     new ContractRowMapper());
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Contract>();
+        }
+    }
+    public List<Contract> inicioSesion(String nombre){
+        try{
+            return jdbcTemplate.query("SELECT * FROM Contract WHERE companyID=?",
+                    new ContractRowMapper(),nombre);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Contract>();
+        }
+    }
+
+    public List<Contract> getContractsByService(String servicename){
+        try{
+            return jdbcTemplate.query("SELECT * FROM Contract WHERE numberID<>'' and serviceType=?::SERVICETYPE",
+                    new ContractRowMapper(), servicename);
         }
         catch (EmptyResultDataAccessException e) {
             return new ArrayList<Contract>();

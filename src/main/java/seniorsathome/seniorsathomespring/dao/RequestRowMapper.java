@@ -22,7 +22,7 @@ public class RequestRowMapper implements RowMapper<Request> {
 
         Date rejectDate = rs.getDate("reject_date");
         if(rejectDate != null) request.setReject_date(rejectDate.toLocalDate());
-        else request.setApproval_date(null);
+        else request.setReject_date(null);
 
         request.setComments(rs.getString("comments"));
         request.setBeneficiary_id(rs.getString("beneficiary_id"));
