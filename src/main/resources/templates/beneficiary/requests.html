@@ -32,9 +32,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
-<p><br></p>
-<h1>My Services</h1>
-<p><br></p>
 <div layout:fragment="content" style="left: 45%" class="container">
     <p><br></p>
     <p><br></p>
@@ -79,14 +76,14 @@
         </td>
     </tr>
 </table>
-</div>
-<p><br></p>
+    <p><br></p>
 <center>
-    <a th:href="@{/beneficiary/servicesForm/{identificationNumber}(identificationNumber=${requests[0].beneficiary_id})}"><button type="button" class="selfbutton">Request for a service</button></a>
     <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input>
+    <a th:href="@{/beneficiary/servicesForm/{identificationNumber}(identificationNumber=${requests[0].beneficiary_id})}"><button type="button" class="selfbutton">Request for a service</button></a>
 </center>
-<p><br></p>
-<p><br></p>
-</form>
+    <p><br></p>
+    <p><br></p>
+
+</div>
 </body>
 </html>
