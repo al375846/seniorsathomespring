@@ -25,9 +25,10 @@ public class BeneficiaryDao {
 
     /*Añade un beneficiario a la base de datos */
     public void addBeneficiary(Beneficiary beneficiary) {
+        int numero = conseguirNumero();
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         jdbcTemplate.update("INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                beneficiary.getIdentificationNumber(), beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), passwordEncryptor.encryptPassword(beneficiary.getPassword()), beneficiary.getSocialWorkerID());
+                "B"+numero, beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), passwordEncryptor.encryptPassword(beneficiary.getPassword()),"");
     }
 
     /*Elimina un beneficiario a la base de datos */
@@ -59,7 +60,7 @@ public class BeneficiaryDao {
     /*Obtiene una lista de todos los beneficiarios de la base de datos. Devuelve una lista vacia si no hay*/
     public List<Beneficiary> getBeneficiaries() {
         try {
-            return jdbcTemplate.query("SELECT * FROM Beneficiary",
+            return jdbcTemplate.query("SELECT * FROM Beneficiary WHERE identification_number<>'' ORDER BY identification_number " ,
                     new BeneficiaryRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Beneficiary>();
@@ -96,5 +97,20 @@ public class BeneficiaryDao {
 
     public List<Request> activeServices(String identificationNumber){
         return jdbcTemplate.query("SELECT * FROM Request WHERE beneficiary_id=? AND start_date<=current_date AND final_date>=current_date AND status='APPROVED'", new RequestRowMapper(), identificationNumber);
+    }
+    public int conseguirNumero(){
+        List<Beneficiary>lista =getBeneficiaries();
+/*        int numero_anterior = Integer.parseInt(lista.get(0).getIdentificationNumber().split("B")[0]);
+        for (int i = 1; i < lista.size(); i++) {
+
+            int numero_actual = Integer.parseInt(lista.get(i).getIdentificationNumber().split("B")[0]);
+
+            if (numero_actual - numero_anterior == 2) {
+                return numero_actual - 1;
+            }
+
+            numero_anterior = numero_actual;
+        }*/
+        return lista.size()+1;
     }
 }

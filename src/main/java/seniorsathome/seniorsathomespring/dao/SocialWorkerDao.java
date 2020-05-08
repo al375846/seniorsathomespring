@@ -1,0 +1,29 @@
+package seniorsathome.seniorsathomespring.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+import seniorsathome.seniorsathomespring.model.SocialWorker;
+
+import javax.sql.DataSource;
+
+@Repository
+public class SocialWorkerDao {
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    public SocialWorker getSocialWorkerByUserName(String username) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT numberid FROM SocialWorker WHERE user_name=?",
+                    new SocialWorkerRowMapper(),
+                    username);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+}

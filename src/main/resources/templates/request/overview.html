@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
 <body>
+<br><br>
 <form action="#" th:action="@{/request/accept}"
       th:object="${request}" method="post">
     <input type="text" class="form-control" th:id="type" th:field="*{number_id}" hidden>
@@ -69,6 +70,15 @@
                         <button type="button" class="selfbutton">Reject</button>
                     </a></td>
                 </tr>
+                <tr><td><br> </td></tr>
+                <tr>
+                    <td>
+
+                        <a href="/request/listunsolved">
+                            <button type="button" class="selfbutton">Return</button>
+                        </a>
+                    </td>
+                </tr>
             </table>
         </td>
         <td>
@@ -94,11 +104,13 @@
                     <td hidden><input type="text" id="contID" name="contID" th:text="${contract.numberID}"
                                       th:value="${contract.numberID}" hidden></td>
                     <td><input type="submit" class="selfbutton" value="Apply contract to request"/></td>
+
                 </tr>
                 </tbody>
             </table>
         </td>
     </table>
 </form>
+
 </body>
 </html>

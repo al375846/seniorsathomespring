@@ -1,39 +1,53 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
-    <title>Manage Requests</title>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
-
+    <style>
+    </style>
+    <link rel="stylesheet" type="text/css"
+          href="/css/sah.css"
+          th:href="@{/css/sah.css}"/>
+    <title>Login</title>
+    <meta charset="UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<p><br></p>
-<h1>Requests' List</h1>
-<p><br></p>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Type</th>
-        <th>Start Date</th>
-        <th>Final Date</th>
-        <th>Comments</th>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="request: ${requests}">
-        <td th:text="${request.type}"></td>
-        <td th:text="${request.start_date}"></td>
-        <td th:text="${request.final_date}"></td>
-        <td th:text="${request.comments}"></td>
-        <td><a th:href="@{/request/overview/{number_id}(number_id=${request.number_id})}"><button type="button" class="btn btn-warning">Overview</button></a>
+<div layout:fragment="content" class="container">
+    <br>
+    <p><br></p>
+    <p><br></p>
+    <h1>Requests' List</h1>
+    <p><br></p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Start Date</th>
+            <th>Final Date</th>
+            <th>Comments</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="request: ${requests}">
+            <td th:text="${request.type}"></td>
+            <td th:text="${request.start_date}"></td>
+            <td th:text="${request.final_date}"></td>
+            <td th:text="${request.comments}"></td>
+            <td><a th:href="@{/request/overview/{number_id}(number_id=${request.number_id})}">
+                <button type="button" class="selfbutton">Overview</button></a></td>
+        </tr>
+        </tbody>
+    </table>
+    <p><br></p>
+    <table style="margin: 0 auto" cellpadding="8">
+        <td>
+            <a href="/profile/committee">
+                <button type="button" class="selfbutton">Return</button>
+            </a>
         </td>
-        <td><a th:href="@{/request/reject/{number_id}(number_id=${request.number_id})}"><button type="button" class="btn btn-danger">Reject</button></a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<p><br></p>
+    </table>
+</div>
 </body>
+</html>

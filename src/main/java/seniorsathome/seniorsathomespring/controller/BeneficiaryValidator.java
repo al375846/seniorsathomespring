@@ -15,8 +15,6 @@ public class BeneficiaryValidator implements Validator {
     public void validate(Object obj, Errors errors) {
 
         Beneficiary beneficiary = (Beneficiary) obj;
-        if (beneficiary.getIdentificationNumber().trim().equals(""))
-            errors.rejectValue("identificationNumber", "Required", "You must enter an identification number");
         if (beneficiary.getName().trim().equals(""))
             errors.rejectValue("name", "Required", "You must enter a name");
         if (beneficiary.getSurnames().trim().equals(""))
@@ -25,7 +23,6 @@ public class BeneficiaryValidator implements Validator {
             errors.rejectValue("phoneNumber", "Required", "You must enter a phone number");
         if (beneficiary.getEmail().trim().equals(""))
             errors.rejectValue("email", "Required", "You must enter an email");
-
         CharSequence charSequence = "@";
         if (!beneficiary.getEmail().trim().contains(charSequence))
             errors.rejectValue("email", "Incorrect Value", "Should be a Email (contains @)");
@@ -37,8 +34,6 @@ public class BeneficiaryValidator implements Validator {
             errors.rejectValue("password", "Required", "You must enter a password");
         if (beneficiary.getPassword().length() <= 4)
             errors.rejectValue("password", "Incorrect Value", "The password must have more than 4 characters");
-        if (beneficiary.getIdentificationNumber().length()>10)
-            errors.rejectValue("idNumber", "Incorrect Value", "The identification number cannot be longer than 10 characters");
         if (beneficiary.getName().length()>50)
             errors.rejectValue("name", "Incorrect Value", "The name cannot be longer than 50 characters");
         if (beneficiary.getSurnames().length()>50)

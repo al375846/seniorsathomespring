@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
+import seniorsathome.seniorsathomespring.dao.SocialWorkerDao;
 import seniorsathome.seniorsathomespring.model.Beneficiary;
 import seniorsathome.seniorsathomespring.model.Request;
+import seniorsathome.seniorsathomespring.model.SocialWorker;
+import seniorsathome.seniorsathomespring.model.User;
 
+import javax.servlet.http.HttpSession;
 import javax.swing.*;
 import java.util.List;
 
@@ -20,10 +24,16 @@ import java.util.List;
 public class BeneficiaryController {
 
     BeneficiaryDao beneficiaryDao;
+    SocialWorkerDao socialWorkerDao;
 
     @Autowired
     public void setBeneficiaryDao(BeneficiaryDao beneficiaryDao) {
         this.beneficiaryDao = beneficiaryDao;
+    }
+
+    @Autowired
+    public void setSocialWorkerDao(SocialWorkerDao socialWorkerDao) {
+        this.socialWorkerDao = socialWorkerDao;
     }
 
     @RequestMapping("/list")
@@ -40,12 +50,20 @@ public class BeneficiaryController {
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("beneficiary") Beneficiary beneficiary,
-                                   BindingResult bindingResult) {
+                                   BindingResult bindingResult, HttpSession session) {
         BeneficiaryValidator beneficiaryValidator = new BeneficiaryValidator();
         beneficiaryValidator.validate(beneficiary, bindingResult);
         if (bindingResult.hasErrors())
             return "beneficiary/add";
         beneficiaryDao.addBeneficiary(beneficiary);
+        String type = (String) session.getAttribute("type");
+        User user = (User) session.getAttribute("user");
+        if (type!=null && type.equals("socialworker")){
+            SocialWorker sw =socialWorkerDao.getSocialWorkerByUserName(user.getUsername());
+            beneficiary.setSocialWorkerID(sw.getNumberid());
+            beneficiaryDao.updateBeneficiary(beneficiary);
+        }
+
         return "redirect:list";
     }
 

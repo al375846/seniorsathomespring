@@ -23,15 +23,10 @@
 <body>
 <div layout:fragment="content">
     <br>
-    <div class="loggeduser" th:object="${session}">
-    <p th:unless="*{user != null}">
-        Welcome <span th:text="*{user.username}"></span>
-    </p>
-    <p th:unless="*{user == null}">
-        Please <a
-            href="/logout" th:href="@{/login}">Log in</a>
-    </p>
-    </div>
+    <p><br></p>
+    <p><br></p>
+    <h1>Requests' List</h1>
+    <p><br></p>
     <table>
         <table class="table table-striped" cellpadding="8" style="margin: 0 auto">
             <thead>
@@ -41,8 +36,6 @@
                 <th>Start Date</th>
                 <th>Final Date</th>
                 <th>Price</th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -52,14 +45,6 @@
                 <td th:text="${contract.startDate}"></td>
                 <td th:text="${contract.finalDate}"></td>
                 <td th:text="${contract.price}"></td>
-                <td><a th:href="@{/contract/update/{numberID}(numberID=${contract.numberID})}">
-                    <button type="button" class="selfbutton" style="width: 100px">Update</button>
-                </a>
-                </td>
-                <td><a th:href="@{/contract/delete/{numberID}(numberID=${contract.numberID})}">
-                    <button type="button" class="selfbutton" style="width: 100px">Delete</button>
-                </a>
-                </td>
             </tr>
             </tbody>
 
