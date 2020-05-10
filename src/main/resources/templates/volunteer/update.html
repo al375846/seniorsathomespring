@@ -1,6 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
+    <style>
+        table{
+            margin: 0 auto;
+        }
+        td{
+            padding: 5px;
+        }
+    </style>
     <title>Modify a volunteer</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
@@ -8,58 +18,66 @@
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
 <body>
-<h2>Edit Volunteer</h2>
+<div layout:fragment="content" style="left: 45%" class="container">
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+<h1>Edit Volunteer</h1>
+    <p><br></p>
 <form action="#" th:action="@{/volunteer/update}" th:object="${volunteer}" method="post">
     <table>
         <tr>
-            <td><label>Number ID</label></td>
+            <td><label>Number ID : </label></td>
             <td><input type="text" th:field="*{idNumber}" /></td>
             <td th:if="${#fields.hasErrors('idNumber')}" th:errors="*{idNumber}" class="error"></td>
         </tr>
         <tr>
-            <td><label>Name</label></td>
+            <td><label>Name : </label></td>
             <td><input type="text" th:field="*{name}" /></td>
             <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></td>
         </tr>
         <tr>
-            <td><label>Phone Number</label></td>
+            <td><label>Phone Number : </label></td>
             <td><input type="text" th:field="*{phoneNumber}" /></td>
             <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></td>
         </tr>
         <tr>
-            <td><label>Email</label></td>
+            <td><label>Email : </label></td>
             <td><input type="text" th:field="*{email}" /></td>
             <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
         </tr>
         <tr>
-            <td><label>Address</label></td>
+            <td><label>Address : </label></td>
             <td><input type="text" th:field="*{address}" /></td>
             <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></td>
         </tr>
         <tr>
-            <td><label>User Name</label></td>
+            <td><label>User Name : </label></td>
             <td><input type="text" th:field="*{userName}" /></td>
             <td th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="error"></td>
         </tr>
         <tr>
-            <td><label>Password</label></td>
+            <td><label>Password : </label></td>
             <td><input type="text" th:field="*{password}" /></td>
             <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td>
         </tr>
         <tr>
-            <td><label>Request Date</label></td>
+            <td><label>Request Date : </label></td>
             <td><input type="date" th:field="*{requestDate}" /></td>
             <td th:if="${#fields.hasErrors('requestDate')}" th:errors="*{requestDate}" class="error"></td>
         </tr>
         <tr>
-            <td><label>Approval Date</label></td>
+            <td><label>Approval Date : </label></td>
             <td><input type="date" th:field="*{approvalDate}" /></td>
             <td th:if="${#fields.hasErrors('approvalDate')}" th:errors="*{approvalDate}" class="error"></td>
         </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Update Volunteer"/></td>
-        </tr>
     </table>
+    <p><br></p>
+    <center>
+        <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input>
+        <input type="submit" class="selfbutton" value="Update Volunteer"/></button></a>
+    </center>
 </form>
+</div>
 </body>
 </html>

@@ -24,9 +24,6 @@
     table{
         margin: 0 auto;
     }
-    body{
-        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSy5iQYsgbl319C94RR7OhVw6mCON9TZVWVTC7EwFqN5h0PUVAg&usqp=CAU");
-    }
     .selfbutton{
         cursor: pointer;
     }
@@ -76,7 +73,7 @@
     </table>
     <p><br></p>
     <table style="margin: 0 auto;" cellpadding="8">
-        <td><a href="/company/list"><input type="button" class="selfbutton" value="Return" /> </a></td>
+        <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input></td>
         <td><input type="submit" class="selfbutton" value="Update Company" /></td>
     </table>
 </form>
