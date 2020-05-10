@@ -4,11 +4,6 @@
       layout:decorate="~{fragments/base}">
 <head>
     <style>
-        iframe{
-            width: 140%;
-            height: 300%;
-            margin-left: -20%;
-        }
         img{
             height: 60px;
             width: 60px;
@@ -33,18 +28,14 @@
 
     <h1>Contact Us</h1>
     <p><br></p>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3056.6209586086716!2d-0.07108898428550882!3d39.99457518912898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5ffe0f98be12e9%3A0x4e7634c2c3b978b7!2sEscuela%20Superior%20de%20Tecnologia%20I%20Ciencias%20Experimentales%2C%20Avenguda%20Avenida%20de%20Vicente%20Sos%20Baynat%2C%2012006%20Castell%C3%B3n%20de%20la%20Plana%2C%20Castell%C3%B3n!5e0!3m2!1ses!2ses!4v1588951936724!5m2!1ses!2ses" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-    <p><br></p>
     <table>
         <tr>
-            <td colspan="2" style="text-align: left">
+            <td rowspan="2" style="text-align: left">
                 <p>
-                <img src="data:image/png;base64,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">
+                <img src="https://cdn1.iconfinder.com/data/icons/dashboard-line-style-1/32/dashboard__Email-256.png">
                     EMAILS :
                 </p>
             </td>
-        </tr>
-        <tr>
             <td><p><b>Cristina Rubio Juárez : </b><i>al375866@uji.es</i></p></td>
             <td><p><b>Alex Martínez Martínez: </b><i>al375846@uji.es</i></p></td>
         </tr>
@@ -52,12 +43,18 @@
             <td><p><b>Isabel Cervera Tirado : </b><i>al316443@uji.es</i></p></td>
             <td><p><b>Adrián León Alonso : </b><i>al375840@uji.es</i></p></td>
         </tr>
+        <tr>
+            <td colspan="3" style="text-align: center">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3056.6209586086716!2d-0.07108898428550882!3d39.99457518912898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5ffe0f98be12e9%3A0x4e7634c2c3b978b7!2sEscuela%20Superior%20de%20Tecnologia%20I%20Ciencias%20Experimentales%2C%20Avenguda%20Avenida%20de%20Vicente%20Sos%20Baynat%2C%2012006%20Castell%C3%B3n%20de%20la%20Plana%2C%20Castell%C3%B3n!5e0!3m2!1ses!2ses!4v1588951936724!5m2!1ses!2ses" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </td>
+        </tr>
     </table>
     <p><br></p>
     <center>
         <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input>
     </center>
-
+    <p><br></p>
+    <p><br></p>
 </div>
 </body>
 </html>
