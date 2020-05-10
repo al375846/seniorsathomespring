@@ -42,6 +42,20 @@ public class BeneficiaryController {
         return "beneficiary/list";
     }
 
+    @RequestMapping("/listbysocialworker")
+    public String listBeneficiariesBySocialworker(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        SocialWorker sw =socialWorkerDao.getSocialWorkerByUserName(user.getUsername());
+        model.addAttribute("beneficiaries", beneficiaryDao.getBeneficiariesBySocialWorker(sw.getNumberid()));
+        return "beneficiary/listbysocialworker";
+    }
+
+    @RequestMapping("/listnosocialworker")
+    public String listBeneficiariesNoSocialworker(Model model, HttpSession session) {
+        model.addAttribute("beneficiaries", beneficiaryDao.getBeneficiariesNoSocialWorker());
+        return "beneficiary/listnosocialworker";
+    }
+
     @RequestMapping(value="/add")
     public String addBeneficiary(Model model) {
         model.addAttribute("beneficiary", new Beneficiary());
@@ -55,16 +69,37 @@ public class BeneficiaryController {
         beneficiaryValidator.validate(beneficiary, bindingResult);
         if (bindingResult.hasErrors())
             return "beneficiary/add";
-        beneficiaryDao.addBeneficiary(beneficiary);
+
         String type = (String) session.getAttribute("type");
         User user = (User) session.getAttribute("user");
         if (type!=null && type.equals("socialworker")){
-            SocialWorker sw =socialWorkerDao.getSocialWorkerByUserName(user.getUsername());
+            SocialWorker sw = socialWorkerDao.getSocialWorkerByUserName(user.getUsername());
             beneficiary.setSocialWorkerID(sw.getNumberid());
-            beneficiaryDao.updateBeneficiary(beneficiary);
+            beneficiaryDao.addBeneficiary(beneficiary);
+            return "redirect:/profile/socialworker";
         }
+        beneficiary.setSocialWorkerID("");
+        beneficiaryDao.addBeneficiary(beneficiary);
+        return "redirect:/";
+    }
 
-        return "redirect:list";
+    @RequestMapping(value="/assignsocialworker/{identificationNumber}", method = RequestMethod.GET)
+    public String overviewRequest(Model model, @PathVariable String identificationNumber) {
+        Beneficiary beneficiary = beneficiaryDao.getBeneficiary(identificationNumber);
+        model.addAttribute("beneficiary", beneficiary);
+        model.addAttribute("socialworkers", socialWorkerDao.getSocialWorkers());
+        return "beneficiary/assignsocialworker";
+    }
+
+    @RequestMapping(value="/assign/{identificationNumber}/{numberid}")
+    public String accept(
+             @PathVariable String identificationNumber, @PathVariable String numberid) {
+        Beneficiary beneficiaryAccept = beneficiaryDao.getBeneficiary(identificationNumber);
+        System.out.println(numberid);
+        System.out.println(identificationNumber);
+        beneficiaryAccept.setSocialWorkerID(numberid);
+        beneficiaryDao.updateBeneficiary(beneficiaryAccept);
+        return "redirect:/beneficiary/listnosocialworker";
     }
 
     @RequestMapping(value="/update/{identificationNumber}", method = RequestMethod.GET)

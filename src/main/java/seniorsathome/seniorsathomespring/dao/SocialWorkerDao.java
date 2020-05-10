@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import seniorsathome.seniorsathomespring.model.SocialWorker;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class SocialWorkerDao {
@@ -19,11 +21,20 @@ public class SocialWorkerDao {
 
     public SocialWorker getSocialWorkerByUserName(String username) {
         try {
-            return jdbcTemplate.queryForObject("SELECT numberid FROM SocialWorker WHERE user_name=?",
+            return jdbcTemplate.queryForObject("SELECT * FROM SocialWorker WHERE user_name=?",
                     new SocialWorkerRowMapper(),
                     username);
         } catch (EmptyResultDataAccessException e) {
             return null;
+        }
+    }
+
+    public List<SocialWorker> getSocialWorkers() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM SocialWorker WHERE numberId<>''",
+                    new SocialWorkerRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<SocialWorker>();
         }
     }
 }

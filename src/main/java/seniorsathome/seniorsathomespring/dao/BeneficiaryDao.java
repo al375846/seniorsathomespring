@@ -28,7 +28,7 @@ public class BeneficiaryDao {
         int numero = conseguirNumero();
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         jdbcTemplate.update("INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                "B" + numero, beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), passwordEncryptor.encryptPassword(beneficiary.getPassword()), "");
+                "B" + numero, beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), passwordEncryptor.encryptPassword(beneficiary.getPassword()), beneficiary.getSocialWorkerID());
     }
 
     /*Elimina un beneficiario a la base de datos */
@@ -62,6 +62,24 @@ public class BeneficiaryDao {
         try {
             return jdbcTemplate.query("SELECT * FROM Beneficiary WHERE identification_number<>'' ORDER BY identification_number ",
                     new BeneficiaryRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Beneficiary>();
+        }
+    }
+
+    public List<Beneficiary> getBeneficiariesNoSocialWorker() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Beneficiary WHERE identification_number<>'' AND social_worker_id=''",
+                    new BeneficiaryRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Beneficiary>();
+        }
+    }
+
+    public List<Beneficiary> getBeneficiariesBySocialWorker(String socialworker) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Beneficiary WHERE identification_number<>'' and social_worker_id=?",
+                    new BeneficiaryRowMapper(), socialworker);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Beneficiary>();
         }
@@ -101,7 +119,7 @@ public class BeneficiaryDao {
 
     public int conseguirNumero() {
         List<Beneficiary> lista = getBeneficiaries();
-        int numero_anterior = Integer.parseInt(lista.get(0).getIdentificationNumber().split("b")[1]);
+        /*int numero_anterior = Integer.parseInt(lista.get(0).getIdentificationNumber().split("b")[1]);
         for (int i = 1; i < lista.size() - 1; i++) {
 
             int numero_actual = Integer.parseInt(lista.get(i).getIdentificationNumber().split("b")[1]);
@@ -112,7 +130,7 @@ public class BeneficiaryDao {
 
             numero_anterior = numero_actual;
         }
-
+*/
         return lista.size() + 1;
     }
 }

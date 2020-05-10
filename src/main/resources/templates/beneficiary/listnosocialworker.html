@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <style>
+        .selfbutton {
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css"
+          href="/css/sah.css"
+          th:href="@{/css/sah.css}"/>
+    <title>Beneficiaries' List</title>
+    <meta charset="UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div layout:fragment="content" style="left: 20%" class="container">
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <h1>Beneficiaries' List</h1>
+    <p><br></p>
+    <table class="table table-striped" cellpadding="8" style="margin: 0 auto">
+        <thead>
+        <tr>
+            <th hidden>Identification Number</th>
+            <th>Name</th>
+            <th>Surnames</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th hidden>Username</th>
+            <th hidden>Password</th>
+            <th hidden>Social Worker ID</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="beneficiary: ${beneficiaries}">
+            <td th:text="${beneficiary.identificationNumber}" hidden></td>
+            <td th:text="${beneficiary.name}"></td>
+            <td th:text="${beneficiary.surnames}"></td>
+            <td th:text="${beneficiary.phoneNumber}"></td>
+            <td th:text="${beneficiary.email}"></td>
+            <td th:text="${beneficiary.address}"></td>
+            <td th:text="${beneficiary.userName}" hidden></td>
+            <td th:text="${beneficiary.password}" hidden></td>
+            <td th:text="${beneficiary.socialWorkerID}" hidden></td>
+            <td><a th:href="@{/beneficiary/assignsocialworker/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-warning">Assign social worker</button></a>
+            </td>
+            <td><a th:href="@{/beneficiary/delete/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-danger">Delete</button></a>
+            </td>
+            </td>
+            <td><a th:href="@{/beneficiary/requests/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-primary">Requests</button></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table style="margin: 0 auto" cellpadding="8">
+        <td>
+            <a href="/profile/committee">
+                <button type="button" class="selfbutton">Return</button>
+            </a>
+        </td>
+        <td>
+            <a th:href="add">
+                <button type="button" class="selfbutton">Add Beneficiary</button>
+            </a>
+        </td>
+    </table>
+</div>
+</body>
+</html>
