@@ -79,7 +79,7 @@ public class ContractDao {
 
     public List<Contract> getContractsByService(String servicename){
         try{
-            return jdbcTemplate.query("SELECT * FROM Contract WHERE numberID<>'' and serviceType=?::SERVICETYPE",
+            return jdbcTemplate.query("SELECT * FROM Contract WHERE numberID<>'' and serviceType=?::SERVICETYPE and quantity>0",
                     new ContractRowMapper(), servicename);
         }
         catch (EmptyResultDataAccessException e) {

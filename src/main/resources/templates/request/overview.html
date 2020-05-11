@@ -29,36 +29,33 @@
 </head>
 <body>
 <br><br>
-<form action="#" th:action="@{/request/accept}"
-      th:object="${request}" method="post">
-    <input type="text" class="form-control" th:id="type" th:field="*{number_id}" hidden>
     <table cellpadding="8">
         <td>
             <table>
                 <tr>
                     <div class="form-group">
                         <td class="rightForm"><label th:for="type">Service Type :</label></td>
-                        <td><input type="text" class="form-control" th:id="type" th:field="*{type}" readonly></td>
+                        <td><input type="text" class="form-control" th:id="type" th:field="${request.type}" readonly></td>
                     </div>
                 </tr>
                 <tr>
                     <div class="form-group">
                         <td class="rightForm"><label th:for="start_date">Start Date :</label></td>
-                        <td><input type="date" class="form-control" th:id="start_date" th:field="*{start_date}"
+                        <td><input type="date" class="form-control" th:id="start_date" th:field="${request.start_date}"
                                    readonly></td>
                     </div>
                 </tr>
                 <tr>
                     <div class="form-group">
                         <td class="rightForm"><label th:for="final_date">Final Date :</label></td>
-                        <td><input type="date" class="form-control" th:id="final_date" th:field="*{final_date}"
+                        <td><input type="date" class="form-control" th:id="final_date" th:field="${request.final_date}"
                                    readonly></td>
                     </div>
                 </tr>
                 <tr>
                     <div class="form-group">
                         <td class="rightForm"><label th:for="comments">Comments :</label></td>
-                        <td><textarea type="text" class="form-control" th:id="comments" th:field="*{comments}" rows="3"
+                        <td><textarea type="text" class="form-control" th:id="comments" th:field="${request.comments}" rows="3"
                                       readonly></textarea></td>
                     </div>
                 </tr>
@@ -66,7 +63,7 @@
             <p><br></p>
             <table>
                 <tr>
-                    <td><a th:href="@{/request/reject/{number_id}(number_id=*{number_id})}">
+                    <td><a th:href="@{/request/reject/{number_id}(number_id=${request.number_id})}">
                         <button type="button" class="selfbutton">Reject</button>
                     </a></td>
                 </tr>
@@ -91,7 +88,6 @@
                     <th>Final Date</th>
                     <th>Price</th>
                     <th></th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -101,16 +97,15 @@
                     <td th:text="${contract.startDate}"></td>
                     <td th:text="${contract.finalDate}"></td>
                     <td th:text="${contract.price}"></td>
-                    <td hidden><input type="text" id="contID" name="contID" th:text="${contract.numberID}"
-                                      th:value="${contract.numberID}" hidden></td>
-                    <td><input type="submit" class="selfbutton" value="Apply contract to request"/></td>
+                    <td><a th:href="@{/request/accept/{number_id}/{numberID}(number_id=${request.number_id}, numberID=${contract.numberID})}">
+                        <input type="button" class="selfbutton" value="Apply contract to request"/></a>
+                    </td>
 
                 </tr>
                 </tbody>
             </table>
         </td>
     </table>
-</form>
 
 </body>
 </html>
