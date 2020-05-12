@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Manage Volunteers</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
+</head>
+<body>
+<div layout:fragment="content" style="left: 45%" class="container">
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <h1>Volunteers' list</h1>
+    <p><br></p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Request Date</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="volunteer: ${volunteers}">
+            <td th:text="${volunteer.name}"></td>
+            <td th:text="${volunteer.phoneNumber}"></td>
+            <td th:text="${volunteer.email}"></td>
+            <td th:text="${volunteer.address}"></td>
+            <td th:text="${volunteer.requestDate}"></td>
+            <td th:text="${volunteer.description}"></td>
+            <td><a th:href="@{/volunteer/accept/{nom}(nom=${volunteer.idNumber})}"><button type="button" class="btn btn-warning">Accept</button></a>
+            </td>
+            <td><a th:href="@{/volunteer/reject/{nom}(nom=${volunteer.idNumber})}"><button type="button" class="btn btn-danger">Reject</button></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p><br></p>
+    <center>
+        <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input>
+        <a th:href="add"><button type="button" class="selfbutton">Add Volunteer</button></a>
+    </center>
+</div>
+</body>
+</html>

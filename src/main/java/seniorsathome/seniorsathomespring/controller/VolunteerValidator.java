@@ -18,9 +18,6 @@ public class VolunteerValidator implements Validator{
     @Override
     public void validate(Object obj, Errors errors) {
         Volunteer vol = (Volunteer)obj;
-        if (vol.getIdNumber().trim().equals(""))
-            errors.rejectValue("idNumber", "Required",
-                    "You must enter a value");
         if (vol.getName().trim().equals(""))
             errors.rejectValue("name", "Required",
                     "You must enter a value");
@@ -39,17 +36,13 @@ public class VolunteerValidator implements Validator{
         if (vol.getPassword().trim().equals(""))
             errors.rejectValue("password", "Required",
                     "You must enter a value");
-        if (vol.getRequestDate() == null)
-            errors.rejectValue("requestDate", "Required",
-                    "You must enter a value");
         if (vol.getPassword().length() <= 4)
             errors.rejectValue("password", "Incorrect Value", "The password must have more than 4 characters");
         CharSequence charSequence = "@";
         if (!vol.getEmail().trim().contains(charSequence))
             errors.rejectValue("password", "Incorrect Value", "Should be a Email (contains @)");
 
-        if (vol.getIdNumber().length()>10)
-            errors.rejectValue("idNumber", "Incorrect Value", "The number id cannot be longer than 10 characters");
+
         if (vol.getName().length()>50)
             errors.rejectValue("name", "Incorrect Value", "The name cannot be longer than 50 characters");
         if (vol.getPhoneNumber().length()>50)

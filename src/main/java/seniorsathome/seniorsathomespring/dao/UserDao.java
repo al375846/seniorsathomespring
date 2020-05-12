@@ -29,7 +29,7 @@ public class UserDao {
                 new UserRowMapper(), username));
         users.addAll(jdbcTemplate.query("SELECT user_name, password FROM SocialWorker WHERE user_name=?",
                 new UserRowMapper(), username));
-        users.addAll(jdbcTemplate.query("SELECT userName, password FROM Volunteer WHERE userName=?",
+        users.addAll(jdbcTemplate.query("SELECT userName, password FROM Volunteer WHERE userName=? AND status='APPROVED'",
                 new UserRowMapper(), username));
         users.addAll(jdbcTemplate.query("SELECT userName, password FROM Company WHERE userName=?",
                 new UserRowMapper(), username));

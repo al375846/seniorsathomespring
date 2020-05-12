@@ -10,6 +10,7 @@ import seniorsathome.seniorsathomespring.model.Volunteer;
 import seniorsathome.seniorsathomespring.dao.VolunteerRowMapper;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +27,8 @@ public class VolunteerDao {
     public void addVolunteer (Volunteer v) {
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?, ?,?,?,?,?,?,?::STATUSTYPE,?)",
-                v.getIdNumber(),v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
-                v.getUserName(),passwordEncryptor.encryptPassword(v.getPassword()),v.getRequestDate(),v.getApprovalDate(),v.getStatus(),v.getDescription());
+                getVolunteers().size(),v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
+                v.getUserName(),passwordEncryptor.encryptPassword(v.getPassword()), LocalDate.now(),null,"UNSOLVED",v.getDescription());
     }
     public void deleteVolunteer(String idNumber){
         jdbcTemplate.update("DELETE FROM Volunteer WHERE idnumber=?", idNumber);
@@ -55,6 +56,16 @@ public class VolunteerDao {
     public List<Volunteer> getVolunteers(){
         try{
             return jdbcTemplate.query("SELECT * FROM Volunteer WHERE idNumber<>''",
+                    new VolunteerRowMapper());
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Volunteer>();
+        }
+    }
+
+    public List<Volunteer> getVolunteersUnsolved(){
+        try{
+            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE idNumber<>'' and status='UNSOLVED'",
                     new VolunteerRowMapper());
         }
         catch (EmptyResultDataAccessException e) {

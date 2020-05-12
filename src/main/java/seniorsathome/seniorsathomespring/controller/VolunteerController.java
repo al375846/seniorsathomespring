@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.VolunteerDao;
 import seniorsathome.seniorsathomespring.model.Volunteer;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -28,6 +29,12 @@ public class VolunteerController {
     public String listVolunteers(Model model) {
         model.addAttribute("volunteers", volunteerDao.getVolunteers());
         return "volunteer/list";
+    }
+
+    @RequestMapping("/listunsolved")
+    public String listVolunteersUnsolved(Model model) {
+        model.addAttribute("volunteers", volunteerDao.getVolunteersUnsolved());
+        return "volunteer/listunsolved";
     }
 
     @RequestMapping(value="/add")
@@ -69,5 +76,22 @@ public class VolunteerController {
     public String processDeleteVolunteer(@PathVariable String idNumber) {
         volunteerDao.deleteVolunteer(idNumber);
         return "redirect:../list";
+    }
+
+    @RequestMapping(value = "/accept/{idNumber}")
+    public String acceptVolunteer(@PathVariable String idNumber) {
+        Volunteer v = volunteerDao.getVolunteer(idNumber);
+        v.setStatus("APPROVED");
+        v.setApprovalDate(LocalDate.now());
+        volunteerDao.updateVolunteer(v);
+        return "redirect:/volunteer/listunsolved";
+    }
+
+    @RequestMapping(value = "/reject/{idNumber}")
+    public String rejectVolunteer(@PathVariable String idNumber) {
+        Volunteer v = volunteerDao.getVolunteer(idNumber);
+        v.setStatus("REJECTED");
+        volunteerDao.updateVolunteer(v);
+        return "redirect:/volunteer/listunsolved";
     }
 }

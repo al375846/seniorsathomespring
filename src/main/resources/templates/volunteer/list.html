@@ -18,28 +18,22 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th hidden>Number ID</th>
         <th>Name</th>
         <th>Phone Number</th>
         <th>Email</th>
         <th>Address</th>
-        <th hidden>User Name</th>
-        <th hidden>Password</th>
         <th>Request Date</th>
-        <th>Approval Date</th>
+        <th>Description</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="volunteer: ${volunteers}">
-        <td th:text="${volunteer.idNumber}" hidden></td>
         <td th:text="${volunteer.name}"></td>
         <td th:text="${volunteer.phoneNumber}"></td>
         <td th:text="${volunteer.email}"></td>
         <td th:text="${volunteer.address}"></td>
-        <td th:text="${volunteer.userName}" hidden></td>
-        <td th:text="${volunteer.password}" hidden></td>
         <td th:text="${volunteer.requestDate}"></td>
-        <td th:text="${volunteer.approvalDate}"></td>
+        <td th:text="${volunteer.description}"></td>
         <td><a th:href="@{/volunteer/update/{nom}(nom=${volunteer.idNumber})}"><button type="button" class="btn btn-warning">Update</button></a>
         </td>
         <td><a th:href="@{/volunteer/delete/{nom}(nom=${volunteer.idNumber})}"><button type="button" class="btn btn-danger">Delete</button></a>
