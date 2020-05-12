@@ -25,9 +25,9 @@ public class VolunteerDao {
 
     public void addVolunteer (Volunteer v) {
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?, ?,?,?,?,?,?)",
+        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?, ?,?,?,?,?,?,?::STATUSTYPE,?)",
                 v.getIdNumber(),v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
-                v.getUserName(),passwordEncryptor.encryptPassword(v.getPassword()),v.getRequestDate(),v.getApprovalDate());
+                v.getUserName(),passwordEncryptor.encryptPassword(v.getPassword()),v.getRequestDate(),v.getApprovalDate(),v.getStatus(),v.getDescription());
     }
     public void deleteVolunteer(String idNumber){
         jdbcTemplate.update("DELETE FROM Volunteer WHERE idnumber=?", idNumber);
@@ -35,9 +35,9 @@ public class VolunteerDao {
 
     public void updateVolunteer(Volunteer v) {
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        jdbcTemplate.update("UPDATE Volunteer SET name=?,phonenumber=?,email=?,address=?,username=?,password=?,requestdate=?,approvaldate=? WHERE idnumber=?",
+        jdbcTemplate.update("UPDATE Volunteer SET name=?,phonenumber=?,email=?,address=?,username=?,password=?,requestdate=?,approvaldate=?,status=?::STATUSTYPE,description=? WHERE idnumber=?",
                 v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
-                v.getUserName(),passwordEncryptor.encryptPassword(v.getPassword()),v.getRequestDate(),v.getApprovalDate(),v.getIdNumber());
+                v.getUserName(),passwordEncryptor.encryptPassword(v.getPassword()),v.getRequestDate(),v.getApprovalDate(),v.getStatus(),v.getDescription(),v.getIdNumber());
     }
 
 

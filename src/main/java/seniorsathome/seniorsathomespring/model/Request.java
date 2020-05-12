@@ -3,6 +3,7 @@ package seniorsathome.seniorsathomespring.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class Request {
@@ -25,9 +26,28 @@ public class Request {
     private String comments;
     private String beneficiary_id;
     private String contract_id;
+    private String days;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.TIME)
+    private LocalTime starthour;
 
     public Request(){
 
+    }
+
+    public String getDays() {
+        return days;
+    }
+
+    public void setDays(String days) {
+        this.days = days;
+    }
+
+    public LocalTime getHour() {
+        return starthour;
+    }
+
+    public void setHour(LocalTime hour) {
+        this.starthour = hour;
     }
 
     public String getNumber_id() {
@@ -123,6 +143,8 @@ public class Request {
                 ", comments='" + comments + '\'' +
                 ", beneficiary_id='" + beneficiary_id + '\'' +
                 ", contract_id='" + contract_id + '\'' +
+                ", days='" + days + '\'' +
+                ", hour=" + starthour +
                 '}';
     }
 }

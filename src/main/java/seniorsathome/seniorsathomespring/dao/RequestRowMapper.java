@@ -5,6 +5,8 @@ import seniorsathome.seniorsathomespring.model.Request;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalTime;
 
 public class RequestRowMapper implements RowMapper<Request> {
 
@@ -27,6 +29,10 @@ public class RequestRowMapper implements RowMapper<Request> {
         request.setComments(rs.getString("comments"));
         request.setBeneficiary_id(rs.getString("beneficiary_id"));
         request.setContract_id(rs.getString("contract_id"));
+        request.setDays(rs.getString("days"));
+        Time hour = rs.getTime("starthour");
+        if (hour != null) request.setHour(hour.toLocalTime());
+        else request.setHour(null);
         return request;
     }
 }

@@ -42,9 +42,7 @@
             <td class="rightForm"><label th:for="servicesType">Services Type :</label></td>
             <td><select class="form-control" th:id="servicesType" th:field="*{serviceType}">
                 <option value="CATERING">CATERING</option>
-                <option value="PHYSIOTHERAPY">PHYSIOTHERAPY</option>
                 <option value="NURSING">NURSING</option>
-                <option value="LAUNDRY">LAUNDRY</option>
                 <option value="CLEANING">CLEANING</option>
             </select></td>
             <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}" class="error"></td>
@@ -69,13 +67,6 @@
                 <td class="rightForm"><label th:for="finalDate">Final Date :</label></td>
                 <td><input type="date" class="form-control" th:id="finalDate" th:field="*{finalDate}"></td>
                 <td th:if="${#fields.hasErrors('finalDate')}" th:errors="*{finalDate}" class="error"></td>
-            </div>
-        </tr>
-        <tr>
-            <div class="form-group">
-                <td class="rightForm"><label th:for="price">Price :</label></td>
-                <td><input type="number" step="any" class="form-control" th:id="price" th:field="*{price}"></td>
-                <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></td>
             </div>
         </tr>
     </table>

@@ -12,6 +12,16 @@ public class Beneficiary {
     private String password;
     private String socialWorkerID;
 
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    private String account;
+
     public String getIdentificationNumber() {
         return identificationNumber;
     }
@@ -91,10 +101,12 @@ public class Beneficiary {
                 ", name='" + name + '\'' +
                 ", surnames='" + surnames + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", socialWorkerID='" + socialWorkerID + '\'' +
+                ", account='" + account + '\'' +
                 '}';
     }
 }

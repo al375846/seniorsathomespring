@@ -23,10 +23,10 @@ public class RequestDao {
     }
 
     public void addRequest (Request request) {
-        jdbcTemplate.update("INSERT INTO Request VALUES(?, ?::STATUSTYPE, ?::SERVICETYPE, ?, ?, ?, ?, ?, ?, ?)",
+        jdbcTemplate.update("INSERT INTO Request VALUES(?, ?::STATUSTYPE, ?::SERVICETYPE, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 request.getNumber_id(), request.getStatus(), request.getType(), request.getStart_date(),
                 request.getFinal_date(), request.getApproval_date(), request.getReject_date(), request.getComments(),
-                request.getBeneficiary_id(), request.getContract_id());
+                request.getBeneficiary_id(), request.getContract_id(), request.getDays(), request.getHour());
     }
 
     public void deleteRequest (Request request) {
@@ -38,10 +38,10 @@ public class RequestDao {
     }
 
     public void updateRequest (Request request) {
-        jdbcTemplate.update("UPDATE Request SET status=?::STATUSTYPE, type=?::SERVICETYPE, start_date=?, final_date=?, approval_date=?, reject_date=?, comments=?, beneficiary_id=?, contract_id=? WHERE number_id=?",
+        jdbcTemplate.update("UPDATE Request SET status=?::STATUSTYPE, type=?::SERVICETYPE, start_date=?, final_date=?, approval_date=?, reject_date=?, comments=?, beneficiary_id=?, contract_id=?, days=?, starthour=? WHERE number_id=?",
                 request.getStatus(), request.getType(), request.getStart_date(),
                 request.getFinal_date(), request.getApproval_date(), request.getReject_date(), request.getComments(),
-                request.getBeneficiary_id(), request.getContract_id(), request.getNumber_id());
+                request.getBeneficiary_id(), request.getContract_id(), request.getDays(), request.getHour(), request.getNumber_id());
     }
 
     public  Request getRequest (String number_id){

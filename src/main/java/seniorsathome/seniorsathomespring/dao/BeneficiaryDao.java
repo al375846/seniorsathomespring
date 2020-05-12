@@ -27,8 +27,8 @@ public class BeneficiaryDao {
     public void addBeneficiary(Beneficiary beneficiary) {
         int numero = conseguirNumero();
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        jdbcTemplate.update("INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                "B" + numero, beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), passwordEncryptor.encryptPassword(beneficiary.getPassword()), beneficiary.getSocialWorkerID());
+        jdbcTemplate.update("INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "B" + numero, beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), passwordEncryptor.encryptPassword(beneficiary.getPassword()), beneficiary.getSocialWorkerID(), beneficiary.getAccount());
     }
 
     /*Elimina un beneficiario a la base de datos */
@@ -43,7 +43,7 @@ public class BeneficiaryDao {
     /*Modifica los datos de un beneficiario de la base de datos */
     public void updateBeneficiary(Beneficiary beneficiary) {
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        jdbcTemplate.update("UPDATE Beneficiary SET name=?, surnames=?, phone_number=?, email=?, address=?, user_name=?, password=?, social_worker_id=?  WHERE identification_number=?", beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), passwordEncryptor.encryptPassword(beneficiary.getPassword()), beneficiary.getSocialWorkerID(), beneficiary.getIdentificationNumber());
+        jdbcTemplate.update("UPDATE Beneficiary SET name=?, surnames=?, phone_number=?, email=?, address=?, user_name=?, password=?, social_worker_id=?, account=?  WHERE identification_number=?", beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), passwordEncryptor.encryptPassword(beneficiary.getPassword()), beneficiary.getSocialWorkerID(), beneficiary.getAccount(), beneficiary.getIdentificationNumber());
     }
 
     /*Obetiene un beneficiario a partir de su ID. Devuelve nulo si no existe. */
@@ -107,10 +107,10 @@ public class BeneficiaryDao {
     }
 
     public void addRequest(Request request) {
-        jdbcTemplate.update("INSERT INTO Request VALUES(?, ?::STATUSTYPE, ?::SERVICETYPE, ?, ?, ?, ?, ?, ?, ?)",
+        jdbcTemplate.update("INSERT INTO Request VALUES(?, ?::STATUSTYPE, ?::SERVICETYPE, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 countRequests(), "UNSOLVED", request.getType(), request.getStart_date(),
                 request.getFinal_date(), null, null, request.getComments(),
-                request.getBeneficiary_id(), "");
+                request.getBeneficiary_id(), "", null, null);
     }
 
     public List<Request> activeServices(String identificationNumber) {

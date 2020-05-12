@@ -20,7 +20,7 @@ public final class BeneficiaryRowMapper implements RowMapper<Beneficiary> {
         beneficiary.setUserName(rs.getString("user_name"));
         beneficiary.setPassword(rs.getString("password"));
         beneficiary.setSocialWorkerID(rs.getString("social_worker_id"));
-
+        beneficiary.setAccount(rs.getString("account"));
         return beneficiary;
     }
 }

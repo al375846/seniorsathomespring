@@ -24,8 +24,8 @@ public class ContractDao {
 
     /*Añade un contrato a la base de datos*/
     public void addContract(Contract contract) {
-        jdbcTemplate.update("INSERT INTO Contract VALUES(?,?::SERVICETYPE,?,?,?,?,?)",
-                "CT"+Integer.toString(getContracts().size() + 1), contract.getServiceType(), contract.getQuantity(), contract.getStartDate(), contract.getFinalDate(), contract.getPrice(), contract.getCompanyID());
+        jdbcTemplate.update("INSERT INTO Contract VALUES(?,?::SERVICETYPE,?,?,?,?)",
+                "CT"+Integer.toString(getContracts().size() + 1), contract.getServiceType(), contract.getQuantity(), contract.getStartDate(), contract.getFinalDate(), contract.getCompanyID());
     }
 
     /*Elimina un contrato de la base de datos*/
@@ -41,8 +41,8 @@ public class ContractDao {
 
     /*Modifica los datos de un contrato en la base de datos*/
     public void updateContract(Contract contract) {
-        jdbcTemplate.update("UPDATE Contract SET serviceType=?::SERVICETYPE, quantity=?, startDate=?, finalDate=?, price=?, companyID=? WHERE numberID=?",
-                contract.getServiceType(), contract.getQuantity(), contract.getStartDate(), contract.getFinalDate(), contract.getPrice(), contract.getCompanyID(), contract.getNumberID());
+        jdbcTemplate.update("UPDATE Contract SET serviceType=?::SERVICETYPE, quantity=?, startDate=?, finalDate=?, companyID=? WHERE numberID=?",
+                contract.getServiceType(), contract.getQuantity(), contract.getStartDate(), contract.getFinalDate(), contract.getCompanyID(), contract.getNumberID());
     }
 
     /*Obtiene un contrato a partir de su numberID. Si no existe devuelve null*/

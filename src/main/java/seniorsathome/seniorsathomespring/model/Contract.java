@@ -13,7 +13,6 @@ public class Contract {
     private LocalDate startDate;
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate finalDate;
-    private double price;
     private String companyID;
     private String serviceType;
 
@@ -49,14 +48,6 @@ public class Contract {
         this.finalDate = finalDate;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public String getCompanyID() {
         return companyID;
     }
@@ -80,7 +71,6 @@ public class Contract {
                 ", quantity=" + quantity +
                 ", startDate=" + startDate +
                 ", finalDate=" + finalDate +
-                ", price=" + price +
                 ", companyID='" + companyID + '\'' +
                 ", serviceType=" + serviceType +
                 '}';

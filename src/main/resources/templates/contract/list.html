@@ -38,7 +38,6 @@
             <th>Quantity</th>
             <th>Start Date</th>
             <th>Final Date</th>
-            <th>Price</th>
             <th></th>
             <th></th>
         </tr>
@@ -49,7 +48,6 @@
             <td th:text="${contract.quantity}"></td>
             <td th:text="${contract.startDate}"></td>
             <td th:text="${contract.finalDate}"></td>
-            <td th:text="${contract.price}"></td>
             <td><a th:href="@{/contract/update/{numberID}(numberID=${contract.numberID})}">
                 <button type="button" class="selfbutton" style="width: 100px">Update</button>
             </a>

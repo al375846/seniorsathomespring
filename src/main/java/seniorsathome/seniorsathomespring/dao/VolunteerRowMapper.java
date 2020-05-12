@@ -25,7 +25,8 @@ public class VolunteerRowMapper implements RowMapper<Volunteer> {
         Date fecha =rs.getDate("approvaldate");
         if (fecha != null) v.setApprovalDate(fecha.toLocalDate());
         else v.setApprovalDate(null);
-
+        v.setStatus(rs.getString("status"));
+        v.setDescription(rs.getString("description"));
         return v;
     }
 

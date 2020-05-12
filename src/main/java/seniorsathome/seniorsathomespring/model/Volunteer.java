@@ -18,6 +18,24 @@ public class Volunteer {
     private LocalDate requestDate;
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate approvalDate;
+    private String status;
+    private String description;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getIdNumber() {
         return idNumber;
@@ -103,6 +121,8 @@ public class Volunteer {
                 ", password='" + password + '\'' +
                 ", requestDate=" + requestDate +
                 ", approvalDate=" + approvalDate +
+                ", status='" + status + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

@@ -71,6 +71,13 @@
             </tr>
             <tr>
                 <div class="form-group">
+                    <td class="rightForm"><label th:for="account">Account :</label></td>
+                    <td><input type="text" class="form-control" th:id="account" th:field="*{account}"></td>
+                    <td th:if="${#fields.hasErrors('account')}" th:errors="*{account}" class="error"></td>
+                </div>
+            </tr>
+            <tr>
+                <div class="form-group">
                     <td class="rightForm"><label th:for="userName">Username :</label></td>
                     <td><input type="text" class="form-control" th:id="userName" th:field="*{userName}"></td>
                     <td th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="error"></td>
