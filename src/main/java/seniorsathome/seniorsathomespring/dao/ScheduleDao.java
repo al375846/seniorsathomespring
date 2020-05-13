@@ -75,4 +75,14 @@ public class ScheduleDao {
             return new ArrayList<Schedule>();
         }
     }
+
+    public List<Schedule> getActiveSchedulesByVolunteer(String volunteerid){
+        try{
+            return jdbcTemplate.query("SELECT * FROM Volunteersschedule WHERE status=CAST(1 AS BIT) AND volunteerId=?",
+                    new ScheduleRowMapper(), volunteerid);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Schedule>();
+        }
+    }
 }
