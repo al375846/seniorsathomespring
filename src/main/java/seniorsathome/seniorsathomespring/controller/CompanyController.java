@@ -10,17 +10,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import seniorsathome.seniorsathomespring.dao.CompanyDao;
+import seniorsathome.seniorsathomespring.dao.RequestDao;
 import seniorsathome.seniorsathomespring.model.Company;
 
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
-
+    private RequestDao requestDao;
     private CompanyDao companyDao;
 
     @Autowired
     public void setCompanyDao(CompanyDao companyDao) {
         this.companyDao = companyDao;
+    }
+    @Autowired
+    public void setCompanyDao(RequestDao requestDao) {
+        this.requestDao = requestDao;
     }
 
     @RequestMapping("/list")
@@ -52,6 +57,11 @@ public class CompanyController {
         return "company/update";
     }
 
+    @RequestMapping(value="/listRequest/{contractID}", method = RequestMethod.GET)
+    public String listRequest(Model model, @PathVariable String contractID) {
+        model.addAttribute("listRequests", requestDao.listRequestByContractId(contractID));
+        return "company/listRequest";
+    }
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("company") Company company,
