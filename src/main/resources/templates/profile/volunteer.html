@@ -51,7 +51,7 @@
                         <br>
                         <br>
                         <br>
-                        <a href="/schedule/add" class="btn btn-primary float-right  btn-lg">See it</a>
+                        <a th:href="@{/volunteer/update/{numberid}(numberid=${volunteer.idNumber})}" class="btn btn-primary float-right  btn-lg">See it</a>
                     </div>
                 </div>
             </td>
@@ -62,7 +62,7 @@
                          alt="Card image">
                     <div class="card-body">
                         <h4 class="card-title">Actual Schedule</h4>
-                        <a href="/request/listunsolved" class="btn btn-primary float-right btn-lg">See it</a>
+                        <a href="/schedule/listactive" class="btn btn-primary float-right btn-lg">See it</a>
                     </div>
                 </div>
             </td>

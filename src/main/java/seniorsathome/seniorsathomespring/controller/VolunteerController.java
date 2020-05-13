@@ -68,8 +68,13 @@ public class VolunteerController {
         volValidator.validate(v, bindingResult);
         if (bindingResult.hasErrors())
             return "volunteer/update";
+        Volunteer vol = volunteerDao.getVolunteerByUsername(v.getUserName());
+        v.setIdNumber(vol.getIdNumber());
+        v.setApprovalDate(null);
+        v.setStatus("UNSOLVED");
+        v.setRequestDate(LocalDate.now());
         volunteerDao.updateVolunteer(v);
-        return "redirect:list";
+        return "redirect:/profile/volunteer";
     }
 
     @RequestMapping(value = "/delete/{idNumber}")

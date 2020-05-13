@@ -33,7 +33,6 @@
             <th>Day</th>
             <th>Start Hour</th>
             <th>Final Hour</th>
-            <th>Status</th>
             <th></th>
         </tr>
         </thead>
@@ -42,9 +41,8 @@
             <td th:text="${schedule.day}"></td>
             <td th:text="${schedule.starthour}"></td>
             <td th:text="${schedule.finalhour}"></td>
-            <td th:text="${schedule.status} ? 'ACTIVE' : 'RETIRED'" />
-            <td><a th:href="@{/schedule/delete/{numberid}(numberid=${schedule.numberid})}">
-                <button type="button" class="btn btn-danger">Delete</button>
+            <td><a th:href="@{/schedule/overview/{numberid}(numberid=${schedule.numberid})}">
+                <button type="button" class="selfbutton">Overview</button>
             </a>
             </td>
         </tr>
@@ -52,9 +50,6 @@
     </table>
     <p><br></p>
     <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton">
-    <a th:href="add">
-        <button type="button" class="btn btn-success">Add Volunteer's Schedule</button>
-    </a>
 </div>
 </body>
 </html>
