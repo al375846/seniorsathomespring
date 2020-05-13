@@ -20,15 +20,10 @@ public class ScheduleDao {
     }
 
     public void addSchedule (Schedule schedule) {
-        if(schedule.getStatus()==false) {
             jdbcTemplate.update("INSERT INTO Volunteersschedule VALUES(?, ?, ?, ?, CAST(0 AS BIT ), ?, ?)",
-                    schedule.getNumberid(), schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
-                    schedule.getBeneficiaryid(), schedule.getVolunteerid());
-        }else{
-            jdbcTemplate.update("INSERT INTO Volunteersschedule VALUES(?, ?, ?, ?, CAST(1 AS BIT ), ?, ?)",
-                    schedule.getNumberid(), schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
-                    schedule.getBeneficiaryid(), schedule.getVolunteerid());
-        }
+                    "S"+(getSchedules().size()+1), schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
+                    "", schedule.getVolunteerid());
+
     }
 
     public void deleteSchedule (Schedule schedule) {
@@ -61,10 +56,19 @@ public class ScheduleDao {
             return null;
         }
     }
+    public  List<Schedule> getScheduleByIdVolunteer (String number_id){
+        try{
+            return jdbcTemplate.query("SELECT * FROM Volunteersschedule where volunteerId=? ORDER BY day DESC",
+                    new ScheduleRowMapper(),number_id);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Schedule>();
+        }
+    }
 
     public List<Schedule> getSchedules(){
         try{
-            return jdbcTemplate.query("SELECT * FROM Volunteersschedule",
+            return jdbcTemplate.query("SELECT * FROM Volunteersschedule ",
                     new ScheduleRowMapper());
         }
         catch (EmptyResultDataAccessException e) {

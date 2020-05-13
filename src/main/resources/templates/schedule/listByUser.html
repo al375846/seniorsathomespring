@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <link rel="stylesheet" type="text/css"
+          href="/css/sah.css"
+          th:href="@{/css/sah.css}"/>
+    <title>Login</title>
+    <meta charset="UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+    <!--    <style>
+            /* Make the image fully responsive */
+            .carousel-inner img {
+                width: 100%;
+                height: 100%;
+            }
+        </style>-->
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <h1>Schedelure list</h1>
+    <p><br></p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Day</th>
+            <th>Start Hour</th>
+            <th>Final Hour</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="schedule: ${schedules}">
+            <td th:text="${schedule.day}"></td>
+            <td th:text="${schedule.starthour}"></td>
+            <td th:text="${schedule.finalhour}"></td>
+            <td th:text="${schedule.status} ? 'ACTIVE' : 'RETIRED'" />
+            <td><a th:href="@{/schedule/delete/{numberid}(numberid=${schedule.numberid})}">
+                <button type="button" class="btn btn-danger">Delete</button>
+            </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="add">
+        <button type="button" class="btn btn-success">Add Volunteer's Schedule</button>
+    </a>
+</div>
+</body>
+</html>

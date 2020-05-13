@@ -40,6 +40,12 @@ public class VolunteerDao {
                 v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
                 v.getUserName(),passwordEncryptor.encryptPassword(v.getPassword()),v.getRequestDate(),v.getApprovalDate(),v.getStatus(),v.getDescription(),v.getIdNumber());
     }
+    public void updateVolunteerWithoutEncription(Volunteer v) {
+        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+        jdbcTemplate.update("UPDATE Volunteer SET name=?,phonenumber=?,email=?,address=?,username=?,password=?,requestdate=?,approvaldate=?,status=?::STATUSTYPE,description=? WHERE idnumber=?",
+                v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
+                v.getUserName(),v.getPassword(),v.getRequestDate(),v.getApprovalDate(),v.getStatus(),v.getDescription(),v.getIdNumber());
+    }
 
 
     public  Volunteer getVolunteer (String idNumber){
@@ -47,6 +53,16 @@ public class VolunteerDao {
             return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE idnumber=?",
                     new VolunteerRowMapper(),
                     idNumber);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+    public  Volunteer getVolunteerByUsername (String username){
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE userName =?",
+                    new VolunteerRowMapper(),
+                    username);
         }
         catch (EmptyResultDataAccessException e) {
             return null;

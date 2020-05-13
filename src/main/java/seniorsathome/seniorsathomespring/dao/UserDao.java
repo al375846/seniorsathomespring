@@ -29,13 +29,12 @@ public class UserDao {
                 new UserRowMapper(), username));
         users.addAll(jdbcTemplate.query("SELECT user_name, password FROM SocialWorker WHERE user_name=?",
                 new UserRowMapper(), username));
-        users.addAll(jdbcTemplate.query("SELECT userName, password FROM Volunteer WHERE userName=? AND status='APPROVED'",
+        users.addAll(jdbcTemplate.query("SELECT userName, password FROM Volunteer WHERE username=? AND status='APPROVED'",
                 new UserRowMapper(), username));
         users.addAll(jdbcTemplate.query("SELECT userName, password FROM Company WHERE userName=?",
                 new UserRowMapper(), username));
         users.addAll(jdbcTemplate.query("SELECT userName, password FROM Committee WHERE userName=?",
                 new UserRowMapper(), username));
-
         User user = null;
         if (users.size() > 0)
             user = users.get(0);
@@ -47,6 +46,8 @@ public class UserDao {
             return user;
         }
         else {
+            System.out.println(password);
+            System.out.println(user.getPassword());
             return null;
         }
     }

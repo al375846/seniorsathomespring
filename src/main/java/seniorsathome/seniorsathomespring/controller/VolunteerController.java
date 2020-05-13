@@ -83,7 +83,7 @@ public class VolunteerController {
         Volunteer v = volunteerDao.getVolunteer(idNumber);
         v.setStatus("APPROVED");
         v.setApprovalDate(LocalDate.now());
-        volunteerDao.updateVolunteer(v);
+        volunteerDao.updateVolunteerWithoutEncription(v);
         return "redirect:/volunteer/listunsolved";
     }
 
@@ -91,7 +91,7 @@ public class VolunteerController {
     public String rejectVolunteer(@PathVariable String idNumber) {
         Volunteer v = volunteerDao.getVolunteer(idNumber);
         v.setStatus("REJECTED");
-        volunteerDao.updateVolunteer(v);
+        volunteerDao.updateVolunteerWithoutEncription(v);
         return "redirect:/volunteer/listunsolved";
     }
 }
