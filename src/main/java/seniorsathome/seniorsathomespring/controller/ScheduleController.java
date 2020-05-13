@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
 import seniorsathome.seniorsathomespring.dao.ScheduleDao;
 import seniorsathome.seniorsathomespring.dao.VolunteerDao;
 import seniorsathome.seniorsathomespring.model.Schedule;
@@ -34,11 +35,19 @@ public class ScheduleController {
         this.scheduleDao = scheduleDao;
     }
 
+    BeneficiaryDao beneficiaryDao;
+
+    @Autowired
+    public void setBeneficiaryDao(BeneficiaryDao beneficiaryDao) {
+        this.beneficiaryDao = beneficiaryDao;
+    }
+
     @RequestMapping("/list")
     public String listSchedules(Model model) {
         model.addAttribute("schedules", scheduleDao.getSchedules());
         return "schedule/list";
     }
+
     @RequestMapping("/listByUser")
     public String loginCompany(HttpSession session, Model model) {
         User user = (User)session.getAttribute("user");
@@ -50,6 +59,19 @@ public class ScheduleController {
             model.addAttribute("schedules",scheduleDao.getScheduleByIdVolunteer(nombre.getIdNumber()));
         }
         return  "schedule/listByUser";
+    }
+
+    @RequestMapping("/listactive")
+    public String listActiveSchedules(HttpSession session, Model model) {
+        User user = (User)session.getAttribute("user");
+        if(session.getAttribute("user")==null){
+            model.addAttribute("schedules", scheduleDao.getSchedules());
+        }else{
+            String username = user.getUsername();
+            Volunteer nombre = volunteerDao.getVolunteerByUsername(username);
+            model.addAttribute("schedules",scheduleDao.getActiveSchedulesByVolunteer(nombre.getIdNumber()));
+        }
+        return "schedule/listactive";
     }
 
     @RequestMapping(value="/add")
@@ -98,5 +120,12 @@ public class ScheduleController {
     public String processDeleteSchedule(@PathVariable String numberid) {
         scheduleDao.deleteSchedule(numberid);
         return "redirect:../list";
+    }
+
+    @RequestMapping(value="/overview/{numberid}", method = RequestMethod.GET)
+    public String overviwSchedule(Model model, @PathVariable String numberid) {
+        Schedule s = scheduleDao.getSchedule(numberid);
+        model.addAttribute("beneficiary", beneficiaryDao.getBeneficiary(s.getBeneficiaryid()));
+        return "schedule/overview";
     }
 }

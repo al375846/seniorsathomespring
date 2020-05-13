@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        table {
+            margin: 0 auto;
+            text-align: right;
+        }
+
+        td {
+            padding: 5px;
+        }
+    </style>
+    <title>Beneficiary</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
+
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <h1>Beneficiary</h1>
+    <p><br></p>
+        <table>
+            <tr>
+                <div class="form-group">
+                    <td class="rightForm"><label th:for="name">Name :</label></td>
+                    <td><input type="text" class="form-control" th:id="name" th:field="${beneficiary.name}" readonly></td>
+                </div>
+            </tr>
+            <tr>
+                <div class="form-group">
+                    <td class="rightForm"><label th:for="surnames">Surnames :</label></td>
+                    <td><input type="text" class="form-control" th:id="surnames" th:field="${beneficiary.surnames}" readonly></td>
+                </div>
+            </tr>
+            <tr>
+                <div class="form-group">
+                    <td class="rightForm"><label th:for="phoneNumber">PhoneNumber :</label></td>
+                    <td><input type="text" class="form-control" th:id="phoneNumber" th:field="${beneficiary.phoneNumber}" readonly></td>
+                </div>
+            </tr>
+            <tr>
+                <div class="form-group">
+                    <td class="rightForm"><label th:for="email">Email :</label></td>
+                    <td><input type="text" class="form-control" th:id="email" th:field="${beneficiary.email}" readonly></td>
+                </div>
+            </tr>
+            <tr>
+                <div class="form-group">
+                    <td class="rightForm"><label th:for="address">Address :</label></td>
+                    <td><input type="text" class="form-control" th:id="address" th:field="${beneficiary.address}" readonly></td>
+                </div>
+            </tr>
+        </table>
+        <p><br></p>
+        <table style="margin: 0 auto;" cellpadding="8">
+            <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input></td>
+        </table>
+</div>
+</body>
+</html>
