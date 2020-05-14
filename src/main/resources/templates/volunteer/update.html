@@ -27,6 +27,8 @@
     <p><br></p>
     <form action="#" th:action="@{/volunteer/update}"
           th:object="${volunteer}" method="post">
+        <input type="text" class="form-control" th:id="password" th:field="*{password}" hidden>
+        <input type="text" class="form-control" th:id="idNumber" th:field="*{idNumber}" hidden>
         <table>
             <tr>
                 <div class="form-group">
@@ -65,8 +67,8 @@
             </tr>
             <tr>
                 <div class="form-group">
-                    <td class="rightForm"><label th:for="password">Password :</label></td>
-                    <td><input type="text" class="form-control" th:id="password" th:field="*{password}"></td>
+                    <td class="rightForm"><label th:for="bewpassword">New Password :</label></td>
+                    <td><input type="text" class="form-control" th:id="newPassword" name="newPassword"></td>
                     <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td>
                 </div>
             </tr>

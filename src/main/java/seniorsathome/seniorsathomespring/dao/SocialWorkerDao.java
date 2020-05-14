@@ -29,6 +29,16 @@ public class SocialWorkerDao {
         }
     }
 
+    public SocialWorker getSocialWorker(String numberId) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM SocialWorker WHERE numberId=?",
+                    new SocialWorkerRowMapper(),
+                    numberId);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
     public List<SocialWorker> getSocialWorkers() {
         try {
             return jdbcTemplate.query("SELECT * FROM SocialWorker WHERE numberId<>''",

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.CompanyDao;
 import seniorsathome.seniorsathomespring.dao.RequestDao;
 import seniorsathome.seniorsathomespring.model.Company;
+import seniorsathome.seniorsathomespring.model.Correo;
 
 @Controller
 @RequestMapping("/company")
@@ -48,6 +49,7 @@ public class CompanyController {
         if (bindingResult.hasErrors())
             return "company/add";
         companyDao.addCompany(company);
+        Correo.enviarMensajeSah(company.getEmail(), "Register", "Your are now registerd. Username: " + company.getUserName() + " Password: " + company.getPassword());
         return "redirect:list";
     }
 
