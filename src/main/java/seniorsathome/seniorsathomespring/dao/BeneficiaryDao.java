@@ -45,6 +45,9 @@ public class BeneficiaryDao {
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         jdbcTemplate.update("UPDATE Beneficiary SET name=?, surnames=?, phone_number=?, email=?, address=?, user_name=?, password=?, social_worker_id=?, account=?  WHERE identification_number=?", beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(), passwordEncryptor.encryptPassword(beneficiary.getPassword()), beneficiary.getSocialWorkerID(), beneficiary.getAccount(), beneficiary.getIdentificationNumber());
     }
+    public void updateBeneficiaryWithoutEncryption(Beneficiary beneficiary) {
+        jdbcTemplate.update("UPDATE Beneficiary SET name=?, surnames=?, phone_number=?, email=?, address=?, user_name=?, password=?, social_worker_id=?, account=?  WHERE identification_number=?", beneficiary.getName(), beneficiary.getSurnames(), beneficiary.getPhoneNumber(), beneficiary.getEmail(), beneficiary.getAddress(), beneficiary.getUserName(),beneficiary.getPassword(), beneficiary.getSocialWorkerID(), beneficiary.getAccount(), beneficiary.getIdentificationNumber());
+    }
 
     /*Obetiene un beneficiario a partir de su ID. Devuelve nulo si no existe. */
     public Beneficiary getBeneficiary(String idBeneficiary) {
@@ -82,6 +85,15 @@ public class BeneficiaryDao {
                     new BeneficiaryRowMapper(), socialworker);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Beneficiary>();
+        }
+    }
+
+    public Beneficiary getBeneficiaryByUsername(String username) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Beneficiary WHERE identification_number<>'' and user_name=?",
+                    new BeneficiaryRowMapper(), username);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
         }
     }
 

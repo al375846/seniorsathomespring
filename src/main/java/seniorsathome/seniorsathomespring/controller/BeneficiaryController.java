@@ -109,15 +109,35 @@ public class BeneficiaryController {
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(
-            @ModelAttribute("beneficiary") Beneficiary beneficiary,
+    public String processUpdateSubmit(HttpSession session,
+            @ModelAttribute("beneficiary") Beneficiary beneficiary,String newPassword,
             BindingResult bindingResult) {
+        User user = (User)session.getAttribute("user");
+        Beneficiary bene = beneficiaryDao.getBeneficiary(beneficiary.getIdentificationNumber());
+        Boolean changePass= true;
+        if ( newPassword == "" ){
+            beneficiary.setPassword(bene.getPassword());
+            changePass= false;
+        }
+        else {
+            beneficiary.setPassword(newPassword);
+        }
         BeneficiaryValidator beneficiaryValidator = new BeneficiaryValidator();
         beneficiaryValidator.validate(beneficiary, bindingResult);
+
         if (bindingResult.hasErrors())
             return "beneficiary/update";
-        beneficiaryDao.updateBeneficiary(beneficiary);
-        return "redirect:list";
+        if(changePass)
+            beneficiaryDao.updateBeneficiary(beneficiary);
+        else
+            beneficiaryDao.updateBeneficiaryWithoutEncryption(beneficiary);
+        bene = beneficiaryDao.getBeneficiary(beneficiary.getIdentificationNumber());
+        if (beneficiary.getUserName() != user.getUsername() ){
+            user.setUsername(bene.getUserName());
+            user.setPassword(bene.getPassword());
+            session.setAttribute("user",user);
+        }
+        return "redirect:/profile/beneficiary";
     }
 
     @RequestMapping(value = "/requests/{identificationNumber}")
