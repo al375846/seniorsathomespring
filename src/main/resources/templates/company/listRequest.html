@@ -39,6 +39,7 @@
                 <th>Reject Date</th>
                 <th>Comments</th>
                 <th>Beneficiary ID</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -51,7 +52,12 @@
                 <td th:text="${request.reject_date}"></td>
                 <td th:text="${request.comments}"></td>
                 <td th:text="${request.beneficiary_id}"></td>
+                <td><a th:href="@{/company/updateRequest/{requestID}(requestID=${request.getNumber_id()})}">
+                    <button type="button" class="selfbutton" style="width: 100px">Select days</button>
+                </a>
+                </td>
             </tr>
+
             </tbody>
 
         </table>
