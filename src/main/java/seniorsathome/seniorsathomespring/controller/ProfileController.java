@@ -7,9 +7,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
 import seniorsathome.seniorsathomespring.dao.CompanyDao;
 import seniorsathome.seniorsathomespring.dao.ContractDao;
 import seniorsathome.seniorsathomespring.dao.VolunteerDao;
+import seniorsathome.seniorsathomespring.model.Beneficiary;
 import seniorsathome.seniorsathomespring.model.Company;
 import seniorsathome.seniorsathomespring.model.User;
 import seniorsathome.seniorsathomespring.model.Volunteer;
@@ -23,6 +25,12 @@ public class ProfileController {
     private ContractDao contractDao;
     private CompanyDao companyDao;
     private VolunteerDao volunteerDao;
+    private BeneficiaryDao beneficiaryDao;
+
+    @Autowired
+    public void setBeneficiaryDao(BeneficiaryDao beneficiaryDao) {
+        this.beneficiaryDao = beneficiaryDao;
+    }
 
     @Autowired
     public void setContractDao(ContractDao contractDao) {
@@ -45,7 +53,15 @@ public class ProfileController {
     }
 
     @RequestMapping("/beneficiary")
-    public String loginBeneficiary(Model model) {
+    public String loginBeneficiary(HttpSession session,Model model) {
+        User user = (User)session.getAttribute("user");
+        if(session.getAttribute("user")==null){
+            return "redirect:/login";
+        }else{
+            String nombre = user.getUsername();
+            Beneficiary bene = beneficiaryDao.getBeneficiaryByUsername(nombre);
+            model.addAttribute("beneficiary",bene);
+        }
         return "profile/beneficiary";
     }
 

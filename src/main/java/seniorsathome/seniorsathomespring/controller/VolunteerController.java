@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.VolunteerDao;
+import seniorsathome.seniorsathomespring.model.Correo;
+import seniorsathome.seniorsathomespring.model.User;
 import seniorsathome.seniorsathomespring.model.Volunteer;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -51,6 +54,7 @@ public class VolunteerController {
         if (bindingResult.hasErrors())
             return "volunteer/add";
         volunteerDao.addVolunteer(volunteer);
+        Correo.enviarMensajeSah(volunteer.getEmail(), "Register", "You have applied correct");
         return "redirect:list";
     }
 
@@ -61,19 +65,38 @@ public class VolunteerController {
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(
-            @ModelAttribute("volunteer") Volunteer v,
-            BindingResult bindingResult) {
+    public String processUpdateSubmit(HttpSession session,
+                                      @ModelAttribute("volunteer") Volunteer v, String newPassword,
+                                      BindingResult bindingResult) {
+        User user = (User)session.getAttribute("user");
+        Volunteer vol = volunteerDao.getVolunteer(v.getIdNumber());
+        Boolean changePass= true;
+        if ( newPassword == "" ){
+            v.setPassword(vol.getPassword());
+            changePass = false;
+        }
+        else {
+            v.setPassword(newPassword);
+        }
         VolunteerValidator volValidator = new VolunteerValidator();
         volValidator.validate(v, bindingResult);
+
+        v.setRequestDate(vol.getRequestDate());
+        v.setApprovalDate(vol.getApprovalDate());
+        v.setStatus(vol.getStatus());
         if (bindingResult.hasErrors())
             return "volunteer/update";
-        Volunteer vol = volunteerDao.getVolunteerByUsername(v.getUserName());
-        v.setIdNumber(vol.getIdNumber());
-        v.setApprovalDate(null);
-        v.setStatus("UNSOLVED");
-        v.setRequestDate(LocalDate.now());
-        volunteerDao.updateVolunteer(v);
+        if(changePass)
+            volunteerDao.updateVolunteer(v);
+        else
+            volunteerDao.updateVolunteerWithoutEncription(v);
+        vol = volunteerDao.getVolunteer(v.getIdNumber());
+        if (vol.getUserName() != user.getUsername() ){
+            user.setUsername(vol.getUserName());
+            user.setPassword(vol.getPassword());
+            session.setAttribute("user",user);
+        }
+        Correo.enviarMensajeSah(v.getEmail(), "Update", "Your register has been updated");
         return "redirect:/profile/volunteer";
     }
 
@@ -89,6 +112,7 @@ public class VolunteerController {
         v.setStatus("APPROVED");
         v.setApprovalDate(LocalDate.now());
         volunteerDao.updateVolunteerWithoutEncription(v);
+        Correo.enviarMensajeSah(v.getEmail(), "Register accepted", "Your register has been accepted");
         return "redirect:/volunteer/listunsolved";
     }
 
@@ -97,6 +121,7 @@ public class VolunteerController {
         Volunteer v = volunteerDao.getVolunteer(idNumber);
         v.setStatus("REJECTED");
         volunteerDao.updateVolunteerWithoutEncription(v);
+        Correo.enviarMensajeSah(v.getEmail(), "Register denied", "Your register has been denied");
         return "redirect:/volunteer/listunsolved";
     }
 }

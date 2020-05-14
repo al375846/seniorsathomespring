@@ -32,24 +32,25 @@
             <thead>
             <tr>
                 <th>Service Type</th>
-                <th>Quantity</th>
+                <th>Status</th>
                 <th>Start Date</th>
                 <th>Final Date</th>
-                <th></th>
+                <th>Approval Date</th>
+                <th>Reject Date</th>
+                <th>Comments</th>
+                <th>Beneficiary ID</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="contract: ${contracts}">
-                <td th:text="${contract.serviceType}"></td>
-                <td th:text="${contract.quantity}"></td>
-                <td th:text="${contract.startDate}"></td>
-                <td th:text="${contract.finalDate}"></td>
-
-                <td><a th:href="@{/company/listRequest/{contractID}(contractID=${contract.getNumberID()})}">
-                    <button type="button" class="selfbutton" style="width: 100px">More Information</button>
-                </a>
-
-                </td>
+            <tr th:each="request: ${listRequests}">
+                <td th:text="${request.status}"></td>
+                <td th:text="${request.type}"></td>
+                <td th:text="${request.start_date}"></td>
+                <td th:text="${request.final_date}"></td>
+                <td th:text="${request.approval_date}"></td>
+                <td th:text="${request.reject_date}"></td>
+                <td th:text="${request.comments}"></td>
+                <td th:text="${request.beneficiary_id}"></td>
             </tr>
             </tbody>
 

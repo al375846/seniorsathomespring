@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
 import seniorsathome.seniorsathomespring.dao.SocialWorkerDao;
-import seniorsathome.seniorsathomespring.model.Beneficiary;
-import seniorsathome.seniorsathomespring.model.Request;
-import seniorsathome.seniorsathomespring.model.SocialWorker;
-import seniorsathome.seniorsathomespring.model.User;
+import seniorsathome.seniorsathomespring.model.*;
 
 import javax.servlet.http.HttpSession;
 import javax.swing.*;
@@ -76,10 +73,13 @@ public class BeneficiaryController {
             SocialWorker sw = socialWorkerDao.getSocialWorkerByUserName(user.getUsername());
             beneficiary.setSocialWorkerID(sw.getNumberid());
             beneficiaryDao.addBeneficiary(beneficiary);
+            Correo.enviarMensajeSah(beneficiary.getEmail(), "Register", "Your register has been recived");
+            Correo.enviarMensajeSah(sw.getEmail(), "Beneficiary Register", "The register of the beneficiary has been recived");
             return "redirect:/profile/socialworker";
         }
         beneficiary.setSocialWorkerID("");
         beneficiaryDao.addBeneficiary(beneficiary);
+        Correo.enviarMensajeSah(beneficiary.getEmail(), "Register", "Your register has been recived");
         return "redirect:/";
     }
 
@@ -95,10 +95,11 @@ public class BeneficiaryController {
     public String accept(
              @PathVariable String identificationNumber, @PathVariable String numberid) {
         Beneficiary beneficiaryAccept = beneficiaryDao.getBeneficiary(identificationNumber);
-        System.out.println(numberid);
-        System.out.println(identificationNumber);
         beneficiaryAccept.setSocialWorkerID(numberid);
+        SocialWorker sw = socialWorkerDao.getSocialWorker(numberid);
         beneficiaryDao.updateBeneficiary(beneficiaryAccept);
+        Correo.enviarMensajeSah(sw.getEmail(), "Beneficiary Assign", "A new beneficiary has been assigned to you");
+        Correo.enviarMensajeSah(beneficiaryAccept.getEmail(), "Socialworker Assign", "A new socialworker has been assigned to you");
         return "redirect:/beneficiary/listnosocialworker";
     }
 
@@ -109,15 +110,36 @@ public class BeneficiaryController {
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(
-            @ModelAttribute("beneficiary") Beneficiary beneficiary,
+    public String processUpdateSubmit(HttpSession session,
+            @ModelAttribute("beneficiary") Beneficiary beneficiary,String newPassword,
             BindingResult bindingResult) {
+        User user = (User)session.getAttribute("user");
+        Beneficiary bene = beneficiaryDao.getBeneficiary(beneficiary.getIdentificationNumber());
+        Boolean changePass= true;
+        if ( newPassword == "" ){
+            beneficiary.setPassword(bene.getPassword());
+            changePass= false;
+        }
+        else {
+            beneficiary.setPassword(newPassword);
+        }
         BeneficiaryValidator beneficiaryValidator = new BeneficiaryValidator();
         beneficiaryValidator.validate(beneficiary, bindingResult);
+
         if (bindingResult.hasErrors())
             return "beneficiary/update";
-        beneficiaryDao.updateBeneficiary(beneficiary);
-        return "redirect:list";
+        if(changePass)
+            beneficiaryDao.updateBeneficiary(beneficiary);
+        else
+            beneficiaryDao.updateBeneficiaryWithoutEncryption(beneficiary);
+        bene = beneficiaryDao.getBeneficiary(beneficiary.getIdentificationNumber());
+        if (beneficiary.getUserName() != user.getUsername() ){
+            user.setUsername(bene.getUserName());
+            user.setPassword(bene.getPassword());
+            session.setAttribute("user",user);
+        }
+        Correo.enviarMensajeSah(beneficiary.getEmail(), "Update", "Your register has been updated");
+        return "redirect:/profile/beneficiary";
     }
 
     @RequestMapping(value = "/requests/{identificationNumber}")
@@ -147,6 +169,8 @@ public class BeneficiaryController {
         }
 
         beneficiaryDao.addRequest(request);
+        Beneficiary bene = beneficiaryDao.getBeneficiary(request.getBeneficiary_id());
+        Correo.enviarMensajeSah(bene.getEmail(), "Request", "Your request has been aplied");
         return "redirect:list";
     }
 

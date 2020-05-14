@@ -13,6 +13,7 @@ import seniorsathome.seniorsathomespring.dao.CompanyDao;
 import seniorsathome.seniorsathomespring.dao.ContractDao;
 import seniorsathome.seniorsathomespring.model.Company;
 import seniorsathome.seniorsathomespring.model.Contract;
+import seniorsathome.seniorsathomespring.model.Correo;
 import seniorsathome.seniorsathomespring.model.ServiceType;
 
 import java.util.ArrayList;
@@ -62,6 +63,7 @@ public class ContractController {
         Company company = companyDao.getCompanyByName(contract.getCompanyID());
         contract.setCompanyID(company.getFiscalNumber());
         contractDao.addContract(contract);
+        Correo.enviarMensajeSah(company.getEmail(), "Contract added", "A contract has been added to your company");
         return "redirect:list";
     }
 

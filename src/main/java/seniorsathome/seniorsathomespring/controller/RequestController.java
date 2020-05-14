@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
+import seniorsathome.seniorsathomespring.dao.CompanyDao;
 import seniorsathome.seniorsathomespring.dao.ContractDao;
 import seniorsathome.seniorsathomespring.dao.RequestDao;
-import seniorsathome.seniorsathomespring.model.Contract;
-import seniorsathome.seniorsathomespring.model.Request;
+import seniorsathome.seniorsathomespring.model.*;
 
 import java.time.LocalDate;
 
@@ -20,8 +21,9 @@ import java.time.LocalDate;
 public class RequestController {
 
     private RequestDao requestDao;
-
+    private BeneficiaryDao beneficiaryDao;
     private ContractDao contractDao;
+    private CompanyDao companyDao;
 
     @Autowired
     public void setRequestDao(RequestDao requestDao) {
@@ -31,6 +33,16 @@ public class RequestController {
     @Autowired
     public void setContractDao(ContractDao contractDao) {
         this.contractDao = contractDao;
+    }
+
+    @Autowired
+    public void setBeneficiaryDao(BeneficiaryDao beneficiaryDao) {
+        this.beneficiaryDao = beneficiaryDao;
+    }
+
+    @Autowired
+    public void setCompanyDao(CompanyDao companyDao) {
+        this.companyDao = companyDao;
     }
 
     @RequestMapping("/list")
@@ -92,6 +104,8 @@ public class RequestController {
         request.setStatus("REJECTED");
         request.setReject_date(LocalDate.now());
         requestDao.updateRequest(request);
+        Beneficiary bene = beneficiaryDao.getBeneficiary(request.getBeneficiary_id());
+        Correo.enviarMensajeSah(bene.getEmail(), "Update", "Your register has been updated");
         return "redirect:../listunsolved";
     }
 
@@ -116,6 +130,8 @@ public class RequestController {
         contract.setQuantity(contract.getQuantity() - 1);
         requestDao.updateRequest(request);
         contractDao.updateContract(contract);
+        Company company = companyDao.getCompany(contract.getCompanyID());
+        Correo.enviarMensajeSah(company.getEmail(), "Request assigned", "A new request has been assigned");
         return "redirect:/request/listunsolved";
     }
 }

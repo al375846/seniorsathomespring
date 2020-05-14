@@ -74,5 +74,15 @@ public class RequestDao {
             return new ArrayList<Request>();
         }
     }
+    public List<Request> listRequestByContractId(String contractID) {
+        try{
+            return jdbcTemplate.query("SELECT * FROM Request WHERE status='APPROVED' AND contract_id=?",
+                    new RequestRowMapper(),
+                    contractID);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
+        }
+    }
 }
 
