@@ -15,25 +15,9 @@ public class ValorationValidator implements Validator{
     @Override
     public void validate(Object obj, Errors errors) {
         Valoration val = (Valoration) obj;
-        if (val.getIdValoration().trim().equals(""))
-            errors.rejectValue("idValoration", "Required",
-                    "You must enter a valoration id");
         if (val.getComment().trim().equals(""))
             errors.rejectValue("comment", "Required",
                     "You must enter a comment");
-        if (val.getIdBeneficiary().trim().equals(""))
-            errors.rejectValue("idBeneficiary", "Required",
-                    "You must enter a beneficiary id");
-
-        if (val.getIdVolunteer().trim().equals("")&&val.getIdCompany().trim().equals("")){
-            errors.rejectValue("idVolunteer", "Required",
-                    "You must enter a company or a volunteer");
-        }
-        if (!(val.getIdVolunteer().trim().equals(""))&&!(val.getIdCompany().trim().equals(""))){
-            errors.rejectValue("idVolunteer", "Required",
-                    "You must enter a company or a volunteer ONLY");
-        }
-        //Solo pongan un voluntario o una compañia
 
         if (val.getRate()<= 0 && val.getRate()>5)
             errors.rejectValue("rate", "Incorrect Value",
@@ -42,16 +26,5 @@ public class ValorationValidator implements Validator{
             errors.rejectValue("rate", "Incorrect Value",
                     "The comment cannot be longer than 255 characters");
 
-        if (val.getIdValoration().length()>10)
-            errors.rejectValue("idValoration", "Incorrect Value", "The valoration id cannot be longer than 10 characters");
-        if(!(val.getIdVolunteer().trim().equals(""))||!(val.getIdCompany().trim().equals(""))){
-            if (val.getIdVolunteer().length()>10)
-                errors.rejectValue("idVolunteer", "Incorrect Value", "The volunteer id cannot be longer than 10 characters");
-            if (val.getIdCompany().length()>10)
-                errors.rejectValue("idCompany", "Incorrect Value", "The company id cannot be longer than 10 characters");
-        }
-        if (val.getIdBeneficiary().length()>10)
-            errors.rejectValue("idBeneficiary", "Incorrect Value", "The beneficiary id cannot be longer than 10 characters");
-        // Afegeix ací la validació per a Edat > 15 anys
     }
 }

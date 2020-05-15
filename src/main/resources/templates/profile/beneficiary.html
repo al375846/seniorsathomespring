@@ -56,7 +56,7 @@
                     <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR__GYhqlR5jXf0YCF5D6x19DkmxBomSiXf5HeyRx13O7sy4ped&usqp=CAU" alt="Card image">
                     <div class="card-body">
                         <h4 class="card-title">Rate your request</h4>
-                        <a href="/request/listunsolved" class="btn btn-primary float-right btn-lg">See it</a>
+                        <a th:href="@{/beneficiary/rate/{beneficiaryId}(beneficiaryId=${beneficiary.identificationNumber})}" class="btn btn-primary float-right btn-lg">See it</a>
                     </div>
                 </div>
             </td>

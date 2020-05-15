@@ -36,14 +36,15 @@ public class ValorationController {
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("valoration") Valoration valoration,
+    public String processAddSubmit(@ModelAttribute("valoration") Valoration valoration, String estrellas,
                                    BindingResult bindingResult) {
+        valoration.setRate(Integer.parseInt(estrellas));
         ValorationValidator val = new ValorationValidator();
         val.validate(valoration,bindingResult);
         if (bindingResult.hasErrors())
             return "valoration/add";
         valorationDao.addValoration(valoration);
-        return "redirect:list";
+        return "redirect:/beneficiary/rate/" + valoration.getIdBeneficiary();
     }
 
     @RequestMapping(value="/update/{idValoration}", method = RequestMethod.GET)
@@ -68,5 +69,19 @@ public class ValorationController {
     public String processDeleteValoration(@PathVariable String idValoration) {
         valorationDao.deleteValoration(idValoration);
         return "redirect:../list";
+    }
+
+    @RequestMapping(value = "/rate/{identificationNumber}/{raterid}")
+    public String rateRater(@PathVariable String identificationNumber, @PathVariable String raterid, Model model) {
+        Valoration val = new Valoration();
+        val.setIdBeneficiary(identificationNumber);
+        if (raterid.charAt(0) == 'C') {
+            val.setIdCompany(raterid);
+        }
+        else {
+            val.setIdVolunteer(raterid);
+        }
+        model.addAttribute("valoration", val);
+        return "valoration/add";
     }
 }

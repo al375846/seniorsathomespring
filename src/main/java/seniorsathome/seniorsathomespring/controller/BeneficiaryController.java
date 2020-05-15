@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
+import seniorsathome.seniorsathomespring.dao.RaterDao;
 import seniorsathome.seniorsathomespring.dao.SocialWorkerDao;
 import seniorsathome.seniorsathomespring.model.*;
 
@@ -22,6 +23,7 @@ public class BeneficiaryController {
 
     BeneficiaryDao beneficiaryDao;
     SocialWorkerDao socialWorkerDao;
+    RaterDao raterDao;
 
     @Autowired
     public void setBeneficiaryDao(BeneficiaryDao beneficiaryDao) {
@@ -31,6 +33,11 @@ public class BeneficiaryController {
     @Autowired
     public void setSocialWorkerDao(SocialWorkerDao socialWorkerDao) {
         this.socialWorkerDao = socialWorkerDao;
+    }
+
+    @Autowired
+    public void setRaterDao(RaterDao raterDao) {
+        this.raterDao = raterDao;
     }
 
     @RequestMapping("/list")
@@ -180,5 +187,13 @@ public class BeneficiaryController {
         beneficiaryDao.deleteBeneficiary(identificationNumber);
         return "redirect:../list";
     }
+
+    @RequestMapping(value = "/rate/{identificationNumber}")
+    public String rateRequest(@PathVariable String identificationNumber, Model model) {
+        model.addAttribute("beneficiary", beneficiaryDao.getBeneficiary(identificationNumber));
+        model.addAttribute("raters", raterDao.listRaters(identificationNumber));
+        return "beneficiary/listraters";
+    }
+
 
 }

@@ -23,7 +23,7 @@ public class ValorationDao {
     /*Añade una valoración a la base de datos*/
     public void addValoration(Valoration valoration) {
         jdbcTemplate.update("INSERT INTO Valoration VALUES (?,?,?,?,?,?)",
-                valoration.getIdValoration(), valoration.getRate(), valoration.getComment(), valoration.getIdVolunteer(), valoration.getIdCompany(), valoration.getIdBeneficiary());
+                "N"+(getValorations().size() + 1), valoration.getRate(), valoration.getComment(), valoration.getIdVolunteer(), valoration.getIdCompany(), valoration.getIdBeneficiary());
     }
 
     /*Elimina una valoración de la base de datos*/

@@ -1,49 +1,96 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+    h1{
+        text-align: center;
+    }
+    td{
+        text-align: center;
+    }
+    table{
+        margin: 0 auto;
+    }
+    .selfbutton{
+        cursor: pointer;
+    }
+
+    #form p {
+        text-align: center;
+    }
+
+    #form label {
+        font-size: 20px;
+    }
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    label {
+        color: grey;
+    }
+
+    .clasificacion {
+        direction: rtl;
+        unicode-bidi: bidi-override;
+    }
+
+    label:hover,
+    label:hover ~ label {
+        color: orange;
+    }
+
+    input[type="radio"]:checked ~ label {
+        color: orange;
+    }
+</style>
 <head>
-    <title>Create a new Valoration</title>
+    <p><br></p>
+    <h1>New Valoration</h1>
+    <p><br></p>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
 <body>
-<h2>New Valoration</h2>
 <form action="#" th:action="@{/valoration/add}" th:object="${valoration}" method="post">
+    <input type="text" class="form-control" th:id="idValoration" th:field="*{idValoration}" hidden>
+    <input type="text" class="form-control" th:id="idVolunteer" th:field="*{idVolunteer}" hidden>
+    <input type="text" class="form-control" th:id="idCompany" th:field="*{idCompany}" hidden>
+    <input type="text" class="form-control" th:id="idBeneficiary" th:field="*{idBeneficiary}" hidden>
     <table>
         <tr>
-            <td><label>Valoration ID</label></td>
-            <td><input type="text" th:field="*{idValoration}" /></td>
-            <td th:if="${#fields.hasErrors('idValoration')}" th:errors="*{idValoration}" class="error"></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="rate">Rate :</label></td>
+                <td>
+                    <p class="clasificacion" style="margin: 0 auto; text-align: center; font-size: 30px; cursor: pointer">
+                        <input id="radio1" type="radio" name="estrellas" value="5"><!--
+    --><label for="radio1">★</label><!--
+    --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+    --><label for="radio2">★</label><!--
+    --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+    --><label for="radio3">★</label><!--
+    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+    --><label for="radio4">★</label><!--
+    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+    --><label for="radio5">★</label>
+                    </p>
+                </td>
+            </div>
         </tr>
         <tr>
-            <td><label>Rate</label></td>
-            <td><input type="number" step="any" th:field="*{rate}" /></td>
-            <td th:if="${#fields.hasErrors('rate')}" th:errors="*{rate}" class="error"></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="comment">Comment :</label></td>
+                <td><textarea type="text" class="form-control" th:id="comment" th:field="*{comment}" rows="3"></textarea></td>
+                <td th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}" class="error"></td>
+            </div>
         </tr>
-        <tr>
-            <td><label>Comment</label></td>
-            <td><input type="text" th:field="*{comment}" /></td>
-            <td th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Volunteer ID</label></td>
-            <td><input type="text" th:field="*{idVolunteer}" /></td>
-            <td th:if="${#fields.hasErrors('idVolunteer')}" th:errors="*{idVolunteer}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>CompanyID</label></td>
-            <td><input type="text" th:field="*{idCompany}" /></td>
-            <td th:if="${#fields.hasErrors('idCompany')}" th:errors="*{idCompany}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Beneficiary ID</label></td>
-            <td><input type="text" th:field="*{idBeneficiary}" /></td>
-            <td th:if="${#fields.hasErrors('idBeneficiary')}" th:errors="*{idBeneficiary}" class="error"></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Add Valoration"/></td>
-        </tr>
+    </table>
+    <p><br></p>
+    <table style="margin: 0 auto;" cellpadding="8">
+        <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input></td>
+        <td><input type="submit" class="selfbutton" value="Add Valoration" /></td>
     </table>
 </form>
 </body>
