@@ -32,31 +32,37 @@
             <thead>
             <tr>
                 <th>Service Type</th>
-                <th>Status</th>
                 <th>Start Date</th>
                 <th>Final Date</th>
                 <th>Approval Date</th>
-                <th>Reject Date</th>
                 <th>Comments</th>
-                <th>Beneficiary ID</th>
+                <th>Days</th>
+                <th>Monday</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="request: ${listRequests}">
-                <td th:text="${request.status}"></td>
                 <td th:text="${request.type}"></td>
                 <td th:text="${request.start_date}"></td>
                 <td th:text="${request.final_date}"></td>
                 <td th:text="${request.approval_date}"></td>
-                <td th:text="${request.reject_date}"></td>
                 <td th:text="${request.comments}"></td>
-                <td th:text="${request.beneficiary_id}"></td>
+                <td th:text="${request.days}"></td>
+
+                </td>
+                <td><a th:href="@{/company/monday/{number_id}(number_id=${request.getNumber_id()})}">
+                    <button type="button" class="selfbutton" style="width: 100px"></button>
+                </a>
+                </td>
                 <td><a th:href="@{/company/updateRequest/{requestID}(requestID=${request.getNumber_id()})}">
                     <button type="button" class="selfbutton" style="width: 100px">Select days</button>
                 </a>
                 </td>
+
+
             </tr>
+
 
             </tbody>
 
