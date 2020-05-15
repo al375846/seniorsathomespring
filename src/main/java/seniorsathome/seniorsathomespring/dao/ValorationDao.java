@@ -65,4 +65,26 @@ public class ValorationDao {
             return new ArrayList<Valoration>();
         }
     }
+
+    public List<Valoration> getVolunteerValorations(String volunteerid){
+        try{
+            return jdbcTemplate.query("SELECT * FROM Valoration WHERE idVolunteer=?",
+                    new ValorationRowMapper(),volunteerid);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Valoration>();
+        }
+    }
+
+    public Integer getVolunteerAverage(String volunteerid){
+        try{
+            return jdbcTemplate.queryForObject("SELECT AVG(rate) FROM Valoration WHERE idVolunteer=?",
+                    Integer.class, volunteerid);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+
 }

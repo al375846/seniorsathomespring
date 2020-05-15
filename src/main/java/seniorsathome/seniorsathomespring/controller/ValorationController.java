@@ -29,6 +29,18 @@ public class ValorationController {
         return "valoration/list";
     }
 
+    @RequestMapping("/listbyrater/{numberid}")
+    public String listValorations(Model model, @PathVariable String numberid) {
+        if(numberid.charAt(0) == 'V') {
+            System.out.println(valorationDao.getVolunteerAverage(numberid));
+            System.out.println(valorationDao.getVolunteerAverage(numberid).getClass());
+            model.addAttribute("valorations", valorationDao.getVolunteerValorations(numberid));
+            model.addAttribute("average", valorationDao.getVolunteerAverage(numberid));
+        }
+
+        return "valoration/listbyrater";
+    }
+
     @RequestMapping(value="/add")
     public String addValoration(Model model) {
         model.addAttribute("valoration", new Valoration());
