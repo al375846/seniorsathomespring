@@ -96,4 +96,13 @@ public class ProfileController {
             return "profile/volunteer";
         }
     }
+
+    @RequestMapping("/enter")
+    public String loginSocialWorker(HttpSession session, Model model) {
+        if (session.getAttribute("type") == null) {
+            return "redirect:/login";
+        }
+        String profile =  (String) session.getAttribute("type");
+        return "redirect:/profile/" + profile;
+    }
 }
