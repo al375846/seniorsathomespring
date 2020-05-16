@@ -23,7 +23,7 @@
 <body>
 <div layout:fragment="content" class="container">
     <h2>Add Request</h2>
-    <form action="#" th:action="@{/request/updateRequest}"
+    <form action="#" th:action="@{/company/updateRequest}"
           th:object="${updateRequest}" method="post">
         <table>
             <input type="text" class="form-control" th:id="number_id" th:field="*{number_id}" hidden>
