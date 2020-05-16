@@ -45,7 +45,7 @@
                 <td th:text="${contract.startDate}"></td>
                 <td th:text="${contract.finalDate}"></td>
 
-                <td><a th:href="@{/company/updateRequest/{contractID}(contractID=${contract.getNumberID()})}">
+                <td><a th:href="@{/company/listRequest/{contractID}(contractID=${contract.getNumberID()})}">
                     <button type="button" class="selfbutton" style="width: 100px">More Information</button>
                 </a>
 

@@ -87,7 +87,7 @@ public class CompanyController {
             model.addAttribute("updateRequest", requestDao.getRequest(request.getNumber_id()));
             return "company/updateRequest";}
         requestDao.updateRequest(request);
-        model.addAttribute("listRequests", requestDao.listRequestByContractId(request.getNumber_id()));
+        model.addAttribute("listRequests", requestDao.listRequestByContractId(request.getContract_id()));
         return "company/listRequest";
     }
 

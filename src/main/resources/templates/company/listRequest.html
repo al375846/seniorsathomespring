@@ -38,7 +38,6 @@
                 <th>Comments</th>
                 <th>Days</th>
                 <th>Start Hour</th>
-                <th>Monday</th>
                 <th></th>
             </tr>
             </thead>
@@ -50,7 +49,7 @@
                 <td th:text="${request.approval_date}"></td>
                 <td th:text="${request.comments}"></td>
                 <td th:text="${request.days}"></td>
-                <td th:text="${request.start_date}"></td>
+                <td th:text="${request.starthour}"></td>
 
                 <td><a th:href="@{/company/updateRequest/{requestID}(requestID=${request.getNumber_id()})}">
                     <button type="button" class="selfbutton" style="width: 100px">Select days</button>
