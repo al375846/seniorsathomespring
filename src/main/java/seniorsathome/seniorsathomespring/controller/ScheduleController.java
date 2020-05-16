@@ -128,4 +128,13 @@ public class ScheduleController {
         model.addAttribute("beneficiary", beneficiaryDao.getBeneficiary(s.getBeneficiaryid()));
         return "schedule/overview";
     }
+
+    @RequestMapping(value="/reserve/{beneficiaryid}/{scheduleid}")
+    public String overviwSchedule(Model model, @PathVariable String beneficiaryid, @PathVariable String scheduleid) {
+        Schedule s = scheduleDao.getSchedule(scheduleid);
+        s.setBeneficiaryid(beneficiaryid);
+        s.setStatus(true);
+        scheduleDao.updateSchedule(s);
+        return "redirect:/profile/beneficiary";
+    }
 }

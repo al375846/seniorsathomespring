@@ -93,21 +93,26 @@ public class CompanyController {
         return "redirect:../list";
     }
     @RequestMapping(value = "/monday/{requestID}")
-    public String monday(@PathVariable String requestID) {
+    public String monday(@PathVariable String requestID, Model model) {
         Request req = requestDao.getRequest(requestID);
         String days = req.getDays();
-        if (days ==null){
+        System.out.println(days);
+        if (days == null){
             req.setDays("M");
             requestDao.updateRequest(req);
+            model.addAttribute("listRequests", requestDao.listRequestByContractId(req.getContract_id()));
             return "company/listRequest";
         }
         if (days.contains("M")){
-            days.replace("M","");
+            System.out.println("Contiene M");
+            days = days.replace("M","");
         }else {
             days = añadir(days,"M");
         }
+        System.out.println(days);
         req.setDays(days);
         requestDao.updateRequest(req);
+        model.addAttribute("listRequests", requestDao.listRequestByContractId(req.getContract_id()));
         return "company/listRequest";
     }
     public String añadir(String days , String letra){

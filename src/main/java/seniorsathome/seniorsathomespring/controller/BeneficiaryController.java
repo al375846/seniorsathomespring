@@ -10,11 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
 import seniorsathome.seniorsathomespring.dao.RaterDao;
+import seniorsathome.seniorsathomespring.dao.ScheduleDao;
 import seniorsathome.seniorsathomespring.dao.SocialWorkerDao;
 import seniorsathome.seniorsathomespring.model.*;
 
 import javax.servlet.http.HttpSession;
 import javax.swing.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,6 +29,7 @@ public class BeneficiaryController {
     BeneficiaryDao beneficiaryDao;
     SocialWorkerDao socialWorkerDao;
     RaterDao raterDao;
+    ScheduleDao scheduleDao;
 
     @Autowired
     public void setBeneficiaryDao(BeneficiaryDao beneficiaryDao) {
@@ -38,6 +44,11 @@ public class BeneficiaryController {
     @Autowired
     public void setRaterDao(RaterDao raterDao) {
         this.raterDao = raterDao;
+    }
+
+    @Autowired
+    public void setScheduleDao(ScheduleDao scheduleDao) {
+        this.scheduleDao = scheduleDao;
     }
 
     @RequestMapping("/list")
@@ -58,6 +69,23 @@ public class BeneficiaryController {
     public String listBeneficiariesNoSocialworker(Model model, HttpSession session) {
         model.addAttribute("beneficiaries", beneficiaryDao.getBeneficiariesNoSocialWorker());
         return "beneficiary/listnosocialworker";
+    }
+
+    @RequestMapping("/listschedules")
+    public String listSchedules(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("schedules", scheduleDao.getInactiveSchedulesByDateStandar());
+        model.addAttribute("beneficiary", beneficiaryDao.getBeneficiaryByUsername(user.getUsername()));
+        return "beneficiary/listschedules";
+    }
+
+    @RequestMapping(value="/listschedulessearch",  method = RequestMethod.GET)
+    public String listSchedulesByDate(Model model, HttpSession session, String search) {
+        User user = (User) session.getAttribute("user");
+        LocalDate date = LocalDate.parse(search, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        model.addAttribute("schedules", scheduleDao.getInactiveSchedulesByDate(date));
+        model.addAttribute("beneficiary", beneficiaryDao.getBeneficiaryByUsername(user.getUsername()));
+        return "beneficiary/listschedules";
     }
 
     @RequestMapping(value="/add")

@@ -10,6 +10,7 @@ import seniorsathome.seniorsathomespring.model.Beneficiary;
 import seniorsathome.seniorsathomespring.model.Request;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,6 +103,15 @@ public class BeneficiaryDao {
         try {
             return jdbcTemplate.query("SELECT * FROM Request WHERE beneficiary_id=?", new RequestRowMapper(),
                     identificationNumber);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
+        }
+    }
+
+    public List<Request> listActiveRequests(String identificationNumber) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Request WHERE beneficiary_id=? AND start_date<=? AND final_date>=? AND status='APPROVED'", new RequestRowMapper(),
+                    identificationNumber, LocalDate.now(), LocalDate.now());
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
         }

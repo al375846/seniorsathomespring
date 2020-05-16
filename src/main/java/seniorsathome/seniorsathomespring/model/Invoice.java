@@ -3,8 +3,14 @@ package seniorsathome.seniorsathomespring.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Invoice {
+
+    private static final double Catering = 20;
+    private static final double Nursing = 10;
+    private static final double Cleaning = 12;
 
     private String numberID;
 
@@ -78,5 +84,27 @@ public class Invoice {
                 ", price=" + price +
                 ", beneficiaryID='" + beneficiaryID + '\'' +
                 '}';
+    }
+
+    public static List<InvoiceLine> emitirFactura(Beneficiary beneficiary, List<Request> requests, int invoiceId, int comienzo) {
+        List<InvoiceLine> invoicelines = new ArrayList<InvoiceLine>();
+        for(Request request: requests) {
+            InvoiceLine invoiceLine = new InvoiceLine();
+            invoiceLine.setInvoiceID("I" + invoiceId);
+            invoiceLine.setNumberID("IL" + comienzo);
+            comienzo++;
+            invoiceLine.setRequestID(request.getNumber_id());
+            if(request.getType().equals("CATERING")) {
+                invoiceLine.setPrice(Catering);
+            }
+            if(request.getType().equals("NURSING")) {
+                invoiceLine.setPrice(Nursing);
+            }
+            if(request.getType().equals("CLEANING")) {
+                invoiceLine.setPrice(Cleaning);
+            }
+            invoicelines.add(invoiceLine);
+        }
+        return invoicelines;
     }
 }
