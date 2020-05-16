@@ -77,6 +77,19 @@ public class CompanyController {
         model.addAttribute("updateRequest", requestDao.getRequest(requestID));
         return "company/updateRequest";
     }
+    @RequestMapping(value = "/updateRequest", method = RequestMethod.POST)
+    public String processUpdateRequestSubmit(
+            @ModelAttribute("company") Request request,
+            BindingResult bindingResult,Model model) {
+        RequestValidator requestValidator = new RequestValidator();
+        requestValidator.validate(request, bindingResult);
+        if (bindingResult.hasErrors()){
+            model.addAttribute("updateRequest", requestDao.getRequest(request.getNumber_id()));
+            return "company/updateRequest";}
+        requestDao.updateRequest(request);
+        model.addAttribute("listRequests", requestDao.listRequestByContractId(request.getNumber_id()));
+        return "company/listRequest";
+    }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
