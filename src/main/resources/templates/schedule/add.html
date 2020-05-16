@@ -1,61 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<style>
+    h1{
+        text-align: center;
+    }
+    td{
+        text-align: center;
+    }
+    table{
+        margin: 0 auto;
+    }
+    .selfbutton{
+        cursor: pointer;
+    }
+
+</style>
 <head>
-    <title>Create a new Volunteer's Schedule</title>
+    <p><br></p>
+    <h1>New Volunteer's Schedule</h1>
+    <p><br></p>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
 <body>
-<h2>New Volunteer's Schedule</h2>
 <form action="#" th:action="@{/schedule/add}"
       th:object="${schedule}" method="post">
     <table>
         <tr>
-            <td><label>Number ID</label></td>
-            <td><input type="text" th:field="*{numberid}" /></td>
-            <td th:if="${#fields.hasErrors('numberid')}" th:errors="*{numberid}" class="error"></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="day">Day :</label></td>
+                <td><input type="date" class="form-control" th:id="day" th:field="*{day}"></td>
+                <td th:if="${#fields.hasErrors('day')}" th:errors="*{day}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Day</label></td>
-            <td><input type="date" th:field="*{day}" /></td>
-            <td th:if="${#fields.hasErrors('day')}" th:errors="*{day}" class="error"></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="starthour">Start Hour :</label></td>
+                <td><input type="time" class="form-control" th:id="starthour" th:field="*{starthour}"></td>
+                <td th:if="${#fields.hasErrors('starthour')}" th:errors="*{starthour}" class="error"></td>
+            </div>
         </tr>
         <tr>
-            <td><label>Start Hour</label></td>
-            <td><input type="time" th:field="*{starthour}" /></td>
-            <td th:if="${#fields.hasErrors('starthour')}" th:errors="*{starthour}" class="error"></td>
+            <div class="form-group">
+                <td class="rightForm"><label th:for="finalhour">Final Hour :</label></td>
+                <td><input type="time" class="form-control" th:id="finalhour" th:field="*{finalhour}"></td>
+                <td th:if="${#fields.hasErrors('finalhour')}" th:errors="*{finalhour}" class="error"></td>
+            </div>
         </tr>
-        <tr>
-            <td><label>Final Hour</label></td>
-            <td><input type="time" th:field="*{finalhour}" /></td>
-            <td th:if="${#fields.hasErrors('finalhour')}" th:errors="*{finalhour}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Status</label></td>
-
-            <td><input type="radio" id="Activo" name="status" value="true">
-                <label for="Activo">Activo</label>
-                <input type="radio" id="Inactivo" name="status" value="false">
-                <label for="Inactivo">Inactivo</label>
-                <td th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error"></td>
-                <br>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Beneficiary ID</label></td>
-            <td><input type="text" th:field="*{beneficiaryid}" /></td>
-            <td th:if="${#fields.hasErrors('beneficiaryid')}" th:errors="*{beneficiaryid}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Volunteer ID</label></td>
-            <td><input type="text" th:field="*{volunteerid}" /></td>
-            <td th:if="${#fields.hasErrors('volunteerid')}" th:errors="*{volunteerid}" class="error"></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Add Volunteer's Schedule" /></td>
-        </tr>
+    </table>
+    <p><br></p>
+    <table style="margin: 0 auto;" cellpadding="8">
+        <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input></td>
+        <td><input type="submit" class="selfbutton" value="Add Schedule" /></td>
     </table>
 </form>
 </body>

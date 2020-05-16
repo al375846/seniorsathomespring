@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import seniorsathome.seniorsathomespring.model.Schedule;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,6 +81,26 @@ public class ScheduleDao {
         try{
             return jdbcTemplate.query("SELECT * FROM Volunteersschedule WHERE status=CAST(1 AS BIT) AND volunteerId=?",
                     new ScheduleRowMapper(), volunteerid);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Schedule>();
+        }
+    }
+
+    public List<Schedule> getInactiveSchedulesByDate(LocalDate date){
+        try{
+            return jdbcTemplate.query("SELECT * FROM Volunteersschedule WHERE status=CAST(0 AS BIT) AND day=?",
+                    new ScheduleRowMapper(), date);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Schedule>();
+        }
+    }
+
+    public List<Schedule> getInactiveSchedulesByDateStandar(){
+        try{
+            return jdbcTemplate.query("SELECT * FROM Volunteersschedule WHERE status=CAST(0 AS BIT) AND day>=?",
+                    new ScheduleRowMapper(), LocalDate.now());
         }
         catch (EmptyResultDataAccessException e) {
             return new ArrayList<Schedule>();
