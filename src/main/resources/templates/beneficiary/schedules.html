@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <style>
+        table{
+            text-align: center;
+        }
+    </style>
+    <title>My Schedules</title>
+    <meta charset="UTF-8" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
+</head>
+<div layout:fragment="content" style="left: 45%" class="container">
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <h1>Beneficiary schedules</h1>
+    <p><br></p>
+    <table class="table table-striped" cellpadding="8" style="margin: 0 auto;">
+        <thead>
+        <tr>
+            <th>Day</th>
+            <th>Start Hour</th>
+            <th>Final Hour</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="schedule: ${schedules}">
+            <td th:text="${schedule.getDay()}"></td>
+            <td th:text="${schedule.getStarthour()}"></td>
+            <td th:text="${schedule.getFinalhour()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <p><br></p>
+    <center>
+        <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input>
+    </center>
+    <p><br></p>
+    <p><br></p>
+
+</div>
+</body>
+</html>

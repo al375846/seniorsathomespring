@@ -177,6 +177,12 @@ public class BeneficiaryController {
         return "redirect:/profile/beneficiary";
     }
 
+    @RequestMapping(value = "/schedules/{identificationNumber}")
+    public String listSchedulesBeneficiaries(Model model, @PathVariable String identificationNumber){
+        model.addAttribute("schedules", beneficiaryDao.listSchedules(identificationNumber));
+        return "beneficiary/schedules";
+    }
+
     @RequestMapping(value = "/requests/{identificationNumber}")
     public String listRequestBeneficiaries(Model model, @PathVariable String identificationNumber) {
         model.addAttribute("requests", beneficiaryDao.listRequests(identificationNumber));
@@ -208,7 +214,6 @@ public class BeneficiaryController {
         Correo.enviarMensajeSah(bene.getEmail(), "Request", "Your request has been aplied");
         return "redirect:list";
     }
-
 
     @RequestMapping(value = "/delete/{identificationNumber}")
     public String processDeleteBeneficiary(@PathVariable String identificationNumber) {

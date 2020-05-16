@@ -37,6 +37,7 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -56,6 +57,9 @@
             </td>
             </td>
             <td><a th:href="@{/beneficiary/requests/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-primary">Requests</button></a>
+            </td>
+            </td>
+            <td><a th:href="@{/beneficiary/schedules/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-info">Schedules</button></a>
             </td>
         </tr>
         </tbody>

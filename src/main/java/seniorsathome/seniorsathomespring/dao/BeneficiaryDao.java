@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import seniorsathome.seniorsathomespring.model.Beneficiary;
 import seniorsathome.seniorsathomespring.model.Request;
+import seniorsathome.seniorsathomespring.model.Schedule;
 
 import javax.sql.DataSource;
 import java.time.LocalDate;
@@ -105,6 +106,14 @@ public class BeneficiaryDao {
                     identificationNumber);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
+        }
+    }
+
+    public List<Schedule> listSchedules(String identificationNumber){
+        try{
+            return jdbcTemplate.query("SELECT * FROM Volunteersschedule WHERE beneficiaryid=?", new ScheduleRowMapper(), identificationNumber);
+        }catch(EmptyResultDataAccessException e){
+            return new ArrayList<Schedule>();
         }
     }
 
