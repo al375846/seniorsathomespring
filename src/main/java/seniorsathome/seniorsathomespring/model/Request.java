@@ -42,11 +42,11 @@ public class Request {
         this.days = days;
     }
 
-    public LocalTime getHour() {
+    public LocalTime getStarthour() {
         return starthour;
     }
 
-    public void setHour(LocalTime hour) {
+    public void setStarthour(LocalTime hour) {
         this.starthour = hour;
     }
 

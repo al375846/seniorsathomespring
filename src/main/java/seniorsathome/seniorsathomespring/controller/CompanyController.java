@@ -15,6 +15,11 @@ import seniorsathome.seniorsathomespring.model.Company;
 import seniorsathome.seniorsathomespring.model.Correo;
 import seniorsathome.seniorsathomespring.model.Request;
 
+import javax.websocket.server.PathParam;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
@@ -85,13 +90,22 @@ public class CompanyController {
         return "redirect:list";
     }
 
-
-
     @RequestMapping(value = "/delete/{fiscalNumber}")
     public String processDeleteCompany(@PathVariable String fiscalNumber) {
         companyDao.deleteCompany(fiscalNumber);
         return "redirect:../list";
     }
+    @RequestMapping("/hour/{requestID}")
+    public String Hour(@PathVariable String requestID , Time hora, Model model){
+        Request req = requestDao.getRequest(requestID);
+        System.out.println(hora);
+        LocalTime time = hora.toLocalTime();
+        req.setStarthour(time);
+        requestDao.updateRequest(req);
+        model.addAttribute("listRequests", requestDao.listRequestByContractId(req.getContract_id()));
+        return"company/listRequest";
+    }
+
     @RequestMapping(value = "/monday/{requestID}")
     public String monday(@PathVariable String requestID, Model model) {
         Request req = requestDao.getRequest(requestID);

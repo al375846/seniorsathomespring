@@ -31,8 +31,8 @@ public class RequestRowMapper implements RowMapper<Request> {
         request.setContract_id(rs.getString("contract_id"));
         request.setDays(rs.getString("days"));
         Time hour = rs.getTime("starthour");
-        if (hour != null) request.setHour(hour.toLocalTime());
-        else request.setHour(null);
+        if (hour != null) request.setStarthour(hour.toLocalTime());
+        else request.setStarthour(null);
         return request;
     }
 }

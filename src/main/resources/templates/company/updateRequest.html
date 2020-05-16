@@ -1,86 +1,103 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
-    <title>Create a Request</title>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
-
-
+    <link rel="stylesheet" type="text/css"
+          href="/css/sah.css"
+          th:href="@{/css/sah.css}"/>
+    <title>Login</title>
+    <meta charset="UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+    <!--    <style>
+            /* Make the image fully responsive */
+            .carousel-inner img {
+                width: 100%;
+                height: 100%;
+            }
+        </style>-->
 </head>
 <body>
-<h2>Add Request</h2>
-<form action="#" th:action="@{/request/update}"
-      th:object="${updateRequest}" method="post">
-    <table>
-        <tr>
-            <td><label>Number ID</label></td>
-            <td><input type="text" th:field="*{number_id}" readonly="readonly"/></td>
-        </tr>
-        <tr>
-            <td><label>Status</label></td>
-            <td>
-                <input list="requestStatus" name="requestStatus" th:field="*{status}" />
-                <datalist id="requestStatus">
-                    <option value="APPROVED">
-                    <option value="REJECTED">
-                    <option value="UNSOLVED">
-                </datalist>
-            </td>
-            <td th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Service Type</label></td>
-            <td>
-                <input list="servicesType" name="serviceType" th:field="*{type}" />
-                <datalist id="servicesType">
-                    <option value="CATERING">
-                    <option value="PHYSIOTHERAPY">
-                    <option value="NURSING">
-                    <option value="LAUNDRY">
-                    <option value="CLEANING">
-                </datalist>
-            </td>
-            <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Start Date</label></td>
-            <td><input type="date" th:field="*{start_date}" /></td>
-            <td th:if="${#fields.hasErrors('start_date')}" th:errors="*{start_date}" class="error"></td>
+<div layout:fragment="content" class="container">
+    <h2>Add Request</h2>
+    <form action="#" th:action="@{/request/update}"
+          th:object="${updateRequest}" method="post">
+        <table>
+            <input type="text" class="form-control" th:id="identificationNumber" th:field="*{identificationNumber}" hidden>
+            <input type="text" class="form-control" th:id="socialWorkerID" th:field="*{socialWorkerID}" hidden>
+            <input type="text" class="form-control" th:id="password" th:field="*{password}" hidden>
+            <tr>
+                <td><label>Number ID</label></td>
+                <td><input type="text" th:field="*{number_id}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td><label>Status</label></td>
+                <td>
+                    <input list="requestStatus" name="requestStatus" th:field="*{status}"/>
+                    <datalist id="requestStatus">
+                        <option value="APPROVED">
+                        <option value="REJECTED">
+                        <option value="UNSOLVED">
+                    </datalist>
+                </td>
+                <td th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error"></td>
+            </tr>
+            <tr>
+                <td><label>Service Type</label></td>
+                <td>
+                    <input list="servicesType" name="serviceType" th:field="*{type}"/>
+                    <datalist id="servicesType">
+                        <option value="CATERING">
+                        <option value="PHYSIOTHERAPY">
+                        <option value="NURSING">
+                        <option value="LAUNDRY">
+                        <option value="CLEANING">
+                    </datalist>
+                </td>
+                <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error"></td>
+            </tr>
+            <tr>
+                <td><label>Start Date</label></td>
+                <td><input type="date" th:field="*{start_date}"/></td>
+                <td th:if="${#fields.hasErrors('start_date')}" th:errors="*{start_date}" class="error"></td>
 
-        </tr>
-        <tr>
-            <td><label>Final Date</label></td>
-            <td><input type="date" th:field="*{final_date}" /></td>
-            <td th:if="${#fields.hasErrors('final_date')}" th:errors="*{final_date}" class="error"></td>
+            </tr>
+            <tr>
+                <td><label>Final Date</label></td>
+                <td><input type="date" th:field="*{final_date}"/></td>
+                <td th:if="${#fields.hasErrors('final_date')}" th:errors="*{final_date}" class="error"></td>
 
-        </tr>
-        <tr>
-            <td><label>Approval Date</label></td>
-            <td><input type="date" th:field="*{approval_date}" /></td>
-        </tr>
-        <tr>
-            <td><label>Reject Date</label></td>
-            <td><input type="date" th:field="*{reject_date}" /></td>
-        </tr>
-        <tr>
-            <td><label>Comments</label></td>
-            <td><input type="text" th:field="*{comments}" /></td>
-        </tr>
-        <tr>
-            <td><label>Beneficiary ID</label></td>
-            <td><input type="text" th:field="*{beneficiary_id}" /></td>
-            <td th:if="${#fields.hasErrors('beneficiary_id')}" th:errors="*{beneficiary_id}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Contract ID</label></td>
-            <td><input type="text" th:field="*{contract_id}" /></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Update Request" /></td>
-        </tr>
-    </table>
-</form>
+            </tr>
+            <tr>
+                <td><label>Approval Date</label></td>
+                <td><input type="date" th:field="*{approval_date}"/></td>
+            </tr>
+            <tr>
+                <td><label>Reject Date</label></td>
+                <td><input type="date" th:field="*{reject_date}"/></td>
+            </tr>
+            <tr>
+                <td><label>Comments</label></td>
+                <td><input type="text" th:field="*{comments}"/></td>
+            </tr>
+            <tr>
+                <td><label>Beneficiary ID</label></td>
+                <td><input type="text" th:field="*{beneficiary_id}"/></td>
+                <td th:if="${#fields.hasErrors('beneficiary_id')}" th:errors="*{beneficiary_id}" class="error"></td>
+            </tr>
+            <tr>
+                <td><label>Contract ID</label></td>
+                <td><input type="text" th:field="*{contract_id}"/></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Update Request"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
+
 </html>

@@ -37,6 +37,7 @@
                 <th>Approval Date</th>
                 <th>Comments</th>
                 <th>Days</th>
+                <th>Start Hour</th>
                 <th>Monday</th>
                 <th></th>
             </tr>
@@ -49,12 +50,8 @@
                 <td th:text="${request.approval_date}"></td>
                 <td th:text="${request.comments}"></td>
                 <td th:text="${request.days}"></td>
+                <td th:text="${request.start_date}"></td>
 
-                </td>
-                <td><a th:href="@{/company/monday/{number_id}(number_id=${request.getNumber_id()})}">
-                    <button type="button" class="selfbutton" style="width: 100px"></button>
-                </a>
-                </td>
                 <td><a th:href="@{/company/updateRequest/{requestID}(requestID=${request.getNumber_id()})}">
                     <button type="button" class="selfbutton" style="width: 100px">Select days</button>
                 </a>
