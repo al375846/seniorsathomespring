@@ -55,4 +55,14 @@ public class InvoiceLineDao {
         }
     }
 
+    public List<InvoiceLine> getInvoiceLinesByInvoice(String invoice_id){
+        try{
+            return jdbcTemplate.query("SELECT * FROM InvoiceLine WHERE invoice_id=?",
+                    new InvoiceLineRowMapper(), invoice_id);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<InvoiceLine>();
+        }
+    }
+
 }

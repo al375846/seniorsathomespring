@@ -55,6 +55,12 @@ public class InvoiceLineController {
         return "invoiceLine/update";
     }
 
+    @RequestMapping(value = "/viewlines/{number_id}")
+    public String viewLinesInvoice(@PathVariable String number_id, Model model) {
+        model.addAttribute("invoiceLines", invoiceLineDao.getInvoiceLinesByInvoice(number_id));
+        return "invoiceLine/listbyinvoice";
+    }
+
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("invoiceLine") InvoiceLine invoiceLine,

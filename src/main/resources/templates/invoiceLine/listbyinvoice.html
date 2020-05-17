@@ -31,18 +31,18 @@
     <p><br></p>
     <p><br></p>
     <h1>InvoiceLines' List</h1>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="invoiceLine: ${invoiceLines}">
-            <td th:text="${invoiceLine.price}"></td>
-        </tr>
-        </tbody>
-    </table>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="invoiceLine: ${invoiceLines}">
+        <td th:text="${invoiceLine.price}"></td>
+    </tr>
+    </tbody>
+</table>
     <table style="margin: 0 auto" cellpadding="8">
         <td>
             <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton" />

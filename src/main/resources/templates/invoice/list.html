@@ -1,41 +1,62 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
-    <title>Manage Invoices</title>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
+    <style>
+        .selfbutton {
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css"
+          href="/css/sah.css"
+          th:href="@{/css/sah.css}"/>
+    <title>Invoice' List</title>
+    <meta charset="UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+    <!--    <style>
+            /* Make the image fully responsive */
+            .carousel-inner img {
+                width: 100%;
+                height: 100%;
+            }
+        </style>-->
 </head>
 <body>
-    <h1>Invoices' list</h1>
+<div layout:fragment="content" style="left: 9%" class="container">
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <h1>Invoices' List</h1>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Number ID</th>
             <th>Release date</th>
             <th>Start date</th>
             <th>Final date</th>
             <th>Price</th>
-            <th>Beneficiary ID</th>
-            <th></th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="invoice: ${invoices}">
-            <td th:text="${invoice.numberID}"></td>
             <td th:text="${invoice.releaseDate}"></td>
             <td th:text="${invoice.startDate}"></td>
             <td th:text="${invoice.finalDate}"></td>
             <td th:text="${invoice.price}"></td>
-            <td th:text="${invoice.beneficiaryID}"></td>
-            <td><a th:href="@{/invoice/update/{nom}(nom=${invoice.numberID})}"><button type="button" class="btn btn-warning">Update</button></a>
-            </td>
-            <td><a th:href="@{/invoice/delete/{nom}(nom=${invoice.numberID})}"><button type="button" class="btn btn-danger">Delete</button></a>
+            <td><a th:href="@{/invoiceLine/viewlines/{numberid}(numberid=${invoice.numberID})}"><button type="button" class="selfbutton">View</button></a>
             </td>
         </tr>
         </tbody>
     </table>
-    <a th:href="add"><button type="button" class="btn btn-success">Add Invoice</button></a>
+    <table style="margin: 0 auto" cellpadding="8">
+        <td>
+            <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton" />
+        </td>
+    </table>
+</div>
 </body>
 </html>
