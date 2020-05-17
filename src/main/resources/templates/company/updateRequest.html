@@ -40,14 +40,54 @@
             <input type="text" class="form-control" th:id="contract_id" th:field="*{contract_id}" hidden>
             <input type="text" class="form-control" th:id="days" th:field="*{days}" hidden>
             <tr>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="monday" value="M">Monday
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="tuesday" value="T">Tuesday
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="wednesday" value="W">Wednesday
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="thursday" value="X">Thursday
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="friday" value="F">Friday
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="saturday" value="S">Saturday
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="sunday" value="Y">Sunday
+                    </label>
+                </div>
+
+            </tr>
+            <tr>
                 <div class="form-group">
                     <td class="rightForm"><label th:for="starthour">Hour :</label></td>
                     <td><input type="time" class="form-control" th:id="starthour" name="starthour"  ></td>
                 </div>
             </tr>
-            <tr>
-                <td colspan="2"><input type="submit" value="Update Request"/></td>
-            </tr>
+
+        </table>
+        <table style="margin: 0 auto;" cellpadding="8">
+            <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input></td>
+            <td colspan="2"><input type="submit" value="Update Request"/></td>
         </table>
     </form>
 </div>

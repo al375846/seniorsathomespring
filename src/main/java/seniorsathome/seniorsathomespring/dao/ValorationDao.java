@@ -85,6 +85,24 @@ public class ValorationDao {
             return null;
         }
     }
+    public List<Valoration> getCompanyValorations(String volunteerid){
+        try{
+            return jdbcTemplate.query("SELECT * FROM Valoration WHERE idCompany=?",
+                    new ValorationRowMapper(),volunteerid);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Valoration>();
+        }
+    }
 
+    public Integer getCompanyAverage(String volunteerid){
+        try{
+            return jdbcTemplate.queryForObject("SELECT AVG(rate) FROM Valoration WHERE idCompany=?",
+                    Integer.class, volunteerid);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 
 }

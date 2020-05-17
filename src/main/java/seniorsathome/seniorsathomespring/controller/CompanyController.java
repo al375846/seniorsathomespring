@@ -79,13 +79,14 @@ public class CompanyController {
     }
     @RequestMapping(value = "/updateRequest", method = RequestMethod.POST)
     public String processUpdateRequestSubmit(
-            @ModelAttribute("company") Request request,
+            @ModelAttribute("company") Request request,String monday,String tuesday,String wednesday,String thursday,String friday,String saturday,String sunday,
             BindingResult bindingResult,Model model) {
         RequestValidator requestValidator = new RequestValidator();
         requestValidator.validate(request, bindingResult);
         if (bindingResult.hasErrors()){
             model.addAttribute("updateRequest", requestDao.getRequest(request.getNumber_id()));
             return "company/updateRequest";}
+        request.setDays(monday+tuesday+wednesday+thursday+friday+saturday+sunday);
         requestDao.updateRequest(request);
         model.addAttribute("listRequests", requestDao.listRequestByContractId(request.getContract_id()));
         return "company/listRequest";

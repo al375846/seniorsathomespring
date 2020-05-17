@@ -73,6 +73,7 @@ public class ProfileController {
         }else{
             String nombre = user.getUsername();
             Company com = companyDao.getCompanyByUserName(nombre);
+            model.addAttribute("company",com);
             model.addAttribute("usuario",com.getName());
             model.addAttribute("contracts",contractDao.inicioSesion(com.getFiscalNumber()));
         }

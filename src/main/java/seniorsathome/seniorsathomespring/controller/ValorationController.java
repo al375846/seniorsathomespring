@@ -35,6 +35,10 @@ public class ValorationController {
             model.addAttribute("valorations", valorationDao.getVolunteerValorations(numberid));
             model.addAttribute("average", valorationDao.getVolunteerAverage(numberid));
         }
+        else{
+            model.addAttribute("valorations", valorationDao.getCompanyValorations(numberid));
+            model.addAttribute("average", valorationDao.getCompanyAverage(numberid));
+        }
 
         return "valoration/listbyrater";
     }
