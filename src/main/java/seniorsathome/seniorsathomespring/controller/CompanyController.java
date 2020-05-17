@@ -112,7 +112,6 @@ public class CompanyController {
     @RequestMapping("/hour/{requestID}")
     public String Hour(@PathVariable String requestID , Time hora, Model model){
         Request req = requestDao.getRequest(requestID);
-        System.out.println(hora);
         LocalTime time = hora.toLocalTime();
         req.setStarthour(time);
         requestDao.updateRequest(req);
@@ -124,7 +123,6 @@ public class CompanyController {
     public String monday(@PathVariable String requestID, Model model) {
         Request req = requestDao.getRequest(requestID);
         String days = req.getDays();
-        System.out.println(days);
         if (days == null){
             req.setDays("M");
             requestDao.updateRequest(req);
@@ -132,12 +130,10 @@ public class CompanyController {
             return "company/listRequest";
         }
         if (days.contains("M")){
-            System.out.println("Contiene M");
             days = days.replace("M","");
         }else {
             days = añadir(days,"M");
         }
-        System.out.println(days);
         req.setDays(days);
         requestDao.updateRequest(req);
         model.addAttribute("listRequests", requestDao.listRequestByContractId(req.getContract_id()));
