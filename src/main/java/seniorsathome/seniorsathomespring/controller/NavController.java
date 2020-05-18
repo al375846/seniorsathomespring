@@ -16,10 +16,10 @@ public class NavController {
     public String showMission(Model model) {
         return "/others/mission";
     }
-    @RequestMapping("/others/objetives")
-    public String showObjetives(Model model) {
-        return "/others/objetives";
-    }
+    //@RequestMapping("/others/objetives")
+    //public String showObjetives(Model model) {
+        //return "/others/objetives";
+    //}
     @RequestMapping("/others/history")
     public String showHistory(Model model) {
         return "/others/history";

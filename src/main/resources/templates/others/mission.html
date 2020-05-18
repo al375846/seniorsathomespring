@@ -3,10 +3,15 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/base}">
 <head>
-    <title>The Mission</title>
+    <title>Our Mission</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
+    <style>
+        .card-text{
+            color: #616161;
+        }
+    </style>
 </head>
 <body>
 <div layout:fragment="content" class="container">
@@ -14,8 +19,53 @@
     <p><br></p>
     <p><br></p>
 
-        <h2>The Mission</h2>
+        <h1>Our Mission</h1>
 
+    <p><br></p>
+
+    <div class="container">
+        <p>We are a group of people that are developing a project commissioned by the Regional Ministry of Social Affairs (CAS), in order to improve the quality of live of elderly people. We believe that elderly would be more comfortable in their own home than in residences, but they are not always able to stay at home due to some needs. It is our aim to offer them help and companion services in order to make them possible to stay in their home.</p>
+
+        <div class="media">
+            <img class="align-self-center mr-4" src="https://www.larendija.es/wp-content/uploads/2016/01/Darse-la-mano-imagen-1.jpg">
+            <div class="media-body">
+                <p>
+                    The services we offer are services that we believe can help us achieve our objective, such as catering or cleaning, but we are expanding the number of services as they are needed. While the company service are services that we can offer with thanks to the collaboration of the volunteers who have volunteered to participate in our project, since there are no things that a company cannot provide such as help you with the purchase, which will read a book or just listen to you and talk to you.
+                </p>
+                <p>
+                    Most of the services we offer are paid, since we hire specialized external companies, and in this way we can offer the best services, but we understand that the salary received is not too much in general, so we have prices affordable as it is not our intention that all savings be spent. On the other hand, the services offered by the volunteers are totally free since they do not do it for the money but for vocation and experience.
+                </p>
+            </div>
+        </div>
+        <br>
+
+        <p> In order to achieve our mission we have set ourselves some objectives we think that are going to help us with our project.</p>
+
+        <div class="card-deck">
+            <div class="card">
+                <img class="card-img-top" src="https://m.eldiario.es/turing/Mapa-interactivo-ferroviario-Espana-Vizzuality_EDIIMA20130715_0149_17.jpg">
+                <div class="card-body">
+                    <h3 class="card-title">Reach everybody</h3>
+                    <p class="card-text">We want to help as much people as possible, and to achieve that we have to expand so that all the people who want to rest in their house an need some help can use our services.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="https://st3.idealista.com/news/archivos/styles/idn_home_article_media_left_desktop/public/2011-06/caida-precios-vivienda_2.jpg?sv=CiSwvISH&itok=cKuiu7D4">
+                <div class="card-body">
+                    <h3 class="card-title">Affordable prices</h3>
+                    <p class="card-text">Not everyone has a lot of money, but that should not be an impediment to rest at home, so we want to implement services with affordable prices so that everyone can use them.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="https://www.ayudatecnia.com/sites/default/files/styles/noticias_home_370x260_/public/noticias/1288/ayudas-tecnicas-bizkaia-capacitismo.jpg?itok=MQWCjKMg">
+                <div class="card-body">
+                    <h3 class="card-title">Diversity of services</h3>
+                    <p class="card-text">Each person has different tastes and needs, and we want to adapt to each one in order to help everyone, and although at the beginning it is possible that we do not have many services, we intend to add services as they are necessary to meet the needs of our clients.</p>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
 </div>
 </body>
 </html>
