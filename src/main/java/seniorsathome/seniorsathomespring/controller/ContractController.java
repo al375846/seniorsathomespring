@@ -86,6 +86,7 @@ public class ContractController {
         }
         Company company = companyDao.getCompanyByName(contract.getCompanyID());
         contract.setCompanyID(company.getFiscalNumber());
+        Correo.enviarMensajeSah(company.getEmail(), "Contract updated", "Your contact has been updated");
         contractDao.updateContract(contract);
         return "redirect:list";
     }

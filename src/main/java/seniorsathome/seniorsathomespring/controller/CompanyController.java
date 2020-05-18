@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
 import seniorsathome.seniorsathomespring.dao.CompanyDao;
+import seniorsathome.seniorsathomespring.dao.ContractDao;
 import seniorsathome.seniorsathomespring.dao.RequestDao;
-import seniorsathome.seniorsathomespring.model.Company;
-import seniorsathome.seniorsathomespring.model.Correo;
-import seniorsathome.seniorsathomespring.model.Request;
+import seniorsathome.seniorsathomespring.model.*;
 
 import javax.websocket.server.PathParam;
 import java.sql.Time;
@@ -25,6 +25,8 @@ import java.time.LocalTime;
 public class CompanyController {
     private RequestDao requestDao;
     private CompanyDao companyDao;
+    private BeneficiaryDao beneficiaryDao;
+    private ContractDao contractDao;
 
     @Autowired
     public void setCompanyDao(CompanyDao companyDao) {
@@ -32,8 +34,18 @@ public class CompanyController {
     }
 
     @Autowired
-    public void setCompanyDao(RequestDao requestDao) {
+    public void setRequestDao(RequestDao requestDao) {
         this.requestDao = requestDao;
+    }
+
+    @Autowired
+    public void setBeneficiaryDao(BeneficiaryDao beneficiaryDao) {
+        this.beneficiaryDao = beneficiaryDao;
+    }
+
+    @Autowired
+    public void setContractDao(ContractDao contractDao) {
+        this.contractDao = contractDao;
     }
 
     @RequestMapping("/list")
@@ -89,6 +101,10 @@ public class CompanyController {
         request.setDays(monday+tuesday+wednesday+thursday+friday+saturday+sunday);
         requestDao.updateRequest(request);
         model.addAttribute("listRequests", requestDao.listRequestByContractId(request.getContract_id()));
+        Beneficiary beneficiary = beneficiaryDao.getBeneficiary(request.getBeneficiary_id());
+        Contract contract = contractDao.getContract(request.getContract_id());
+        Company company = companyDao.getCompany(contract.getCompanyID());
+        Correo.enviarMensajeSah(company.getEmail(), beneficiary.getEmail(), "Days anh hour of request", "Your request is now accepted and we have assigned days and hour");
         return "company/listRequest";
     }
 
@@ -101,6 +117,7 @@ public class CompanyController {
         if (bindingResult.hasErrors())
             return "company/update";
         companyDao.updateCompany(company);
+        Correo.enviarMensajeSah(company.getEmail(), "Update", "Your profile has been updated. Username: " + company.getUserName() + " Password: " + company.getPassword());
         return "redirect:list";
     }
 

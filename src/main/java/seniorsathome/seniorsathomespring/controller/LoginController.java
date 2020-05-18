@@ -43,22 +43,10 @@ public class LoginController {
         session.setAttribute("user", user);
 
         String type = userDao.userType(user);
-
-        if (type.equals("x")){
-            session.setAttribute("type", "committee");
-            return "redirect:/profile/committee";}
-        if (type.equals("b")){
-            session.setAttribute("type", "beneficiary");
-            return "redirect:/profile/beneficiary";}
-        if (type.equals("v")){
-            session.setAttribute("type", "volunteer");
-            return "redirect:/profile/volunteer";}
-        if (type.equals("c")){
-            session.setAttribute("type", "company");
-            return "redirect:/profile/company";}
-        if (type.equals("s")){
-            session.setAttribute("type", "socialworker");
-            return "redirect:/profile/socialworker";}
+        if (!type.equals("")) {
+            session.setAttribute("type", type);
+            return "redirect:/profile/" + type;
+        }
 
         if (session.getAttribute("nextUrl") != null) {
             String url = session.getAttribute("nextUrl").toString();
@@ -83,21 +71,10 @@ public class LoginController {
         session.setAttribute("user", user);
 
         String type = userDao.userType(user);
-        if (type.equals("x")){
-            session.setAttribute("type", "committee");
-            return "redirect:/profile/committee";}
-        if (type.equals("b")){
-            session.setAttribute("type", "beneficiary");
-            return "redirect:/profile/beneficiary";}
-        if (type.equals("v")){
-            session.setAttribute("type", "volunteer");
-            return "redirect:/profile/volunteer";}
-        if (type.equals("c")){
-            session.setAttribute("type", "company");
-            return "redirect:/profile/company";}
-        if (type.equals("s")){
-            session.setAttribute("type", "socialworker");
-            return "redirect:/profile/socialworker";}
+        if (!type.equals("")) {
+            session.setAttribute("type", type);
+            return "redirect:/profile/" + type;
+        }
 
         if (session.getAttribute("nextUrl") != null) {
             String url = session.getAttribute("nextUrl").toString();
