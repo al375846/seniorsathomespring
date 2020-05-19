@@ -15,12 +15,8 @@ import seniorsathome.seniorsathomespring.dao.SocialWorkerDao;
 import seniorsathome.seniorsathomespring.model.*;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.*;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequestMapping("/beneficiary")
@@ -68,7 +64,7 @@ public class BeneficiaryController {
     @RequestMapping("/listnosocialworker")
     public String listBeneficiariesNoSocialworker(Model model, HttpSession session) {
         model.addAttribute("beneficiaries", beneficiaryDao.getBeneficiariesNoSocialWorker());
-        return "beneficiary/listnosocialworker";
+        return "NoSocialWorker";
     }
 
     @RequestMapping("/listschedules")

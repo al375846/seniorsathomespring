@@ -53,11 +53,11 @@
             <td th:text="${company.responsibleAddress}"></td>
             <td th:text="${company.phoneNumber}"></td>
             <td><a th:href="@{/company/update/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
-                <button type="button" class="selfbutton" style="width: 100px">Update</button>
+                <button type="button" class="btn btn-warning" style="width: 100px">Update</button>
             </a>
             </td>
             <td><a th:href="@{/company/delete/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
-                <button type="button" class="selfbutton" style="width: 100px">Delete</button>
+                <button type="button" class="btn btn-danger" style="width: 100px">Delete</button>
             </a>
             </td>
         </tr>

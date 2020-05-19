@@ -49,11 +49,11 @@
             <td th:text="${contract.startDate}"></td>
             <td th:text="${contract.finalDate}"></td>
             <td><a th:href="@{/contract/update/{numberID}(numberID=${contract.numberID})}">
-                <button type="button" class="selfbutton" style="width: 100px">Update</button>
+                <button type="button" class="btn btn-warning" style="width: 100px">Update</button>
             </a>
             </td>
             <td><a th:href="@{/contract/delete/{numberID}(numberID=${contract.numberID})}">
-                <button type="button" class="selfbutton" style="width: 100px">Delete</button>
+                <button type="button" class="btn btn-danger" style="width: 100px">Delete</button>
             </a>
             </td>
         </tr>
