@@ -55,7 +55,7 @@ public class VolunteerController {
             return "volunteer/add";
         volunteerDao.addVolunteer(volunteer);
         Correo.enviarMensajeSah(volunteer.getEmail(), "Register", "You have applied correct");
-        return "redirect:list";
+        return "/home";
     }
 
     @RequestMapping(value="/update/{idNumber}", method = RequestMethod.GET)
