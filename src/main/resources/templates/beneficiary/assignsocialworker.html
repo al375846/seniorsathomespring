@@ -17,12 +17,18 @@
     <br>
     <p><br></p>
     <p><br></p>
-    <h1>Beneficairies' List</h1>
+    <h1>Social Worker's list</h1>
     <p><br></p>
     <table>
         <td>
             <input type="text" class="form-control" th:id="identifiaction_number" th:field="${beneficiary.identificationNumber}" hidden>
             <table>
+                <tr>
+                    <div class="form-group">
+                        <td class="rightForm"><label th:for="id">Id :</label></td>
+                        <td><input type="text" class="form-control" th:id="id" th:field="${beneficiary.identificationNumber}" readonly></td>
+                    </div>
+                </tr>
                 <tr>
                     <div class="form-group">
                         <td class="rightForm"><label th:for="name">Name :</label></td>
