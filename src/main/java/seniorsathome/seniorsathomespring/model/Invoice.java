@@ -12,7 +12,7 @@ public class Invoice {
     private static final double Nursing = 5; //price per visit
     private static final double Cleaning = 4; //price per hour //3 hour always
 
-    
+
     private String numberID;
 
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)

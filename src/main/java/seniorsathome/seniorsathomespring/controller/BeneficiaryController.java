@@ -64,7 +64,7 @@ public class BeneficiaryController {
     @RequestMapping("/listnosocialworker")
     public String listBeneficiariesNoSocialworker(Model model, HttpSession session) {
         model.addAttribute("beneficiaries", beneficiaryDao.getBeneficiariesNoSocialWorker());
-        return "NoSocialWorker";
+        return "beneficiary/listnosocialworker";
     }
 
     @RequestMapping("/listschedules")
