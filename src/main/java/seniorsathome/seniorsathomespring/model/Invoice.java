@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Invoice {
 
-    private static final double Catering = 2; //price per day
+    private static final double Catering = 4.5; //price per day
     private static final double Nursing = 5; //price per visit
     private static final double Cleaning = 4; //price per hour //3 hour always
 
