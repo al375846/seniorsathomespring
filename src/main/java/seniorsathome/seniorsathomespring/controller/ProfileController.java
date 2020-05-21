@@ -52,6 +52,16 @@ public class ProfileController {
         return "profile/committee";
     }
 
+    @RequestMapping("/casmanager")
+    public String loginCasmanager(Model model) {
+        return "profile/casmanager";
+    }
+
+    @RequestMapping("/casvolunteer")
+    public String loginCasvolunteer(Model model) {
+        return "profile/casvolunteer";
+    }
+
     @RequestMapping("/beneficiary")
     public String loginBeneficiary(HttpSession session,Model model) {
         User user = (User)session.getAttribute("user");

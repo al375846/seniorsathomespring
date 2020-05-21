@@ -59,23 +59,28 @@ public class UserDao {
         users.addAll(jdbcTemplate.query("SELECT user_name, password FROM Beneficiary WHERE user_name=?",
                 new UserRowMapper(), user.getUsername()));
         if (users.size() > 0)
-            type += "b";
+            return "beneficiary";
         users.addAll(jdbcTemplate.query("SELECT user_name, password FROM SocialWorker WHERE user_name=?",
                 new UserRowMapper(), user.getUsername()));
         if (users.size() > 0 && type == "")
-            type += "s";
+            return "socialworker";
         users.addAll(jdbcTemplate.query("SELECT userName, password FROM Volunteer WHERE userName=?",
                 new UserRowMapper(), user.getUsername()));
         if (users.size() > 0 && type == "")
-            type += "v";
+            return "volunteer";
         users.addAll(jdbcTemplate.query("SELECT userName, password FROM Company WHERE userName=?",
                 new UserRowMapper(), user.getUsername()));
         if (users.size() > 0 && type == "")
-            type += "c";
+            return "company";
         users.addAll(jdbcTemplate.query("SELECT userName, password FROM Committee WHERE userName=?",
                 new UserRowMapper(), user.getUsername()));
         if (users.size() > 0 && type == "")
-            type += "x";
+            if (users.get(0).getUsername().equals("casManager"))
+                return "casmanager";
+        if (users.get(0).getUsername().equals("casCommittee"))
+            return "committee";
+        if (users.get(0).getUsername().equals("casVolunteer"))
+            return "casvolunteer";
 
         return type;
     }

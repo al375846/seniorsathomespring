@@ -89,7 +89,7 @@ public class ScheduleDao {
 
     public List<Schedule> getInactiveSchedulesByDate(LocalDate date){
         try{
-            return jdbcTemplate.query("SELECT * FROM Volunteersschedule WHERE status=CAST(0 AS BIT) AND day=?",
+            return jdbcTemplate.query("SELECT s.* FROM VolunteersSchedule AS s FULL OUTER JOIN Volunteer AS v ON s.volunteerId = v.idNumber WHERE s.status=CAST(0 AS BIT) AND s.day=? AND v.status='APPROVED'",
                     new ScheduleRowMapper(), date);
         }
         catch (EmptyResultDataAccessException e) {
@@ -99,7 +99,7 @@ public class ScheduleDao {
 
     public List<Schedule> getInactiveSchedulesByDateStandar(){
         try{
-            return jdbcTemplate.query("SELECT * FROM Volunteersschedule WHERE status=CAST(0 AS BIT) AND day>=?",
+            return jdbcTemplate.query("SELECT s.* FROM VolunteersSchedule AS s FULL OUTER JOIN Volunteer AS v ON s.volunteerId = v.idNumber WHERE s.status=CAST(0 AS BIT) AND s.day=? AND v.status='APPROVED'",
                     new ScheduleRowMapper(), LocalDate.now());
         }
         catch (EmptyResultDataAccessException e) {

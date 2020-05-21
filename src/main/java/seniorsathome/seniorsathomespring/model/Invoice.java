@@ -8,9 +8,9 @@ import java.util.List;
 
 public class Invoice {
 
-    private static final double Catering = 20;
-    private static final double Nursing = 10;
-    private static final double Cleaning = 12;
+    private static final double Catering = 2; //price per day
+    private static final double Nursing = 5; //price per visit
+    private static final double Cleaning = 4; //price per hour //3 hour always
 
     private String numberID;
 
@@ -95,13 +95,13 @@ public class Invoice {
             comienzo++;
             invoiceLine.setRequestID(request.getNumber_id());
             if(request.getType().equals("CATERING")) {
-                invoiceLine.setPrice(Catering);
+                invoiceLine.setPrice(Catering * request.getDays().length() * 4);
             }
             if(request.getType().equals("NURSING")) {
-                invoiceLine.setPrice(Nursing);
+                invoiceLine.setPrice(Nursing * request.getDays().length() * 4);
             }
             if(request.getType().equals("CLEANING")) {
-                invoiceLine.setPrice(Cleaning);
+                invoiceLine.setPrice(Cleaning * request.getDays().length() * 4);
             }
             invoicelines.add(invoiceLine);
         }
