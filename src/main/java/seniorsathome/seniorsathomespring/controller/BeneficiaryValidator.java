@@ -42,8 +42,8 @@ public class BeneficiaryValidator implements Validator {
             errors.rejectValue("name", "Incorrect Value", "The name cannot be longer than 50 characters");
         if (beneficiary.getSurnames().length()>50)
             errors.rejectValue("surnames", "Incorrect Value", "The surnames cannot be longer than 50 characters");
-        if (beneficiary.getPhoneNumber().length()>50)
-            errors.rejectValue("phoneNumber", "Incorrect Value", "The phone number connot be longer than 10 characters");
+        if (beneficiary.getPhoneNumber().length()>10)
+            errors.rejectValue("phoneNumber", "Incorrect Value", "The phone number cannot be longer than 10 characters");
         if (beneficiary.getEmail().length()>50)
             errors.rejectValue("email", "Incorrect Value", "The mail cannot be longer than 50 characters");
         if (beneficiary.getAddress().length()>50)

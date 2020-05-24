@@ -38,8 +38,8 @@ public class VolunteerValidator implements Validator{
             errors.rejectValue("email", "Incorrect Value", "It should be an email (contains @)");
         if (vol.getName().length()>50)
             errors.rejectValue("name", "Incorrect Value", "The name cannot be longer than 50 characters");
-        if (vol.getPhoneNumber().length()>50)
-            errors.rejectValue("phoneNumber", "Incorrect Value", "The phone number connot be longer than 10 characters");
+        if (vol.getPhoneNumber().length()>10)
+            errors.rejectValue("phoneNumber", "Incorrect Value", "The phone number cannot be longer than 10 characters");
         if (vol.getEmail().length()>50)
             errors.rejectValue("email", "Incorrect Value", "The mail cannot be longer than 50 characters");
         if (vol.getAddress().length()>50)
