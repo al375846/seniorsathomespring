@@ -22,6 +22,7 @@ public class RequestDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    /*Añadir una nueva solicitud*/
     public void addRequest (Request request) {
         jdbcTemplate.update("INSERT INTO Request VALUES(?, ?::STATUSTYPE, ?::SERVICETYPE, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 request.getNumber_id(), request.getStatus(), request.getType(), request.getStart_date(),
@@ -29,14 +30,12 @@ public class RequestDao {
                 request.getBeneficiary_id(), request.getContract_id(), request.getDays(), request.getStarthour());
     }
 
-    public void deleteRequest (Request request) {
-        jdbcTemplate.update("DELETE FROM Request WHERE number_id=?", request.getNumber_id());
-    }
-
+    /*Eliminar solicitud*/
     public void deleteRequest (String numberID) {
         jdbcTemplate.update("DELETE FROM Request WHERE number_id=?", numberID);
     }
 
+    /*Actualizar solicitud*/
     public void updateRequest (Request request) {
         jdbcTemplate.update("UPDATE Request SET status=?::STATUSTYPE, type=?::SERVICETYPE, start_date=?, final_date=?, approval_date=?, reject_date=?, comments=?, beneficiary_id=?, contract_id=?, days=?, starthour=? WHERE number_id=?",
                 request.getStatus(), request.getType(), request.getStart_date(),
@@ -44,6 +43,7 @@ public class RequestDao {
                 request.getBeneficiary_id(), request.getContract_id(), request.getDays(), request.getStarthour(), request.getNumber_id());
     }
 
+    /*Mostrar solicitud según su ID*/
     public  Request getRequest (String number_id){
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE number_id=?",
@@ -55,6 +55,7 @@ public class RequestDao {
         }
     }
 
+    /*Lista de todas las solicitudes*/
     public List<Request> getRequests(){
         try{
             return jdbcTemplate.query("SELECT * FROM Request",
@@ -65,6 +66,7 @@ public class RequestDao {
         }
     }
 
+    /*Lista de las solicitudes pendientes*/
     public List<Request> listUnsolvedRequests() {
         try{
             return jdbcTemplate.query("SELECT * FROM Request WHERE status='UNSOLVED'",
@@ -74,6 +76,8 @@ public class RequestDao {
             return new ArrayList<Request>();
         }
     }
+
+    /*Lista de las solicitudes aprobadas de un contrato*/
     public List<Request> listRequestByContractId(String contractID) {
         try{
             return jdbcTemplate.query("SELECT * FROM Request WHERE status='APPROVED' AND contract_id=?",

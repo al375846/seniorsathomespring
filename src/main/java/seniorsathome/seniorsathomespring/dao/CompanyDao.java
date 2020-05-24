@@ -29,11 +29,6 @@ public class CompanyDao {
     }
 
     /*Elimina una compañia de la base de datos*/
-    public void deleteCompany(Company company) {
-        jdbcTemplate.update("DELETE FROM Company WHERE fiscalNumber=?",
-                company.getFiscalNumber());
-    }
-
     public void deleteCompany(String fiscalNumber) {
         jdbcTemplate.update("DELETE FROM Company WHERE fiscalNumber=?",
                 fiscalNumber);
@@ -58,6 +53,7 @@ public class CompanyDao {
         }
     }
 
+    /*Obtiene una compañia a partir de su nombre. Si no existe devuelve null*/
     public Company getCompanyByName(String nameCompany) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE name=? ",
@@ -79,6 +75,8 @@ public class CompanyDao {
             return new ArrayList<Company>();
         }
     }
+
+    /*Obtiene una compañia a partir de su nombre de usuario. Si no existe devuelve null*/
     public Company getCompanyByUserName(String nameCompany) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE userName=? ",

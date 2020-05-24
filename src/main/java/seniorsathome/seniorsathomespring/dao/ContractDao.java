@@ -29,11 +29,6 @@ public class ContractDao {
     }
 
     /*Elimina un contrato de la base de datos*/
-    public void deleteContract(Contract contract) {
-        jdbcTemplate.update("DELETE FROM Contract WHERE numberID=?",
-                contract.getNumberID());
-    }
-
     public void deleteContract(String numberID) {
         jdbcTemplate.update("DELETE FROM Contract WHERE numberID=?",
                 numberID);
@@ -67,6 +62,8 @@ public class ContractDao {
             return new ArrayList<Contract>();
         }
     }
+
+    /*Obtiene una lista de todos los contratos de una compañia de la base de datos. Devuelve una lista vacia si no hay*/
     public List<Contract> inicioSesion(String nombre){
         try{
             return jdbcTemplate.query("SELECT * FROM Contract WHERE companyID=?",
@@ -77,6 +74,7 @@ public class ContractDao {
         }
     }
 
+    /*Obtiene una lista de todos los contratos de un servicio de la base de datos. Devuelve una lista vacia si no hay*/
     public List<Contract> getContractsByService(String servicename){
         try{
             return jdbcTemplate.query("SELECT * FROM Contract WHERE numberID<>'' and serviceType=?::SERVICETYPE and quantity>0",

@@ -72,6 +72,7 @@ public class BeneficiaryDao {
         }
     }
 
+    /*Obtiene una lista de todos los beneficiarios que no tienen social worker. Devuelve una lista vacia si no hay*/
     public List<Beneficiary> getBeneficiariesNoSocialWorker() {
         try {
             return jdbcTemplate.query("SELECT * FROM Beneficiary WHERE identification_number<>'' AND social_worker_id=''",
@@ -81,6 +82,7 @@ public class BeneficiaryDao {
         }
     }
 
+    /*Obtiene una lista de los beneficiarios que tienen asignado un social worker concreto. Devuleve una lista vacia si no hay*/
     public List<Beneficiary> getBeneficiariesBySocialWorker(String socialworker) {
         try {
             return jdbcTemplate.query("SELECT * FROM Beneficiary WHERE identification_number<>'' and social_worker_id=?",
@@ -90,6 +92,7 @@ public class BeneficiaryDao {
         }
     }
 
+    /*Obtiene el beneficiario a partir de su nombre de usuario*/
     public Beneficiary getBeneficiaryByUsername(String username) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Beneficiary WHERE identification_number<>'' and user_name=?",
@@ -109,6 +112,7 @@ public class BeneficiaryDao {
         }
     }
 
+    /*Obtiene una lista de los horarios que tiene asignados un beneficiario*/
     public List<Schedule> listSchedules(String identificationNumber){
         try{
             return jdbcTemplate.query("SELECT * FROM Volunteersschedule WHERE beneficiaryid=?", new ScheduleRowMapper(), identificationNumber);
@@ -117,6 +121,7 @@ public class BeneficiaryDao {
         }
     }
 
+    /*Obtiene una lista de las solicitudes activas de un beneficiario*/
     public List<Request> listActiveRequests(String identificationNumber) {
         try {
             return jdbcTemplate.query("SELECT * FROM Request WHERE beneficiary_id=? AND start_date<=? AND final_date>=? AND status='APPROVED'", new RequestRowMapper(),
@@ -126,6 +131,7 @@ public class BeneficiaryDao {
         }
     }
 
+    /*Genera el numero ID de las solicitudes*/
     public String countRequests() {
         try {
             Integer numero = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM Request", Integer.class);
@@ -137,6 +143,7 @@ public class BeneficiaryDao {
 
     }
 
+    /*Añade una request*/
     public void addRequest(Request request) {
         jdbcTemplate.update("INSERT INTO Request VALUES(?, ?::STATUSTYPE, ?::SERVICETYPE, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 countRequests(), "UNSOLVED", request.getType(), request.getStart_date(),
@@ -144,6 +151,7 @@ public class BeneficiaryDao {
                 request.getBeneficiary_id(), "", null, null);
     }
 
+    /*Muestra los servicios activos que tiene un beneficiario*/
     public List<Request> activeServices(String identificationNumber) {
         return jdbcTemplate.query("SELECT * FROM Request WHERE beneficiary_id=? AND start_date<=current_date AND final_date>=current_date AND status='APPROVED'", new RequestRowMapper(), identificationNumber);
     }
@@ -161,7 +169,7 @@ public class BeneficiaryDao {
 
             numero_anterior = numero_actual;
         }
-*/
+        */
         return lista.size() + 1;
     }
 }

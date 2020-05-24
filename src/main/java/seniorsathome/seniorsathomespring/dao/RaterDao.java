@@ -20,6 +20,7 @@ public class RaterDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    /*Lista de las valoraciones de un beneficiario*/
     public List<Rater> listRaters(String beneficiaryID){
         try {
             List<Rater> total = new ArrayList<Rater>();

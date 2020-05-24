@@ -19,32 +19,23 @@ public class VolunteerValidator implements Validator{
     public void validate(Object obj, Errors errors) {
         Volunteer vol = (Volunteer)obj;
         if (vol.getName().trim().equals(""))
-            errors.rejectValue("name", "Required",
-                    "You must enter a name");
+            errors.rejectValue("name", "Required","You must enter a name");
         if (vol.getPhoneNumber().trim().equals(""))
-            errors.rejectValue("phoneNumber", "Required",
-                    "You must enter a phone number");
+            errors.rejectValue("phoneNumber", "Required", "You must enter a phone number");
         if (vol.getEmail().trim().equals(""))
-            errors.rejectValue("email", "Required",
-                    "You must enter an email");
+            errors.rejectValue("email", "Required", "You must enter an email");
         if (vol.getAddress().trim().equals(""))
-            errors.rejectValue("address", "Required",
-                    "You must enter an address");
+            errors.rejectValue("address", "Required", "You must enter an address");
         if (vol.getUserName().trim().equals(""))
-            errors.rejectValue("userName", "Required",
-                    "You must enter a username");
+            errors.rejectValue("userName", "Required", "You must enter a username");
         if (vol.getPassword().trim().equals(""))
-            errors.rejectValue("password", "Required",
-                    "You must enter a password");
-
-        if ((vol.getPassword().trim().equals("") == false) && (vol.getPassword().length() <= 4))
+            errors.rejectValue("password", "Required","You must enter a password");
+        if ((vol.getPassword().length() <= 4) && (vol.getPassword().trim().equals("") == false))
             errors.rejectValue("password", "Incorrect Value", "The password must have more than 4 characters");
-        CharSequence charSequence = "@";
 
+        CharSequence charSequence = "@";
         if ((!vol.getEmail().trim().contains(charSequence)) && (vol.getEmail().trim().equals("") == false))
             errors.rejectValue("email", "Incorrect Value", "It should be an email (contains @)");
-
-
         if (vol.getName().length()>50)
             errors.rejectValue("name", "Incorrect Value", "The name cannot be longer than 50 characters");
         if (vol.getPhoneNumber().length()>50)
@@ -55,8 +46,8 @@ public class VolunteerValidator implements Validator{
             errors.rejectValue("address", "Incorrect Value", "The address cannot be longer than 50 characters");
         if (vol.getUserName().length()>25)
             errors.rejectValue("userName", "Incorrect Value", "The username cannot be longer than 25 characters");
-        if (vol.getPassword().length()>25)
-            errors.rejectValue("password", "Incorrect Value", "The password cannot be longer than 25 characters");
+        if ((vol.getPassword().length()>40) && (vol.getPassword().trim().equals("") == false))
+            errors.rejectValue("password", "Incorrect Value", "The password cannot be longer than 40 characters");
 
         // Afegeix ací la validació per a Edat > 15 anys
     }

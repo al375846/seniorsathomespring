@@ -19,21 +19,25 @@ public class InvoiceLineDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    /*Añadir linea de factura*/
     public void addInvoiceLine (InvoiceLine invoiceLine) {
         jdbcTemplate.update("INSERT INTO InvoiceLine VALUES(?, ?, ?, ?)",
                 invoiceLine.getNumberID(), invoiceLine.getPrice(),
                 invoiceLine.getRequestID(), invoiceLine.getInvoiceID());
     }
 
+    /*Eliminar linea de factura*/
     public void deleteInvoiceLine (String number_id) {
         jdbcTemplate.update("DELETE FROM InvoiceLine WHERE number_id=?", number_id);
     }
 
+    /*Actualizar linea de factura*/
     public void updateInvoiceLine (InvoiceLine invoiceLine) {
         jdbcTemplate.update("UPDATE InvoiceLine SET price=?, request_id=?, invoice_id=? WHERE number_id=?",
                 invoiceLine.getPrice(), invoiceLine.getRequestID(), invoiceLine.getInvoiceID(), invoiceLine.getNumberID());
     }
 
+    /*Obtener linea de factura según ID*/
     public  InvoiceLine getInvoiceLine (String numberID){
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM InvoiceLine WHERE number_id=?",
@@ -45,6 +49,7 @@ public class InvoiceLineDao {
         }
     }
 
+    /*Obtener todas las lineas de factura*/
     public List<InvoiceLine> getInvoiceLines(){
         try{
             return jdbcTemplate.query("SELECT * FROM InvoiceLine",
@@ -55,6 +60,7 @@ public class InvoiceLineDao {
         }
     }
 
+    /*Listar todas las lineas de factura de una factura*/
     public List<InvoiceLine> getInvoiceLinesByInvoice(String invoice_id){
         try{
             return jdbcTemplate.query("SELECT * FROM InvoiceLine WHERE invoice_id=?",

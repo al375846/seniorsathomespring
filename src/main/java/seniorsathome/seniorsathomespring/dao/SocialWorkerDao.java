@@ -19,6 +19,7 @@ public class SocialWorkerDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    /*Mostrar Social Worker según su nombre de usuario*/
     public SocialWorker getSocialWorkerByUserName(String username) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM SocialWorker WHERE user_name=?",
@@ -29,6 +30,7 @@ public class SocialWorkerDao {
         }
     }
 
+    /*Mostrar Social Worker según su ID*/
     public SocialWorker getSocialWorker(String numberId) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM SocialWorker WHERE numberId=?",
@@ -39,6 +41,7 @@ public class SocialWorkerDao {
         }
     }
 
+    /*Listar todos los Social Workers*/
     public List<SocialWorker> getSocialWorkers() {
         try {
             return jdbcTemplate.query("SELECT * FROM SocialWorker WHERE numberId<>''",

@@ -15,7 +15,9 @@
     <p><br></p>
 <h1>Volunteers' list</h1>
     <p><br></p>
-<table class="table table-striped">
+
+    <!--Lista de los voluntarios aceptados-->
+    <table class="table table-striped">
     <thead>
     <tr>
         <th>Name</th>
@@ -27,7 +29,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="volunteer: ${volunteers}">
+    <tr th:each="volunteer: ${volunteers}" th:if="(${volunteer.status} == 'APPROVED')">
         <td th:text="${volunteer.name}"></td>
         <td th:text="${volunteer.phoneNumber}"></td>
         <td th:text="${volunteer.email}"></td>

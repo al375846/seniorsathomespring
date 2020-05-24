@@ -23,6 +23,7 @@ public class UserDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    /*Cargar usuario según su nombre de usuario*/
     public User loadUserByUsername(String username, String password) {
         List<User> users = new ArrayList<User>();
         users.addAll(jdbcTemplate.query("SELECT user_name, password FROM Beneficiary WHERE user_name=?",
@@ -52,6 +53,7 @@ public class UserDao {
         }
     }
 
+    /*Mostrar el tipo de usuario de un usuario*/
     public String userType(User user) {
         String type = "";
 
@@ -85,6 +87,7 @@ public class UserDao {
         return type;
     }
 
+    /*Lista de todos los usuarios*/
     public List<User> listAllUsers() {
         try{
             List<User> total = new ArrayList<User>();

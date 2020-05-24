@@ -20,6 +20,7 @@ public class ScheduleDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    /*Añadir horario*/
     public void addSchedule (Schedule schedule) {
             jdbcTemplate.update("INSERT INTO Volunteersschedule VALUES(?, ?, ?, ?, CAST(0 AS BIT ), ?, ?)",
                     "S"+(getSchedules().size()+1), schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
@@ -27,14 +28,12 @@ public class ScheduleDao {
 
     }
 
-    public void deleteSchedule (Schedule schedule) {
-        jdbcTemplate.update("DELETE FROM Volunteersschedule WHERE numberid=?", schedule.getNumberid());
-    }
-
+    /*Eliminar horario a partir de su ID*/
     public void deleteSchedule (String numberID) {
         jdbcTemplate.update("DELETE FROM Volunteersschedule WHERE numberid=?", numberID);
     }
 
+    /*Actualizar un horario*/
     public void updateSchedule (Schedule schedule) {
         if(schedule.getStatus()){
             jdbcTemplate.update("UPDATE Volunteersschedule SET day=?, starthour=?, finalhour=?, status=CAST(1 AS BIT ), beneficiaryid=?, volunteerid=? WHERE numberid=?",
@@ -47,6 +46,7 @@ public class ScheduleDao {
         }
     }
 
+    /*Obtener un horario a partir de su ID*/
     public  Schedule getSchedule (String number_id){
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Volunteersschedule WHERE numberid=?",
@@ -57,6 +57,8 @@ public class ScheduleDao {
             return null;
         }
     }
+
+    /*Obtener la lista de los horarios de un voluntario*/
     public  List<Schedule> getScheduleByIdVolunteer (String number_id){
         try{
             return jdbcTemplate.query("SELECT * FROM Volunteersschedule where volunteerId=? ORDER BY day DESC",
@@ -67,6 +69,7 @@ public class ScheduleDao {
         }
     }
 
+    /*Listar todos los horarios*/
     public List<Schedule> getSchedules(){
         try{
             return jdbcTemplate.query("SELECT * FROM Volunteersschedule ",
@@ -77,6 +80,7 @@ public class ScheduleDao {
         }
     }
 
+    /*Listar todos los horarios activos de un voluntario*/
     public List<Schedule> getActiveSchedulesByVolunteer(String volunteerid){
         try{
             return jdbcTemplate.query("SELECT * FROM Volunteersschedule WHERE status=CAST(1 AS BIT) AND volunteerId=?",
@@ -87,6 +91,7 @@ public class ScheduleDao {
         }
     }
 
+    /*Listar todos los horarios inactivos de una fecha concreta*/
     public List<Schedule> getInactiveSchedulesByDate(LocalDate date){
         try{
             return jdbcTemplate.query("SELECT s.* FROM VolunteersSchedule AS s FULL OUTER JOIN Volunteer AS v ON s.volunteerId = v.idNumber WHERE s.status=CAST(0 AS BIT) AND s.day=? AND v.status='APPROVED'",
@@ -97,6 +102,7 @@ public class ScheduleDao {
         }
     }
 
+    /*Listar todos los horarios inactivos de la fecha actual*/
     public List<Schedule> getInactiveSchedulesByDateStandar(){
         try{
             return jdbcTemplate.query("SELECT s.* FROM VolunteersSchedule AS s FULL OUTER JOIN Volunteer AS v ON s.volunteerId = v.idNumber WHERE s.status=CAST(0 AS BIT) AND s.day=? AND v.status='APPROVED'",
