@@ -3,28 +3,64 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/base}">
 <head>
+    <style>
+
+        .containImg{
+            width: 810px;
+            height: 200px;
+        }
+
+        .contain2{
+            position: relative;
+            display: inline-block;
+            text-align: center;
+        }
+        .center{
+            position: absolute;
+            top: 30%;
+            left: 45%;
+        }
+    </style>
     <link rel="stylesheet" type="text/css"
           href="/css/sah.css"
           th:href="@{/css/sah.css}"/>
     <title>Home</title>
     <meta charset="UTF-8"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
-<!--    <style>
-        /* Make the image fully responsive */
-        .carousel-inner img {
-            width: 100%;
-            height: 100%;
-        }
-    </style>-->
 </head>
 <body>
 <div layout:fragment="content" class="container">
     <p><br></p>
     <p><br></p>
     <p><br></p>
+
+    <h1>WELCOME TO <b><i>SENIORS AT HOME</i></b></h1>
+    <p style="text-align: center"><i>Help the elderly, they have helped you all your life</i></p>
+
+    <p><br></p>
+
+    <center>
+    <div class="contain2">
+        <img class="containImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRK0G05a3rcaLXQOLFWNLp25kOv2zajBp9VSEiT4hb7ne1yHlR4&usqp=CAU" alt="elderly">
+        <div class="center">
+            <h3><b>Do you want to participate in this program ?</b></h3>
+            <table>
+                <tr>
+                    <td>
+                        <a href="#miModal"><button type="button" class="selfbutton">Yes, I want</button></a>
+                    </td>
+                    <td>
+                        <a href="/login"><button type="button" class="selfbutton">I've already joined in</button></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </center>
+
+    <p><br></p>
+    <p><br></p>
+
     <table cellpadding="8">
         <tr>
             <td>
@@ -41,11 +77,11 @@
             <td>
                 <div class="card" style="width: 500px;height: 475px">
                     <div class="card-body">
-                        <h5 class="card-title">Seniors at Home</h5>
+                        <h5 class="card-title">Customer Support</h5>
                         <p class="card-text">For more information please contact with us</p>
                         <a href="/others/contact" class="btn btn-primary">Contact Us</a>
                     </div>
-                <div id="demo" class="carousel slide" data-ride="carousel">
+                <div id="demo2" class="carousel slide" data-ride="carousel">
 
                     <!-- Indicators -->
                     <ul class="carousel-indicators">
@@ -92,6 +128,11 @@
             </td>
         </tr>
     </table>
+
+
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
 
     <h3 hidden>Manage the app</h3>
     <ul hidden>
