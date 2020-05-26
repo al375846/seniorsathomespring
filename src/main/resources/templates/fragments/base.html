@@ -23,7 +23,9 @@
             position: static;
             top: 25%;
             margin: auto;
-
+        }
+        div.footer {
+            margin: auto;
         }
     </style>
 </head>
@@ -34,5 +36,11 @@
 <div th:replace="fragments/logininfo"></div>
 </div>
 <div class="contenido" layout:fragment="content"></div>
+<div class="footer">
+    <footer>
+        <hr>
+        <p class="text-muted">CAS - Seniors at Home. Contact us by calling 612839168 or email sah@info.com</p>
+    </footer>
+</div>
 </body>
 </html>
