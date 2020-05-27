@@ -35,8 +35,6 @@
             <th hidden>Password</th>
             <th hidden>Social Worker ID</th>
             <th></th>
-            <th></th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -51,11 +49,6 @@
             <td th:text="${beneficiary.password}" hidden></td>
             <td th:text="${beneficiary.socialWorkerID}" hidden></td>
             <td><a th:href="@{/beneficiary/assignsocialworker/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-warning">Assign social worker</button></a>
-            </td>
-            <td><a th:href="@{/beneficiary/delete/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-danger">Delete</button></a>
-            </td>
-            </td>
-            <td><a th:href="@{/beneficiary/requests/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-primary">Requests</button></a>
             </td>
         </tr>
         </tbody>

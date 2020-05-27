@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css"
           href="/css/sah.css"
           th:href="@{/css/sah.css}"/>
-    <title>Contracts' List</title>
+    <title>Companies' List</title>
     <meta charset="UTF-8"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -31,6 +31,7 @@
     <p><br></p>
     <p><br></p>
     <h1>Companies' List</h1>
+    <p><br></p>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -40,7 +41,7 @@
             <th>Responsible Phone Number</th>
             <th>Responsible Address</th>
             <th>Phone Number</th>
-            <th></th>
+            <th hidden></th>
             <th></th>
         </tr>
         </thead>
@@ -53,7 +54,7 @@
             <td th:text="${company.responsibleAddress}"></td>
             <td th:text="${company.phoneNumber}"></td>
             <td><a th:href="@{/company/update/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
-                <button type="button" class="btn btn-warning" style="width: 100px">Update</button>
+                <button type="button" class="btn btn-warning" style="width: 100px" hidden>Update</button>
             </a>
             </td>
             <td><a th:href="@{/company/delete/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">

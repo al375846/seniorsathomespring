@@ -30,7 +30,11 @@
             <input class="form_control" type="password" th:field="*{password}"/>
         <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </p>
-        <input type="submit" value="Log in" />
+
+        <table cellpadding="8">
+            <td><input type="submit" class="selfbutton" value="Log in" /></td>
+            <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input></td>
+        </table>
     </form>
 </div>
 </body>
