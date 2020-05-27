@@ -6,25 +6,18 @@
     <link rel="stylesheet" type="text/css"
           href="/css/sah.css"
           th:href="@{/css/sah.css}"/>
-    <title>Login</title>
+    <title>Update Request</title>
     <meta charset="UTF-8"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
-    <!--    <style>
-            /* Make the image fully responsive */
-            .carousel-inner img {
-                width: 100%;
-                height: 100%;
-            }
-        </style>-->
+
 </head>
 <body>
 <div layout:fragment="content" class="container">
-    <h2>Add Request</h2>
-    <br>
-    <br>
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <h1>Update Request</h1>
+    <p><br></p>
     <form action="#" th:action="@{/company/updateRequest}"
           th:object="${updateRequest}" method="post">
         <table>
@@ -86,8 +79,8 @@
 
         </table>
         <table style="margin: 0 auto;" cellpadding="8">
-            <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input></td>
-            <td colspan="2"><input type="submit" value="Update Request"/></td>
+            <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></td>
+            <td colspan="2"><input type="submit" class="selfbutton" value="Update Request"/></td>
         </table>
     </form>
 </div>
