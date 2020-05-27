@@ -89,7 +89,7 @@
             <tr>
                 <div class="form-group">
                     <td class="rightForm"><label th:for="password">New Password :</label></td>
-                    <td><input type="text" class="form-control" th:id="newPassword" name="newPassword"  ></td>
+                    <td><input type="password" class="form-control" th:id="newPassword" name="newPassword"  ></td>
                     <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td>
                 </div>
             </tr>
