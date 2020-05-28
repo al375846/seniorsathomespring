@@ -3,6 +3,7 @@ package seniorsathome.seniorsathomespring.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.annotation.Schedules;
 import org.springframework.stereotype.Repository;
 import seniorsathome.seniorsathomespring.model.Schedule;
 
@@ -23,9 +24,25 @@ public class ScheduleDao {
     /*Añadir horario*/
     public void addSchedule (Schedule schedule) {
             jdbcTemplate.update("INSERT INTO Volunteersschedule VALUES(?, ?, ?, ?, CAST(0 AS BIT ), ?, ?)",
-                    "S"+(getSchedules().size()+1), schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
+                    "S"+conseguirNumero(), schedule.getDay(), schedule.getStarthour(), schedule.getFinalhour(),
                     "", schedule.getVolunteerid());
 
+    }
+    public int conseguirNumero() {
+        List<Schedule> lista = getSchedules();
+        int numero_anterior = Integer.parseInt(lista.get(0).getNumberid().split("S")[1]);
+        for (int i = 1; i < lista.size() - 1; i++) {
+
+            int numero_actual = Integer.parseInt(lista.get(i).getNumberid().split("S")[1]);
+
+            if (numero_actual - numero_anterior == 2) {
+                return numero_actual - 1;
+            }
+
+            numero_anterior = numero_actual;
+        }
+
+        return lista.size() + 1;
     }
 
     /*Eliminar horario a partir de su ID*/
@@ -61,7 +78,7 @@ public class ScheduleDao {
     /*Obtener la lista de los horarios de un voluntario*/
     public  List<Schedule> getScheduleByIdVolunteer (String number_id){
         try{
-            return jdbcTemplate.query("SELECT * FROM Volunteersschedule where volunteerId=? ORDER BY day DESC",
+            return jdbcTemplate.query("SELECT * FROM Volunteersschedule where volunteerId=? AND day >= CURRENT_DATE ORDER BY day ",
                     new ScheduleRowMapper(),number_id);
         }
         catch (EmptyResultDataAccessException e) {
@@ -72,7 +89,7 @@ public class ScheduleDao {
     /*Listar todos los horarios*/
     public List<Schedule> getSchedules(){
         try{
-            return jdbcTemplate.query("SELECT * FROM Volunteersschedule ",
+            return jdbcTemplate.query("SELECT * FROM Volunteersschedule ORDER BY numberID",
                     new ScheduleRowMapper());
         }
         catch (EmptyResultDataAccessException e) {
@@ -83,7 +100,7 @@ public class ScheduleDao {
     /*Listar todos los horarios activos de un voluntario*/
     public List<Schedule> getActiveSchedulesByVolunteer(String volunteerid){
         try{
-            return jdbcTemplate.query("SELECT * FROM Volunteersschedule WHERE status=CAST(1 AS BIT) AND volunteerId=?",
+            return jdbcTemplate.query("SELECT * FROM Volunteersschedule WHERE status=CAST(1 AS BIT) AND volunteerId=? ",
                     new ScheduleRowMapper(), volunteerid);
         }
         catch (EmptyResultDataAccessException e) {

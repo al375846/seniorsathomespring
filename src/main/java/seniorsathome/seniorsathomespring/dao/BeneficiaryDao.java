@@ -158,10 +158,10 @@ public class BeneficiaryDao {
 
     public int conseguirNumero() {
         List<Beneficiary> lista = getBeneficiaries();
-        /*int numero_anterior = Integer.parseInt(lista.get(0).getIdentificationNumber().split("b")[1]);
+        int numero_anterior = Integer.parseInt(lista.get(0).getIdentificationNumber().split("B")[1]);
         for (int i = 1; i < lista.size() - 1; i++) {
 
-            int numero_actual = Integer.parseInt(lista.get(i).getIdentificationNumber().split("b")[1]);
+            int numero_actual = Integer.parseInt(lista.get(i).getIdentificationNumber().split("B")[1]);
 
             if (numero_actual - numero_anterior == 2) {
                 return numero_actual - 1;
@@ -169,7 +169,7 @@ public class BeneficiaryDao {
 
             numero_anterior = numero_actual;
         }
-        */
+
         return lista.size() + 1;
     }
 }

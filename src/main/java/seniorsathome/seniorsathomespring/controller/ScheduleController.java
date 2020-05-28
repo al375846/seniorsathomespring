@@ -119,7 +119,7 @@ public class ScheduleController {
     @RequestMapping(value = "/delete/{numberid}")
     public String processDeleteSchedule(@PathVariable String numberid) {
         scheduleDao.deleteSchedule(numberid);
-        return "redirect:../list";
+        return "redirect:../listByUser";
     }
 
     @RequestMapping(value="/overview/{numberid}", method = RequestMethod.GET)
