@@ -27,6 +27,7 @@
 <body>
 <form action="#" th:action="@{/contract/update}"
       th:object="${contract}" method="post" id="form">
+    
     <input type="text" class="form-control" th:id="numberid" th:field="*{numberID}" hidden>
     <table cellpadding="8" >
         <tr>
