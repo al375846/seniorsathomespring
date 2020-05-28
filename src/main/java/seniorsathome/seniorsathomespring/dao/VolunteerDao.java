@@ -28,8 +28,24 @@ public class VolunteerDao {
     public void addVolunteer (Volunteer v) {
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?, ?,?,?,?,?,?,?::STATUSTYPE,?)",
-                getVolunteers().size(),v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
+                "V"+conseguirNumero(),v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
                 v.getUserName(),passwordEncryptor.encryptPassword(v.getPassword()), LocalDate.now(),null,"UNSOLVED",v.getDescription());
+    }
+    public int conseguirNumero() {
+        List<Volunteer> lista = getVolunteers();
+        int numero_anterior = Integer.parseInt(lista.get(0).getIdNumber().split("V")[1]);
+        for (int i = 1; i < lista.size() - 1; i++) {
+
+            int numero_actual = Integer.parseInt(lista.get(i).getIdNumber().split("V")[1]);
+
+            if (numero_actual - numero_anterior == 2) {
+                return numero_actual - 1;
+            }
+
+            numero_anterior = numero_actual;
+        }
+
+        return lista.size() + 1;
     }
 
     /*Eliminar un voluntario*/
@@ -80,7 +96,7 @@ public class VolunteerDao {
     /*Mostrar la lista de voluntarios (todos los estados)*/
     public List<Volunteer> getVolunteers(){
         try{
-            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE idNumber<>''",
+            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE idNumber<>'' ORDER BY idNumber",
                     new VolunteerRowMapper());
         }
         catch (EmptyResultDataAccessException e) {
