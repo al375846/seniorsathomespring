@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
 <style>
     h1{
         text-align: center;
@@ -15,18 +19,20 @@
     }
 
 </style>
-<head>
-    <p><br></p>
-    <h1>Create a Contract</h1>
-    <p><br></p>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
 <body>
+<div layout:fragment="content" class="container">
 <form action="#" th:action="@{/contract/update}"
       th:object="${contract}" method="post" id="form">
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <h1>Create a Contract</h1>
+    <p><br></p>
     <table cellpadding="8" >
         <tr>
             <div class="form-group">
@@ -76,5 +82,6 @@
         <td><input type="submit" class="selfbutton" value="Update Contract" /></td>
     </table>
 </form>
+</div>
 </body>
 </html>
