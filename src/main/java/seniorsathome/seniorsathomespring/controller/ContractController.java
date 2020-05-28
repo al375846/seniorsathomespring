@@ -69,8 +69,16 @@ public class ContractController {
 
     @RequestMapping(value="/update/{numberID}", method = RequestMethod.GET)
     public String editContract(Model model, @PathVariable String numberID) {
-        model.addAttribute("contract", contractDao.getContract(numberID));
+        Contract contract = contractDao.getContract(numberID);
+        List<String> servicios = new ArrayList<String>();
+        servicios.add("CATERING");
+        servicios.add("CLEANING");
+        servicios.add("NURSING");
+        model.addAttribute("contract", contract);
+        model.addAttribute("actualcompany", companyDao.getCompany(contract.getCompanyID()));
+        model.addAttribute("actualservice", contract.getServiceType());
         model.addAttribute("companies", companyDao.getCompanies());
+        model.addAttribute("services", servicios);
         return "contract/update";
     }
 
@@ -86,6 +94,7 @@ public class ContractController {
         }
         Company company = companyDao.getCompanyByName(contract.getCompanyID());
         contract.setCompanyID(company.getFiscalNumber());
+        System.out.println(contract.getCompanyID());
         Correo.enviarMensajeSah(company.getEmail(), "Contract updated", "Your contact has been updated");
         contractDao.updateContract(contract);
         return "redirect:list";

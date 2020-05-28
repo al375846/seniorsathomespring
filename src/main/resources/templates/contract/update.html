@@ -17,7 +17,7 @@
 </style>
 <head>
     <p><br></p>
-    <h1>Create a Contract</h1>
+    <h1>Update a Contract</h1>
     <p><br></p>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
@@ -27,12 +27,18 @@
 <body>
 <form action="#" th:action="@{/contract/update}"
       th:object="${contract}" method="post" id="form">
+    <input type="text" class="form-control" th:id="numberid" th:field="*{numberID}" hidden>
     <table cellpadding="8" >
         <tr>
             <div class="form-group">
                 <td class="rightForm"><label th:for="companyID">Company Name :</label></td>
                 <td><select class="form-control" th:id="companyID" th:field="*{companyID}">
-                    <option th:each="company: ${companies}" th:value="${company.name}" th:text="${company.name}"></option>
+                    <th:block th:each="company : ${companies}">
+                        <option th:if="${company.name} == ${actualcompany.name}" th:value="${company.name}" th:text="${company.name}" selected></option>
+                    </th:block>
+                    <th:block th:each="company : ${companies}">
+                        <option th:if="${company.name} != ${actualcompany.name}" th:value="${company.name}" th:text="${company.name}"></option>
+                    </th:block>
                 </select></td>
                 <td th:if="${#fields.hasErrors('companyID')}" th:errors="*{companyID}" class="error"></td>
             </div>
@@ -41,9 +47,12 @@
             <div class="form-group">
                 <td class="rightForm"><label th:for="servicesType">Services Type :</label></td>
                 <td><select class="form-control" th:id="servicesType" th:field="*{serviceType}">
-                    <option value="CATERING">CATERING</option>
-                    <option value="NURSING">NURSING</option>
-                    <option value="CLEANING">CLEANING</option>
+                    <th:block th:each="service : ${services}">
+                        <option th:if="${service} == ${actualservice}" th:value="${service}" th:text="${service}" selected></option>
+                    </th:block>
+                    <th:block th:each="service : ${services}">
+                        <option th:if="${service} != ${actualservice}" th:value="${service}" th:text="${service}" selected></option>
+                    </th:block>
                 </select></td>
                 <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}" class="error"></td>
             </div>
