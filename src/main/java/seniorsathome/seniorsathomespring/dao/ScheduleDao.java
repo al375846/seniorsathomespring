@@ -78,7 +78,7 @@ public class ScheduleDao {
     /*Obtener la lista de los horarios de un voluntario*/
     public  List<Schedule> getScheduleByIdVolunteer (String number_id){
         try{
-            return jdbcTemplate.query("SELECT * FROM Volunteersschedule where volunteerId=? AND day > CURRENT_DATE ORDER BY day ",
+            return jdbcTemplate.query("SELECT * FROM Volunteersschedule where volunteerId=? AND day >= CURRENT_DATE ORDER BY day ",
                     new ScheduleRowMapper(),number_id);
         }
         catch (EmptyResultDataAccessException e) {
