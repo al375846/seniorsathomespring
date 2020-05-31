@@ -20,6 +20,37 @@
             top: 30%;
             left: 45%;
         }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #edc436;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #f1f1f1}
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
     </style>
     <link rel="stylesheet" type="text/css"
           href="/css/sah.css"
@@ -47,7 +78,13 @@
             <table>
                 <tr>
                     <td>
-                        <a href="#miModal"><button type="button" class="selfbutton">Yes, I want</button></a>
+                        <div class="dropdown">
+                            <button class="selfbutton">Yes, I want</button>
+                            <div class="dropdown-content">
+                                <a href="/volunteer/add">Volunteer</a>
+                                <a href="/beneficiary/add">Beneficiary</a>
+                            </div>
+                        </div>
                     </td>
                     <td>
                         <a href="/login"><button type="button" class="selfbutton">I've already joined in</button></a>
