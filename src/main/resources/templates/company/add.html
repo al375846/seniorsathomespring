@@ -1,32 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
+    <style>
+        h1{
+            text-align: center;
+        }
+        td{
+            text-align: center;
+        }
+        table{
+            margin: 0 auto;
+        }
+        .selfbutton{
+            cursor: pointer;
+        }
+    </style>
     <title>Create a new Company</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
+</head>
+
+<body>
+<div layout:fragment="content" class="container">
+<form action="#" th:action="@{/company/add}"
+      th:object="${company}" method="post">
+    <p><br></p>
+    <p><br></p>
     <p><br></p>
     <h1>Add a Company</h1>
     <p><br></p>
-</head>
-<style>
-    h1{
-        text-align: center;
-    }
-    td{
-        text-align: center;
-    }
-    table{
-        margin: 0 auto;
-    }
-    .selfbutton{
-        cursor: pointer;
-    }
-</style>
-<body>
-<form action="#" th:action="@{/company/add}"
-      th:object="${company}" method="post">
     <table cellpadding="8" >
         <tr>
             <div class="form-group">
@@ -98,5 +104,6 @@
         <td><input type="submit" class="selfbutton" value="Add Company" /></td>
     </table>
 </form>
+</div>
 </body>
 </html>
