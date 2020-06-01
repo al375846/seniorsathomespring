@@ -83,7 +83,7 @@ public class CompanyController {
         return "company/listRequest";
     }
 
-    // - - - - - - -- - -- - - -- - - - - - - - - - - - - - - - -- - - - - - - - - - - - - - - - - - - - - - - - - -
+
     @RequestMapping(value = "/listContracts", method = RequestMethod.GET)
     public String listContracts(Model model, HttpSession session) {
         User user = (User)session.getAttribute("user");
@@ -94,7 +94,7 @@ public class CompanyController {
             Company company = companyDao.getCompanyByUserName(name);
             model.addAttribute("contracts",contractDao.getContractsCompany(company.getFiscalNumber()));
         }
-        return "contract/listContracts";
+        return "company/listContracts";
     }
 
 

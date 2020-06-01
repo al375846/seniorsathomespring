@@ -15,46 +15,13 @@
 <div layout:fragment="content" class="container">
     <p><br></p>
     <p><br></p>
-    <p><br></p>
-    <h1>Contracts' List (temporal)</h1>
-    <p><br></p>
-    <table>
-        <table class="table table-striped" cellpadding="8" style="margin: 0 auto">
-            <thead>
-            <tr>
-                <th>Service Type</th>
-                <th>Quantity</th>
-                <th>Start Date</th>
-                <th>Final Date</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="contract: ${contracts}">
-                <td th:text="${contract.serviceType}"></td>
-                <td th:text="${contract.quantity}"></td>
-                <td th:text="${contract.startDate}"></td>
-                <td th:text="${contract.finalDate}"></td>
-
-
-                <td>
-                    <a th:href="@{/company/listRequest/{contractID}(contractID=${contract.getNumberID()})}"><button type="button" class="selfbutton">More Information</button></a>
-                </td>
-            </tr>
-            </tbody>
-
-        </table>
-
-
-    </table>
-
     <table cellpadding="8" style="margin: 0 auto">
         <tr>
             <td>
                 <div class="card" style="width:400px;height: 520px">
-                    <img class="card-img-top" src="https://www.alcancelegal.co/assets/pasos_123/dos-6fa076754f8cda65fb5901808880b034.png">
+                    <img class="card-img-top" src="https://us.123rf.com/450wm/drogatnev/drogatnev1511/drogatnev151100276/48674561-el-hombre-de-negocios-mano-que-sostiene-contrato-icono-de-estilo-de-dise%C3%B1o-moderno-plano-concepto-de-il.jpg?ver=6">
                     <div class="card-body">
-                        <h4 class="card-title">Contracts' List (NO funciona!!)</h4>
+                        <h4 class="card-title">Contracts' List</h4>
                         <a th:href="@{/company/listContracts}"><button class="selfbutton" style="width: 60px">See it</button></a>
                     </div>
                 </div>
@@ -71,9 +38,5 @@
             </td>
         </tr>
     </table>
-    <table style="margin: 0 auto;" cellpadding="8">
-        <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></td>
-    </table>
-
 </div>
 </body>
