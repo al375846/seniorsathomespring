@@ -31,6 +31,7 @@
     <p><br></p>
     <p><br></p>
     <h1>Invoices' List</h1>
+    <p><br></p>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -54,7 +55,12 @@
     </table>
     <table style="margin: 0 auto" cellpadding="8">
         <td>
-            <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton" />
+        <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></td>
+
+        <td>
+            <a th:href="add">
+                <button type="button" class="selfbutton">Add Invoice</button>
+            </a>
         </td>
     </table>
     <p><br></p>

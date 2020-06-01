@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
     <title>Create a new Invoice</title>
     <meta charset="UTF-8" />
@@ -8,8 +10,14 @@
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
 <body>
-<h2>New Invoice</h2>
-    <form action="#" th:action="@{/invoice/add}" th:object="${invoice}" method="post">
+<form action="#" th:action="@{/invoice/add}" th:object="${invoice}" method="post">
+<div layout:fragment="content" class="container">
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <h1>New Invoice</h1>
+    <p><br></p>
+
     <table>
         <tr>
             <td><label>Number ID</label></td>
@@ -45,6 +53,7 @@
             <td colspan="2"><input type="submit" value="Add Invoice"/></td>
         </tr>
     </table>
+</div>
 </form>
 </body>
 </html>

@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/sah.css" th:href="@{/css/sah.css}"/>
 </head>
-<div layout:fragment="content" style="left: 45%" class="container">
+<div layout:fragment="content" style="left: 45%" class="container" th:if="${requests.isEmpty()} == false">
     <p><br></p>
     <p><br></p>
     <p><br></p>
@@ -85,5 +85,6 @@
     <p><br></p>
 
 </div>
+<p>This beneficiary has no requests.</p>
 </body>
 </html>
