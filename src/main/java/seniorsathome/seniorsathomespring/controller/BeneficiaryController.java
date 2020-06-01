@@ -182,6 +182,7 @@ public class BeneficiaryController {
     @RequestMapping(value = "/requests/{identificationNumber}")
     public String listRequestBeneficiaries(Model model, @PathVariable String identificationNumber) {
         model.addAttribute("requests", beneficiaryDao.listRequests(identificationNumber));
+        model.addAttribute("beneficiary", identificationNumber);
         return "beneficiary/requests";
     }
 

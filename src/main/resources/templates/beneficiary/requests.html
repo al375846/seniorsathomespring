@@ -42,7 +42,7 @@
     <div th:if="${#lists.isEmpty(requests)}">
         The beneficiary doesn't have requests.
     </div>
-
+    <div th:unless="${#lists.isEmpty(requests)}">
 <table th:unless="${#lists.isEmpty(requests)}" class="table table-striped" style="margin: auto;">
     <tr style="text-align: center">
         <td>APPROVED</td>
@@ -81,14 +81,12 @@
         </td>
     </tr>
 </table>
+    </div>
     <p><br></p>
 <center>
     <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input>
-    <a th:href="@{/beneficiary/servicesForm/{identificationNumber}(identificationNumber=${requests[0].beneficiary_id})}"><button type="button" class="selfbutton" hidden>Request for a service</button></a>
+    <a th:href="@{/beneficiary/servicesForm/{identificationNumber}(identificationNumber=${beneficiary})}"><button type="button" class="selfbutton">Request for a service</button></a>
 </center>
-</div>
-<div layout:fragment="content" style="left: 45%" class="container" th:unless="${requests.isEmpty()} == true">
-    <h1>No requests available.</h1>
 </div>
 </body>
 </html>
