@@ -95,6 +95,7 @@ public class Invoice {
             invoiceLine.setNumberID("IL" + comienzo);
             comienzo++;
             invoiceLine.setRequestID(request.getNumber_id());
+            System.out.println(request.toString());
             if(request.getType().equals("CATERING")) {
                 invoiceLine.setPrice(Catering * request.getDays().length() * 4);
             }

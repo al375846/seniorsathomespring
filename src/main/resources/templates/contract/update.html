@@ -52,7 +52,7 @@
                         <option th:if="${service} == ${actualservice}" th:value="${service}" th:text="${service}" selected></option>
                     </th:block>
                     <th:block th:each="service : ${services}">
-                        <option th:if="${service} != ${actualservice}" th:value="${service}" th:text="${service}" selected></option>
+                        <option th:if="${service} != ${actualservice}" th:value="${service}" th:text="${service}"></option>
                     </th:block>
                 </select></td>
                 <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}" class="error"></td>
