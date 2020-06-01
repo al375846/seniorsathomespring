@@ -104,13 +104,13 @@ public class BeneficiaryController {
             SocialWorker sw = socialWorkerDao.getSocialWorkerByUserName(user.getUsername());
             beneficiary.setSocialWorkerID(sw.getNumberid());
             beneficiaryDao.addBeneficiary(beneficiary);
-            Correo.enviarMensajeSah(beneficiary.getEmail(), "Register", "Your register has been recived");
-            Correo.enviarMensajeSah(sw.getEmail(), "Beneficiary Register", "The register of the beneficiary has been recived");
+            Correo.enviarMensajeSah(beneficiary.getEmail(), "Register", "Your register has been received");
+            Correo.enviarMensajeSah(sw.getEmail(), "Beneficiary Register", "The register of the beneficiary has been received");
             return "redirect:/profile/socialworker";
         }
         beneficiary.setSocialWorkerID("");
         beneficiaryDao.addBeneficiary(beneficiary);
-        Correo.enviarMensajeSah(beneficiary.getEmail(), "Register", "Your register has been recived");
+        Correo.enviarMensajeSah(beneficiary.getEmail(), "Register", "Your register has been received");
         return "redirect:/";
     }
 
@@ -207,7 +207,7 @@ public class BeneficiaryController {
 
         beneficiaryDao.addRequest(request);
         Beneficiary bene = beneficiaryDao.getBeneficiary(request.getBeneficiary_id());
-        Correo.enviarMensajeSah(bene.getEmail(), "Request", "Your request has been aplied");
+        Correo.enviarMensajeSah(bene.getEmail(), "Request", "Your request has been applied");
         return "redirect:list";
     }
 

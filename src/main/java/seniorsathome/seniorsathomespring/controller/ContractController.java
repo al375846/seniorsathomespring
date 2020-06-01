@@ -43,14 +43,14 @@ public class ContractController {
         return "contract/list";
     }
 
-    @RequestMapping(value="/add")
+    @RequestMapping(value = "/add")
     public String addContract(Model model) {
         model.addAttribute("contract", new Contract());
         model.addAttribute("companies", companyDao.getCompanies());
         return "contract/add";
     }
 
-    @RequestMapping(value="/add", method=RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("contract") Contract contract,
                                    Model model,
                                    BindingResult bindingResult) {
@@ -67,7 +67,7 @@ public class ContractController {
         return "redirect:list";
     }
 
-    @RequestMapping(value="/update/{numberID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/update/{numberID}", method = RequestMethod.GET)
     public String editContract(Model model, @PathVariable String numberID) {
         Contract contract = contractDao.getContract(numberID);
         List<String> servicios = new ArrayList<String>();
@@ -82,7 +82,7 @@ public class ContractController {
         return "contract/update";
     }
 
-    @RequestMapping(value="/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("contract") Contract contract,
             Model model, BindingResult bindingResult) {

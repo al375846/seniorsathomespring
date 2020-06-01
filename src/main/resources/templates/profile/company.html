@@ -16,7 +16,7 @@
     <p><br></p>
     <p><br></p>
     <p><br></p>
-    <h1>Requests' List</h1>
+    <h1>Contracts' List (temporal)</h1>
     <p><br></p>
     <table>
         <table class="table table-striped" cellpadding="8" style="margin: 0 auto">
@@ -45,10 +45,35 @@
 
         </table>
 
-        <table style="margin: 0 auto;" cellpadding="8">
-            <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></td>
-            <a th:href="@{/valoration/listbyrater/{numberid}(numberid=${company.fiscalNumber})}" class="btn btn-primary float-right btn-lg">See it</a>
-        </table>
+
     </table>
+
+    <table cellpadding="8" style="margin: 0 auto">
+        <tr>
+            <td>
+                <div class="card" style="width:400px;height: 520px">
+                    <img class="card-img-top" src="https://www.alcancelegal.co/assets/pasos_123/dos-6fa076754f8cda65fb5901808880b034.png">
+                    <div class="card-body">
+                        <h4 class="card-title">Contracts' List (NO funciona!!)</h4>
+                        <a th:href="@{/company/listContracts}"><button class="selfbutton" style="width: 60px">See it</button></a>
+                    </div>
+                </div>
+            </td>
+            <td></td>
+            <td>
+                <div class="card" style="width:400px;height: 520px">
+                    <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR__GYhqlR5jXf0YCF5D6x19DkmxBomSiXf5HeyRx13O7sy4ped&usqp=CAU">
+                    <div class="card-body">
+                        <h4 class="card-title">Valorations</h4>
+                        <a th:href="@{/valoration/listbyrater/{numberid}(numberid=${company.fiscalNumber})}"><button class="selfbutton" style="width: 60px">See it</button></a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table style="margin: 0 auto;" cellpadding="8">
+        <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></td>
+    </table>
+
 </div>
 </body>

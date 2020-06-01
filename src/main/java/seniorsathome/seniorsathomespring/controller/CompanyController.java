@@ -15,9 +15,8 @@ import seniorsathome.seniorsathomespring.dao.ContractDao;
 import seniorsathome.seniorsathomespring.dao.RequestDao;
 import seniorsathome.seniorsathomespring.model.*;
 
-import javax.websocket.server.PathParam;
+import javax.servlet.http.HttpSession;
 import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Controller
@@ -68,7 +67,7 @@ public class CompanyController {
         if (bindingResult.hasErrors())
             return "company/add";
         companyDao.addCompany(company);
-        Correo.enviarMensajeSah(company.getEmail(), "Register", "Your are now registerd. Username: " + company.getUserName() + " Password: " + company.getPassword());
+        Correo.enviarMensajeSah(company.getEmail(), "Register", "Your are now registered. Username: " + company.getUserName() + " Password: " + company.getPassword());
         return "redirect:list";
     }
 
@@ -83,6 +82,21 @@ public class CompanyController {
         model.addAttribute("listRequests", requestDao.listRequestByContractId(contractID));
         return "company/listRequest";
     }
+
+    // - - - - - - -- - -- - - -- - - - - - - - - - - - - - - - -- - - - - - - - - - - - - - - - - - - - - - - - - -
+    @RequestMapping(value = "/listContracts", method = RequestMethod.GET)
+    public String listContracts(Model model, HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        if(session.getAttribute("user")==null){
+            model.addAttribute("contracts", contractDao.getContracts());
+        }else{
+            String name = user.getUsername();
+            Company company = companyDao.getCompanyByUserName(name);
+            model.addAttribute("contracts",contractDao.getContractsCompany(company.getFiscalNumber()));
+        }
+        return "contract/listContracts";
+    }
+
 
     @RequestMapping(value = "/updateRequest/{requestID}", method = RequestMethod.GET)
     public String updateRequest(Model model, @PathVariable String requestID) {

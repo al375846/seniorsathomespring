@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <link rel="stylesheet" type="text/css"
+          href="/css/sah.css"
+          th:href="@{/css/sah.css}"/>
+    <title>Contracts' List</title>
+    <meta charset="UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <h1>Contracts' List</h1>
+    <p><br></p>
+    <table>
+        <table class="table table-striped" cellpadding="8" style="margin: 0 auto">
+            <thead>
+            <tr>
+                <th>Service Type</th>
+                <th>Quantity</th>
+                <th>Start Date</th>
+                <th>Final Date</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="contract: ${contracts}">
+                <td th:text="${contract.serviceType}"></td>
+                <td th:text="${contract.quantity}"></td>
+                <td th:text="${contract.startDate}"></td>
+                <td th:text="${contract.finalDate}"></td>
+
+
+                <td>
+                    <a th:href="@{/company/listRequest/{contractID}(contractID=${contract.getNumberID()})}"><button type="button" class="selfbutton">More Information</button></a>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+        <!--
+        <table style="margin: 0 auto;" cellpadding="8">
+            <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></td>
+            <a th:href="@{/valoration/listbyrater/{numberid}(numberid=${company.fiscalNumber})}" class="btn btn-primary float-right btn-lg">See it</a>
+        </table>
+        -->
+    </table>
+</div>
+</body>
+</html>

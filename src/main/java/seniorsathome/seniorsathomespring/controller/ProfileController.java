@@ -81,11 +81,11 @@ public class ProfileController {
         if(session.getAttribute("user")==null){
             model.addAttribute("contracts", contractDao.getContracts());
         }else{
-            String nombre = user.getUsername();
-            Company com = companyDao.getCompanyByUserName(nombre);
+            String name = user.getUsername();
+            Company com = companyDao.getCompanyByUserName(name);
             model.addAttribute("company",com);
             model.addAttribute("usuario",com.getName());
-            model.addAttribute("contracts",contractDao.inicioSesion(com.getFiscalNumber()));
+            model.addAttribute("contracts",contractDao.getContractsCompany(com.getFiscalNumber()));
         }
         return "profile/company";
     }

@@ -64,7 +64,7 @@ public class ContractDao {
     }
 
     /*Obtiene una lista de todos los contratos de una compañia de la base de datos. Devuelve una lista vacia si no hay*/
-    public List<Contract> inicioSesion(String nombre){
+    public List<Contract> getContractsCompany(String nombre){
         try{
             return jdbcTemplate.query("SELECT * FROM Contract WHERE companyID=?",
                     new ContractRowMapper(),nombre);
@@ -84,4 +84,5 @@ public class ContractDao {
             return new ArrayList<Contract>();
         }
     }
+
 }
