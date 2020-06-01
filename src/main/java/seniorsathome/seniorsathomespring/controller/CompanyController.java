@@ -98,7 +98,15 @@ public class CompanyController {
         if (bindingResult.hasErrors()){
             model.addAttribute("updateRequest", requestDao.getRequest(request.getNumber_id()));
             return "company/updateRequest";}
-        request.setDays(monday+tuesday+wednesday+thursday+friday+saturday+sunday);
+        String dias = "";
+        dias = (monday != null) ? dias + monday: dias;
+        dias = (tuesday != null) ? dias + tuesday: dias;
+        dias = (wednesday != null) ? dias + wednesday: dias;
+        dias = (thursday != null) ? dias + thursday: dias;
+        dias = (friday != null) ? dias + friday: dias;
+        dias = (saturday != null) ? dias + saturday: dias;
+        dias = (sunday != null) ? dias + sunday: dias;
+        request.setDays(dias);
         requestDao.updateRequest(request);
         model.addAttribute("listRequests", requestDao.listRequestByContractId(request.getContract_id()));
         Beneficiary beneficiary = beneficiaryDao.getBeneficiary(request.getBeneficiary_id());
