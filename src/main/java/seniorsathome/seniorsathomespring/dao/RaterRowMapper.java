@@ -14,7 +14,7 @@ public class RaterRowMapper implements RowMapper<Rater> {
         rater.setRaterid(rs.getString(1));
         rater.setName(rs.getString(2));
         String service = rs.getString(3);
-        if (service != "CATERING" && service != "NURSING" && service != "CLEANING")
+        if (service.contains("@"))
             service = "COMPANION";
         rater.setServiceType(service);
         rater.setDate(rs.getDate(4).toLocalDate());

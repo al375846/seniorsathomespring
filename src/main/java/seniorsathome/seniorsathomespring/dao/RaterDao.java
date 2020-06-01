@@ -26,7 +26,7 @@ public class RaterDao {
             List<Rater> total = new ArrayList<Rater>();
             total.addAll(jdbcTemplate.query("SELECT Volunteer.idNumber, Volunteer.name, Volunteer.email, VolunteersSchedule.day FROM VolunteersSchedule FULL OUTER JOIN Volunteer ON VolunteersSchedule.volunteerId = Volunteer.idNumber WHERE VolunteersSchedule.beneficiaryId=?",
                     new RaterRowMapper(), beneficiaryID));
-            total.addAll(jdbcTemplate.query("SELECT Company.fiscalNumber, Company.name, Request.type, Request.final_date FROM Request FULL OUTER JOIN Contract ON Request.contract_id = Contract.numberID FULL OUTER JOIN Company ON Company.fiscalNumber = Contract.companyID WHERE Request.beneficiary_id=?",
+            total.addAll(jdbcTemplate.query("SELECT Company.fiscalNumber, Company.name, Request.type, Request.final_date FROM Request FULL OUTER JOIN Contract ON Request.contract_id = Contract.numberID FULL OUTER JOIN Company ON Company.fiscalNumber = Contract.companyID WHERE Request.beneficiary_id=? AND Request.status='APPROVED'",
                     new RaterRowMapper(), beneficiaryID));
             return total;
         }
