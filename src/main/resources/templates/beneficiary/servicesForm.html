@@ -33,7 +33,7 @@
     <p><br></p>
     <p><br></p>
     <p><br></p>
-<h1>REQUEST FOR A SERVICE</h1>
+<h1>Request for a service</h1>
 <p><br></p>
 <form action="#" th:action="@{/beneficiary/servicesForm}"
       th:object="${service}" method="post">
@@ -46,7 +46,7 @@
     </tr>
     <tr>
         <div class="form-group">
-            <td class="rightForm"><label th:for="servicesType">Services Type :</label></td>
+            <td class="rightForm"><label th:for="servicesType">Services Type:</label></td>
             <td><select class="form-control" th:id="servicesType" th:field="*{type}">
                 <option value="CATERING" th:if="${#strings.contains(actives, 'CATERING')}" disabled>CATERING</option>
                 <option value="CATERING" th:unless="${#strings.contains(actives, 'CATERING')}">CATERING</option>
@@ -65,21 +65,21 @@ because they have already been purchased">
     </tr>
     <tr>
         <div class="form-group">
-            <td class="rightForm"><label th:for="start_date">Start Date :</label></td>
+            <td class="rightForm"><label th:for="start_date">Start Date:</label></td>
             <td><input type="date" class="form-control" th:id="start_date" th:field="*{start_date}"></td>
             <td th:if="${#fields.hasErrors('start_date')}" th:errors="*{start_date}" class="error"></td>
         </div>
     </tr>
     <tr>
         <div class="form-group">
-            <td class="rightForm"><label th:for="final_date">Final Date :</label></td>
+            <td class="rightForm"><label th:for="final_date">Final Date:</label></td>
             <td><input type="date" class="form-control" th:id="final_date" th:field="*{final_date}"></td>
             <td th:if="${#fields.hasErrors('final_date')}" th:errors="*{final_date}" class="error"></td>
         </div>
     </tr>
     <tr>
         <div class="form-group">
-            <td class="rightForm"><label th:for="comments">Comments :</label></td>
+            <td class="rightForm"><label th:for="comments">Comments:</label></td>
             <td><textarea type="text" class="form-control" th:id="comments" th:field="*{comments}" rows="3"></textarea></td>
             <td th:if="${#fields.hasErrors('comments')}" th:errors="*{comments}" class="error"></td>
         </div>
@@ -87,7 +87,7 @@ because they have already been purchased">
 </table>
     <p><br></p>
     <center>
-        <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></input>
+        <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton">
         <input type="submit" value="Add Request" class="selfbutton"/>
     </center>
 </form>

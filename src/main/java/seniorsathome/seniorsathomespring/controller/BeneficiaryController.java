@@ -207,9 +207,10 @@ public class BeneficiaryController {
         }
 
         beneficiaryDao.addRequest(request);
-        Beneficiary bene = beneficiaryDao.getBeneficiary(request.getBeneficiary_id());
+        String identificationNumber = request.getBeneficiary_id();
+        Beneficiary bene = beneficiaryDao.getBeneficiary(identificationNumber);
         Correo.enviarMensajeSah(bene.getEmail(), "Request", "Your request has been applied");
-        return "redirect:list";
+        return "redirect:./requests/" + identificationNumber;
     }
 
     @RequestMapping(value = "/delete/{identificationNumber}")
