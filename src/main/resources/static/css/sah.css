@@ -3,7 +3,10 @@ body {
 
     font-family: Arial;
     background-color: #f5f5f5;
+    width: 100%;
+    margin: 0px 0px 0px 0px;
 }
+
 
 /* Título de nivel 1 */
 h1 {
