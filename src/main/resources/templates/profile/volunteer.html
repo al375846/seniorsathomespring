@@ -26,7 +26,7 @@
                         <br>
                         <br>
                         <br>
-                        <a href="/schedule/listByUser" class="btn btn-primary float-right btn-lg">See it</a>
+                        <a href="/schedule/listByUser" > <button type="button" class="selfbutton float-right "style="width: 100px">See it</button></a>
                     </div>
                 </div>
                 <br>
@@ -41,7 +41,7 @@
                         <br>
                         <br>
                         <br>
-                        <a th:href="@{/volunteer/update/{numberid}(numberid=${volunteer.idNumber})}" class="btn btn-primary float-right  btn-lg">See it</a>
+                        <a th:href="@{/volunteer/update/{numberid}(numberid=${volunteer.idNumber})}" > <button type="button" class="selfbutton float-right "style="width: 100px">See it</button></a>
                     </div>
                 </div>
             </td>
@@ -52,12 +52,10 @@
                          alt="Card image">
                     <div class="card-body">
                         <h4 class="card-title">Actual Schedule</h4>
-                        <a href="/schedule/listactive" class="btn btn-primary float-right btn-lg">See it</a>
+                        <a href="/schedule/listactive" > <button type="button" class="selfbutton float-right "style="width: 100px">See it</button></a>
                     </div>
                 </div>
             </td>
-        </tr>
-        <tr>
             <td>
                 <div class="card" style="width:400px;height: 520px">
                     <img class="card-img-top"
@@ -65,7 +63,7 @@
                          alt="Card image">
                     <div class="card-body">
                         <h4 class="card-title">Valorations</h4>
-                        <a th:href="@{/valoration/listbyrater/{numberid}(numberid=${volunteer.idNumber})}" class="btn btn-primary float-right btn-lg">See it</a>
+                        <a th:href="@{/valoration/listbyrater/{numberid}(numberid=${volunteer.idNumber})}"> <button type="button" class="selfbutton float-right "style="width: 100px">See it</button></a>
                     </div>
                 </div>
             </td>

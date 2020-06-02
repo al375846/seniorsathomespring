@@ -45,7 +45,7 @@
             <td th:text="${schedule.status} ? 'ACTIVE' : 'FREE'"/>
             <th:block>
                 <td th:if="${schedule.status} == false"><a th:href="@{/schedule/delete/{numberid}(numberid=${schedule.numberid})}">
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="selfbutton">Delete</button>
                 </a>
                 </td>
             </th:block>
@@ -53,10 +53,10 @@
         </tbody>
     </table>
     <p><br></p>
-    <table style="margin: 0 auto">
+    <table cellpadding="8" style="margin: 0 auto">
         <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></td>
         <td><a th:href="add">
-            <button type="button" class="btn btn-success" style="border-radius: 10px 10px 10px 10px;
+            <button type="button" class="selfbutton" style="border-radius: 10px 10px 10px 10px;
     -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px;">Add Volunteer's Schedule
             </button>
         </a></td>

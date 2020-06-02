@@ -2,7 +2,21 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/base}">
+
 <head>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        .selfbutton {
+            cursor: pointer;
+        }
+    </style>
     <link rel="stylesheet" type="text/css"
           href="/css/sah.css"
           th:href="@{/css/sah.css}"/>
@@ -15,69 +29,96 @@
 <div layout:fragment="content" class="container">
     <p><br></p>
     <p><br></p>
-    <p><br></p>
     <h1>Update Request</h1>
     <p><br></p>
     <form action="#" th:action="@{/company/updateRequest}"
           th:object="${updateRequest}" method="post">
-        <table>
-            <input type="text" class="form-control" th:id="number_id" th:field="*{number_id}" hidden>
-            <input type="text" class="form-control" th:id="status" th:field="*{status}" hidden>
-            <input type="text" class="form-control" th:id="type" th:field="*{type}" hidden>
-            <input type="text" class="form-control" th:id="start_date" th:field="*{start_date}" hidden>
-            <input type="text" class="form-control" th:id="final_date" th:field="*{final_date}" hidden>
-            <input type="text" class="form-control" th:id="approval_date" th:field="*{approval_date}" hidden>
-            <input type="text" class="form-control" th:id="reject_date" th:field="*{reject_date}" hidden>
-            <input type="text" class="form-control" th:id="comments" th:field="*{comments}" hidden>
-            <input type="text" class="form-control" th:id="beneficiary_id" th:field="*{beneficiary_id}" hidden>
-            <input type="text" class="form-control" th:id="contract_id" th:field="*{contract_id}" hidden>
-            <input type="text" class="form-control" th:id="days" th:field="*{days}" hidden>
-            <tr>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="monday" value="M">Monday
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="tuesday" value="T">Tuesday
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="wednesday" value="W">Wednesday
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="thursday" value="R">Thursday
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="friday" value="F">Friday
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="saturday" value="S">Saturday
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="sunday" value="U">Sunday
-                    </label>
-                </div>
+        <input type="text" class="form-control" th:id="number_id" th:field="*{number_id}" hidden>
+        <input type="text" class="form-control" th:id="status" th:field="*{status}" hidden>
+        <input type="text" class="form-control" th:id="type" th:field="*{type}" hidden>
+        <input type="text" class="form-control" th:id="start_date" th:field="*{start_date}" hidden>
+        <input type="text" class="form-control" th:id="final_date" th:field="*{final_date}" hidden>
+        <input type="text" class="form-control" th:id="approval_date" th:field="*{approval_date}" hidden>
+        <input type="text" class="form-control" th:id="reject_date" th:field="*{reject_date}" hidden>
+        <input type="text" class="form-control" th:id="comments" th:field="*{comments}" hidden>
+        <input type="text" class="form-control" th:id="beneficiary_id" th:field="*{beneficiary_id}" hidden>
+        <input type="text" class="form-control" th:id="contract_id" th:field="*{contract_id}" hidden>
+        <input type="text" class="form-control" th:id="days" th:field="*{days}" hidden>
 
+        <table style="margin: auto">
+            <tr>
+                <td>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="monday" value="M">Monday
+                        </label>
+                    </div>
+                </td>
             </tr>
+            <tr>
+                <td>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="tuesday" value="T">Tuesday
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="wednesday" value="W">Wednesday
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="thursday" value="R">Thursday
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="friday" value="F">Friday
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="saturday" value="S">Saturday
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="sunday" value="U">Sunday
+
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr><br></tr>
             <tr>
                 <div class="form-group">
                     <td class="rightForm"><label th:for="starthour">Hour :</label></td>
-                    <td><input type="time" class="form-control" th:id="starthour" name="starthour"  ></td>
+                    <td><input type="time" class="form-control" th:id="starthour" name="starthour"></td>
                 </div>
             </tr>
-
         </table>
+        <br><br>
         <table style="margin: 0 auto;" cellpadding="8">
             <td><input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton"></td>
             <td colspan="2"><input type="submit" class="selfbutton" value="Update Request"/></td>
