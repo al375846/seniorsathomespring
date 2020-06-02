@@ -32,6 +32,9 @@
     <table cellpadding="8">
         <td>
             <table>
+                <tr >
+                    <h2>Request</h2>
+                </tr>
                 <tr>
                     <div class="form-group">
                         <td class="rightForm"><label th:for="type">Service Type :</label></td>
@@ -64,7 +67,7 @@
             <table>
                 <tr>
                     <td><a th:href="@{/request/reject/{number_id}(number_id=${request.number_id})}">
-                        <button type="button" class="btn btn-danger">Reject</button>
+                        <button type="button" class="selfbutton">Reject</button>
                     </a></td>
                 </tr>
                 <tr><td><br> </td></tr>
@@ -80,7 +83,11 @@
         </td>
         <td>
             <table class="table table-striped" cellpadding="8" style="margin: 0 auto">
+                <tr >
+                    <h2>Contract</h2>
+                </tr>
                 <thead>
+
                 <tr>
                     <th>Service Type</th>
                     <th>Quantity</th>

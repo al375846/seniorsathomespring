@@ -2,9 +2,25 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/base}">
+<style>
+    h1 {
+        text-align: center;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    table {
+        margin: 0 auto;
+    }
+
+    .selfbutton {
+        cursor: pointer;
+    }
+
+</style>
 <head>
-    <style>
-    </style>
     <link rel="stylesheet" type="text/css"
           href="/css/sah.css"
           th:href="@{/css/sah.css}"/>
@@ -24,7 +40,9 @@
             <input type="text" class="form-control" th:id="identifiaction_number"
                    th:field="${beneficiary.identificationNumber}" hidden>
             <table cellpadding="8">
-
+                <tr >
+                    <h2>Beneficiary</h2>
+                </tr>
                 <tr>
                     <div class="form-group">
                         <td class="rightForm"><label th:for="id">Id :</label></td>
@@ -86,8 +104,11 @@
         </td>
         <td>
 
-            <table class="table table-striped" cellpadding="8" style="margin: 0 auto">
+            <table class="table table-striped" cellpadding="8" style="text-align:center;margin: 0 auto">
                 <thead>
+                <tr >
+                    <h2>SocialWorker</h2>
+                </tr>
                 <tr>
                     <th>Name</th>
                     <th>Surnames</th>
