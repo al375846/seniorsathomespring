@@ -36,7 +36,7 @@
         <td th:text="${volunteer.address}"></td>
         <td th:text="${volunteer.requestDate}"></td>
         <td th:text="${volunteer.description}"></td>
-        <td><a th:href="@{/volunteer/delete/{nom}(nom=${volunteer.idNumber})}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+        <td><a th:href="@{/volunteer/delete/{nom}(nom=${volunteer.idNumber})}"><button type="button" class="selfbutton">Delete</button></a></td>
     </tr>
     </tbody>
 </table>

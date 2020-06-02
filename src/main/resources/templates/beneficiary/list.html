@@ -50,13 +50,13 @@
             <td th:text="${beneficiary.userName}" hidden></td>
             <td th:text="${beneficiary.password}" hidden></td>
             <td th:text="${beneficiary.socialWorkerID}" hidden></td>
-            <td><a th:href="@{/beneficiary/delete/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-danger">Delete</button></a>
+            <td><a th:href="@{/beneficiary/delete/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"> <button type="button" class="selfbutton float-right "style="width: 100px">Delete</button></a>
             </td>
             </td>
-            <td><a th:href="@{/beneficiary/requests/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-primary">Requests</button></a>
+            <td><a th:href="@{/beneficiary/requests/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"> <button type="button" class="selfbutton float-right "style="width: 100px">Requests</button></a>
             </td>
             </td>
-            <td><a th:href="@{/beneficiary/schedules/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"><button type="button" class="btn btn-info">Schedules</button></a>
+            <td><a th:href="@{/beneficiary/schedules/{identificationNumber}(identificationNumber=${beneficiary.identificationNumber})}"> <button type="button" class="selfbutton float-right "style="width: 100px">Schedules</button></a>
             </td>
         </tr>
         </tbody>

@@ -21,18 +21,22 @@
     <p><br></p>
     <table>
         <td>
-            <input type="text" class="form-control" th:id="identifiaction_number" th:field="${beneficiary.identificationNumber}" hidden>
-            <table>
+            <input type="text" class="form-control" th:id="identifiaction_number"
+                   th:field="${beneficiary.identificationNumber}" hidden>
+            <table cellpadding="8">
+
                 <tr>
                     <div class="form-group">
                         <td class="rightForm"><label th:for="id">Id :</label></td>
-                        <td><input type="text" class="form-control" th:id="id" th:field="${beneficiary.identificationNumber}" readonly></td>
+                        <td><input type="text" class="form-control" th:id="id"
+                                   th:field="${beneficiary.identificationNumber}" readonly></td>
                     </div>
                 </tr>
                 <tr>
                     <div class="form-group">
                         <td class="rightForm"><label th:for="name">Name :</label></td>
-                        <td><input type="text" class="form-control" th:id="name" th:field="${beneficiary.name}" readonly></td>
+                        <td><input type="text" class="form-control" th:id="name" th:field="${beneficiary.name}"
+                                   readonly></td>
                     </div>
                 </tr>
                 <tr>
@@ -45,7 +49,8 @@
                 <tr>
                     <div class="form-group">
                         <td class="rightForm"><label th:for="phone_number">Phone Number :</label></td>
-                        <td><input type="text" class="form-control" th:id="phone_number" th:field="${beneficiary.phoneNumber}"
+                        <td><input type="text" class="form-control" th:id="phone_number"
+                                   th:field="${beneficiary.phoneNumber}"
                                    readonly></td>
                     </div>
                 </tr>
@@ -66,7 +71,9 @@
             </table>
             <p><br></p>
             <table>
-                <tr><td><br> </td></tr>
+                <tr>
+                    <td><br></td>
+                </tr>
                 <tr>
                     <td>
 
@@ -78,6 +85,7 @@
             </table>
         </td>
         <td>
+
             <table class="table table-striped" cellpadding="8" style="margin: 0 auto">
                 <thead>
                 <tr>
@@ -93,7 +101,10 @@
                     <td th:text="${socialworker.name}"></td>
                     <td th:text="${socialworker.surname}"></td>
                     <td th:text="${socialworker.email}"></td>
-                    <td><a th:href="@{/beneficiary/assign/{identifiactionNumber}/{numberid}(identifiactionNumber=${beneficiary.identificationNumber}, numberid=${socialworker.numberid})}"><button type="button" class="btn btn-warning">Assign</button></a>
+                    <td>
+                        <a th:href="@{/beneficiary/assign/{identifiactionNumber}/{numberid}(identifiactionNumber=${beneficiary.identificationNumber}, numberid=${socialworker.numberid})}">
+                            <button type="button" class="btn btn-warning">Assign</button>
+                        </a>
                     </td>
                 </tr>
                 </tbody>

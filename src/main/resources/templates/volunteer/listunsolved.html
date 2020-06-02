@@ -36,9 +36,9 @@
             <td th:text="${volunteer.address}"></td>
             <td th:text="${volunteer.requestDate}"></td>
             <td th:text="${volunteer.description}"></td>
-            <td><a th:href="@{/volunteer/accept/{nom}(nom=${volunteer.idNumber})}"><button type="button" class="btn btn-warning">Accept</button></a>
+            <td><a th:href="@{/volunteer/accept/{nom}(nom=${volunteer.idNumber})}"><button type="button" class="selfbutton">Accept</button></a>
             </td>
-            <td><a th:href="@{/volunteer/reject/{nom}(nom=${volunteer.idNumber})}"><button type="button" class="btn btn-danger">Reject</button></a>
+            <td><a th:href="@{/volunteer/reject/{nom}(nom=${volunteer.idNumber})}"><button type="button" class="selfbutton">Reject</button></a>
             </td>
         </tr>
         </tbody>
