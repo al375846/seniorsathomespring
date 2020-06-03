@@ -45,24 +45,29 @@ public class RequestController {
         this.companyDao = companyDao;
     }
 
+
+    /*Lista todas las peticiones*/
     @RequestMapping("/list")
     public String listRequests(Model model) {
         model.addAttribute("requests", requestDao.getRequests());
         return "request/list";
     }
 
+    /*Lista todas las peticiones sin resolver*/
     @RequestMapping("/listunsolved")
     public String listUnsolvedRequests(Model model) {
         model.addAttribute("requests", requestDao.listUnsolvedRequests());
         return "request/listunsolved";
     }
 
+    /*Añade una peticion*/
     @RequestMapping(value="/add")
     public String addRequest(Model model) {
         model.addAttribute("request", new Request());
         return "request/add";
     }
 
+    /*Añade una peticion y lo guarda*/
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("request") Request request,
                                    BindingResult bindingResult) {
@@ -74,12 +79,14 @@ public class RequestController {
         return "redirect:list";
     }
 
+    /*Actualiza una peticion*/
     @RequestMapping(value="/update/{number_id}", method = RequestMethod.GET)
     public String editRequest(Model model, @PathVariable String number_id) {
         model.addAttribute("request", requestDao.getRequest(number_id));
         return "request/update";
     }
 
+    /*Actualiza una peticion y la guarda*/
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("request") Request request,
@@ -92,12 +99,14 @@ public class RequestController {
         return "redirect:list";
     }
 
+    /*Borra una peticion*/
     @RequestMapping(value = "/delete/{number_id}")
     public String processDeleteRequest(@PathVariable String number_id) {
         requestDao.deleteRequest(number_id);
         return "redirect:../list";
     }
 
+    /*Deniega una peticion*/
     @RequestMapping("/reject/{number_id}")
     public String reject(@PathVariable String number_id) {
         Request request = requestDao.getRequest(number_id);
@@ -109,6 +118,7 @@ public class RequestController {
         return "redirect:../listunsolved";
     }
 
+    /*Visualiza una peticion para aplicar contratos*/
     @RequestMapping(value="/overview/{number_id}", method = RequestMethod.GET)
     public String overviewRequest(Model model, @PathVariable String number_id) {
         Request request = requestDao.getRequest(number_id);
@@ -117,6 +127,7 @@ public class RequestController {
         return "request/overview";
     }
 
+    /*Acepta una peticion*/
     @RequestMapping(value="/accept/{number_id}/{numberID}")
     public String accept(
             @PathVariable String number_id, @PathVariable String numberID) {
