@@ -5,8 +5,17 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import seniorsathome.seniorsathomespring.model.Company;
 
+import java.util.List;
+
 
 public class CompanyValidator implements Validator {
+
+    private List<String> companies;
+
+    CompanyValidator(List<String> companies){
+        this.companies = companies;
+    }
+
     @Override
     public boolean supports(Class<?> cls) {
         return Company.class.equals(cls);
@@ -58,6 +67,8 @@ public class CompanyValidator implements Validator {
             errors.rejectValue("userName", "Required", "You must enter a user name");
         if (company.getUserName().length()>25)
             errors.rejectValue("userName", "Incorrect Value", "The username cannot be longer than 25 characters");
+        if (companies.contains(company.getUserName().trim()))
+            errors.rejectValue("userName", "Incorrect value", "The company is already taken");
 
         if (company.getPassword().trim().equals(""))
             errors.rejectValue("password", "Required", "You must enter a password");
