@@ -12,19 +12,6 @@
 
 </head>
 <body>
-<script type="text/javascript" th:inline="javascript">
-    console.log("Hola");
-    var usersName = [];
-    var usersPass = [];
-    /*[# th:each="usuario : ${usuarios}"]*/
-    usersName.push("[(${usuario.username})]");
-    /*[/]*/
-    /*[# th:each="company : ${companies}"]*/
-    usersPass.push("[(${usuario.password})]");
-    /*[/]*/
-    console.log(usersName[0]);
-    console.log(usersPass[0]);
-</script>
 <div layout:fragment="content">
     <h2>Accés a login popup</h2>
     <form id="myForm" action="#" th:action="@{/login}"
@@ -42,9 +29,5 @@
         <input type="submit" value="Log in" />
     </form>
 </div>
-<script type="text/javascript" th:inline="javascript">
-    console.log(document.getElementById("user").value);
-    console.log(document.getElementById("psw").value);
-</script>
 </body>
 </html>
