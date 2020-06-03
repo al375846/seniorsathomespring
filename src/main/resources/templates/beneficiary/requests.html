@@ -62,6 +62,15 @@
                     </ul>
                 </ul>
             </span>
+            <span th:each="schedule: ${schedules}">
+                <ul>
+                    <li>COMPANION</li>
+                    <ul>
+                        <li>Day : <text th:text="${schedule.day}"></text></li>
+                        <li>Start Hour: <text th:text="${schedule.starthour}"></text></li>
+                    </ul>
+                </ul>
+            </span>
         </td>
     </tr>
     <tr>
@@ -84,7 +93,7 @@
     </div>
     <p><br></p>
 <center>
-    <a th:href="@{/profile/beneficiary}"> <button type="button" class="selfbutton" style="width: 100px">Return</button></a>
+    <a th:href="@{/beneficiary/list}"> <button type="button" class="selfbutton" style="width: 100px">Return</button></a>
     <a th:href="@{/beneficiary/servicesForm/{identificationNumber}(identificationNumber=${beneficiary})}"><button type="button" class="selfbutton">Request for a service</button></a>
 </center>
 </div>

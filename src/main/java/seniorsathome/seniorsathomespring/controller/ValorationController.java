@@ -52,6 +52,8 @@ public class ValorationController {
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("valoration") Valoration valoration, String estrellas,
                                    BindingResult bindingResult) {
+        if (estrellas == null)
+            estrellas = "0";
         valoration.setRate(Integer.parseInt(estrellas));
         ValorationValidator val = new ValorationValidator();
         val.validate(valoration,bindingResult);

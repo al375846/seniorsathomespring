@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
-import seniorsathome.seniorsathomespring.dao.CompanyDao;
-import seniorsathome.seniorsathomespring.dao.ContractDao;
-import seniorsathome.seniorsathomespring.dao.RequestDao;
+import seniorsathome.seniorsathomespring.dao.*;
 import seniorsathome.seniorsathomespring.model.*;
 
 import javax.servlet.http.HttpSession;
@@ -26,6 +23,12 @@ public class CompanyController {
     private CompanyDao companyDao;
     private BeneficiaryDao beneficiaryDao;
     private ContractDao contractDao;
+    private UserDao userDao;
+
+    @Autowired
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Autowired
     public void setCompanyDao(CompanyDao companyDao) {
@@ -64,7 +67,7 @@ public class CompanyController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company,
                                    BindingResult bindingResult) {
-        CompanyValidator companyValidator = new CompanyValidator();
+        CompanyValidator companyValidator = new CompanyValidator(userDao.listAllUsersName());
         companyValidator.validate(company, bindingResult);
         if (bindingResult.hasErrors())
             return "company/add";
@@ -141,7 +144,7 @@ public class CompanyController {
     public String processUpdateSubmit(
             @ModelAttribute("company") Company company,
             BindingResult bindingResult) {
-        CompanyValidator companyValidator = new CompanyValidator();
+        CompanyValidator companyValidator = new CompanyValidator(userDao.listAllUsersName());
         companyValidator.validate(company, bindingResult);
         if (bindingResult.hasErrors())
             return "company/update";
