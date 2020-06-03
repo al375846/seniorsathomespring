@@ -148,7 +148,7 @@ public class BeneficiaryController {
         Beneficiary beneficiaryAccept = beneficiaryDao.getBeneficiary(identificationNumber);
         beneficiaryAccept.setSocialWorkerID(numberid);
         SocialWorker sw = socialWorkerDao.getSocialWorker(numberid);
-        beneficiaryDao.updateBeneficiary(beneficiaryAccept);
+        beneficiaryDao.updateBeneficiaryWithoutEncryption(beneficiaryAccept);
         Correo.enviarMensajeSah(sw.getEmail(), "Beneficiary Assign", "A new beneficiary has been assigned to you");
         Correo.enviarMensajeSah(beneficiaryAccept.getEmail(), "Socialworker Assign", "A new socialworker has been assigned to you");
         return "redirect:/beneficiary/listnosocialworker";

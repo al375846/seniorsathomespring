@@ -77,7 +77,7 @@ public class ContractDao {
     /*Obtiene una lista de todos los contratos de un servicio de la base de datos. Devuelve una lista vacia si no hay*/
     public List<Contract> getContractsByService(String servicename){
         try{
-            return jdbcTemplate.query("SELECT * FROM Contract WHERE numberID<>'' and serviceType=?::SERVICETYPE and quantity>0",
+            return jdbcTemplate.query("SELECT * FROM Contract WHERE numberID<>'' and serviceType=?::SERVICETYPE and quantity>0 and startDate>=CURRENT_DATE",
                     new ContractRowMapper(), servicename);
         }
         catch (EmptyResultDataAccessException e) {
