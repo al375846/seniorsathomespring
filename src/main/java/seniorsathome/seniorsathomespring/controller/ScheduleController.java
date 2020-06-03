@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
 import seniorsathome.seniorsathomespring.dao.ScheduleDao;
 import seniorsathome.seniorsathomespring.dao.VolunteerDao;
+import seniorsathome.seniorsathomespring.model.Correo;
+import seniorsathome.seniorsathomespring.model.Schedule;
+import seniorsathome.seniorsathomespring.model.User;
+import seniorsathome.seniorsathomespring.model.Volunteer;
 import seniorsathome.seniorsathomespring.model.*;
 
 import javax.servlet.http.HttpSession;
@@ -40,12 +44,14 @@ public class ScheduleController {
         this.beneficiaryDao = beneficiaryDao;
     }
 
+    /*Listar todos los horarios*/
     @RequestMapping("/list")
     public String listSchedules(Model model) {
         model.addAttribute("schedules", scheduleDao.getSchedules());
         return "schedule/list";
     }
 
+    /*Listar todos los horarios de un usuario*/
     @RequestMapping("/listByUser")
     public String loginCompany(HttpSession session, Model model) {
         User user = (User)session.getAttribute("user");
@@ -59,6 +65,7 @@ public class ScheduleController {
         return  "schedule/listByUser";
     }
 
+    /*Mostrar los horarios activos de un usuario*/
     @RequestMapping("/listactive")
     public String listActiveSchedules(HttpSession session, Model model) {
         User user = (User)session.getAttribute("user");
@@ -72,6 +79,7 @@ public class ScheduleController {
         return "schedule/listactive";
     }
 
+    /*Añadir horario*/
     @RequestMapping(value="/add")
     public String addSchedule(Model model) {
         model.addAttribute("schedule", new Schedule());
@@ -83,19 +91,22 @@ public class ScheduleController {
                                    BindingResult bindingResult) {
         ScheduleValidator val = new ScheduleValidator();
         val.validate(schedule,bindingResult);
+        //si hay errores en algún campo vuelve a solicitar los datos
         if (bindingResult.hasErrors())
             return "schedule/add";
         User user = (User)session.getAttribute("user");
         if(session.getAttribute("user")==null){
             return "redirect:/login";
         }else {
-            Volunteer nombre = volunteerDao.getVolunteerByUsername(user.getUsername());
-            schedule.setVolunteerid(nombre.getIdNumber());
+            Volunteer volunteer = volunteerDao.getVolunteerByUsername(user.getUsername());
+            schedule.setVolunteerid(volunteer.getIdNumber());
             scheduleDao.addSchedule(schedule);
+            Correo.enviarMensajeSah(volunteer.getEmail(), "New schedule", "A new schedule has been added");
             return "redirect:listByUser";
         }
     }
 
+    /*Editar horario*/
     @RequestMapping(value="/update/{numberid}", method = RequestMethod.GET)
     public String editSchedule(Model model, @PathVariable String numberid) {
         model.addAttribute("schedule", scheduleDao.getSchedule(numberid));
@@ -108,18 +119,21 @@ public class ScheduleController {
             BindingResult bindingResult) {
         ScheduleValidator val = new ScheduleValidator();
         val.validate(schedule,bindingResult);
+        //si hay errores en algún campo vuelve a solicitar los datos
         if (bindingResult.hasErrors())
             return "schedule/update";
         scheduleDao.updateSchedule(schedule);
         return "redirect:list";
     }
 
+    /*Eliminar horario*/
     @RequestMapping(value = "/delete/{numberid}")
     public String processDeleteSchedule(@PathVariable String numberid) {
         scheduleDao.deleteSchedule(numberid);
         return "redirect:../listByUser";
     }
 
+    /*Mostrar los datos de quien ha reservado un horario*/
     @RequestMapping(value="/overview/{numberid}", method = RequestMethod.GET)
     public String overviwSchedule(Model model, @PathVariable String numberid) {
         Schedule s = scheduleDao.getSchedule(numberid);
@@ -127,6 +141,7 @@ public class ScheduleController {
         return "schedule/overview";
     }
 
+    /*Reservar, por parte de un beneficiario, el horario libre de un voluntario*/
     @RequestMapping(value="/reserve/{beneficiaryid}/{scheduleid}")
     public String overviwSchedule(Model model, @PathVariable String beneficiaryid, @PathVariable String scheduleid) {
         Schedule s = scheduleDao.getSchedule(scheduleid);

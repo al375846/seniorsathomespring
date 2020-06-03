@@ -11,13 +11,14 @@ public class VolunteerValidator implements Validator{
     @Override
     public boolean supports(Class<?> cls) {
         return Volunteer.class.equals(cls);
-        // o, si volguérem tractar també les subclasses:
-        // return Nadador.class.isAssignableFrom(cls);
     }
 
     @Override
     public void validate(Object obj, Errors errors) {
         Volunteer vol = (Volunteer)obj;
+
+        /*Comprobaciones para asegurarnos de que se introducen todos los datos necesarios*/
+
         if (vol.getName().trim().equals(""))
             errors.rejectValue("name", "Required","You must enter a name");
         if (vol.getPhoneNumber().trim().equals(""))
@@ -30,9 +31,11 @@ public class VolunteerValidator implements Validator{
             errors.rejectValue("userName", "Required", "You must enter a username");
         if (vol.getPassword().trim().equals(""))
             errors.rejectValue("password", "Required","You must enter a password");
+
+        /*Comprobaciones para asegurarnos de que los datos introducidos tienen valores y longitudes adecuadas*/
+
         if ((vol.getPassword().length() <= 4) && (vol.getPassword().trim().equals("") == false))
             errors.rejectValue("password", "Incorrect Value", "The password must have more than 4 characters");
-
         CharSequence charSequence = "@";
         if ((!vol.getEmail().trim().contains(charSequence)) && (vol.getEmail().trim().equals("") == false))
             errors.rejectValue("email", "Incorrect Value", "It should be an email (contains @)");
@@ -48,7 +51,5 @@ public class VolunteerValidator implements Validator{
             errors.rejectValue("userName", "Incorrect Value", "The username cannot be longer than 25 characters");
         if ((vol.getPassword().length()>40) && (vol.getPassword().trim().equals("") == false))
             errors.rejectValue("password", "Incorrect Value", "The password cannot be longer than 40 characters");
-
-        // Afegeix ací la validació per a Edat > 15 anys
     }
 }
