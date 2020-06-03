@@ -26,7 +26,7 @@
             }
         </style>-->
     <style>
-        form.example input[type=text] {
+        form.example input[type=date] {
             padding: 10px;
             font-size: 17px;
             border: 1px solid grey;
@@ -66,7 +66,7 @@
     <h1>Schedules' List</h1>
     <form class="example" action="#" th:action="@{/beneficiary/listschedulessearch}"
            method="get" style="margin:auto;max-width:300px">
-        <input type="text" placeholder="Year-Month-Day" name="search" required>
+        <input type="date" placeholder="Year-Month-Day" name="search" required>
         <button type="submit"><i class="fa fa-search"></i></button>
     </form>
     <br>
