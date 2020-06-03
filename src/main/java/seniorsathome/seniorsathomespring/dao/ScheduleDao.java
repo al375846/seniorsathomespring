@@ -108,6 +108,17 @@ public class ScheduleDao {
         }
     }
 
+    /*Listar todos los horarios activos de un beneficiario*/
+    public List<Schedule> getActiveSchedulesByBeneficiary(String benid){
+        try{
+            return jdbcTemplate.query("SELECT * FROM Volunteersschedule WHERE status=CAST(1 AS BIT) AND beneficiaryId=? ",
+                    new ScheduleRowMapper(), benid);
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Schedule>();
+        }
+    }
+
     /*Listar todos los horarios inactivos de una fecha concreta*/
     public List<Schedule> getInactiveSchedulesByDate(LocalDate date){
         try{

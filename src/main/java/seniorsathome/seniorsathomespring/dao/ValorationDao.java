@@ -66,6 +66,20 @@ public class ValorationDao {
         }
     }
 
+    public List<String> getValorationsByBeneficiary(String benid){
+        try{
+            List<String> total = new ArrayList<>();
+            total.addAll(jdbcTemplate.queryForList("SELECT idVolunteer FROM Valoration WHERE idBeneficiary=? AND idCompany=''",
+                    String.class, benid));
+            total.addAll(jdbcTemplate.queryForList("SELECT idCompany FROM Valoration WHERE idBeneficiary=? AND idVolunteer=''",
+                    String.class, benid));
+            return total;
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<String>();
+        }
+    }
+
     public List<Valoration> getVolunteerValorations(String volunteerid){
         try{
             return jdbcTemplate.query("SELECT * FROM Valoration WHERE idVolunteer=?",

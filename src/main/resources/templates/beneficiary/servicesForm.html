@@ -87,9 +87,10 @@ because they have already been purchased">
 </table>
     <p><br></p>
     <center>
-        <input type="button" onclick="history.back()" name="Return" value="Return" class="selfbutton">
+        <a th:href="@{/beneficiary/requests/{id}(id=${id})}"><input type="button" name="Return" value="Return" class="selfbutton"></a>
         <input type="submit" value="Add Request" class="selfbutton"/>
     </center>
 </form>
+</div>
 </body>
 </html>

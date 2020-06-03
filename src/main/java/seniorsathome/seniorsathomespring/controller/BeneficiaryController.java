@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
-import seniorsathome.seniorsathomespring.dao.RaterDao;
-import seniorsathome.seniorsathomespring.dao.ScheduleDao;
-import seniorsathome.seniorsathomespring.dao.SocialWorkerDao;
+import seniorsathome.seniorsathomespring.dao.*;
 import seniorsathome.seniorsathomespring.model.*;
 
 import javax.servlet.http.HttpSession;
@@ -26,6 +23,12 @@ public class BeneficiaryController {
     SocialWorkerDao socialWorkerDao;
     RaterDao raterDao;
     ScheduleDao scheduleDao;
+    UserDao userDao;
+
+    @Autowired
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Autowired
     public void setBeneficiaryDao(BeneficiaryDao beneficiaryDao) {
@@ -93,7 +96,7 @@ public class BeneficiaryController {
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("beneficiary") Beneficiary beneficiary,
                                    BindingResult bindingResult, HttpSession session) {
-        BeneficiaryValidator beneficiaryValidator = new BeneficiaryValidator();
+        BeneficiaryValidator beneficiaryValidator = new BeneficiaryValidator(userDao.listAllUsersName());
         beneficiaryValidator.validate(beneficiary, bindingResult);
         if (bindingResult.hasErrors())
             return "beneficiary/add";
@@ -154,7 +157,7 @@ public class BeneficiaryController {
         else {
             beneficiary.setPassword(newPassword);
         }
-        BeneficiaryValidator beneficiaryValidator = new BeneficiaryValidator();
+        BeneficiaryValidator beneficiaryValidator = new BeneficiaryValidator(userDao.listAllUsersName());
         beneficiaryValidator.validate(beneficiary, bindingResult);
 
         if (bindingResult.hasErrors())
@@ -182,6 +185,7 @@ public class BeneficiaryController {
     @RequestMapping(value = "/requests/{identificationNumber}")
     public String listRequestBeneficiaries(Model model, @PathVariable String identificationNumber) {
         model.addAttribute("requests", beneficiaryDao.listRequests(identificationNumber));
+        model.addAttribute("schedules", scheduleDao.getActiveSchedulesByBeneficiary(identificationNumber));
         model.addAttribute("beneficiary", identificationNumber);
         return "beneficiary/requests";
     }

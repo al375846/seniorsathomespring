@@ -126,6 +126,7 @@ public class CompanyController {
         Beneficiary beneficiary = beneficiaryDao.getBeneficiary(request.getBeneficiary_id());
         Contract contract = contractDao.getContract(request.getContract_id());
         Company company = companyDao.getCompany(contract.getCompanyID());
+        Correo.enviarMensajeSah(beneficiary.getAddress(),"Schedule of a service ",dias + request.getStarthour() + "days and hour that " + company.getName() + "will do the job");
         Correo.enviarMensajeSah(company.getEmail(), beneficiary.getEmail(), "Days anh hour of request", "Your request is now accepted and we have assigned days and hour");
         return "company/listRequest";
     }

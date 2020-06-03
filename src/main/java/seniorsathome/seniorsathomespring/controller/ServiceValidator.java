@@ -4,6 +4,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import seniorsathome.seniorsathomespring.model.Request;
 
+import java.time.LocalDate;
+
 public class ServiceValidator implements Validator {
 
     @Override
@@ -27,6 +29,10 @@ public class ServiceValidator implements Validator {
         } else if (request.getFinal_date().compareTo(request.getStart_date()) < 0) {
             errors.rejectValue("final_date", "Incorrect Value", "Start date must be previous than the final date");
         }
+        if (request.getStart_date() != null && request.getStart_date().isBefore(LocalDate.now()))
+        errors.rejectValue("start_date", "Incorrect Value", "The start date must be after today");
+        if (request.getFinal_date() != null && request.getFinal_date().isBefore(LocalDate.now()))
+            errors.rejectValue("final_date", "Incorrect Value", "the final date must be after today");
         if (request.getComments().length() > 255)
             errors.rejectValue("comments", "Incorrect Value", "The comment cannot be longer than 255 characters");
     }

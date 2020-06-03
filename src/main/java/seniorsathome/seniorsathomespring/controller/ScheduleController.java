@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import seniorsathome.seniorsathomespring.dao.BeneficiaryDao;
 import seniorsathome.seniorsathomespring.dao.ScheduleDao;
 import seniorsathome.seniorsathomespring.dao.VolunteerDao;
-import seniorsathome.seniorsathomespring.model.Schedule;
-import seniorsathome.seniorsathomespring.model.User;
-import seniorsathome.seniorsathomespring.model.Volunteer;
+import seniorsathome.seniorsathomespring.model.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -135,6 +133,9 @@ public class ScheduleController {
         s.setBeneficiaryid(beneficiaryid);
         s.setStatus(true);
         scheduleDao.updateSchedule(s);
+        Volunteer v = volunteerDao.getVolunteer(s.getVolunteerid());
+        Beneficiary b = beneficiaryDao.getBeneficiary(beneficiaryid);
+        Correo.enviarMensajeSah(v.getEmail(), "Schedule reserved", b.getName() + " has reserved your schedule, with phone number " + b.getPhoneNumber());
         return "redirect:/profile/beneficiary";
     }
 }
