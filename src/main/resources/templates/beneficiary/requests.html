@@ -39,11 +39,11 @@
     <p><br></p>
     <h1>Beneficiary requests</h1>
     <p><br></p>
-    <div th:if="${#lists.isEmpty(requests)}">
+    <div th:if="${#lists.isEmpty(requests)} and ${#lists.isEmpty(schedules)}">
         The beneficiary doesn't have requests.
     </div>
-    <div th:unless="${#lists.isEmpty(requests)}">
-<table th:unless="${#lists.isEmpty(requests)}" class="table table-striped" style="margin: auto;">
+    <div th:unless="${#lists.isEmpty(requests)} and ${#lists.isEmpty(schedules)}">
+<table class="table table-striped" style="margin: auto;">
     <tr style="text-align: center">
         <td>APPROVED</td>
     </tr>
@@ -66,7 +66,7 @@
                 <ul>
                     <li>COMPANION</li>
                     <ul>
-                        <li>Day : <text th:text="${schedule.day}"></text></li>
+                        <li>Day: <text th:text="${schedule.day}"></text></li>
                         <li>Start Hour: <text th:text="${schedule.starthour}"></text></li>
                     </ul>
                 </ul>
@@ -93,7 +93,7 @@
     </div>
     <p><br></p>
 <center>
-    <a th:href="@{/beneficiary/list}"> <button type="button" class="selfbutton" style="width: 100px">Return</button></a>
+    <a th:href="@{/profile/{type}(type=${session.type})}"> <button type="button" class="selfbutton" style="width: 100px">Return</button></a>
     <a th:href="@{/beneficiary/servicesForm/{identificationNumber}(identificationNumber=${beneficiary})}"><button type="button" class="selfbutton">Request for a service</button></a>
 </center>
 </div>

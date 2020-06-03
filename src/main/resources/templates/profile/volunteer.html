@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css"
           href="/css/sah.css"
           th:href="@{/css/sah.css}"/>
-    <title>Profile</title>
+    <title>Volunteer</title>
     <meta charset="UTF-8"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
@@ -26,7 +26,7 @@
                         <br>
                         <br>
                         <br>
-                        <a href="/schedule/listByUser" class="selfbutton float-right btn-lg">See it</a>
+                        <a href="/schedule/listByUser" > <button type="button" class="selfbutton float-right "style="width: 100px">See it</button></a>
                     </div>
                 </div>
                 <br>
@@ -41,7 +41,7 @@
                         <br>
                         <br>
                         <br>
-                        <a th:href="@{/volunteer/update/{numberid}(numberid=${volunteer.idNumber})}" class="selfbutton float-right  btn-lg">See it</a>
+                        <a th:href="@{/volunteer/update/{numberid}(numberid=${volunteer.idNumber})}" > <button type="button" class="selfbutton float-right "style="width: 100px">See it</button></a>
                     </div>
                 </div>
             </td>

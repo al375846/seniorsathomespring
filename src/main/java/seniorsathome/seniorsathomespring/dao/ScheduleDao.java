@@ -30,11 +30,11 @@ public class ScheduleDao {
     public int conseguirNumero() {
         List<Schedule> lista = getSchedules();
         int numero_anterior = Integer.parseInt(lista.get(0).getNumberid().split("S")[1]);
-        for (int i = 1; i < lista.size() - 1; i++) {
+        for (int i = 1; i < lista.size(); i++) {
 
             int numero_actual = Integer.parseInt(lista.get(i).getNumberid().split("S")[1]);
 
-            if (numero_actual - numero_anterior == 2) {
+            if (numero_actual - numero_anterior >= 2) {
                 return numero_actual - 1;
             }
 
