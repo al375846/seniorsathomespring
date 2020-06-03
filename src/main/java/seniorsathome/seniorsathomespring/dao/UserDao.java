@@ -107,4 +107,24 @@ public class UserDao {
             return new ArrayList<User>();
         }
     }
+
+    public List<String> listAllUsersName() {
+        try{
+            List<String> total = new ArrayList<String>();
+            total.addAll(jdbcTemplate.queryForList("SELECT user_name FROM Beneficiary WHERE user_name<>''",
+                    String.class));
+            total.addAll(jdbcTemplate.queryForList("SELECT user_name FROM SocialWorker WHERE user_name<>''",
+                    String.class));
+            total.addAll(jdbcTemplate.queryForList("SELECT userName FROM Volunteer WHERE userName<>''",
+                    String.class));
+            total.addAll(jdbcTemplate.queryForList("SELECT userName FROM Company WHERE userName<>''",
+                    String.class));
+            total.addAll(jdbcTemplate.queryForList("SELECT userName FROM Committee",
+                    String.class));
+            return total;
+        }
+        catch (EmptyResultDataAccessException e) {
+            return new ArrayList<String>();
+        }
+    }
 }

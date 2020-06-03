@@ -62,6 +62,15 @@
                     </ul>
                 </ul>
             </span>
+            <span th:each="schedule: ${schedules}">
+                <ul>
+                    <li>COMPANION</li>
+                    <ul>
+                        <li>Day : <text th:text="${schedule.day}"></text></li>
+                        <li>Start Hour: <text th:text="${schedule.starthour}"></text></li>
+                    </ul>
+                </ul>
+            </span>
         </td>
     </tr>
     <tr>

@@ -4,7 +4,15 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import seniorsathome.seniorsathomespring.model.Beneficiary;
 
+import java.util.List;
+
 public class BeneficiaryValidator implements Validator {
+
+    List<String> usuarios;
+
+    BeneficiaryValidator(List<String> lista) {
+        this.usuarios = lista;
+    }
 
     @Override
     public boolean supports(Class<?> cls) {
@@ -34,6 +42,8 @@ public class BeneficiaryValidator implements Validator {
             errors.rejectValue("address", "Required", "You must enter an address");
         if (beneficiary.getUserName().trim().equals(""))
             errors.rejectValue("userName", "Required", "You must enter a username");
+        if (usuarios.contains(beneficiary.getUserName().trim()))
+            errors.rejectValue("userName", "Incorrect value", "Username already taken");
         if (beneficiary.getPassword().trim().equals(""))
             errors.rejectValue("password", "Required", "You must enter a password");
         if ((beneficiary.getPassword().length() <= 4) && (beneficiary.getPassword().trim().equals("") == false))
