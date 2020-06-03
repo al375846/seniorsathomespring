@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import seniorsathome.seniorsathomespring.dao.UserDao;
 import seniorsathome.seniorsathomespring.dao.VolunteerDao;
 import seniorsathome.seniorsathomespring.model.Correo;
 import seniorsathome.seniorsathomespring.model.User;
@@ -22,6 +23,12 @@ import java.util.List;
 @RequestMapping("/volunteer")
 public class VolunteerController {
     private VolunteerDao volunteerDao;
+    private UserDao userDao;
+
+    @Autowired
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Autowired
     public void setVolunteerDao(VolunteerDao a) {
@@ -53,7 +60,7 @@ public class VolunteerController {
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                    BindingResult bindingResult) {
-        VolunteerValidator volValidator = new VolunteerValidator();
+        VolunteerValidator volValidator = new VolunteerValidator(userDao.listAllUsersName());
         volValidator.validate(volunteer, bindingResult);
         //si hay algún error en los campos introducidos, vuelve a solicitar introducir la información
         if (bindingResult.hasErrors())
@@ -85,7 +92,7 @@ public class VolunteerController {
         else {
             v.setPassword(newPassword);
         }
-        VolunteerValidator volValidator = new VolunteerValidator();
+        VolunteerValidator volValidator = new VolunteerValidator(userDao.listAllUsersName());
         volValidator.validate(v, bindingResult);
 
         v.setRequestDate(vol.getRequestDate());

@@ -5,9 +5,16 @@ import org.springframework.validation.Validator;
 import seniorsathome.seniorsathomespring.model.Volunteer;
 
 import javax.validation.constraints.Null;
+import java.util.List;
 
 
 public class VolunteerValidator implements Validator{
+
+    List<String> users;
+    VolunteerValidator(List<String> todos) {
+        users = todos;
+    }
+
     @Override
     public boolean supports(Class<?> cls) {
         return Volunteer.class.equals(cls);
@@ -49,6 +56,8 @@ public class VolunteerValidator implements Validator{
             errors.rejectValue("address", "Incorrect Value", "The address cannot be longer than 50 characters");
         if (vol.getUserName().length()>25)
             errors.rejectValue("userName", "Incorrect Value", "The username cannot be longer than 25 characters");
+        if (users.contains(vol.getUserName().trim()))
+            errors.rejectValue("userName", "Incorrect Value", "Username already taken");
         if ((vol.getPassword().length()>40) && (vol.getPassword().trim().equals("") == false))
             errors.rejectValue("password", "Incorrect Value", "The password cannot be longer than 40 characters");
     }
