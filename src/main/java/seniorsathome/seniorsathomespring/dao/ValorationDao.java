@@ -66,6 +66,7 @@ public class ValorationDao {
         }
     }
 
+    /*Obtiene una lista de todas las valoraciones de la base de datos por beneficiario. Devuelve una lista vacia si no hay*/
     public List<String> getValorationsByBeneficiary(String benid){
         try{
             List<String> total = new ArrayList<>();
@@ -80,6 +81,7 @@ public class ValorationDao {
         }
     }
 
+    /*Obtiene una lista de todas las valoraciones de la base de datos por voluntario. Devuelve una lista vacia si no hay*/
     public List<Valoration> getVolunteerValorations(String volunteerid){
         try{
             return jdbcTemplate.query("SELECT * FROM Valoration WHERE idVolunteer=?",
@@ -90,6 +92,7 @@ public class ValorationDao {
         }
     }
 
+    /*Obtiene la media de todas las valoraciones de la base de datos por voluntario. Devuelve una lista vacia si no hay*/
     public Integer getVolunteerAverage(String volunteerid){
         try{
             return jdbcTemplate.queryForObject("SELECT AVG(rate) FROM Valoration WHERE idVolunteer=?",
@@ -99,6 +102,8 @@ public class ValorationDao {
             return null;
         }
     }
+
+    /*Obtiene una lista de todas las valoraciones de la base de datos por compañia. Devuelve una lista vacia si no hay*/
     public List<Valoration> getCompanyValorations(String volunteerid){
         try{
             return jdbcTemplate.query("SELECT * FROM Valoration WHERE idCompany=?",
@@ -109,6 +114,7 @@ public class ValorationDao {
         }
     }
 
+    /*Obtiene la media de todas las valoraciones de la base de datos por compañia. Devuelve una lista vacia si no hay*/
     public Integer getCompanyAverage(String volunteerid){
         try{
             return jdbcTemplate.queryForObject("SELECT AVG(rate) FROM Valoration WHERE idCompany=?",

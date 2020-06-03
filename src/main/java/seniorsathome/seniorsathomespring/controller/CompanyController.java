@@ -50,18 +50,20 @@ public class CompanyController {
         this.contractDao = contractDao;
     }
 
+    //Lista las compañias
     @RequestMapping("/list")
     public String listCompanies(Model model) {
         model.addAttribute("companies", companyDao.getCompanies());
         return "company/list";
     }
 
+    //sirve para cuando añades una compañia saber cual compañia
     @RequestMapping(value = "/add")
     public String addCompany(Model model) {
         model.addAttribute("company", new Company());
         return "company/add";
     }
-
+    //añade una compñia
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company,
                                    BindingResult bindingResult) {
@@ -74,19 +76,21 @@ public class CompanyController {
         return "redirect:list";
     }
 
+    //sirve para sacar la informacion de la compañia para su modificación
     @RequestMapping(value = "/update/{fiscalNumber}", method = RequestMethod.GET)
     public String editCompany(Model model, @PathVariable String fiscalNumber) {
         model.addAttribute("company", companyDao.getCompany(fiscalNumber));
         return "company/update";
     }
 
+    //lista todas sus peticiones asignadas a el contrato
     @RequestMapping(value = "/listRequest/{contractID}", method = RequestMethod.GET)
     public String listRequest(Model model, @PathVariable String contractID) {
         model.addAttribute("listRequests", requestDao.listRequestByContractId(contractID));
         return "company/listRequest";
     }
 
-
+    //lista todos sus contratos
     @RequestMapping(value = "/listContracts", method = RequestMethod.GET)
     public String listContracts(Model model, HttpSession session) {
         User user = (User)session.getAttribute("user");
@@ -100,12 +104,13 @@ public class CompanyController {
         return "company/listContracts";
     }
 
-
+    //sirve para sacar los datos de la peticion a modificar
     @RequestMapping(value = "/updateRequest/{requestID}", method = RequestMethod.GET)
     public String updateRequest(Model model, @PathVariable String requestID) {
         model.addAttribute("updateRequest", requestDao.getRequest(requestID));
         return "company/updateRequest";
     }
+    //sirve para modificar una peticion en cuanto a los dias y las horas
     @RequestMapping(value = "/updateRequest", method = RequestMethod.POST)
     public String processUpdateRequestSubmit(
             @ModelAttribute("company") Request request,String monday,String tuesday,String wednesday,String thursday,String friday,String saturday,String sunday,
@@ -134,6 +139,7 @@ public class CompanyController {
         return "company/listRequest";
     }
 
+    //sirve para modificar una compañia
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("company") Company company,
@@ -147,11 +153,14 @@ public class CompanyController {
         return "redirect:list";
     }
 
+    //para borrar una compañia por su numero fiscal
     @RequestMapping(value = "/delete/{fiscalNumber}")
     public String processDeleteCompany(@PathVariable String fiscalNumber) {
         companyDao.deleteCompany(fiscalNumber);
         return "redirect:../list";
     }
+
+    //Le añade la hora a una peticion
     @RequestMapping("/hour/{requestID}")
     public String Hour(@PathVariable String requestID , Time hora, Model model){
         Request req = requestDao.getRequest(requestID);
@@ -162,28 +171,5 @@ public class CompanyController {
         return"company/listRequest";
     }
 
-    @RequestMapping(value = "/monday/{requestID}")
-    public String monday(@PathVariable String requestID, Model model) {
-        Request req = requestDao.getRequest(requestID);
-        String days = req.getDays();
-        if (days == null){
-            req.setDays("M");
-            requestDao.updateRequest(req);
-            model.addAttribute("listRequests", requestDao.listRequestByContractId(req.getContract_id()));
-            return "company/listRequest";
-        }
-        if (days.contains("M")){
-            days = days.replace("M","");
-        }else {
-            days = añadir(days,"M");
-        }
-        req.setDays(days);
-        requestDao.updateRequest(req);
-        model.addAttribute("listRequests", requestDao.listRequestByContractId(req.getContract_id()));
-        return "company/listRequest";
-    }
-    public String añadir(String days , String letra){
-        return days+letra;
-    }
 }
 

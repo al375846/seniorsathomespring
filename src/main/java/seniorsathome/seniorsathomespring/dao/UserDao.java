@@ -108,6 +108,7 @@ public class UserDao {
         }
     }
 
+    /*Lista de todos los nombres de usuarios*/
     public List<String> listAllUsersName() {
         try{
             List<String> total = new ArrayList<String>();

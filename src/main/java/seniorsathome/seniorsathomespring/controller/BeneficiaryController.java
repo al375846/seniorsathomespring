@@ -14,6 +14,8 @@ import seniorsathome.seniorsathomespring.model.*;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/beneficiary")
@@ -24,6 +26,12 @@ public class BeneficiaryController {
     RaterDao raterDao;
     ScheduleDao scheduleDao;
     UserDao userDao;
+    ValorationDao valorationDao;
+
+    @Autowired
+    public void setValorationDao(ValorationDao valorationDao) {
+        this.valorationDao = valorationDao;
+    }
 
     @Autowired
     public void setUserDao(UserDao userDao) {
@@ -50,12 +58,14 @@ public class BeneficiaryController {
         this.scheduleDao = scheduleDao;
     }
 
+    /*Lista todos los beneficairios*/
     @RequestMapping("/list")
     public String listBeneficiaries(Model model) {
         model.addAttribute("beneficiaries", beneficiaryDao.getBeneficiaries());
         return "beneficiary/list";
     }
 
+    /*Lista todos los beneficairios por trabajador social*/
     @RequestMapping("/listbysocialworker")
     public String listBeneficiariesBySocialworker(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
@@ -64,12 +74,14 @@ public class BeneficiaryController {
         return "beneficiary/listbysocialworker";
     }
 
+    /*Lista todos los beneficairios sin trabajador social*/
     @RequestMapping("/listnosocialworker")
     public String listBeneficiariesNoSocialworker(Model model, HttpSession session) {
         model.addAttribute("beneficiaries", beneficiaryDao.getBeneficiariesNoSocialWorker());
         return "beneficiary/listnosocialworker";
     }
 
+    /*Lista todos los horarios de voluntarios*/
     @RequestMapping("/listschedules")
     public String listSchedules(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
@@ -78,6 +90,7 @@ public class BeneficiaryController {
         return "beneficiary/listschedules";
     }
 
+    /*Lista todos los horarios de voluntarios buscando por fecha*/
     @RequestMapping(value="/listschedulessearch",  method = RequestMethod.GET)
     public String listSchedulesByDate(Model model, HttpSession session, String search) {
         User user = (User) session.getAttribute("user");
@@ -87,12 +100,14 @@ public class BeneficiaryController {
         return "beneficiary/listschedules";
     }
 
+    /*Añade un beneficiario*/
     @RequestMapping(value="/add")
     public String addBeneficiary(Model model) {
         model.addAttribute("beneficiary", new Beneficiary());
         return "beneficiary/add";
     }
 
+    /*Guarda el beneficiario añadido*/
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("beneficiary") Beneficiary beneficiary,
                                    BindingResult bindingResult, HttpSession session) {
@@ -117,6 +132,7 @@ public class BeneficiaryController {
         return "redirect:/";
     }
 
+    /*Asigna trabajador social a un beneficiario*/
     @RequestMapping(value="/assignsocialworker/{identificationNumber}", method = RequestMethod.GET)
     public String overviewRequest(Model model, @PathVariable String identificationNumber) {
         Beneficiary beneficiary = beneficiaryDao.getBeneficiary(identificationNumber);
@@ -125,6 +141,7 @@ public class BeneficiaryController {
         return "beneficiary/assignsocialworker";
     }
 
+    /*Guarda los cambios de asignar trabajador social a un beneficiario*/
     @RequestMapping(value="/assign/{identificationNumber}/{numberid}")
     public String accept(
              @PathVariable String identificationNumber, @PathVariable String numberid) {
@@ -137,12 +154,14 @@ public class BeneficiaryController {
         return "redirect:/beneficiary/listnosocialworker";
     }
 
+    /*Actualiza un beneficiario*/
     @RequestMapping(value="/update/{identificationNumber}", method = RequestMethod.GET)
     public String editBeneficiary(Model model, @PathVariable String identificationNumber) {
         model.addAttribute("beneficiary", beneficiaryDao.getBeneficiary(identificationNumber));
         return "beneficiary/update";
     }
 
+    /*Gaurda la actualizacion un beneficiario*/
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(HttpSession session,
             @ModelAttribute("beneficiary") Beneficiary beneficiary,String newPassword,
@@ -176,12 +195,14 @@ public class BeneficiaryController {
         return "redirect:/profile/beneficiary";
     }
 
+    /*Lista hoarios por un beneficiario*/
     @RequestMapping(value = "/schedules/{identificationNumber}")
     public String listSchedulesBeneficiaries(Model model, @PathVariable String identificationNumber){
         model.addAttribute("schedules", beneficiaryDao.listSchedules(identificationNumber));
         return "beneficiary/schedules";
     }
 
+    /*Lista peticiones y hoarios por un beneficiario*/
     @RequestMapping(value = "/requests/{identificationNumber}")
     public String listRequestBeneficiaries(Model model, @PathVariable String identificationNumber) {
         model.addAttribute("requests", beneficiaryDao.listRequests(identificationNumber));
@@ -190,6 +211,7 @@ public class BeneficiaryController {
         return "beneficiary/requests";
     }
 
+    /*Aplica por una peticio un beneficiario*/
     @RequestMapping(value="/servicesForm/{identificationNumber}", method= RequestMethod.GET)
     public String newService(Model model,  @PathVariable String identificationNumber) {
         model.addAttribute("service", new Request());
@@ -198,6 +220,7 @@ public class BeneficiaryController {
         return "beneficiary/servicesForm";
     }
 
+    /*Guarda la aplicacion*/
     @RequestMapping(value="/servicesForm", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("service") Request request, Model model, BindingResult bindingResult) {
 
@@ -217,16 +240,25 @@ public class BeneficiaryController {
         return "redirect:./requests/" + identificationNumber;
     }
 
+    /*Borra un beneficiario*/
     @RequestMapping(value = "/delete/{identificationNumber}")
     public String processDeleteBeneficiary(@PathVariable String identificationNumber) {
         beneficiaryDao.deleteBeneficiary(identificationNumber);
         return "redirect:../list";
     }
 
+    /*Lista las posibilidades de valoraciones*/
     @RequestMapping(value = "/rate/{identificationNumber}")
     public String rateRequest(@PathVariable String identificationNumber, Model model) {
         model.addAttribute("beneficiary", beneficiaryDao.getBeneficiary(identificationNumber));
-        model.addAttribute("raters", raterDao.listRaters(identificationNumber));
+        List<Rater> todos = raterDao.listRaters(identificationNumber);
+        List<String> val_realizacas = valorationDao.getValorationsByBeneficiary(identificationNumber);
+        List<Rater> val_por_hacer = new ArrayList<>();
+        for (Rater rat: todos) {
+            if(!val_realizacas.contains(rat.getRaterid()))
+                val_por_hacer.add(rat);
+        }
+        model.addAttribute("raters", val_por_hacer);
         return "beneficiary/listraters";
     }
 
