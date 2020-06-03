@@ -156,7 +156,7 @@ public class BeneficiaryDao {
         return jdbcTemplate.query("SELECT * FROM Request WHERE beneficiary_id=? AND start_date<=current_date AND final_date>=current_date AND status='APPROVED'", new RequestRowMapper(), identificationNumber);
     }
 
-    /*Obtiene el numero para generar el siguiente ID*/
+    /*Genera el numera de identificación*/
     public int conseguirNumero() {
         List<Beneficiary> lista = getBeneficiaries();
         int numero_anterior = Integer.parseInt(lista.get(0).getIdentificationNumber().split("B")[1]);

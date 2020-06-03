@@ -16,6 +16,7 @@ import java.util.Arrays;
 @Controller
 public class HomeController {
 
+    /*Redirige al home*/
     @RequestMapping("/")
     public String showHome(Model model) {
         return "/home";

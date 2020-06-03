@@ -31,6 +31,8 @@ public class VolunteerDao {
                 "V"+conseguirNumero(),v.getName(),v.getPhoneNumber(),v.getEmail(),v.getAddress(),
                 v.getUserName(),passwordEncryptor.encryptPassword(v.getPassword()), LocalDate.now(),null,"UNSOLVED",v.getDescription());
     }
+
+    /*Genera el numera de identificación*/
     public int conseguirNumero() {
         List<Volunteer> lista = getVolunteers();
         int numero_anterior = Integer.parseInt(lista.get(0).getIdNumber().split("V")[1]);

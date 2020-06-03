@@ -27,6 +27,7 @@ public class ScheduleDao {
                     "", schedule.getVolunteerid());
 
     }
+    /*Genera el numera de identificación*/
     public int conseguirNumero() {
         List<Schedule> lista = getSchedules();
         int numero_anterior = Integer.parseInt(lista.get(0).getNumberid().split("S")[1]);

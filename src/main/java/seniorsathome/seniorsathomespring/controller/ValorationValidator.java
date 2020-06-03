@@ -12,10 +12,16 @@ public class ValorationValidator implements Validator{
 
     @Override
     public void validate(Object obj, Errors errors) {
+
         Valoration val = (Valoration) obj;
+
+        /*Comprobaciones para asegurarnos de que se introducen todos los datos necesarios*/
+
         if (val.getComment().trim().equals(""))
             errors.rejectValue("comment", "Required",
                     "You must enter a comment");
+
+        /*Comprobaciones para asegurarnos de que los datos introducidos tienen las longitudes adecuadas*/
 
         if (val.getRate()<= 0 && val.getRate()>5)
             errors.rejectValue("rate", "Incorrect Value",

@@ -23,6 +23,9 @@ public class BeneficiaryValidator implements Validator {
     public void validate(Object obj, Errors errors) {
 
         Beneficiary beneficiary = (Beneficiary) obj;
+
+        /*Comprobaciones para asegurarnos de que se introducen todos los datos necesarios*/
+
         if (beneficiary.getName().trim().equals(""))
             errors.rejectValue("name", "Required", "You must enter a name");
         if (beneficiary.getSurnames().trim().equals(""))
@@ -33,19 +36,20 @@ public class BeneficiaryValidator implements Validator {
             errors.rejectValue("email", "Required", "You must enter an email");
         if (beneficiary.getAccount().trim().equals(""))
             errors.rejectValue("account", "Required", "You must enter an account");
-
-
-        CharSequence charSequence = "@";
-        if ((!beneficiary.getEmail().trim().contains(charSequence)) && (beneficiary.getEmail().trim().equals("") == false))
-            errors.rejectValue("email", "Incorrect Value", "It should be an email (contains @)");
         if (beneficiary.getAddress().trim().equals(""))
             errors.rejectValue("address", "Required", "You must enter an address");
         if (beneficiary.getUserName().trim().equals(""))
             errors.rejectValue("userName", "Required", "You must enter a username");
-        if (usuarios.contains(beneficiary.getUserName().trim()))
-            errors.rejectValue("userName", "Incorrect value", "Username already taken");
         if (beneficiary.getPassword().trim().equals(""))
             errors.rejectValue("password", "Required", "You must enter a password");
+
+        /*Comprobaciones para asegurarnos de que los datos introducidos tienen los valores y longitudes adecuadas*/
+
+        CharSequence charSequence = "@";
+        if ((!beneficiary.getEmail().trim().contains(charSequence)) && (beneficiary.getEmail().trim().equals("") == false))
+            errors.rejectValue("email", "Incorrect Value", "It should be an email (contains @)");
+        if (usuarios.contains(beneficiary.getUserName().trim()))
+            errors.rejectValue("userName", "Incorrect value", "Username already taken");
         if ((beneficiary.getPassword().length() <= 4) && (beneficiary.getPassword().trim().equals("") == false))
             errors.rejectValue("password", "Incorrect Value", "The password must have more than 4 characters");
         if (beneficiary.getName().length()>50)

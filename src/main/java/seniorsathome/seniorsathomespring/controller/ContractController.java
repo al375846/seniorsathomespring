@@ -37,12 +37,14 @@ public class ContractController {
         this.companyDao = companyDao;
     }
 
+    /*Muestra todos los contratos*/
     @RequestMapping("/list")
     public String listContracts(Model model) {
         model.addAttribute("contracts", contractDao.getContracts());
         return "contract/list";
     }
 
+    /*Añade un nuevo contratp*/
     @RequestMapping(value = "/add")
     public String addContract(Model model) {
         model.addAttribute("contract", new Contract());
@@ -67,6 +69,7 @@ public class ContractController {
         return "redirect:list";
     }
 
+    /*Modifica un contrato*/
     @RequestMapping(value = "/update/{numberID}", method = RequestMethod.GET)
     public String editContract(Model model, @PathVariable String numberID) {
         Contract contract = contractDao.getContract(numberID);
@@ -94,12 +97,12 @@ public class ContractController {
         }
         Company company = companyDao.getCompanyByName(contract.getCompanyID());
         contract.setCompanyID(company.getFiscalNumber());
-        System.out.println(contract.getCompanyID());
         Correo.enviarMensajeSah(company.getEmail(), "Contract updated", "Your contact has been updated");
         contractDao.updateContract(contract);
         return "redirect:list";
     }
 
+    /*Elimina un contrato*/
     @RequestMapping(value = "/delete/{numberID}")
     public String processDeleteContract(@PathVariable String numberID) {
         contractDao.deleteContract(numberID);

@@ -16,7 +16,11 @@ public class RequestValidator implements Validator {
 
     @Override
     public void validate(Object obj, Errors errors) {
+
         Request request = (Request) obj;
+
+        /*Comprobaciones para asegurarnos de que se introducen todos los datos necesarios*/
+
         if (request.getNumber_id().trim().equals(""))
             errors.rejectValue("number_id", "Required", "You must enter an identification number");
         if (request.getStatus().trim().equals(""))
@@ -27,14 +31,17 @@ public class RequestValidator implements Validator {
             errors.rejectValue("start_date", "Required", "You must enter a start date");
         if (request.getFinal_date() == null)
             errors.rejectValue("final_date", "Required", "You must enter a final date");
+        if (request.getBeneficiary_id() == null)
+            errors.rejectValue("beneficiary_id", "Required", "You must enter a beneficiary id");
+
+        /*Comprobaciones para asegurarnos de que los datos introducidos tienen los valores y longitudes adecuadas*/
+
         if (request.getStart_date() != null && request.getStart_date().isBefore(LocalDate.now()))
             errors.rejectValue("start_date", "Incorrect Value", "The start date must be after today");
         if (request.getFinal_date() != null && request.getFinal_date().isBefore(LocalDate.now()))
             errors.rejectValue("final_date", "Incorrect Value", "the final date must be after today");
         if (request.getStart_date() != null && request.getFinal_date() != null && request.getFinal_date().isBefore(request.getStart_date()))
             errors.rejectValue("final_date", "Incorrect Value", "The final date must be after the start date");
-        if (request.getBeneficiary_id() == null)
-            errors.rejectValue("beneficiary_id", "Required", "You must enter a beneficiary id");
         if (request.getComments().length()>255)
             errors.rejectValue("comments", "Incorrect Value", "The comment cannot be longer than 255 characters");
     }

@@ -40,14 +40,14 @@ public class InvoiceController {
     }
 
 
-// Operacions: Crear, llistar, actualitzar, esborrar
-
+    /*Muestra todas las facturas*/
     @RequestMapping("/list")
     public String listInvoices(Model model) {
         model.addAttribute("invoices", invoiceDao.getInvoices());
         return "invoice/list";
     }
 
+    /*Añade una nueva factura*/
     @RequestMapping(value="/add")
     public String addInvoice(Model model) {
         model.addAttribute("invoice", new Invoice());
@@ -65,6 +65,7 @@ public class InvoiceController {
         return "redirect:list";
     }
 
+    /*Actualiza una factura*/
     @RequestMapping(value="/update/{number_id}", method = RequestMethod.GET)
     public String editInvoice(Model model, @PathVariable String number_id) {
         model.addAttribute("invoice", invoiceDao.getInvoice(number_id));
@@ -83,12 +84,14 @@ public class InvoiceController {
         return "redirect:list";
     }
 
+    /*Elimina una factura*/
     @RequestMapping(value = "/delete/{number_id}")
     public String processDeleteCompany(@PathVariable String number_id) {
         invoiceDao.deleteInvoice(number_id);
         return "redirect:../list";
     }
 
+    /*Emite una factura*/
     @RequestMapping(value = "/emit")
     public String generateBills() {
         List<Beneficiary> beneficiarios = beneficiaryDao.getBeneficiaries();
@@ -117,6 +120,7 @@ public class InvoiceController {
                 for (InvoiceLine invoiceLine : invoiceLines) {
                     invoiceLineDao.addInvoiceLine(invoiceLine);
                 }
+                //envia un correo con el resultado de la operación
                 Correo.enviarMensajeSah(beneficiary.getEmail(), "Bill", "Your bill has been created and payed");
             }
         }

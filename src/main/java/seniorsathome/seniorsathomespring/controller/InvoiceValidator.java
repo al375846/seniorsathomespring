@@ -15,6 +15,8 @@ public class InvoiceValidator implements Validator {
     public void validate(Object obj, Errors errors) {
         Invoice invoice = (Invoice)obj;
 
+        /*Comprobaciones para asegurarnos de que se introducen todos los datos necesarios*/
+
         if (invoice.getNumberID().trim().equals(""))
             errors.rejectValue("numberID", "Required", "You must enter an identification number");
 

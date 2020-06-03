@@ -17,6 +17,7 @@ public class LoginController {
     @Autowired
     private UserDao userDao;
 
+    /*Logea un usuario*/
     @RequestMapping("/login")
     public String login(Model model) {
         model.addAttribute("user", new User());
@@ -31,15 +32,13 @@ public class LoginController {
         if (bindingResult.hasErrors()) {
             return "login";
         }
-        // Comprova que el login siga correcte
-        // intentant carregar les dades de l'usuari
+        // Comprueba que el login sea correcto
         user = userDao.loadUserByUsername(user.getUsername(), user.getPassword());
         if (user == null) {
             bindingResult.rejectValue("password", "badpw", "Contrasenya incorrecta");
             return "login";
         }
-        // Autenticats correctament.
-        // Guardem les dades de l'usuari autenticat a la sessió
+        // Guardamos los datos del usuario autenticado en la sesión
         session.setAttribute("user", user);
 
         String type = userDao.userType(user);
@@ -54,7 +53,7 @@ public class LoginController {
             return "redirect:" + url;
         }
 
-        // Torna a la pàgina principal
+        // Vuelve a la página principal
         return "redirect:/";
     }
 
@@ -86,6 +85,7 @@ public class LoginController {
 
     }
 
+    /*Salir de la sesión*/
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();

@@ -19,6 +19,7 @@ public class UserController {
         this.userDao = userDao;
     }
 
+    /*Lista todos los usuarios registrados*/
     @RequestMapping("/list")
     public String listSocis(HttpSession session, Model model) {
         if (session.getAttribute("user") == null)

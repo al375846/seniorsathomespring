@@ -101,6 +101,7 @@ public class ScheduleController {
             Volunteer volunteer = volunteerDao.getVolunteerByUsername(user.getUsername());
             schedule.setVolunteerid(volunteer.getIdNumber());
             scheduleDao.addSchedule(schedule);
+            //correo con la respuesta de la operación, en este caso informa de que se ha añadido un nuevo horario
             Correo.enviarMensajeSah(volunteer.getEmail(), "New schedule", "A new schedule has been added");
             return "redirect:listByUser";
         }

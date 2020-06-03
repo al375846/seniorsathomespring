@@ -136,8 +136,6 @@ public class RequestController {
         request.setStatus("APPROVED");
         request.setContract_id(numberID);
         Contract contract = contractDao.getContract(numberID);
-        System.out.println(numberID);
-        System.out.println(number_id);
         contract.setQuantity(contract.getQuantity() - 1);
         requestDao.updateRequest(request);
         contractDao.updateContract(contract);

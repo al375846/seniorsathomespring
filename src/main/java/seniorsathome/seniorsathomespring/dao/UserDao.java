@@ -47,8 +47,6 @@ public class UserDao {
             return user;
         }
         else {
-            System.out.println(password);
-            System.out.println(user.getPassword());
             return null;
         }
     }

@@ -32,6 +32,7 @@ public class ValorationDao {
                 valoration.getIdValoration());
     }
 
+    /*Elimina una valoración de la base de datos a partir de su numero de identificación*/
     public void deleteValoration(String idValoration) {
         jdbcTemplate.update("DELETE FROM Valoration WHERE idvaloration=?",
                 idValoration);

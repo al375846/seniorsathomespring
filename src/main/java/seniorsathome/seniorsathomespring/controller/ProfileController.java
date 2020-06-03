@@ -47,21 +47,25 @@ public class ProfileController {
         this.volunteerDao = volunteerDao;
     }
 
+    /*Redirige al perfil del CAS Comité*/
     @RequestMapping("/committee")
     public String loginCommittee(Model model) {
         return "profile/committee";
     }
 
+    /*Redirige al perfil del CAS Manager*/
     @RequestMapping("/casmanager")
     public String loginCasmanager(Model model) {
         return "profile/casmanager";
     }
 
+    /*Redirige al perfil del CAS de los Voluntarios*/
     @RequestMapping("/casvolunteer")
     public String loginCasvolunteer(Model model) {
         return "profile/casvolunteer";
     }
 
+    /*Redirige al perfil de los beneficiarios*/
     @RequestMapping("/beneficiary")
     public String loginBeneficiary(HttpSession session,Model model) {
         User user = (User)session.getAttribute("user");
@@ -75,6 +79,7 @@ public class ProfileController {
         return "profile/beneficiary";
     }
 
+    /*Redirige al perfil de las Compañías*/
     @RequestMapping("/company")
     public String loginCompany(HttpSession session, Model model) {
         User user = (User)session.getAttribute("user");
@@ -90,11 +95,13 @@ public class ProfileController {
         return "profile/company";
     }
 
+    /*Redirige al perfil de los Trabajadores Sociales*/
     @RequestMapping("/socialworker")
     public String loginSocialWorker(Model model) {
         return "profile/socialworker";
     }
 
+    /*Redirige al perfil de los Voluntarios*/
     @RequestMapping("/volunteer")
     public String loginVolunteer(HttpSession session,Model model) {
         User user = (User)session.getAttribute("user");
@@ -108,6 +115,7 @@ public class ProfileController {
         }
     }
 
+    /*Redirige al perfil que este logeado desde cualquier otra página, o a la pagina de Log in si no hay ninguna sesión abierta*/
     @RequestMapping("/enter")
     public String loginSocialWorker(HttpSession session, Model model) {
         if (session.getAttribute("type") == null) {
