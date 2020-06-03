@@ -117,7 +117,7 @@
         <button class="open-button" onclick="openForm()">Log in</button>
     </p>
     <p th:unless="*{user == null}">
-        Logged as <span th:text="*{user.username}"></span> <a
+        Logged as <span th:text="*{user.username}"></span> <a class="selfpopup"
             href="/logout" th:href="@{/logout}">Log out</a>
     </p>
 </div>
@@ -133,8 +133,8 @@
         <label><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" required />
 
-        <button type="submit" class="btn">Login</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        <button type="submit" class="selfbutton" style="width: 280px; margin-bottom: 10px;">Login</button>
+        <button type="button" class="selfbutton" onclick="closeForm()" style="width: 280px;">Close</button>
     </form>
 </div>
 </body>
