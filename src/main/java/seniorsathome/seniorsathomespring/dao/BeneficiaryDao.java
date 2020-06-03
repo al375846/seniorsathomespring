@@ -65,7 +65,7 @@ public class BeneficiaryDao {
     /*Obtiene una lista de todos los beneficiarios de la base de datos. Devuelve una lista vacia si no hay*/
     public List<Beneficiary> getBeneficiaries() {
         try {
-            return jdbcTemplate.query("SELECT * FROM Beneficiary WHERE identification_number<>'' ORDER BY identification_number ",
+            return jdbcTemplate.query("SELECT * FROM Beneficiary WHERE identification_number<>'' ORDER BY (regexp_split_to_array(identification_number, E'B'))[2]::INTEGER ",
                     new BeneficiaryRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Beneficiary>();

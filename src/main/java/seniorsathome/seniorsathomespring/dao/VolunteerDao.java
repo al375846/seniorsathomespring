@@ -96,7 +96,7 @@ public class VolunteerDao {
     /*Mostrar la lista de voluntarios (todos los estados)*/
     public List<Volunteer> getVolunteers(){
         try{
-            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE idNumber<>'' ORDER BY idNumber",
+            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE idNumber<>'' ORDER BY (regexp_split_to_array(idNumber, E'V'))[2]::INTEGER",
                     new VolunteerRowMapper());
         }
         catch (EmptyResultDataAccessException e) {

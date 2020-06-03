@@ -89,7 +89,7 @@ public class ScheduleDao {
     /*Listar todos los horarios*/
     public List<Schedule> getSchedules(){
         try{
-            return jdbcTemplate.query("SELECT * FROM Volunteersschedule ORDER BY numberID",
+            return jdbcTemplate.query("SELECT * FROM Volunteersschedule ORDER BY (regexp_split_to_array(numberID, E'S'))[2]::INTEGER",
                     new ScheduleRowMapper());
         }
         catch (EmptyResultDataAccessException e) {
