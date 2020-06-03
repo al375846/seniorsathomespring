@@ -3,7 +3,6 @@ package seniorsathome.seniorsathomespring.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.scheduling.annotation.Schedules;
 import org.springframework.stereotype.Repository;
 import seniorsathome.seniorsathomespring.model.Schedule;
 
@@ -119,10 +118,10 @@ public class ScheduleDao {
         }
     }
 
-    /*Listar todos los horarios inactivos de una fecha concreta*/
+    /*Listar todos los horarios libres de una fecha concreta*/
     public List<Schedule> getInactiveSchedulesByDate(LocalDate date){
         try{
-            return jdbcTemplate.query("SELECT s.* FROM VolunteersSchedule AS s FULL OUTER JOIN Volunteer AS v ON s.volunteerId = v.idNumber WHERE s.status=CAST(0 AS BIT) AND s.day=? AND v.status='APPROVED'",
+            return jdbcTemplate.query("SELECT s.* FROM VolunteersSchedule AS s FULL OUTER JOIN Volunteer AS v ON s.volunteerId = v.idNumber WHERE s.status = CAST(0 AS BIT) AND s.day = ? AND v.status = 'APPROVED'",
                     new ScheduleRowMapper(), date);
         }
         catch (EmptyResultDataAccessException e) {
@@ -130,10 +129,10 @@ public class ScheduleDao {
         }
     }
 
-    /*Listar todos los horarios inactivos de la fecha actual*/
+    /*Listar todos los horarios libres a partir de la fecha actual*/
     public List<Schedule> getInactiveSchedulesByDateStandar(){
         try{
-            return jdbcTemplate.query("SELECT s.* FROM VolunteersSchedule AS s FULL OUTER JOIN Volunteer AS v ON s.volunteerId = v.idNumber WHERE s.status=CAST(0 AS BIT) AND s.day=? AND v.status='APPROVED'",
+            return jdbcTemplate.query("SELECT s.* FROM VolunteersSchedule AS s FULL OUTER JOIN Volunteer AS v ON s.volunteerId = v.idNumber WHERE s.status=CAST(0 AS BIT) AND s.day >= ? AND v.status = 'APPROVED'",
                     new ScheduleRowMapper(), LocalDate.now());
         }
         catch (EmptyResultDataAccessException e) {
