@@ -25,7 +25,7 @@ public class ContractValidator implements Validator {
 
         if (contract.getStartDate() == null)
             errors.rejectValue("startDate", "Required", "You must enter a start date");
-        if (contract.getStartDate().isBefore(LocalDate.now()) || contract.getStartDate().equals(LocalDate.now()))
+        if (contract.getStartDate() != null && (contract.getStartDate().isBefore(LocalDate.now()) || contract.getStartDate().equals(LocalDate.now())))
             errors.rejectValue("startDate", "Incorrect Value", "You must enter a later date");
 
         if (contract.getFinalDate() == null)
