@@ -65,6 +65,5 @@ public class CompanyValidator implements Validator {
             errors.rejectValue("password", "Incorrect Value", "You must enter a password with less than 40 characters");
         if ((company.getPassword().length() <= 4) && (company.getPassword().trim().equals("") == false))
             errors.rejectValue("password", "Incorrect Value", "The password must have more than 4 characters");
-
-}
+    }
 }
